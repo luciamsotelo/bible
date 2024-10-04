@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Footer = () => {
     return (
-        <footer className="bg-light text-center text-lg-start mt-auto">
+        <footer className=" fixed-bottom bg-light text-center text-lg-start mt-auto">
             <Container className="p-4">
                 <h5 className="text-uppercase">About Us</h5>
                 <p>
