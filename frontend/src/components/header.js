@@ -33,7 +33,7 @@ const Header = () => {
                     <Link to="/prayer-board">
                         <Button variant="outline-secondary" className="m-1">Prayer Board</Button>
                     </Link>
-                    <Link to="/character-bios">
+                    <Link to="/bio">
                         <Button variant="outline-secondary" className="m-1">Character Bios</Button>
                     </Link>
                     <Link to="/dress-up">

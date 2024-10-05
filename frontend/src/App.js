@@ -6,10 +6,10 @@ import Games from './pages/game_page';
 import SingAlong from './pages/sing_page';
 import PrintableCrafts from './pages/craft_page';
 import PrayerBoard from './pages/prayer_page';
-import CharacterBios from './pages/character_page';
 import CharacterDressUp from './pages/dressup_page';
 import AdventureMap from './pages/AdventureMap_page';
 import CreateStory from './pages/CreateStory_page';
+import BioPage from './pages/bio_page'; 
 
 const App = () => {
     return (
@@ -22,10 +22,10 @@ const App = () => {
                 <Route path="/sing-along" element={<SingAlong />} />
                 <Route path="/crafts" element={<PrintableCrafts />} />
                 <Route path="/prayer-board" element={<PrayerBoard />} />
-                <Route path="/character-bios" element={<CharacterBios />} />
                 <Route path="/dress-up" element={<CharacterDressUp />} />
                 <Route path="/adventure-map" element={<AdventureMap />} />
                 <Route path="/create-story" element={<CreateStory />} />
+                <Route path="/bio" element={<BioPage />} /> {/* BioPage route */}
             </Routes>
         </BrowserRouter>
     );
