@@ -66,6 +66,7 @@ const stories = [
 const BibleStories = () => {
   // State to track which card is expanded
   const [expandedCard, setExpandedCard] = useState(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handleExpand = (index) => {
     setExpandedCard(index);
@@ -73,23 +74,64 @@ const BibleStories = () => {
 
   const handleCollapse = () => {
     setExpandedCard(null);
+    speechSynthesis.cancel();
   };
+  
+  const handleReadStory = (story) => {
+    if ('speechSynthesis' in window) {
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = `${story.title}. ${story.story}. ${story.lesson}`;
+      speech.rate = 1; // Adjust the rate of speech if necessary
+      speechSynthesis.speak(speech);
+      
+      setIsSpeaking(true); // Set state to indicate story is being read
+      speech.onend = () => setIsSpeaking(false); // Set state when reading is finished
+    } else {
+      alert("Sorry, your browser doesn't support text-to-speech.");
+    }
+  };
+  const handleStopStory = () => {
+    speechSynthesis.cancel(); 
+    setIsSpeaking(false); 
+  };
+
 
   return (
     <div className="container my-5">
       <Row>
-        
         {stories.map((story, index) => (
           <Col key={index} xs={12} sm={6} md={4} className="mb-4">
             {expandedCard === index ? (
               <Card className="expanded-card">
-                <Button variant="outline-secondary mb-2 text-dark" onClick={handleCollapse}>Back to Stories</Button>
+                <Button variant="outline-secondary mb-2 text-dark" onClick={handleCollapse}>
+                  Back to Stories
+                </Button>
                 <Card.Img variant="top" src={story.expandedImage} alt={story.title} />
                 <Card.Body>
                   <Card.Title>{story.title}</Card.Title>
                   <Card.Text>{story.story}</Card.Text>
-                  <Card.Text><strong>Lesson:</strong> {story.lesson}</Card.Text>
-                  <Button variant="primary" onClick={handleCollapse}>Next Story</Button>
+                  <Card.Text>
+                    <strong>Lesson:</strong> {story.lesson}
+                  </Card.Text>
+                  <Button variant="primary" onClick={handleCollapse}>
+                    Next Story
+                  </Button>
+                  <Button
+                    variant="success"
+                    onClick={() => handleReadStory(story)}
+                    disabled={isSpeaking} // Disable while reading
+                    className="ms-2"
+                  >
+                    {isSpeaking ? 'Reading...' : 'Read Story'}
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={handleStopStory}
+                    disabled={!isSpeaking} // Disable if not currently speaking
+                    className="ms-2"
+                  >
+                    Stop Story
+                  </Button>
                 </Card.Body>
               </Card>
             ) : (

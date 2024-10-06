@@ -1,0 +1,20 @@
+{
+    "title": "Jesus Loves Me",
+    "lyrics": [
+      { "text": "Jesus loves me, this I know", "startTime": 0, "endTime": 4 },
+      { "text": "For the Bible tells me so", "startTime": 4, "endTime": 9 },
+      { "text": "Little ones to Him belong", "startTime": 10, "endTime": 14 },
+      { "text": "They are weak, but He is strong", "startTime": 15, "endTime": 19 },
+    { "text": "Yes, Jesus loves me!", "startTime": 20, "endTime": 24 },
+    { "text": "Yes, Jesus loves me!", "startTime": 25, "endTime": 28 },
+    { "text": "Yes, Jesus loves me!", "startTime": 29, "endTime": 32 },
+    { "text": "The Bible tells me so.", "startTime": 33, "endTime": 38 },
+    { "text": "Jesus loves me! He who died", "startTime": 39, "endTime": 43.5 },
+    { "text": "Heaven’s gate to open wide;", "startTime": 43.7, "endTime": 48 },
+    { "text": "He will wash away my sin,", "startTime": 48.2, "endTime": 52 },
+    { "text": "Let His little child come in.", "startTime": 53, "endTime": 59 }
+    ],
+    "audio": "/songs/jesus-loves-me.mp3"
+  }
+  
+  

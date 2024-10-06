@@ -1,0 +1,35 @@
+.karaoke-container {
+    padding-top: 2rem;
+  }
+  
+  .lyrics-container {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    min-height: 200px;
+    font-size: 1.2rem;
+  }
+  
+  .highlighted {
+    color: red;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .highlighted::before {
+    content: '⚽'; /* Bouncing ball icon */
+    position: absolute;
+    left: -20px;
+    top: -5px;
+    animation: bounce 1s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
