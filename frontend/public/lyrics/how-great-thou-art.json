@@ -1,0 +1,15 @@
+{
+    "title": "How Great Thou Art",
+    "lyrics": [
+      { "text": "O Lord my God, When I in awesome wonder,", "startTime": 0, "endTime": 8 },
+      { "text": "Consider all the worlds Thy Hands have made;", "startTime": 8.75, "endTime": 16.50 },
+      { "text": "I see the stars, I hear the rolling thunder,", "startTime": 17, "endTime": 25.5 },
+      { "text": "Thy power throughout the universe displayed.", "startTime": 25.75, "endTime": 33.5 },
+      { "text": "Then sings my soul, My Saviour God, to Thee,", "startTime": 34.25, "endTime": 42.75 },
+      { "text": "How great Thou art, How great Thou art.", "startTime": 42.80, "endTime": 51 },
+      { "text": "Then sings my soul, My Saviour God, to Thee,", "startTime": 51.25, "endTime": 60 },
+      { "text": "How great Thou art, How great Thou art, How great Thou art!", "startTime": 60, "endTime": 68 }
+    ],
+    "audio": "/songs/how-great-thou-art.mp3"
+  }
+  

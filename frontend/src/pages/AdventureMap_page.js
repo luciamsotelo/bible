@@ -1,12 +1,10 @@
 import React from 'react'
 import Header from '../components/header'
-import Footer from '../components/footer'
 
 const AdventureMap_page = () => {
   return (
     <div>
-        <Header />
-        <Footer />  
+        <Header /> 
     </div>
   )
 }

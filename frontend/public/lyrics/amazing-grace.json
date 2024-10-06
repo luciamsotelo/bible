@@ -1,0 +1,15 @@
+{
+    "title": "Amazing Grace",
+    "lyrics": [
+      { "text": "Amazing grace, how sweet the sound", "startTime": 0, "endTime": 14.75 },
+      { "text": "That saved a wretch like me", "startTime": 14.76, "endTime": 23.5 },
+      { "text": "I once was lost, but now am found", "startTime": 24, "endTime": 32 },
+      { "text": "Was blind, but now I see", "startTime": 32.5, "endTime": 40 },
+      { "text": "'Twas grace that taught my heart to fear", "startTime": 41, "endTime": 48.75 },
+      { "text": "And grace, my fears relieved", "startTime": 49, "endTime": 56 },
+      { "text": "How precious did that grace appear", "startTime": 57, "endTime": 64.75 },
+      { "text": "The hour I first believed", "startTime": 65, "endTime": 70 }
+    ],
+    "audio": "/songs/amazing-grace.mp3"
+  }
+  
