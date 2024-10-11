@@ -15,11 +15,16 @@
   transform-style: preserve-3d;
 }
 
-.flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg); /* Flip card on hover */
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg); /* Retain flipped state on click */
+}
+
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;

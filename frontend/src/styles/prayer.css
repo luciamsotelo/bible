@@ -1,0 +1,98 @@
+.prayer-container {
+  margin-top: 2rem;
+  background-image: url('../images/prayer_background.jpg'); /* Correct path */
+  background-size: cover; /* Optional: to cover the entire container */
+  background-position: center; /* Optional: to center the background */
+}
+
+
+
+.prayer-form {
+  background-color: #f0f8ff;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 5px solid yellow;
+}
+
+.prayer-float-container {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+/* Floating prayers with smooth movement */
+.floating-prayer {
+  position: absolute;
+  background-color: #ffec99;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 1.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 1;
+  max-width: 250px;
+  z-index: 1; /* Default z-index */
+}
+
+/* Hover effect - bring the prayer to the front and enlarge */
+.floating-prayer:hover {
+  transform: scale(1.2); /* Make it slightly bigger */
+  z-index: 10; /* Bring it to the front */
+}
+
+/* Color patterns */
+.floating-prayer:nth-child(odd) {
+  animation-duration: 40s;
+  background-color: #c3f0ca; /* Light green */
+}
+
+.floating-prayer:nth-child(even) {
+  animation-duration: 50s;
+  background-color: yellow; /* Yellow */
+}
+
+/* Adding more colors */
+.floating-prayer:nth-child(3n) {
+  background-color: #ff9999; /* Light red */
+}
+
+.floating-prayer:nth-child(4n) {
+  background-color: #99ccff; /* Light blue */
+}
+
+.floating-prayer:nth-child(5n) {
+  background-color: #ffcc99; /* Light orange */
+}
+
+.floating-prayer:nth-child(6n) {
+  background-color: #ccff99; /* Light lime green */
+}
+
+.floating-prayer:nth-child(7n) {
+  background-color: #ff66b2; /* Pink */
+}
+
+.floating-prayer:nth-child(8n) {
+  background-color: #ccccff; /* Light purple */
+}
+
+.floating-prayer:nth-child(9n) {
+  background-color: #ffb3e6; /* Light pink */
+}
+
+/* Fade-out effect when there are more than 7 prayers */
+.floating-prayer.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Ensure smooth placement and random position assignment */
+.floating-prayer {
+  transform: translateY(-10%);
+  transition: all 1.5s ease-in-out;
+}
+
+.floating-prayer.stay {
+  transform: translateY(0); /* Stay in place */
+}
