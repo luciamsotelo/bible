@@ -6,15 +6,16 @@ const Prayer = () => {
   const [prayers, setPrayers] = useState([]);
   const [name, setName] = useState('');
   const [prayerRequest, setPrayerRequest] = useState('');
+  const [messageReceived, setMessageReceived] = useState(false);
 
   // Function to read the prayer out loud with childlike voice
   const handleSpeak = (prayerText) => {
     const utterance = new SpeechSynthesisUtterance(prayerText);
-    utterance.pitch = 6.5;
-    utterance.rate = 0.75;
+    utterance.pitch = 2.0;
+    utterance.rate = 0.7;
 
     const voices = window.speechSynthesis.getVoices();
-    const childlikeVoice = voices.find((voice) => voice.name.includes('Google UK English Female')) || voices[0];
+    const childlikeVoice = voices.find((voice) => voice.name.includes('Google UK English Female')) || voices[2];
     if (childlikeVoice) {
       utterance.voice = childlikeVoice;
     }
@@ -39,46 +40,37 @@ const Prayer = () => {
     }
   };
 
-  // Add a "stay" class after floating up
+  // Trigger the animation and remove after fade-out
   useEffect(() => {
-    const timeoutIds = prayers.map((prayer, index) => {
+    const timeoutIds = prayers.map((prayer) => {
       return setTimeout(() => {
         setPrayers((prevPrayers) =>
-          prevPrayers.map((p) => (p.id === prayer.id ? { ...p, stay: true } : p))
+          prevPrayers.filter((p) => p.id !== prayer.id)
         );
-      }, index * 3000); // Delay by 3 seconds per prayer
+        setMessageReceived(true); // Show the received message
+        setTimeout(() => setMessageReceived(false), 3000); // Hide after 3 seconds
+      }, 5000); // 5 seconds duration for fade-out
     });
 
     return () => timeoutIds.forEach((id) => clearTimeout(id));
   }, [prayers]);
 
-  // Remove prayers after 24 hours
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const filteredPrayers = prayers.filter((prayer) => Date.now() - prayer.id < 86400000);
-      setPrayers(filteredPrayers);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [prayers]);
-
   const getRandomPosition = () => {
-    const top = Math.random() * 80;
     const left = Math.random() * 80;
-    return { top: `${top}%`, left: `${left}%` };
+    return { left: `${left}%` };
   };
 
   return (
     <Container className="prayer-container d-flex flex-column justify-content-between">
       <div className="prayer-float-container mb-4">
         {prayers.length > 0 ? (
-          prayers.map((prayer, index) => {
-            const { top, left } = getRandomPosition();
+          prayers.map((prayer) => {
+            const { left } = getRandomPosition();
             return (
               <div
                 key={prayer.id}
                 className={`floating-prayer ${prayer.stay ? 'stay' : ''}`}
-                style={{ top, left }}
+                style={{ left }}
               >
                 <p><strong>Dear Jesus,</strong> {prayer.prayerRequest}</p>
                 <p><strong>From:</strong> {prayer.name}</p>
@@ -86,12 +78,19 @@ const Prayer = () => {
               </div>
             );
           })
-        ) : (
+        ) : !messageReceived ? ( // Only show "No prayers" message when there are no prayers and the message has not been received
           <p>No prayers yet. Be the first to submit one!</p>
-        )}
+        ) : null }
       </div>
 
-      <Form onSubmit={handleSubmit} className="prayer-form col-6 offset-3" >
+      {messageReceived && (
+        <div className="d-flex justify-content-center align-items-center bg-warning w-75 text-center mb-5">
+        <h4 className="">Your message has been received by God all mighty!</h4>
+      </div>
+      
+      )}
+
+      <Form onSubmit={handleSubmit} className="prayer-form col-6 offset-3">
         <Form.Group>
           <Form.Label>Your Name</Form.Label>
           <Form.Control
