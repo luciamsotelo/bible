@@ -1,54 +1,73 @@
 // src/components/Bio.js
 import React, { useState } from "react";
-import { Card, Col, Row, Container } from "react-bootstrap";
+import { Card, Col, Row, Container, Button } from "react-bootstrap";
+import '../styles/bio.css'; // Add your custom styles here
 
 const Bio = () => {
   // Data for 9 biblical figures
   const characters = [
     {
       name: "Jesus",
-      bio: "Jesus is the Son of God and the Messiah. He teaches us to love, be kind, and forgive others. He performed amazing miracles and gave his life to save everyone from their mistakes.",
+      bio: "I am Jesus, the Son of God. I teach love, kindness, and forgiveness.",
       image: "/images/jesus.jpg",
+      description: "Jesus is the Son of God and the Messiah. He teaches us to love, be kind, and forgive others.",
+      audio: "/songs/jesusbio.mp3",
     },
     {
       name: "Noah",
-      bio: "Noah built a big boat called an ark to save his family and two of every kind of animal from a huge flood that God sent to cleanse the earth.",
+      bio: "I am Noah. I built an ark to save my family and animals from the flood.",
       image: "/images/noah.jpg",
+      description: "Noah built a big boat called an ark to save his family and two of every kind of animal from a huge flood.",
+      audio: "/songs/noah.mp3",
     },
     {
       name: "David",
-      bio: "David was the second king of Israel and is famous for defeating a giant named Goliath with just a slingshot and a stone.",
+      bio: "I am David. I defeated a giant with a slingshot.",
       image: "/images/david.jpg",
+      description: "David was the second king of Israel and is famous for defeating a giant named Goliath.",
+      audio: "/songs/david.mp3",
     },
     {
       name: "John the Baptist",
-      bio: "John the Baptist was a prophet who baptized Jesus in the river. He told everyone to turn away from their wrongdoings and get ready for Jesus, the Messiah.",
+      bio: "I am John the Baptist. I prepared the way for Jesus.",
       image: "/images/john.jpg",
+      description: "John the Baptist was a prophet who baptized Jesus and told everyone to turn from their wrongdoings.",
+      audio: "/songs/john.mp3",
     },
     {
       name: "Daniel",
-      bio: "Daniel was a brave prophet who trusted God completely, even when he was thrown into a lion's den for praying to God.",
+      bio: "I am Daniel. I trusted God in the lion's den.",
       image: "/images/daniel.jpg",
+      description: "Daniel was a brave prophet who trusted God completely, even when he was thrown into a lion's den.",
+      audio: "/songs/daniel.mp3",
     },
     {
       name: "Jonah",
-      bio: "Jonah was a man who tried to run away from God but ended up in the belly of a large fish. He learned to listen to God and shared God’s message after he was saved.",
+      bio: "I am Jonah. I learned to obey God after my adventure in a fish.",
       image: "/images/jonah.jpg",
+      description: "Jonah was a man who tried to run away from God but learned to listen to God after being saved from a fish.",
+      audio: "/songs/jonah.mp3",
     },
     {
       name: "Moses",
-      bio: "Moses was chosen by God to lead the Israelites out of Egypt. He received the Ten Commandments, which are rules for how to live a good life.",
+      bio: "I am Moses. I led my people out of Egypt.",
       image: "/images/moses.jpg",
+      description: "Moses was chosen by God to lead the Israelites out of Egypt and received the Ten Commandments.",
+      audio: "/songs/moses.mp3",
     },
     {
       name: "Joseph",
-      bio: "Joseph was sold into slavery by his jealous brothers but later became a powerful leader in Egypt. He helped save his family from hunger during a great famine.",
+      bio: "I am Joseph. I overcame betrayal and became a leader.",
       image: "/images/joseph.jpg",
+      description: "Joseph was sold into slavery by his brothers but later became a powerful leader in Egypt.",
+      audio: "/songs/joseph.mp3",
     },
     {
       name: "Mary",
-      bio: "Mary is the mother of Jesus. She is admired for her great faith and obedience to God, showing us the importance of trusting Him.",
+      bio: "I am Mary, the mother of Jesus.",
       image: "/images/mary.jpg",
+      description: "Mary is the mother of Jesus, admired for her faith and obedience to God.",
+      audio: "/songs/mary.mp3",
     },
   ];
 
@@ -68,9 +87,24 @@ const Bio = () => {
 // Card component that flips
 const FlipCard = ({ character }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [audio, setAudio] = useState(null);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
+  };
+
+  const handleSpeak = () => {
+    const newAudio = new Audio(character.audio);
+    newAudio.play();
+    setAudio(newAudio);
+  };
+
+  const handleStop = () => {
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0; // Reset audio to the start
+      setAudio(null); // Clear the audio reference
+    }
   };
 
   return (
@@ -87,7 +121,13 @@ const FlipCard = ({ character }) => {
         {/* Back of the card */}
         <div className="flip-card-back">
           <Card.Body>
-            <Card.Text>{character.bio}</Card.Text>
+            <Card.Text>{character.description}</Card.Text>
+            <Button variant="primary" onClick={handleSpeak} className="me-2">
+              Who Am I?
+            </Button>
+            <Button variant="secondary" onClick={handleStop}>
+              Stop
+            </Button>
           </Card.Body>
         </div>
       </Card>
