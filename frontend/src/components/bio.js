@@ -87,7 +87,6 @@ const FlipCard = ({ character }) => {
         {/* Back of the card */}
         <div className="flip-card-back">
           <Card.Body>
-            <Card.Title>{character.name}</Card.Title>
             <Card.Text>{character.bio}</Card.Text>
           </Card.Body>
         </div>

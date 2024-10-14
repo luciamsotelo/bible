@@ -1,8 +1,17 @@
-.prayer-container {
-  margin-top: 2rem;
+.prayer-body {
+  width: 100vw; /* Full width of the viewport */
+  margin: 0; /* Remove any default margins */
+  padding: 2rem 0; /* Optional padding if you need spacing inside the container */
   background-image: url('../images/prayer_background.jpg');
   background-size: cover;
   background-position: center;
+}
+
+.prayer-container {
+  margin-top: 2rem;
+  background-size: cover;
+  background-position: center;
+
 }
 
 .prayer-form {
@@ -31,7 +40,6 @@
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   opacity: 1;
-  max-width: 250px;
   z-index: 1;
   transform: translateY(50%); /* Start from the middle */
   animation: floatUp 5s ease-in-out forwards, fadeOut 5s ease-in-out 3s forwards; /* Animation sequence */
