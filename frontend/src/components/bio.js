@@ -1,137 +1,113 @@
 // src/components/Bio.js
-import React, { useState } from "react";
-import { Card, Col, Row, Container, Button } from "react-bootstrap";
-import '../styles/bio.css'; // Add your custom styles here
+import React, { useState } from 'react';
+import { Card, Button, Row, Col } from 'react-bootstrap';
+import '../styles/bio.css'; // Import your CSS file
 
-const Bio = () => {
-  // Data for 9 biblical figures
-  const characters = [
-    {
-      name: "Jesus",
-      bio: "I am Jesus, the Son of God. I teach love, kindness, and forgiveness.",
-      image: "/images/jesus.jpg",
-      description: "Jesus is the Son of God and the Messiah. He teaches us to love, be kind, and forgive others.",
-      audio: "/songs/jesusbio.mp3",
-    },
-    {
-      name: "Noah",
-      bio: "I am Noah. I built an ark to save my family and animals from the flood.",
-      image: "/images/noah.jpg",
-      description: "Noah built a big boat called an ark to save his family and two of every kind of animal from a huge flood.",
-      audio: "/songs/noah.mp3",
-    },
-    {
-      name: "David",
-      bio: "I am David. I defeated a giant with a slingshot.",
-      image: "/images/david.jpg",
-      description: "David was the second king of Israel and is famous for defeating a giant named Goliath.",
-      audio: "/songs/david.mp3",
-    },
-    {
-      name: "John the Baptist",
-      bio: "I am John the Baptist. I prepared the way for Jesus.",
-      image: "/images/john.jpg",
-      description: "John the Baptist was a prophet who baptized Jesus and told everyone to turn from their wrongdoings.",
-      audio: "/songs/john.mp3",
-    },
-    {
-      name: "Daniel",
-      bio: "I am Daniel. I trusted God in the lion's den.",
-      image: "/images/daniel.jpg",
-      description: "Daniel was a brave prophet who trusted God completely, even when he was thrown into a lion's den.",
-      audio: "/songs/daniel.mp3",
-    },
-    {
-      name: "Jonah",
-      bio: "I am Jonah. I learned to obey God after my adventure in a fish.",
-      image: "/images/jonah.jpg",
-      description: "Jonah was a man who tried to run away from God but learned to listen to God after being saved from a fish.",
-      audio: "/songs/jonah.mp3",
-    },
-    {
-      name: "Moses",
-      bio: "I am Moses. I led my people out of Egypt.",
-      image: "/images/moses.jpg",
-      description: "Moses was chosen by God to lead the Israelites out of Egypt and received the Ten Commandments.",
-      audio: "/songs/moses.mp3",
-    },
-    {
-      name: "Joseph",
-      bio: "I am Joseph. I overcame betrayal and became a leader.",
-      image: "/images/joseph.jpg",
-      description: "Joseph was sold into slavery by his brothers but later became a powerful leader in Egypt.",
-      audio: "/songs/joseph.mp3",
-    },
-    {
-      name: "Mary",
-      bio: "I am Mary, the mother of Jesus.",
-      image: "/images/mary.jpg",
-      description: "Mary is the mother of Jesus, admired for her faith and obedience to God.",
-      audio: "/songs/mary.mp3",
-    },
-  ];
+const characters = [
+  {
+    name: 'Jesus',
+    image: '/images/jesus.jpg', // Replace with actual image path
+    description: "I am Jesus, the Son of God.",
+    audio: 'songs/jesusbio.mp3', // Replace with actual audio path
+  },
+  {
+    name: 'Noah',
+    image: 'path/to/noah.jpg',
+    description: "I am Noah, I built the Ark.",
+    audio: 'path/to/noah.mp3',
+  },
+  {
+    name: 'David',
+    image: 'path/to/david.jpg',
+    description: "I am David, a king and a shepherd.",
+    audio: 'path/to/david.mp3',
+  },
+  {
+    name: 'John the Baptist',
+    image: 'path/to/john.jpg',
+    description: "I am John, the one who baptized Jesus.",
+    audio: 'path/to/john.mp3',
+  },
+  {
+    name: 'Daniel',
+    image: 'path/to/daniel.jpg',
+    description: "I am Daniel, a prophet in Babylon.",
+    audio: 'path/to/daniel.mp3',
+  },
+  {
+    name: 'Moses',
+    image: 'path/to/moses.jpg',
+    description: "I am Moses, I led the Israelites out of Egypt.",
+    audio: 'path/to/moses.mp3',
+  },
+  {
+    name: 'Joseph',
+    image: 'path/to/joseph.jpg',
+    description: "I am Joseph, the dreamer sold into slavery.",
+    audio: 'path/to/joseph.mp3',
+  },
+  {
+    name: 'Mary',
+    image: 'path/to/mary.jpg',
+    description: "I am Mary, the mother of Jesus.",
+    audio: 'path/to/mary.mp3',
+  },
+];
 
-  return (
-    <Container fluid>
-      <Row className="g-4">
-        {characters.map((character, index) => (
-          <Col key={index} xs={12} sm={6} md={4} lg={3}>
-            <FlipCard character={character} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
-  );
-};
+const BioCard = ({ character }) => {
+  const [flipped, setFlipped] = useState(false);
+  const [isBouncing, setIsBouncing] = useState(false); // New state for bounce effect
+  const audioRef = React.createRef();
 
-// Card component that flips
-const FlipCard = ({ character }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [audio, setAudio] = useState(null);
-
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+  const handleWhoAmI = () => {
+    setIsBouncing(true); // Trigger bounce animation
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+    
+    // Remove bounce class after animation ends
+    setTimeout(() => {
+      setIsBouncing(false);
+    }, 500); // Duration should match the animation duration
   };
 
-  const handleSpeak = () => {
-    const newAudio = new Audio(character.audio);
-    newAudio.play();
-    setAudio(newAudio);
-  };
-
-  const handleStop = () => {
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0; // Reset audio to the start
-      setAudio(null); // Clear the audio reference
+  const handleStopSpeaking = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Reset audio
     }
   };
 
   return (
-    <div className="flip-card" onClick={handleFlip}>
-      <Card className={`flip-card-inner ${isFlipped ? "flipped" : ""}`}>
-        {/* Front of the card */}
-        <div className="flip-card-front">
+    <Col md={4} className="mb-4">
+      <Card className={`character-card ${flipped ? 'flipped' : ''}`}>
+        <Card.Body className={`card-body ${isBouncing ? 'bounce-animation' : ''}`}>
           <Card.Img variant="top" src={character.image} alt={character.name} />
-          <Card.Body>
-            <Card.Title className="text-center">{character.name}</Card.Title>
-          </Card.Body>
-        </div>
-
-        {/* Back of the card */}
-        <div className="flip-card-back">
-          <Card.Body>
-            <Card.Text>{character.description}</Card.Text>
-            <Button variant="primary" onClick={handleSpeak} className="me-2">
-              Who Am I?
-            </Button>
-            <Button variant="secondary" onClick={handleStop}>
-              Stop
-            </Button>
-          </Card.Body>
-        </div>
+          <Card.Title>{character.name}</Card.Title>
+          <Button onClick={() => setFlipped(!flipped)}>
+            {flipped ? 'Back' : 'Learn About Me'}
+          </Button>
+          <audio ref={audioRef} src={character.audio} />
+        </Card.Body>
+        {flipped && (
+          <div className="card-body-back">
+            <p>{character.description}</p>
+            <Button onClick={handleWhoAmI}>Who Am I?</Button>
+            <Button onClick={handleStopSpeaking}>Stop Speaking</Button>
+          </div>
+        )}
       </Card>
-    </div>
+    </Col>
+  );
+};
+
+const Bio = () => {
+  return (
+    <Row>
+      {characters.map((character, index) => (
+        <BioCard key={index} character={character} />
+      ))}
+    </Row>
   );
 };
 
