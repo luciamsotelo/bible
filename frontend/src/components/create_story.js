@@ -3,107 +3,130 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/create_story.css';
 
 const CreateStory = () => {
-    const [story, setStory] = useState("Welcome to your adventure! Choose a path to begin.");
+    const [story, setStory] = useState("Welcome to your adventure! Let's pick a path to start.");
     const [choices, setChoices] = useState([]);
+    const [isSpeaking, setIsSpeaking] = useState(false); // State to track if audio is playing
 
-    // Function to initialize the story when the component mounts
+    // Start the adventure when the component first loads
     const startJourney = () => {
         updateStory(
-            "You find yourself at a crossroad in a vibrant land filled with lush greenery and a sparkling river. To your left is the Bright Path, where laughter and joy echo. To your right is the Shady Grove, where the trees whisper secrets of adventure. Which path will you choose?",
+            "You are standing at a fork in the road in a magical land full of bright flowers and a shiny river. To your left is the Bright Path, where you can hear happy laughter. To your right is the Shady Grove, where tall trees sway and share secret tales. Which path will you take?",
             [
-                { text: "Take the Bright Path", action: goToBrightPath },
-                { text: "Venture into the Shady Grove", action: goToShadyGrove }
+                { text: "Go down the Bright Path", action: goToBrightPath },
+                { text: "Explore the Shady Grove", action: goToShadyGrove }
             ]
         );
     };
 
-    // Update the story and available choices
+    // Update the story and the choices available
     const updateStory = (text, options) => {
         setStory(text);
         setChoices(options);
+        speak(text); // Call the speak function to read the text aloud
     };
 
-    // Using useEffect to start the journey when the component mounts
+    // Function to speak the text
+    const speak = (text) => {
+        if (isSpeaking) return; // Stop if already speaking
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.pitch = 1; // Default is 1, range is between 0 and 2
+        utterance.rate = 1;  // Default is 1, range is between 0.1 and 10
+        setIsSpeaking(true); // Set speaking state to true
+        speechSynthesis.speak(utterance);
+
+        utterance.onend = () => {
+            setIsSpeaking(false); // Reset speaking state when done
+        };
+    };
+
+    // Function to stop speaking
+    const stopSpeaking = () => {
+        speechSynthesis.cancel(); // Stop any ongoing speech
+        setIsSpeaking(false); // Reset speaking state
+    };
+
+    // Starting the adventure when the component mounts
     useEffect(() => {
         startJourney();
-    }, []); // Empty dependency array means this runs once on mount
+    }, []); // Runs only once when the component is first shown
 
-    // Define functions for each choice path
+    // Functions for the choices
     const goToBrightPath = () => {
         updateStory(
-            "As you step onto the Bright Path, the sun shines brightly overhead, bathing everything in a warm golden glow. Colorful flowers dance in the gentle breeze, filling the air with their sweet fragrances. You hear cheerful laughter in the distance, drawing you closer. Suddenly, you spot a little girl sitting on a weathered bench, her small hands clutching her knees tightly, tears streaming down her cheeks. She looks lost and alone, her beloved stuffed rabbit nowhere to be seen.",
+            "As you step onto the Bright Path, the sun shines down, making everything glow with warmth. Colorful flowers sway gently in the breeze, and you can hear children laughing in the distance. Suddenly, you see a little girl sitting on a bench, crying. She seems sad because her favorite stuffed rabbit is missing.",
             [
-                { text: "Help her find her toy", action: helpGirl },
-                { text: "Leave her and continue playing", action: ignoreGirl }
+                { text: "Help her find her rabbit", action: helpGirl },
+                { text: "Keep going and play", action: ignoreGirl }
             ]
         );
     };
 
     const goToShadyGrove = () => {
         updateStory(
-            "You venture into the Shady Grove, where towering trees provide a cool respite from the bright sun. The ground is soft with fallen leaves, and the air is filled with the melodic chirping of birds. As you stroll deeper, you notice a small bird with ruffled feathers, hopping nervously on the ground. Its tiny beak is open, and it appears to be searching for food, desperately looking around as if lost.",
+            "You walk into the Shady Grove, where the tall trees give you shade from the sun. The ground is soft with leaves, and you hear birds singing sweet songs. As you explore, you see a small bird looking for food. It looks a bit lost and is hopping around, searching for something.",
             [
                 { text: "Share your snack with the bird", action: shareWithBird },
-                { text: "Ignore the bird and keep walking", action: ignoreBird }
+                { text: "Ignore the bird and walk away", action: ignoreBird }
             ]
         );
     };
 
     const helpGirl = () => {
         updateStory(
-            "You kneel beside the girl, your heart aching for her sadness. You gently ask her about her missing toy, and her eyes widen with hope. She describes her beloved rabbit, its soft fur and floppy ears, and how it always brings her comfort. Together, you begin searching the nearby bushes, under the swings, and around the playground equipment. After what feels like an eternity of searching, you finally spot the toy hidden behind a swing! The girl squeals with delight, her tears replaced by a radiant smile.",
+            "You go to the little girl and ask her what’s wrong. She tells you about her stuffed rabbit, and her eyes light up with hope. Together, you look under benches and behind bushes until you finally find her rabbit hiding near a swing! The girl jumps up and down with joy, her tears replaced by a big smile.",
             [
-                { text: "Celebrate with her by playing together", action: celebrateTogether },
-                { text: "Continue your journey, feeling good about your help", action: continueJourneyAfterHelp }
+                { text: "Play with her and celebrate", action: celebrateTogether },
+                { text: "Continue your adventure feeling happy", action: continueJourneyAfterHelp }
             ]
         );
     };
 
     const ignoreGirl = () => {
         updateStory(
-            "You decide to keep walking, thinking it's not your problem. As you move further down the path, the sound of her sobbing lingers in your mind. The laughter of other children fades away, replaced by a heavy silence. You feel a growing sense of regret gnawing at your conscience, realizing you could have made a difference.",
+            "You decide to walk past her, thinking it’s not your problem. But as you walk away, her crying echoes in your ears, making you feel sad. You realize you could have helped her.",
             [
                 { text: "Go back to help her", action: goBackToHelp },
-                { text: "Keep walking and reflect on your choice", action: reflectOnChoice }
+                { text: "Keep walking and think about your choice", action: reflectOnChoice }
             ]
         );
     };
 
     const shareWithBird = () => {
         updateStory(
-            "You reach into your bag and pull out a piece of your snack, gently placing it on the ground near the bird. It hesitates for a moment before cautiously approaching. As it pecks at the food, it looks up at you with bright, curious eyes and chirps happily, flapping its wings in excitement. This small act of kindness fills you with joy, and you realize how even the smallest gestures can make a big difference.",
+            "You take out a piece of your snack and place it on the ground for the bird. At first, it hesitates, but then it hops over and starts pecking at the food. The bird looks up at you and chirps happily. You feel warm inside because your small act of kindness made it happy.",
             [
                 { text: "Follow the bird as it flies away", action: followBird },
-                { text: "Stay and enjoy the beauty of nature around you", action: observeNature }
+                { text: "Stay here and enjoy nature", action: observeNature }
             ]
         );
     };
 
     const ignoreBird = () => {
         updateStory(
-            "You shrug off the bird's plight, deciding it’s not your concern. As you walk further, the forest feels less welcoming. The vibrant colors begin to dull, and the sounds of laughter fade into an eerie silence. You sense a growing emptiness around you, and the realization hits that ignoring those in need has consequences.",
+            "You decide not to help the bird and keep walking. As you go further, the forest feels less friendly, and everything seems a little darker. You start to feel sad for not helping.",
             [
                 { text: "Go back and help the bird", action: goBackToBird },
-                { text: "Continue your journey, feeling indifferent", action: continueJourneyWithoutHelp }
+                { text: "Keep walking and feel indifferent", action: continueJourneyWithoutHelp }
             ]
         );
     };
 
     const celebrateTogether = () => {
         updateStory(
-            "With the stuffed rabbit back in her hands, the girl’s eyes sparkle with gratitude. You both leap up and down, celebrating the reunion. She invites you to join her in a game of tag, and soon you're both running around, laughter echoing through the playground. In that moment, you realize the joy that comes from helping others and how friendships can blossom through acts of kindness.",
+            "With the rabbit safe in her arms, the girl smiles brightly. She invites you to play tag with her, and soon you're both running and laughing together. You realize that helping others brings joy and can make new friends.",
             [
-                { text: "Continue your journey together", action: continueTogether },
-                { text: "Teach her something new you learned", action: teachHerSomethingNew }
+                { text: "Keep playing together", action: continueJourneyAfterHelp },
+                { text: "Teach her a fun game", action: teachHerSomethingNew }
             ]
         );
     };
 
     const continueJourneyAfterHelp = () => {
         updateStory(
-            "Feeling fulfilled from your good deed, you continue on your journey, but the memories of the girl's joy linger in your mind. Along the way, you meet other children who share their stories about kindness and friendship, reminding you of the importance of being there for one another. Each story fills your heart with warmth and inspires you to spread joy.",
+            "After helping the girl, you feel happy as you continue your adventure. You meet other children who share stories about kindness. You learn that being kind to others makes everyone feel good.",
             [
-                { text: "Learn from their stories", action: endAdventureWithMoral },
+                { text: "Listen to their stories", action: endAdventureWithMoral },
                 { text: "Keep exploring new paths", action: endAdventureWithMoral }
             ]
         );
@@ -111,7 +134,7 @@ const CreateStory = () => {
 
     const goBackToHelp = () => {
         updateStory(
-            "Realizing your mistake, you rush back to the girl. Her eyes light up when she sees you returning. Together, you celebrate the reunion with her toy and share stories about your favorite games and adventures, forming a bond that fills your hearts with joy.",
+            "You realize you should help, so you hurry back to the girl. She smiles big when she sees you. Together, you celebrate the rabbit's return and share stories about your favorite games.",
             [
                 { text: "Play together until sunset", action: continueJourneyAfterHelp },
                 { text: "Teach her how to play your favorite game", action: teachHerSomethingNew }
@@ -121,80 +144,70 @@ const CreateStory = () => {
 
     const reflectOnChoice = () => {
         updateStory(
-            "You take a moment to breathe deeply, reflecting on your decision to walk away. The weight of the girl’s sadness sits heavy in your heart, and you understand that kindness is a choice that can change someone's day. You resolve to be more mindful in the future.",
+            "You take a moment to think about your decision. The girl's sad face makes you realize how important it is to be kind. You promise to be more caring in the future.",
             [
-                { text: "Go back to help her", action: goBackToHelp },
-                { text: "Continue your journey, but with a lesson in mind", action: endAdventureWithMoral }
+                { text: "Go back and help her", action: goBackToHelp },
+                { text: "Continue your adventure, but remember this lesson", action: endAdventureWithMoral }
             ]
         );
     };
 
     const followBird = () => {
         updateStory(
-            "The bird flutters ahead, leading you to a hidden clearing filled with dazzling flowers and a sparkling waterfall. You sit by the water's edge, mesmerized by the beauty around you. The bird splashes in the water, and you feel a sense of peace and connection to nature. Here, you learn to appreciate life's small wonders and the importance of nurturing all living things.",
+            "The bird leads you to a magical spot filled with colorful flowers and a sparkling waterfall. You sit by the water, feeling peaceful. The bird splashes in the water, and you learn to enjoy the beauty of nature.",
             [
-                { text: "Take a moment to reflect on your adventure", action: endAdventureWithMoral },
-                { text: "Share this special place with a friend", action: endAdventureWithMoral }
+                { text: "Think about your adventure", action: endAdventureWithMoral },
+                { text: "Invite a friend to see this special place", action: endAdventureWithMoral }
             ]
         );
     };
 
     const observeNature = () => {
         updateStory(
-            "You take a seat under a sprawling tree, surrounded by the gentle rustle of leaves and the joyful songs of birds. The intricate patterns of nature captivate you, and you find yourself lost in thought. In this moment of tranquility, you learn about the beauty of the world around you and the importance of taking time to appreciate it.",
+            "You sit under a big tree, listening to the leaves rustle and the birds sing. You feel calm and happy as you watch the beauty of nature. In this peaceful moment, you learn to appreciate the world around you.",
             [
-                { text: "Reflect on what you learned", action: endAdventureWithMoral },
-                { text: "Sketch the beautiful scenery in your mind", action: endAdventureWithMoral }
+                { text: "Reflect on what you've learned", action: endAdventureWithMoral },
+                { text: "Draw a picture in your mind", action: endAdventureWithMoral }
             ]
         );
     };
 
     const goBackToBird = () => {
         updateStory(
-            "Realizing you missed an opportunity to help, you turn back towards the bird. As you reach it, you find it has brought its friends, and together they flutter around you, chirping happily. You feel a rush of joy as you share your snack with them, understanding that kindness can create a ripple effect, spreading happiness to those around you.",
+            "You realize you missed a chance to help, so you turn back. The bird has brought its friends, and they chirp around you. You feel happy sharing your snack with them, knowing kindness spreads joy.",
             [
-                { text: "Continue sharing your snacks with the birds", action: endAdventureWithMoral },
-                { text: "Reflect on the joy of giving", action: endAdventureWithMoral }
+                { text: "Keep sharing with the birds", action: endAdventureWithMoral },
+                { text: "Think about how good it feels to give", action: endAdventureWithMoral }
             ]
         );
     };
 
     const continueJourneyWithoutHelp = () => {
         updateStory(
-            "You push forward on your journey, but the path feels heavier without kindness to lighten it. You come across other adventurers who share their tales of bravery and generosity, reminding you of the joy that comes from helping others. You start to realize that your actions impact the world around you.",
+            "As you walk away, you feel a weight in your heart. You missed a chance to make a difference, but you can always try to be better next time.",
             [
-                { text: "Learn from their stories", action: endAdventureWithMoral },
-                { text: "Keep moving forward, hoping to change your ways", action: endAdventureWithMoral }
+                { text: "Reflect on your feelings", action: endAdventureWithMoral },
+                { text: "Plan to be kinder in the future", action: endAdventureWithMoral }
             ]
         );
     };
 
     const teachHerSomethingNew = () => {
         updateStory(
-            "You take a moment to share some of your favorite games with her. She listens intently, her eyes shining with excitement. You teach her the rules and demonstrate how to play. Soon, laughter fills the air as you both enjoy the newfound friendship. In this exchange, you realize the beauty of sharing knowledge and experiences.",
+            "You share a fun game with the girl, and she loves it! You both laugh and play until the sun sets. Making new friends and sharing joy fills your heart.",
             [
-                { text: "Continue playing together until dusk", action: endAdventureWithMoral },
-                { text: "Invite her to join you on your adventures", action: endAdventureWithMoral }
+                { text: "Cherish this moment", action: endAdventureWithMoral },
+                { text: "Plan to play together again", action: endAdventureWithMoral }
             ]
         );
     };
 
     const endAdventureWithMoral = () => {
         updateStory(
-            "As your adventure comes to a close, you reflect on the lessons learned: the importance of kindness, the power of friendship, and the joy that comes from helping others. You understand that every small act of compassion can create ripples of happiness in the world, and you leave with a heart full of gratitude and a desire to spread kindness wherever you go.",
+            "As your adventure comes to an end, you realize that every choice matters. Kindness and friendship make the world a better place. You feel proud of your journey.",
             [
-                { text: "Start a new adventure", action: startJourney },
-                { text: "Reflect on this journey with a friend", action: goToShadyGrove }
-            ]
-        );
-    };
-
-    const continueTogether = () => {
-        updateStory(
-            "With the girl by your side, you both embark on new adventures, exploring enchanted forests and hidden meadows filled with colorful flowers. Together, you encounter friendly animals and share countless laughter-filled moments. Your bond grows stronger with each experience, reminding you both that friendships can lead to the most magical journeys. As you walk hand in hand, you promise to always be there for each other, facing challenges together and cherishing the joyful moments.",
-            [
-                { text: "Create a secret club together", action: endAdventureWithMoral },
-                { text: "Plan a picnic in the park", action: endAdventureWithMoral }
+                { text: "Replay the story", action: startJourney },
+                { text: "Exit", action: () => console.log('Exiting...') }
             ]
         );
     };
@@ -202,21 +215,22 @@ const CreateStory = () => {
     return (
         <Container className="create-story">
             <Row>
-                <Col>
-                    <h2>Your Adventure</h2>
+                <Col className="story-text">
+                    <h1>Story Adventure Game</h1>
                     <p>{story}</p>
-                    <div className="choices">
-                        {choices.map((choice, index) => (
-                            <Button 
-                                key={index} 
-                                onClick={choice.action} 
-                                variant="primary" 
-                                className="choice-button"
-                            >
-                                {choice.text}
-                            </Button>
-                        ))}
-                    </div>
+                    {choices.map((choice, index) => (
+                        <Button className='choice-button'
+                            key={index}
+                            onClick={() => {
+                                stopSpeaking(); // Stop audio before making a choice
+                                choice.action(); // Call the action associated with the choice
+                            }}
+                            variant="primary"
+                        >
+                            {choice.text}
+                        </Button>
+                    ))}
+                    <Button variant="danger" onClick={stopSpeaking}>Stop Speaking</Button> {/* Stop Speaking button */}
                 </Col>
             </Row>
         </Container>
