@@ -9,6 +9,15 @@ const Prayer = () => {
   const [prayerRequest, setPrayerRequest] = useState("");
   const [messageReceived, setMessageReceived] = useState(false);
 
+  // Check if speechSynthesis is supported
+  useEffect(() => {
+    if ('speechSynthesis' in window) {
+      console.log("SpeechSynthesis is supported in this browser.");
+    } else {
+      console.log("SpeechSynthesis is not supported in this browser.");
+    }
+  }, []); // Runs once on component mount
+
   // List of colors for prayers
   const prayerColors = ["#ffec99", "#f0f8ff", "#ffadad", "#9bf6ff", "#fdffb6", "#caffbf", "#bdb2ff", "#ffc6ff"];
 
@@ -18,18 +27,26 @@ const Prayer = () => {
   };
 
   // Function to read the prayer out loud with childlike voice
-  const handleSpeak = (prayerText) => {
+  const handleSpeak = (prayerText, callback) => {
+    // Cancel any ongoing speech synthesis before starting a new one
+    window.speechSynthesis.cancel();
+    
     const utterance = new SpeechSynthesisUtterance(prayerText);
     utterance.pitch = 2.0;
     utterance.rate = 0.7;
-
+    
     const voices = window.speechSynthesis.getVoices();
-    const childlikeVoice =
+    const childlikeVoice = 
       voices.find((voice) => voice.name.includes("Google UK English Female")) ||
-      voices[0];
+      voices[1];
     if (childlikeVoice) {
       utterance.voice = childlikeVoice;
     }
+
+    // Callback to notify when the prayer has finished being read
+    utterance.onend = () => {
+      if (callback) callback();
+    };
 
     window.speechSynthesis.speak(utterance);
   };
@@ -45,35 +62,21 @@ const Prayer = () => {
         color: getRandomColor(), // Assign a random color when the prayer is created
       };
 
-      const updatedPrayers = [...prayers, newPrayer].slice(-7);
+      const updatedPrayers = [...prayers, newPrayer].slice(-7); // Keep up to 7 prayers
       setPrayers(updatedPrayers);
 
       const prayerText = `Dear Jesus, ${prayerRequest}. Love ${name}. Amen.`;
-      handleSpeak(prayerText);
+
+      // Speak the prayer and show the "message received" only after it has been read
+      handleSpeak(prayerText, () => {
+        setMessageReceived(true); // Show the message after prayer has been spoken
+        setTimeout(() => setMessageReceived(false), 3000); // Hide message after 3 seconds
+      });
 
       setName("");
       setPrayerRequest("");
-
-      // Show message after a short delay
-      setTimeout(() => {
-        setMessageReceived(true);
-        setTimeout(() => setMessageReceived(false), 3000); // Hide message after 3 seconds
-      }, 5000); // Show message after 5 seconds (duration of prayer)
     }
   };
-
-  // Trigger the animation and remove prayers after a set duration
-  useEffect(() => {
-    const timeoutIds = prayers.map((prayer) => {
-      return setTimeout(() => {
-        setPrayers((prevPrayers) =>
-          prevPrayers.filter((p) => p.id !== prayer.id)
-        );
-      }, 5000); // Keep prayer visible for 5 seconds
-    });
-
-    return () => timeoutIds.forEach((id) => clearTimeout(id));
-  }, [prayers]);
 
   const getRandomPosition = () => {
     const left = Math.random() * 80;
@@ -90,7 +93,7 @@ const Prayer = () => {
               return (
                 <div
                   key={prayer.id}
-                  className="floating-prayer"
+                  className="floating-prayer" // Remove 'stay' class here
                   style={{
                     left,
                     backgroundColor: prayer.color, // Apply the random color here

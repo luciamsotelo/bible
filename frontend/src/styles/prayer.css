@@ -11,7 +11,6 @@
   margin-top: 2rem;
   background-size: cover;
   background-position: center;
-
 }
 
 .prayer-form {
@@ -41,30 +40,38 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   opacity: 1;
   z-index: 1;
-  transform: translateY(50%); /* Start from the middle */
-  animation: floatUp 5s ease-in-out forwards, fadeOut 5s ease-in-out 3s forwards; /* Animation sequence */
+  transform: translateY(50%);
+  animation: floatUp 5s ease-in-out forwards, fadeOut 8s ease-in-out forwards; /* Float up and fade out */
+}
+
+.floating-prayer.stay {
+  animation: none;
+  transform: translateY(0); /* Stay in place */
 }
 
 /* Keyframes for floating prayer animation */
 @keyframes floatUp {
-  from {
+  0% {
     transform: translateY(50%);
+    opacity: 1;
   }
-  to {
-    transform: translateY(-50%);
+  100% {
+    transform: translateY(-150px); /* Move prayer upwards */
+    opacity: 0; /* Fade prayer out */
   }
 }
 
 /* Keyframes for fade-out */
 @keyframes fadeOut {
-  from {
+  0% {
     opacity: 1;
   }
-  to {
+  100% {
     opacity: 0;
   }
 }
 
+/* Adjust the fixed message container */
 .floating-prayer.stay {
   animation: none;
   transform: translateY(0); /* Stay in place */

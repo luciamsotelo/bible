@@ -94,8 +94,8 @@ body {
 
 .character-card .card-body-back p {
   margin-bottom: 15px;
-  font-size: 1.2em;
-  animation: text-bounce 2s infinite alternate; /* Text bounce effect */
+  font-size: 1em;
+  animation: text-bounce 0s infinite alternate; /* Text bounce effect */
 }
 
 .character-card .action-button,
