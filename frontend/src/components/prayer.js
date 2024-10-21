@@ -32,13 +32,13 @@ const Prayer = () => {
     window.speechSynthesis.cancel();
     
     const utterance = new SpeechSynthesisUtterance(prayerText);
-    utterance.pitch = 2.0;
+    utterance.pitch = 1.8;
     utterance.rate = 0.7;
     
     const voices = window.speechSynthesis.getVoices();
     const childlikeVoice = 
       voices.find((voice) => voice.name.includes("Google UK English Female")) ||
-      voices[1];
+      voices[4];
     if (childlikeVoice) {
       utterance.voice = childlikeVoice;
     }
@@ -70,7 +70,7 @@ const Prayer = () => {
       // Speak the prayer and show the "message received" only after it has been read
       handleSpeak(prayerText, () => {
         setMessageReceived(true); // Show the message after prayer has been spoken
-        setTimeout(() => setMessageReceived(false), 3000); // Hide message after 3 seconds
+        setTimeout(() => setMessageReceived(false), 8000); // Hide message after 8 seconds
       });
 
       setName("");
