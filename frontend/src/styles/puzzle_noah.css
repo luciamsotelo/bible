@@ -49,7 +49,7 @@
 .img-container {
   position: relative; /* Allow for positioning on click to remove */
   cursor: pointer; /* Change cursor on hover */
-  max-width: 40vw;
+  width: 100vw;
 }
 
 .img-container img {
