@@ -1,29 +1,37 @@
 .puzzle-grid {
-  display: flex;
-  flex-wrap: wrap; /* Allow rows to wrap if necessary */
-  justify-content: center;
-  margin: 20px 0;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Create 4 equal-width columns */
+  grid-template-rows: repeat(4, 1fr); /* Create 4 equal-height rows */
+  gap: 10px; /* Space between the puzzle pieces */
 }
 
 .drop-zone, .puzzle-piece-container {
-  flex: 1 0 23%; /* Each item will take 23% of the row, ensuring 4 columns */
-  max-width: 23%;
-  height: auto; /* Let height be responsive */
-  margin: 1%;
-}
-
-.drop-zone {
-  border: 2px dashed #ccc;
-  position: relative;
+  height: 100px; /* Default height */
+  width: 100%; /* Fill the grid cell */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
   cursor: pointer;
+  position: relative;
 }
 
 .full-image, .puzzle-piece img {
-  width: 100%; /* Images cover full width */
-  height: 100%; /* Cover full height */
-  object-fit: cover; /* Maintain aspect ratio */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image fits properly */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .drop-zone, .puzzle-piece-container {
+    height: 100px; /* Adjust height for medium-sized screens */
+  }
+}
+
+/* Media query for very small screens */
+@media (max-width: 576px) {
+  .drop-zone, .puzzle-piece-container {
+    height: 100px; /* Adjust height for small screens */
+  }
 }

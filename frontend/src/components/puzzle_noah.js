@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // <-- Add useEffect here
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/puzzle_noah.css';
@@ -14,22 +14,27 @@ const PuzzleNoah = () => {
     const [pieces, setPieces] = useState(originalPieces);
     const [droppedPieces, setDroppedPieces] = useState({});
     const [puzzleCompleted, setPuzzleCompleted] = useState(false);
-    const [puzzleClose, setPuzzleClose] = useState(false); // Track when the puzzle is close
+    const [puzzleClose, setPuzzleClose] = useState(false);
     const navigate = useNavigate();
+
+    // Shuffle pieces on initial render
+    useEffect(() => {
+        shufflePieces(); // Automatically shuffle pieces when the component mounts
+    }, []); // Empty dependency array ensures this runs only once
 
     const shufflePieces = () => {
         const shuffled = [...pieces].sort(() => Math.random() - 0.5);
         setPieces(shuffled.map(piece => ({ ...piece, position: null })));
         setDroppedPieces({});
         setPuzzleCompleted(false);
-        setPuzzleClose(false); // Reset 'close' state
+        setPuzzleClose(false);
     };
 
     const resetPuzzle = () => {
         setPieces(originalPieces);
         setDroppedPieces({});
         setPuzzleCompleted(false);
-        setPuzzleClose(false); // Reset 'close' state
+        setPuzzleClose(false);
     };
 
     const handleDragStart = (e, piece) => {
@@ -101,12 +106,12 @@ const PuzzleNoah = () => {
 
         if (correctCount === 4) {
             setPuzzleCompleted(true);
-            setPuzzleClose(false); // Puzzle completed
+            setPuzzleClose(false);
         } else if (correctCount > 0 && correctCount < 4) {
-            setPuzzleClose(true);  // Some pieces are correct, so user is close
-            setPuzzleCompleted(false); 
+            setPuzzleClose(true);
+            setPuzzleCompleted(false);
         } else {
-            setPuzzleClose(false); // If no pieces are correct
+            setPuzzleClose(false);
         }
     };
 
@@ -179,7 +184,7 @@ const PuzzleNoah = () => {
                     <Row className="puzzle-grid">
                         {pieces.map(piece => (
                             piece.position === null && (
-                                <Col key={piece.id} xs={6} md={3} className="puzzle-piece-container">
+                                <Col key={piece.id} xs={6} className="puzzle-piece-container">
                                     <div 
                                         className="puzzle-piece" 
                                         draggable 
