@@ -14,6 +14,7 @@ const PuzzleNoah = () => {
     const [pieces, setPieces] = useState(originalPieces);
     const [droppedPieces, setDroppedPieces] = useState({});
     const [puzzleCompleted, setPuzzleCompleted] = useState(false);
+    const [puzzleClose, setPuzzleClose] = useState(false); // Track when the puzzle is close
     const navigate = useNavigate();
 
     const shufflePieces = () => {
@@ -21,12 +22,14 @@ const PuzzleNoah = () => {
         setPieces(shuffled.map(piece => ({ ...piece, position: null })));
         setDroppedPieces({});
         setPuzzleCompleted(false);
+        setPuzzleClose(false); // Reset 'close' state
     };
 
     const resetPuzzle = () => {
         setPieces(originalPieces);
         setDroppedPieces({});
         setPuzzleCompleted(false);
+        setPuzzleClose(false); // Reset 'close' state
     };
 
     const handleDragStart = (e, piece) => {
@@ -41,21 +44,17 @@ const PuzzleNoah = () => {
         if (pieceIndex !== -1) {
             const newDroppedPieces = { ...droppedPieces };
 
-            // Check if there's already a piece in the target position
             if (newDroppedPieces[position]) {
-                // If there's an existing piece, free it
                 const existingPieceId = newDroppedPieces[position].id;
-                newDroppedPieces[position] = null; // Remove it from dropped pieces
+                newDroppedPieces[position] = null;
                 setPieces(prev => prev.map(piece => 
                     piece.id === existingPieceId ? { ...piece, position: null } : piece
                 ));
             }
 
-            // Assign the dropped piece a new position
-            newDroppedPieces[position] = pieces[pieceIndex]; // Store the piece in the new position
+            newDroppedPieces[position] = pieces[pieceIndex];
             setDroppedPieces(newDroppedPieces);
 
-            // Set the piece's position to the new slot
             setPieces(prev => 
                 prev.map(piece => 
                     piece.id === pieces[pieceIndex].id ? { ...piece, position } : piece
@@ -68,11 +67,9 @@ const PuzzleNoah = () => {
         e.preventDefault();
     };
 
-    // Remove a piece from the dropped position
     const handleRemovePiece = (position) => {
         const pieceToRemove = droppedPieces[position];
         if (pieceToRemove) {
-            // Reset the piece's position and remove it from dropped pieces
             setPieces(prev => 
                 prev.map(piece => 
                     piece.id === pieceToRemove.id ? { ...piece, position: null } : piece
@@ -91,16 +88,25 @@ const PuzzleNoah = () => {
             4: 'bottom-right'
         };
 
+        let correctCount = 0;
+
         newPieces.forEach(piece => {
             if (correctPositions[piece.id] === piece.position) {
                 piece.locked = true;
+                correctCount++;
             }
         });
 
         setPieces(newPieces);
 
-        if (newPieces.every(piece => piece.locked)) {
+        if (correctCount === 4) {
             setPuzzleCompleted(true);
+            setPuzzleClose(false); // Puzzle completed
+        } else if (correctCount > 0 && correctCount < 4) {
+            setPuzzleClose(true);  // Some pieces are correct, so user is close
+            setPuzzleCompleted(false); 
+        } else {
+            setPuzzleClose(false); // If no pieces are correct
         }
     };
 
@@ -114,6 +120,12 @@ const PuzzleNoah = () => {
 
     return (
         <Container>
+            <div className="instructions text-center mb-4">
+                <h2>Puzzle Instructions</h2>
+                <p>Drag and drop the pieces into their correct positions to complete the puzzle.</p>
+                <p>Once all pieces are in place, click the "Check Puzzle" button to see if you have completed it correctly.</p>
+            </div>
+
             {puzzleCompleted ? (
                 <div className="completed-puzzle-container text-center">
                     <img src="/images/puzzleark.jpg" alt="Completed Puzzle" className="img-fluid full-image w-50 d-block mx-auto" />
@@ -127,6 +139,12 @@ const PuzzleNoah = () => {
                 </div>
             ) : (
                 <>
+                    {puzzleClose && (
+                        <div className="close-message text-center">
+                            <h3>You're close! Keep trying!</h3>
+                        </div>
+                    )}
+
                     <Row className="puzzle-grid">
                         <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'top-left')} onDragOver={handleDragOver}>
                             {droppedPieces['top-left'] && (
