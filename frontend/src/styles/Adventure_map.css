@@ -1,0 +1,45 @@
+.adventure-map {
+    padding: 20px;
+  }
+  
+  .map-container {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+  
+  .map-image {
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .map-card {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2; /* Ensure cards appear above the map */
+  }
+  
+  .map-info {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 99; /* Ensure the card content is on top */
+  }
+  
+  .map-info.visible {
+    display: block;
+    width: 25px;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1; /* Controls have a lower z-index than cards */
+  }
+  
