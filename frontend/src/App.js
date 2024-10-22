@@ -12,6 +12,7 @@ import CreateStory from './pages/CreateStory_page';
 import BioPage from './pages/bio_page'; 
 import Puzzle from './pages/puzzle_page';
 import PuzzleArk from './pages/puzzleArk_page';
+import PuzzleDanielLion from './components/puzzle_daniellion'; // Import the PuzzleDanielLion component
 
 const App = () => {
     return (
@@ -27,9 +28,10 @@ const App = () => {
                 <Route path="/dress-up" element={<CharacterDressUp />} />
                 <Route path="/adventure-map" element={<AdventureMap />} />
                 <Route path="/create-story" element={<CreateStory />} />
-                <Route path="/bio" element={<BioPage />} /> {/* BioPage route */}
-                <Route path="/games/puzzle" element={<Puzzle />} /> {/* Route for Puzzle */}
-                <Route path="/puzzles/noah-ark" element={<PuzzleArk />} /> {/* Route for Noah's Ark Puzzle */}
+                <Route path="/bio" element={<BioPage />} />
+                <Route path="/games/puzzle" element={<Puzzle />} />
+                <Route path="/puzzles/noah-ark" element={<PuzzleArk />} />
+                <Route path="/puzzles/daniel-lion" element={<PuzzleDanielLion />} /> {/* Route for Puzzle Daniel Lion */}
             </Routes>
         </BrowserRouter>
     );

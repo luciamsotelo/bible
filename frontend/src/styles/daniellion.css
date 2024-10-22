@@ -1,0 +1,29 @@
+.puzzle-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allow rows to wrap if necessary */
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.drop-zone, .puzzle-piece-container {
+  flex: 1 0 23%; /* Each item will take 23% of the row, ensuring 4 columns */
+  max-width: 23%;
+  height: auto; /* Let height be responsive */
+  margin: 1%;
+}
+
+.drop-zone {
+  border: 2px dashed #ccc;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.full-image, .puzzle-piece img {
+  width: 100%; /* Images cover full width */
+  height: 100%; /* Cover full height */
+  object-fit: cover; /* Maintain aspect ratio */
+}

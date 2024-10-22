@@ -4,6 +4,7 @@ import PuzzleArk from '../components/puzzle_noah'
 
 
 
+
 const noahArk_page = () => {
   return (
     <div>
