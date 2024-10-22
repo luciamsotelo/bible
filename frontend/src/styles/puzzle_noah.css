@@ -1,0 +1,83 @@
+/* src/puzzle_noah.css */
+
+.puzzle-grid {
+  margin: 40px;
+}
+
+.drop-zone {
+  border: 2px dashed #ccc; /* Border style for drop zones */
+  min-height: 100px; /* Minimum height of drop zones */
+  min-width: 100px; /* Minimum width of drop zones */
+  display: flex; /* Center content */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  position: relative; /* Necessary for absolutely positioned children */
+  overflow: hidden; /* Hide overflowing content */
+  padding: 0; /* No padding, so the image can fill the entire zone */
+  cursor: pointer; /* Change cursor to indicate drop zone */
+}
+
+.full-image {
+  width: 100%; /* Ensure image covers full width */
+  height: 100%; /* Ensure image covers full height */
+  object-fit: cover; /* Maintain aspect ratio and fill the space */
+}
+
+.puzzle-piece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1px;
+  cursor: move; /* Indicate draggable pieces */
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.puzzle-piece img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.puzzle-piece:hover {
+  transform: scale(1.5); 
+  cursor: pointer;
+}
+
+.img-container {
+  position: relative; /* Allow for positioning on click to remove */
+  cursor: pointer; /* Change cursor on hover */
+  max-width: 40vw;
+}
+
+.img-container img {
+  max-width: 100%; /* Responsive image */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.button-animate {
+  transition: transform 0.2s ease, background-color 0.2s ease; /* Transition for hover effects */
+}
+
+.button-animate:hover {
+  transform: scale(1.1); /* Scale up on hover */
+  background-color: #0056b3; /* Darken the button color on hover */
+}
+
+.button-animate:active {
+  animation: clickEffect 0.2s forwards; /* Animation when button is clicked */
+}
+
+@keyframes clickEffect {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(0.9); /* Shrink during click */
+  }
+  100% {
+      transform: scale(1); /* Return to original size */
+  }
+}

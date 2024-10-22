@@ -1,15 +1,14 @@
 import React from 'react'
 import Header from '../components/header'
-import GameCards from '../components/games'
+import Puzzle from '../components/puzzle'
 
-
-const game_page = () => {
+const puzzle_page = () => {
   return (
     <div>
         <Header />
-        <GameCards />
+        <Puzzle />
     </div>
   )
 }
 
-export default game_page
+export default puzzle_page
