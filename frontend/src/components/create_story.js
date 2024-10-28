@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/create_story.css';
 
 const CreateStory = () => {
     const [story, setStory] = useState("Welcome to your adventure! Let's pick a path to start.");
     const [choices, setChoices] = useState([]);
-    const [isSpeaking, setIsSpeaking] = useState(false); // State to track if audio is playing
-    const [hasStarted, setHasStarted] = useState(false); // State for the Start button
+    const [isSpeaking, setIsSpeaking] = useState(false);
+    const [hasStarted, setHasStarted] = useState(false);
 
     // Start the adventure when the component first loads
     const startJourney = () => {
         updateStory(
-            "You are standing at a fork in the road in a magical land full of bright flowers and a shiny river. To your left is the Bright Path, where you can hear happy laughter. To your right is the Shady Grove, where tall trees sway and share secret tales. Which path will you take?",
+            "In a mystical forest, you stand before two ancient archways: one glows with a warm golden light, leading to the Valley of Whispers, where secrets are told by the wind. The other, covered in ivy and moss, leads to the Garden of Shadows, a quiet haven known to reveal hidden truths. Which path will you take?",
             [
-                { text: "Go down the Bright Path", action: goToBrightPath },
-                { text: "Explore the Shady Grove", action: goToShadyGrove }
+                { text: "Enter the Valley of Whispers", action: goToValleyOfWhispers },
+                { text: "Walk into the Garden of Shadows", action: goToGardenOfShadows }
             ]
         );
     };
@@ -23,161 +23,176 @@ const CreateStory = () => {
     const updateStory = (text, options) => {
         setStory(text);
         setChoices(options);
-        speak(text); // Call the speak function to read the text aloud
+        speak(text);
     };
 
     // Function to speak the text
     const speak = (text) => {
-        if (isSpeaking) return; // Stop if already speaking
+        if (isSpeaking) return;
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
-        utterance.pitch = 1; // Default is 1, range is between 0 and 2
-        utterance.rate = 1;  // Default is 1, range is between 0.1 and 10
-        setIsSpeaking(true); // Set speaking state to true
+        setIsSpeaking(true);
         speechSynthesis.speak(utterance);
 
         utterance.onend = () => {
-            setIsSpeaking(false); // Reset speaking state when done
+            setIsSpeaking(false);
         };
     };
 
     // Function to stop speaking
     const stopSpeaking = () => {
-        speechSynthesis.cancel(); // Stop any ongoing speech
-        setIsSpeaking(false); // Reset speaking state
+        speechSynthesis.cancel();
+        setIsSpeaking(false);
     };
 
     // Functions for the choices
-    const goToBrightPath = () => {
+    const goToValleyOfWhispers = () => {
         updateStory(
-            "As you step onto the Bright Path, the sun shines down, making everything glow with warmth. Colorful flowers sway gently in the breeze, and you can hear children laughing in the distance. Suddenly, you see a little girl sitting on a bench, crying. She seems sad because her favorite stuffed rabbit is missing.",
+            "As you step into the Valley of Whispers, the breeze carries soft voices telling tales of heroes. Suddenly, a shimmering fox appears, its eyes wise and knowing. The fox beckons you with its tail and gestures toward a hidden path covered in blue wildflowers.",
             [
-                { text: "Help her find her rabbit", action: helpGirl },
-                { text: "Keep going and play", action: ignoreGirl }
+                { text: "Follow the fox", action: followFox },
+                { text: "Continue along the main path", action: continueMainPath }
             ]
         );
     };
 
-    const goToShadyGrove = () => {
+    const goToGardenOfShadows = () => {
         updateStory(
-            "You walk into the Shady Grove, where the tall trees give you shade from the sun. The ground is soft with leaves, and you hear birds singing sweet songs. As you explore, you see a small bird looking for food. It looks a bit lost and is hopping around, searching for something.",
+            "You enter the Garden of Shadows, where ancient trees arch overhead, and the air is filled with the scent of night-blooming flowers. Among the shadows, you notice a faint glow beneath an old tree and hear the sound of soft music.",
             [
-                { text: "Share your snack with the bird", action: shareWithBird },
-                { text: "Ignore the bird and walk away", action: ignoreBird }
+                { text: "Investigate the glowing light", action: investigateLight },
+                { text: "Follow the sound of the music", action: followMusic }
             ]
         );
     };
 
-    const helpGirl = () => {
+    const followFox = () => {
         updateStory(
-            "You go to the little girl and ask her what’s wrong. She tells you about her stuffed rabbit, and her eyes light up with hope. Together, you look under benches and behind bushes until you finally find her rabbit hiding near a swing! The girl jumps up and down with joy, her tears replaced by a big smile.",
+            "The fox leads you to a secluded clearing where a pool of crystal-clear water reflects the sky. As you gaze into the pool, visions of far-off lands and mythical creatures appear. The fox nudges you gently, as if urging you to drink from the pool.",
             [
-                { text: "Play with her and celebrate", action: celebrateTogether },
-                { text: "Continue your adventure feeling happy", action: continueJourneyAfterHelp }
+                { text: "Drink from the pool", action: drinkFromPool },
+                { text: "Thank the fox and leave", action: leaveClearing }
             ]
         );
     };
 
-    const ignoreGirl = () => {
+    const continueMainPath = () => {
         updateStory(
-            "You decide to walk past her, thinking it’s not your problem. But as you walk away, her crying echoes in your ears, making you feel sad. You realize you could have helped her.",
+            "You continue down the main path, the whispers growing louder. They guide you to an ancient stone covered in mysterious runes. Touching the stone, you feel a surge of energy, and suddenly, you understand the whispers.",
             [
-                { text: "Go back to help her", action: goBackToHelp },
-                { text: "Keep walking and think about your choice", action: reflectOnChoice }
+                { text: "Listen closely to the whispers", action: listenToWhispers },
+                { text: "Move away and continue exploring", action: exploreFurther }
             ]
         );
     };
 
-    const shareWithBird = () => {
+    const investigateLight = () => {
         updateStory(
-            "You take out a piece of your snack and place it on the ground for the bird. At first, it hesitates, but then it hops over and starts pecking at the food. The bird looks up at you and chirps happily. You feel warm inside because your small act of kindness made it happy.",
+            "You approach the glowing light and discover a tiny fairy sitting on a golden leaf. She looks up at you with a mischievous smile and offers you a sparkling vial. 'Drink this, and see the hidden wonders of the forest,' she says.",
             [
-                { text: "Follow the bird as it flies away", action: followBird },
-                { text: "Stay here and enjoy nature", action: observeNature }
+                { text: "Accept the fairy's gift", action: acceptGift },
+                { text: "Politely decline and move on", action: declineGift }
             ]
         );
     };
 
-    const ignoreBird = () => {
+    const followMusic = () => {
         updateStory(
-            "You decide not to help the bird and keep walking. As you go further, the forest feels less friendly, and everything seems a little darker. You start to feel sad for not helping.",
+            "Following the music, you find a group of woodland creatures dancing around a fire. They invite you to join their celebration under the moonlight.",
             [
-                { text: "Go back and help the bird", action: goBackToBird },
-                { text: "Keep walking and feel indifferent", action: continueJourneyWithoutHelp }
+                { text: "Join the dance", action: joinDance },
+                { text: "Watch from a distance", action: watchDance }
             ]
         );
     };
 
-    // New missing function definitions
-    const celebrateTogether = () => {
+    const drinkFromPool = () => {
         updateStory(
-            "You and the girl play together in the sun, laughing and running around. You feel happy that you helped her find her rabbit, and together you make new, joyful memories.",
+            "You drink from the pool, and instantly, your senses sharpen. You can hear the thoughts of nearby creatures and feel the pulse of the forest itself. The fox sits beside you, a silent companion on your journey.",
             [
-                { text: "Continue your adventure", action: startJourney }
+                { text: "Continue exploring with newfound senses", action: exploreWithSenses },
+                { text: "Thank the fox and return home", action: returnHome }
             ]
         );
     };
 
-    const continueJourneyAfterHelp = () => {
+    const leaveClearing = () => {
         updateStory(
-            "With a sense of pride for helping, you continue on your way. The path seems brighter, and your heart feels lighter. The adventure awaits!",
+            "You leave the clearing, grateful for the fox's guidance. The forest feels more alive, as if acknowledging your presence and respect.",
             [
-                { text: "Explore further", action: startJourney }
+                { text: "Continue your journey", action: startJourney }
             ]
         );
     };
 
-    const goBackToHelp = () => {
+    const listenToWhispers = () => {
         updateStory(
-            "You change your mind and turn around to help the little girl. She smiles at you gratefully as you offer to help her find her rabbit.",
+            "The whispers reveal a prophecy of a great adventure that awaits you, a journey filled with wonder and magic. You feel a sense of purpose as you continue along the path.",
             [
-                { text: "Help her find the rabbit", action: helpGirl }
+                { text: "Embrace the adventure", action: startJourney }
             ]
         );
     };
 
-    const reflectOnChoice = () => {
+    const exploreFurther = () => {
         updateStory(
-            "As you walk further, you can't shake the feeling that you should have helped the girl. You start to wonder if choosing kindness could have made your adventure better.",
+            "You decide to explore the valley further, discovering hidden nooks filled with ancient relics. Each step feels like a new chapter in an unfolding story.",
             [
-                { text: "Go back to help her", action: goBackToHelp },
-                { text: "Keep walking", action: continueJourneyWithoutHelp }
+                { text: "Continue exploring", action: startJourney }
             ]
         );
     };
 
-    const followBird = () => {
+    const acceptGift = () => {
         updateStory(
-            "The bird flies away, leading you deeper into the forest. You follow it, curious to see where it goes, and soon find yourself in a beautiful clearing with flowers and a sparkling stream.",
+            "You drink from the vial, and suddenly, the entire forest is bathed in colors you've never seen before. The fairy giggles and flits away, leaving you with a sense of wonder and magic.",
             [
-                { text: "Explore the clearing", action: observeNature }
+                { text: "Explore the enchanted forest", action: exploreFurther }
             ]
         );
     };
 
-    const observeNature = () => {
+    const declineGift = () => {
         updateStory(
-            "You decide to stay in the clearing, taking in the beauty of nature. The soft breeze, the smell of flowers, and the gentle sound of the stream make you feel at peace.",
+            "You thank the fairy and decide to move on. She nods with a smile, and you feel a sense of peace as you continue your journey.",
             [
-                { text: "Continue your adventure", action: startJourney }
+                { text: "Explore the garden further", action: startJourney }
             ]
         );
     };
 
-    const goBackToBird = () => {
+    const joinDance = () => {
         updateStory(
-            "You turn around and go back to the bird, offering it some food. The bird chirps happily and flies off, leaving you feeling content.",
+            "You join the dance, and the creatures cheer, celebrating your bravery. Under the moonlight, you feel at one with the forest, as if you've found a new family among the trees.",
             [
-                { text: "Follow the bird", action: followBird }
+                { text: "Celebrate and continue the journey", action: startJourney }
             ]
         );
     };
 
-    const continueJourneyWithoutHelp = () => {
+    const watchDance = () => {
         updateStory(
-            "You decide not to go back and continue walking. However, a small part of you wonders if you missed an opportunity for a better adventure.",
+            "You watch from a distance, smiling at their joy. You feel content just being a part of their world, even as an observer.",
             [
-                { text: "Explore further", action: startJourney }
+                { text: "Continue your journey with newfound peace", action: startJourney }
+            ]
+        );
+    };
+
+    const exploreWithSenses = () => {
+        updateStory(
+            "With heightened senses, every leaf and creature in the forest becomes a source of discovery. You feel deeply connected to the world around you.",
+            [
+                { text: "Embrace your new senses and explore", action: startJourney }
+            ]
+        );
+    };
+
+    const returnHome = () => {
+        updateStory(
+            "You return home with memories of the forest and the wise fox. You feel grateful for the experience and the connection with nature.",
+            [
+                { text: "End the adventure", action: startJourney }
             ]
         );
     };
@@ -201,18 +216,18 @@ const CreateStory = () => {
                         <>
                             <p>{story}</p>
                             {choices.map((choice, index) => (
-                                <Button className='choice-button'
+                                <Button className="choice-button"
                                     key={index}
                                     onClick={() => {
-                                        stopSpeaking(); // Stop audio before making a choice
-                                        choice.action(); // Call the action associated with the choice
+                                        stopSpeaking();
+                                        choice.action();
                                     }}
                                     variant="primary"
                                 >
                                     {choice.text}
                                 </Button>
                             ))}
-                            <Button variant="danger" onClick={stopSpeaking}>Stop Speaking</Button> {/* Stop button */}
+                            <Button variant="danger" onClick={stopSpeaking}>Stop Speaking</Button>
                         </>
                     )}
                 </Col>
