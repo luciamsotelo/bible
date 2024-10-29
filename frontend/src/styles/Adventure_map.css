@@ -1,44 +1,63 @@
-.adventure-map {
-    padding: 20px;
-  }
-  
-  .map-container {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .map-image {
-    background-size: cover;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .map-card {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease-in-out;
-    z-index: 2; /* Ensure cards appear above the map */
-  }
-  
-  .map-info {
-    display: none;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 5px;
-    padding: 10px;
-    z-index: 99; /* Ensure the card content is on top */
-  }
-  
-  .map-info.visible {
-    display: block;
-    width: 25px;
-  }
-  
-  .controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1; /* Controls have a lower z-index than cards */
-  }
-  
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden; /* Ensures the card stays within bounds */
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+}
+
+.map-point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: yellow;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.map-point:hover .tooltip {
+  display: block;
+}
+
+.info-card {
+  position: absolute;
+  top: 10%; /* Adjust as needed */
+  left: 10%;
+  max-width: 300px; /* You can adjust or remove this if you want */
+  max-height: 80%; /* Constrain the height if needed */
+  overflow: auto;
+  transform: scale(0.7); /* Scale down by 30% */
+  transform-origin: top left; /* Scale from the top-left corner */
+  z-index: 1;
+}
+
+
+.button-container {
+  position: absolute;
+  right: 10px;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
