@@ -32,8 +32,8 @@ const Prayer = () => {
     window.speechSynthesis.cancel();
     
     const utterance = new SpeechSynthesisUtterance(prayerText);
-    utterance.pitch = 1.8;
-    utterance.rate = 0.7;
+    utterance.pitch = 3.0;
+    utterance.rate = 0.9;
     
     const voices = window.speechSynthesis.getVoices();
     const childlikeVoice = 
@@ -52,31 +52,34 @@ const Prayer = () => {
   };
 
   // Function to handle prayer submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (name && prayerRequest) {
-      const newPrayer = {
-        id: Date.now(),
-        name,
-        prayerRequest,
-        color: getRandomColor(), // Assign a random color when the prayer is created
-      };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (name && prayerRequest) {
+    const newPrayer = {
+      id: Date.now(),
+      name,
+      prayerRequest,
+      color: getRandomColor(), // Assign a random color when the prayer is created
+    };
 
-      const updatedPrayers = [...prayers, newPrayer].slice(-7); // Keep up to 7 prayers
-      setPrayers(updatedPrayers);
+    const updatedPrayers = [...prayers, newPrayer].slice(-7); // Keep up to 7 prayers
+    setPrayers(updatedPrayers);
 
-      const prayerText = `Dear Jesus, ${prayerRequest}. Love ${name}. Amen.`;
+    const prayerText = `Dear Jesus, ${prayerRequest}. Love ${name}. Amen.`;
 
-      // Speak the prayer and show the "message received" only after it has been read
-      handleSpeak(prayerText, () => {
-        setMessageReceived(true); // Show the message after prayer has been spoken
-        setTimeout(() => setMessageReceived(false), 8000); // Hide message after 8 seconds
-      });
+    // Speak the prayer and show the "message received" only after it has been read
+    handleSpeak(prayerText, () => {
+      // Set a timeout to match the duration of the prayer disappearance animation (10s here)
+      setTimeout(() => {
+        setMessageReceived(true); // Show the message after the prayer has disappeared
+        setTimeout(() => setMessageReceived(false), 4000); // Hide message after 3 seconds
+      }, 4000); // Adjust delay to match prayer animation duration (7s floatUp + 3s fadeOut)
+    });
 
-      setName("");
-      setPrayerRequest("");
-    }
-  };
+    setName("");
+    setPrayerRequest("");
+  }
+};
 
   const getRandomPosition = () => {
     const left = Math.random() * 80;
