@@ -1,16 +1,22 @@
 .prayer-body {
-  width: 100vw; /* Full width of the viewport */
-  margin: 0; /* Remove any default margins */
-  padding: 2rem 0; /* Optional padding if you need spacing inside the container */
+  width: 100vw;
+  height: 100vh; /* Full height of the viewport */
+  margin: 0;
+  padding: 2rem 0;
   background-image: url('../images/prayer_background.jpg');
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
 }
 
 .prayer-container {
-  margin-top: 2rem;
-  background-size: cover;
-  background-position: center;
+  background-color: rgba(255, 255, 255, .1); /* Add transparency */
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%; /* Responsive width */
 }
 
 .prayer-form {
@@ -19,49 +25,39 @@
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 5px solid yellow;
+  margin-bottom: 10rem;
+
 }
 
 .prayer-float-container {
-  position: relative;
   height: 400px;
   overflow: hidden;
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Floating prayers with smooth movement */
+/* Floating prayers */
 .floating-prayer {
-  position: absolute;
   background-color: #ffec99;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  opacity: 1;
-  z-index: 1;
-  transform: translateY(50%);
-  animation: floatUp 7s ease-in-out forwards, fadeOut 10s ease-in-out forwards; /* Float up and fade out */
+  animation: floatUp 7s ease-in-out forwards, fadeOut 10s ease-in-out forwards;
 }
 
-.floating-prayer.stay {
-  animation: none;
-  transform: translateY(0); /* Stay in place */
-}
-
-/* Keyframes for floating prayer animation */
 @keyframes floatUp {
   0% {
     transform: translateY(50%);
     opacity: 1;
   }
   100% {
-    transform: translateY(-150px); /* Move prayer upwards */
-    opacity: 0; /* Fade prayer out */
+    transform: translateY(-150px);
+    opacity: 0;
   }
 }
 
-/* Keyframes for fade-out */
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -69,10 +65,4 @@
   100% {
     opacity: 0;
   }
-}
-
-/* Adjust the fixed message container */
-.floating-prayer.stay {
-  animation: none;
-  transform: translateY(0); /* Stay in place */
 }
