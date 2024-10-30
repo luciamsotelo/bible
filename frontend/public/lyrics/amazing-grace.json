@@ -1,14 +1,14 @@
 {
     "title": "Amazing Grace",
     "lyrics": [
-      { "text": "Amazing grace, how sweet the sound", "startTime": 0, "endTime": 14.75 },
-      { "text": "That saved a wretch like me", "startTime": 14.76, "endTime": 23.5 },
-      { "text": "I once was lost, but now am found", "startTime": 24, "endTime": 32 },
-      { "text": "Was blind, but now I see", "startTime": 32.5, "endTime": 40 },
-      { "text": "'Twas grace that taught my heart to fear", "startTime": 41, "endTime": 48.75 },
-      { "text": "And grace, my fears relieved", "startTime": 49, "endTime": 56 },
-      { "text": "How precious did that grace appear", "startTime": 57, "endTime": 64.75 },
-      { "text": "The hour I first believed", "startTime": 65, "endTime": 70 }
+      { "text": "Amazing grace, how sweet the sound", "startTime": 0, "endTime": 14.75, "image": "/images/amazingGraceHowSweetTheSound.webp" },
+      { "text": "That saved a wretch like me", "startTime": 14.76, "endTime": 23.5, "image": "/images/thatSavedAWretchLikeMe2.jpg" },
+      { "text": "I once was lost, but now am found", "startTime": 24, "endTime": 32, "image": "/images/onceImLostButNowImFound2.jpg" },
+      { "text": "Was blind, but now I see", "startTime": 32.5, "endTime": 40, "image": "/images/wasBlindButNowIsee2.jpg" },
+      { "text": "'Twas grace that taught my heart to fear", "startTime": 41, "endTime": 48.75, "image": "/images/twasGraceThatTaughtMyHeartToFear2.jpg" },
+      { "text": "And grace, my fears relieved", "startTime": 49, "endTime": 56, "image": "/images/andGraceMyFearsReleived2.jpg" },
+      { "text": "How precious did that grace appear", "startTime": 57, "endTime": 64.75, "image": "/images/howPreciousDidThatGraceAppear2.jpg" },
+      { "text": "The hour I first believed", "startTime": 65, "endTime": 70, "image": "/images/theHourIFirstBelieved.webp" }
     ],
     "audio": "/songs/amazing-grace.mp3"
   }
