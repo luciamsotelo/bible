@@ -2,14 +2,14 @@
     "title": "Holy, Holy, Holy! Lord God Almighty!",
 
     "lyrics": [
-      { "text": "Holy, holy, holy!", "startTime": 0, "endTime": 4.75 },
-      { "text": "Lord God Almighty!", "startTime": 6.25, "endTime": 11 },
-      { "text": "Early in the morning", "startTime": 12, "endTime": 16.75 },
-      { "text": "our song shall rise to Thee;", "startTime": 17, "endTime": 23 },
-      { "text": "Holy, holy, holy", "startTime": 24.5, "endTime": 30.25 },
-      { "text": "merciful and mighty!", "startTime": 30.5, "endTime": 35.95 },
-      { "text": "God in three Persons", "startTime": 36, "endTime": 41.50 },
-      { "text": "blessed Trinity!", "startTime": 42.75, "endTime": 45 }
+      { "text": "Holy, holy, holy!", "startTime": 0, "endTime": 4.75, "image": "/images/holyHolyHoly.jpg" },
+      { "text": "Lord God Almighty!", "startTime": 6.25, "endTime": 11, "image": "/images/lordGodAlmighty.jpg" },
+      { "text": "Early in the morning", "startTime": 12, "endTime": 16.75, "image": "/images/earlyInTheMorning.jpg" },
+      { "text": "our song shall rise to Thee;", "startTime": 17, "endTime": 23, "image": "/images/ourSongShallRiseToThee.jpg" },
+      { "text": "Holy, holy, holy", "startTime": 24.5, "endTime": 30.25, "image": "/images/holyHolyHoly.jpg" },
+      { "text": "merciful and mighty!", "startTime": 30.5, "endTime": 35.95, "image": "/images/mercifulAndMighty.jpg" },
+      { "text": "God in three Persons", "startTime": 36, "endTime": 41.50, "image": "/images/gotInThreePerson.jpg" },
+      { "text": "blessed Trinity!", "startTime": 42.75, "endTime": 45, "image": "/images/blessedTrinity.jpg" }
     ],
     "audio": "/songs/holy-holy-holy.mp3"
   }
