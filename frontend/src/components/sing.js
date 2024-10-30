@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Container, Button, Row, Col } from 'react-bootstrap';
-import '../styles/sing.css'; // Custom styles if needed
+import { Container, Button } from 'react-bootstrap';
+import '../styles/sing.css';
 
 const Sing = ({ songData }) => {
   const [currentLine, setCurrentLine] = useState(0);
@@ -34,41 +34,23 @@ const Sing = ({ songData }) => {
     };
   }, [songData]);
 
-  return (
-    <Container className="karaoke-container">
-  <Row className="text-center mb-4">
-    <Col>
-      <h1>{songData.title}</h1>
-    </Col>
-  </Row>
-  <Row className="text-center mb-4">
-    <Col>
-      <Button className="col-2" variant="primary" onClick={handlePlayPause}>
-        {isPlaying ? 'Pause' : 'Play'}
-      </Button>
-    </Col>
-  </Row>
-  <Row className="justify-content-center">
-    <Col md={8}>
-      <div className="lyrics-container">
-        {songData.lyrics.map((line, index) => (
-          <p key={index} className={currentLine === index ? 'highlighted' : ''}>
-            {line.text}
-          </p>
-        ))}
-      </div>
-    </Col>
-  </Row>
-  <Row className="text-center mt-4">
-    <Col>
-      <audio ref={audioRef} src={songData.audio} />
-    </Col>
-  </Row>
-</Container>
+  // Get the background image URL for the current line
+  const backgroundImage = songData.lyrics[currentLine]?.image;
 
+  return (
+    <Container className="karaoke-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <h1 className="text-center">{songData.title}</h1>
+      <div className="play-button-container">
+        <Button variant="primary" onClick={handlePlayPause}>
+          {isPlaying ? 'Pause' : 'Play'}
+        </Button>
+      </div>
+      <div className="lyrics-container">
+        <p className="highlighted">{songData.lyrics[currentLine]?.text}</p>
+      </div>
+      <audio ref={audioRef} src={songData.audio} />
+    </Container>
   );
 };
 
 export default Sing;
-
-// amazing grace.mp3/Jesus loves me.mp3/holy holy holy.mp3 performed by music_for_videos from pixabay.com
