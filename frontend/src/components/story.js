@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import '../styles/story.css'; // Optional: CSS for additional styling
 import AdamEve from '../images/adamandeve.jpg';
@@ -21,13 +21,14 @@ const stories = [
     frontImage: AdamEve,
     expandedImage: Garden,
     story: "In the beginning, God created the first man, Adam, from the dust of the ground and breathed life into him. Adam lived in a beautiful garden called Eden, where he named all the animals and took care of the plants. But Adam was lonely, so God decided to create a companion for him. God put Adam into a deep sleep, took one of his ribs, and made the first woman, Eve. Adam and Eve lived happily in the Garden of Eden, where they had everything they needed. God told them they could eat from any tree in the garden except one—the Tree of Knowledge of Good and Evil. God warned them that if they ate from this tree, they would die. One day, a sneaky serpent, who was actually the Devil in disguise, tricked Eve into eating the fruit from the forbidden tree. The serpent told her that eating the fruit would make her as wise as God. Eve took a bite and gave some to Adam, who also ate it. Immediately, they realized they had disobeyed God and felt ashamed. Because they disobeyed, God had to punish them. He told them they had to leave the beautiful garden and live in the world outside, where life would be harder. Adam and Eve had to work hard to grow their food, and they experienced pain and suffering for the first time. But even though they made a big mistake, God still loved them and promised to send a Savior to help their descendants.",
-    lesson: "The lesson of the story is Obedience to God: God gave Adam and Eve a rule to follow, but they disobeyed. This teaches us the importance of listening to and obeying God’s instructions."
+    lesson: "The lesson of the story is Obedience to God: God gave Adam and Eve a rule to follow, but they disobeyed. This teaches us the importance of listening to and obeying God’s instructions.",
+    audioFile: '/songs/M_AdamandEve.mp3',
   },
   {
     title: "Noah's Ark",
     frontImage: Ark,
     expandedImage: Noah,
-    story: "A long time ago, the world had become filled with wickedness. People had forgotten about God, and they were doing evil things all the time. But there was one man who remained faithful to God. His name was Noah. God saw how righteous Noah was, and He decided to save Noah and his family from the destruction that was coming. God told Noah that He was going to send a great flood to wash away the evil in the world, but He had a plan to keep Noah and the animals safe. God instructed Noah to build a huge boat called an ark. Noah followed God’s instructions exactly, even though it took many years to complete the ark. While he worked, Noah warned the people about the coming flood, but they didn’t believe him. Once the ark was ready, God told Noah to bring his family—his wife, his three sons, and their wives—into the ark. God also told Noah to gather two of every kind of animal, one male and one female, and bring them onto the ark. After everyone and everything was inside, God Himself closed the door. Then, the rain began to fall. It rained for forty days and forty nights, and the floodwaters rose, covering the earth. The ark floated on the water, keeping Noah, his family, and the animals safe inside. After the rain stopped, the water remained on the earth for many months. Noah and his family waited patiently inside the ark until, one day, the ark came to rest on a mountain. Noah sent out a dove to see if the water had receded, and when the dove returned with an olive branch, Noah knew it was finally safe to leave the ark. Once they were outside, Noah built an altar to thank God for saving them. God made a covenant with Noah, promising that He would never again destroy the earth with a flood. As a sign of this promise, God placed a beautiful rainbow in the sky.",
+    story: "A long time ago, the world had become filled with wickedness. People had forgotten about God, and they were doing evil things all the time. But there was one man who remained faithful to God. His name was Noah. God saw how righteous Noah was, and He decided to save Noah and his family from the destruction that was coming. God told Noah that He was going to send a great flood to wash away the evil in the world, but He had a plan to keep Noah and the animals safe. God instructed Noah to build a huge boat called an ark. Noah followed God’s instructions exactly, even though it took many years to complete the ark. While he worked, Noah warned the people about the coming flood, but they didn’t believe him. Once the ark was ready, God told Noah to bring his family—his wife, his three sons, and their wives—into the ark. God also told Noah to gather two of every kind of animal, one male and one female, and bring them onto the ark. After everyone and everything was inside, God closed the door. Then, the rain began to fall. It rained for forty days and forty nights, and the floodwaters rose, covering the earth. The ark floated on the water, keeping Noah, his family, and the animals safe inside. After the rain stopped, the water remained on the earth for many months. Noah and his family waited patiently inside the ark until, one day, the ark came to rest on a mountain. Noah sent out a dove to see if the water had receded, and when the dove returned with an olive branch, Noah knew it was finally safe to leave the ark. Once they were outside, Noah built an altar to thank God for saving them. God made a covenant with Noah, promising that He would never again destroy the earth with a flood. As a sign of this promise, God placed a beautiful rainbow in the sky.",
     lesson: "The lesson of the story is Faith in God’s plan: Noah trusted in God’s instructions, even when others didn’t believe him. This teaches us the importance of faith and obedience, knowing that God will guide and protect those who trust in Him."
   },
   {
@@ -66,7 +67,7 @@ const stories = [
 const BibleStories = () => {
   // State to track which card is expanded
   const [expandedCard, setExpandedCard] = useState(null);
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const audioRef = useRef(null);
 
   const handleExpand = (index) => {
     setExpandedCard(index);
@@ -74,30 +75,29 @@ const BibleStories = () => {
 
   const handleCollapse = () => {
     setExpandedCard(null);
-    speechSynthesis.cancel();
-  };
-  
-  const handleReadStory = (story) => {
-    if ('speechSynthesis' in window) {
-      const speech = new SpeechSynthesisUtterance();
-      speech.text = `${story.title}. ${story.story}. ${story.lesson}`;
-      speech.rate = 1; // Adjust the rate of speech if necessary
-      speechSynthesis.speak(speech);
-      
-      setIsSpeaking(true); // Set state to indicate story is being read
-      speech.onend = () => setIsSpeaking(false); // Set state when reading is finished
-    } else {
-      alert("Sorry, your browser doesn't support text-to-speech.");
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
   };
-  const handleStopStory = () => {
-    speechSynthesis.cancel(); 
-    setIsSpeaking(false); 
+
+  const handlePlayAudio = (audioFile) => {
+    if (audioRef.current) {
+      audioRef.current.src = audioFile;
+      audioRef.current.play();
+    }
   };
 
+  const handleStopAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  };
 
   return (
     <div className="container my-5">
+      <audio ref={audioRef} /> {/* Audio element to play story files */}
       <Row>
         {stories.map((story, index) => (
           <Col key={index} xs={12} sm={6} md={4} className="mb-4">
@@ -118,16 +118,14 @@ const BibleStories = () => {
                   </Button>
                   <Button
                     variant="success"
-                    onClick={() => handleReadStory(story)}
-                    disabled={isSpeaking} // Disable while reading
+                    onClick={() => handlePlayAudio(story.audioFile)}
                     className="ms-2"
                   >
-                    {isSpeaking ? 'Reading...' : 'Read Story'}
+                    Read Story
                   </Button>
                   <Button
                     variant="danger"
-                    onClick={handleStopStory}
-                    disabled={!isSpeaking} // Disable if not currently speaking
+                    onClick={handleStopAudio}
                     className="ms-2"
                   >
                     Stop Story
