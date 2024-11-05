@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from 'react'; // <-- Add useEffect here
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/puzzle_noah.css';
 
 const PuzzleNoah = () => {
-    const originalPieces = [
+    const navigate = useNavigate();
+
+    // Use useMemo to memoize the originalPieces array
+    const originalPieces = useMemo(() => [
         { id: 1, src: '/images/puzzleark1.jpg', position: null },
         { id: 2, src: '/images/puzzleark2.jpg', position: null },
         { id: 3, src: '/images/puzzleark3.jpg', position: null },
         { id: 4, src: '/images/puzzleark4.jpg', position: null },
-    ];
+    ], []);
 
     const [pieces, setPieces] = useState(originalPieces);
     const [droppedPieces, setDroppedPieces] = useState({});
     const [puzzleCompleted, setPuzzleCompleted] = useState(false);
     const [puzzleClose, setPuzzleClose] = useState(false);
-    const navigate = useNavigate();
 
-    // Shuffle pieces on initial render
-    useEffect(() => {
-        shufflePieces(); // Automatically shuffle pieces when the component mounts
-    }, []); // Empty dependency array ensures this runs only once
-
-    const shufflePieces = () => {
-        const shuffled = [...pieces].sort(() => Math.random() - 0.5);
+    // Define shufflePieces with useCallback to prevent re-creation on each render
+    const shufflePieces = useCallback(() => {
+        const shuffled = [...originalPieces].sort(() => Math.random() - 0.5);
         setPieces(shuffled.map(piece => ({ ...piece, position: null })));
         setDroppedPieces({});
         setPuzzleCompleted(false);
         setPuzzleClose(false);
-    };
+    }, [originalPieces]);
+
+    // Run shufflePieces when the component mounts
+    useEffect(() => {
+        shufflePieces();
+    }, [shufflePieces]);
 
     const resetPuzzle = () => {
         setPieces(originalPieces);
@@ -150,41 +153,47 @@ const PuzzleNoah = () => {
                         </div>
                     )}
 
-                    <Row className="puzzle-grid">
-                        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'top-left')} onDragOver={handleDragOver}>
-                            {droppedPieces['top-left'] && (
-                                <div onClick={() => handleRemovePiece('top-left')} className="img-container">
-                                    <img src={droppedPieces['top-left'].src} alt="Top Left" className="img-fluid full-image" />
-                                </div>
-                            )}
-                        </Col>
-                        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'top-right')} onDragOver={handleDragOver}>
-                            {droppedPieces['top-right'] && (
-                                <div onClick={() => handleRemovePiece('top-right')} className="img-container">
-                                    <img src={droppedPieces['top-right'].src} alt="Top Right" className="img-fluid full-image" />
-                                </div>
-                            )}
-                        </Col>
-                        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'bottom-left')} onDragOver={handleDragOver}>
-                            {droppedPieces['bottom-left'] && (
-                                <div onClick={() => handleRemovePiece('bottom-left')} className="img-container">
-                                    <img src={droppedPieces['bottom-left'].src} alt="Bottom Left" className="img-fluid full-image" />
-                                </div>
-                            )}
-                        </Col>
-                        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'bottom-right')} onDragOver={handleDragOver}>
-                            {droppedPieces['bottom-right'] && (
-                                <div onClick={() => handleRemovePiece('bottom-right')} className="img-container">
-                                    <img src={droppedPieces['bottom-right'].src} alt="Bottom Right" className="img-fluid full-image" />
-                                </div>
-                            )}
-                        </Col>
-                    </Row>
+<Container className="puzzle-container">
+    <Row className="puzzle-grid">
+        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'top-left')} onDragOver={handleDragOver}>
+            {droppedPieces['top-left'] && (
+                <div onClick={() => handleRemovePiece('top-left')} className="img-container">
+                    <img src={droppedPieces['top-left'].src} alt="Top Left" className="img-fluid full-image" />
+                </div>
+            )}
+        </Col>
+        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'top-right')} onDragOver={handleDragOver}>
+            {droppedPieces['top-right'] && (
+                <div onClick={() => handleRemovePiece('top-right')} className="img-container">
+                    <img src={droppedPieces['top-right'].src} alt="Top Right" className="img-fluid full-image" />
+                </div>
+            )}
+        </Col>
+    </Row>
+    <Row className="puzzle-grid">
+        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'bottom-left')} onDragOver={handleDragOver}>
+            {droppedPieces['bottom-left'] && (
+                <div onClick={() => handleRemovePiece('bottom-left')} className="img-container">
+                    <img src={droppedPieces['bottom-left'].src} alt="Bottom Left" className="img-fluid full-image" />
+                </div>
+            )}
+        </Col>
+        <Col xs={6} className="drop-zone" onDrop={(e) => handleDrop(e, 'bottom-right')} onDragOver={handleDragOver}>
+            {droppedPieces['bottom-right'] && (
+                <div onClick={() => handleRemovePiece('bottom-right')} className="img-container">
+                    <img src={droppedPieces['bottom-right'].src} alt="Bottom Right" className="img-fluid full-image" />
+                </div>
+            )}
+        </Col>
+    </Row>
+</Container>
+
+
 
                     <Row className="puzzle-grid">
                         {pieces.map(piece => (
                             piece.position === null && (
-                                <Col key={piece.id} xs={6} className="puzzle-piece-container">
+                                <Col key={piece.id} xs={6} sm={3} className="puzzle-piece-container">
                                     <div 
                                         className="puzzle-piece" 
                                         draggable 
