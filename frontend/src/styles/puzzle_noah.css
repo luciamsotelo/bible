@@ -1,33 +1,42 @@
-/* src/puzzle_noah.css */
-
 .puzzle-grid {
-  margin: 40px;
+  margin-bottom: 10px; /* Adjust this value as needed */
 }
 
 .drop-zone {
   border: 2px dashed #ccc; /* Border style for drop zones */
-  min-height: 100px; /* Minimum height of drop zones */
+  min-height: 150px; /* Minimum height of drop zones */
   min-width: 100px; /* Minimum width of drop zones */
   display: flex; /* Center content */
   justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  align-items: flex-start; /* Align items to the top */
   position: relative; /* Necessary for absolutely positioned children */
   overflow: hidden; /* Hide overflowing content */
-  padding: 0; /* No padding, so the image can fill the entire zone */
+  padding: 100px; /* Add padding to create space around the image */
   cursor: pointer; /* Change cursor to indicate drop zone */
+  margin: 20px; /* Reduce this value to bring drop zones closer together */
+  margin-bottom: -183px; /* Reduce this value to bring drop zones closer together */
+  margin-top: 20px; /* Reduce this value to bring drop zones closer together */
 }
+
 
 .full-image {
   width: 100%; /* Ensure image covers full width */
-  height: 100%; /* Ensure image covers full height */
+  height: auto; /* Adjust height for consistent spacing */
   object-fit: cover; /* Maintain aspect ratio and fill the space */
+}
+
+.img-fluid .full-image {
+  width: 100%; /* Ensure image covers full width */
+  height: auto; /* Adjust height for consistent spacing */
+  object-fit: cover; /* Maintain aspect ratio and fill the space */
+  margin-top: 20px; /* Adjust this value to lower the images on the page */
 }
 
 .puzzle-piece {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1px;
+  margin: 10px;
   cursor: move; /* Indicate draggable pieces */
   overflow: hidden;
   transition: transform 0.2s;
@@ -49,12 +58,18 @@
 .img-container {
   position: relative; /* Allow for positioning on click to remove */
   cursor: pointer; /* Change cursor on hover */
-  width: 100vw;
+  width: 100%;
+  display: flex; /* Make sure it fills the drop zone */
+  justify-content: center; /* Center the image */
+  align-items: flex-start; /* Align the image to the top */
 }
 
 .img-container img {
   max-width: 100%; /* Responsive image */
   height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Fill the container */
+  cursor: pointer;
+  margin-top: 20px; /* Adjust this value to lower the images on the page */
 }
 
 .button-animate {
