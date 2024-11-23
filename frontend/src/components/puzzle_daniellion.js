@@ -125,69 +125,69 @@ const PuzzleDanielLion = () => {
 
     return (
         <Container>
-            <div className="instructions text-center mb-4">
+            <div className="daniellion-instructions text-center mb-4">
                 <h2>Puzzle Instructions</h2>
                 <p>Drag and drop the pieces into their correct positions to complete the puzzle.</p>
                 <p>Once all pieces are in place, click the "Check Puzzle" button to see if you have completed it correctly.</p>
             </div>
 
             {puzzleCompleted ? (
-                <div className="completed-puzzle-container text-center">
-                    <img src="/images/puzzledanielandlion.jpg" alt="Completed Puzzle" className="img-fluid full-image w-50 d-block mx-auto" />
+                <div className="daniellion-completed-puzzle-container text-center">
+                    <img src="/images/puzzledanielandlion.jpg" alt="Completed Puzzle" className="daniellion-completed-puzzle-image daniellion-img-fluid daniellion-full-image w-50 d-block mx-auto" />
                     <h3>Congratulations! You've completed the puzzle!</h3>
-                    <Button variant="success" onClick={playAgain} className="button-animate" style={{ margin: '10px' }}>
+                    <Button variant="success" onClick={playAgain} className="daniellion-button-animate" style={{ margin: '10px' }}>
                         Play Again
                     </Button>
-                    <Button variant="info" onClick={goToGamePage} className="button-animate" style={{ margin: '10px' }}>
+                    <Button variant="info" onClick={goToGamePage} className="daniellion-button-animate" style={{ margin: '10px' }}>
                         Back to Puzzle Page
                     </Button>
                 </div>
             ) : (
                 <>
                     {puzzleClose && (
-                        <div className="close-message text-center">
+                        <div className="daniellion-close-message text-center">
                             <h3>You're close! Keep trying!</h3>
                         </div>
                     )}
 
-                    <Row className="puzzle-grid">
+                    <Row className="daniellion-puzzle-grid">
                         {['top-left', 'top-center-left', 'top-center-right', 'top-right', 
                         'middle-left', 'middle-center-left', 'middle-center-right', 'middle-right',
                         'bottom-left', 'bottom-center-left', 'bottom-center-right', 'bottom-right',
                         'extra1', 'extra2', 'extra3', 'extra4'].map((position) => (
-                            <Col xs={3} className="drop-zone" onDrop={(e) => handleDrop(e, position)} onDragOver={handleDragOver} key={position}>
+                            <Col xs={3} className="daniellion-drop-zone" onDrop={(e) => handleDrop(e, position)} onDragOver={handleDragOver} key={position}>
                                 {droppedPieces[position] && (
                                     <div onClick={() => handleRemovePiece(position)} className="">
-                                        <img src={droppedPieces[position].src} alt={position} className="img-fluid full-image" />
+                                        <img src={droppedPieces[position].src} alt={position} className="daniellion-img-fluid daniellion-full-image" />
                                     </div>
                                 )}
                             </Col>
                         ))}
                     </Row>
 
-                    <Row className="puzzle-grid">
+                    <Row className="daniellion-puzzle-grid">
                         {pieces.map(piece => (
                             piece.position === null && (
-                                <Col xs={3} key={piece.id} className="puzzle-piece-container">
+                                <Col xs={3} key={piece.id} className="daniellion-puzzle-piece-container">
                                     <div 
-                                        className="puzzle-piece" 
+                                        className="daniellion-puzzle-piece" 
                                         draggable 
                                         onDragStart={(e) => handleDragStart(e, piece)}
                                     >
-                                        <img src={piece.src} alt={`Piece ${piece.id}`} className="img-fluid" />
+                                        <img src={piece.src} alt={`Piece ${piece.id}`} className="daniellion-img-fluid" />
                                     </div>
                                 </Col>
                             )
                         ))}
                     </Row>
 
-                    <Button variant="primary" onClick={shufflePieces} className="button-animate" style={{ margin: '10px' }}>
+                    <Button variant="primary" onClick={shufflePieces} className="daniellion-button-animate" style={{ margin: '10px' }}>
                         Shuffle Puzzle
                     </Button>
-                    <Button variant="secondary" onClick={resetPuzzle} className="button-animate" style={{ margin: '10px' }}>
+                    <Button variant="secondary" onClick={resetPuzzle} className="daniellion-button-animate" style={{ margin: '10px' }}>
                         Reset Puzzle
                     </Button>
-                    <Button variant="success" onClick={handleLockPuzzle} className="button-animate" style={{ margin: '10px' }}>
+                    <Button variant="success" onClick={handleLockPuzzle} className="daniellion-button-animate" style={{ margin: '10px' }}>
                         Check Puzzle
                     </Button>
                 </>

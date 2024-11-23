@@ -1,4 +1,4 @@
-.puzzle-grid {
+.daniellion-puzzle-grid {
   margin: 2px;
   padding-left: 100px;
   padding-right: 100px;
@@ -8,7 +8,7 @@
   gap: 5px; /* Space between the puzzle pieces */
 }
 
-.drop-zone {
+.daniellion-drop-zone {
   border: 3px dashed #ccc; /* Border style for drop zones */
   min-height: 75px; /* Minimum height of drop zones */
   min-width: 100px; /* Minimum width of drop zones */
@@ -22,10 +22,10 @@
   margin: 2px; /* Reduce this value to bring drop zones closer together */
 }
 
-.puzzle-piece-container {
+.daniellion-puzzle-piece-container {
   position: relative; /* Allow for positioning on click to remove */
   cursor: pointer; /* Change cursor on hover */
-  width: 100%;
+  width: 95%;
   display: flex; /* Make sure it fills the drop zone */
   justify-content: center; /* Center the image */
   align-items: flex-start; /* Align the image to the top */
@@ -33,24 +33,24 @@
   
 }
 
-.full-image, .puzzle-piece img {
+.daniellion-full-image, .daniellion-puzzle-piece img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensure the image fits properly */
   transition: transform 0.2s;
-  border: 1px solid blue;
+  border: 1px solid red;
 }
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
-  .drop-zone, .puzzle-piece-container {
+  .daniellion-drop-zone, .daniellion-puzzle-piece-container {
     height: 50px; /* Adjust height for medium-sized screens */
   }
 }
 
 /* Media query for very small screens */
 @media (max-width: 576px) {
-  .drop-zone, .puzzle-piece-container {
+  .daniellion-drop-zone, .daniellion-puzzle-piece-container {
     height: 100px; /* Adjust height for small screens */
   }
 }
