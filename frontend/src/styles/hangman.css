@@ -1,0 +1,70 @@
+/* src/styles/hangman.css */
+
+.hangman-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.hangman-word {
+  font-size: 2rem;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Space between words */
+  font-family: 'Courier New', monospace;
+}
+
+.hangman-word span {
+  display: inline-block; /* Treat each word separately */
+  letter-spacing: 0.1rem; /* Space between letters */
+}
+
+.hangman-letters {
+  margin: 20px 0;
+}
+
+.letter-button {
+  padding: 10px;
+  margin: 5px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.letter-button:hover {
+  background-color: #ddd;
+}
+
+.letter-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.hangman-status {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.game-message {
+  font-size: 1.5rem;
+  color: green;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.reset-button:hover {
+  background-color: #0056b3;
+}

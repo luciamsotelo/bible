@@ -12,7 +12,8 @@ import CreateStory from './pages/CreateStory_page';
 import BioPage from './pages/bio_page'; 
 import Puzzle from './pages/puzzle_page';
 import PuzzleArk from './pages/puzzleArk_page';
-import PuzzleDanielLion from './components/puzzle_daniellion'; // Import the PuzzleDanielLion component
+import PuzzleDanielLion from './components/puzzle_daniellion'; 
+import Hangman from './components/hangman';
 
 const App = () => {
     return (
@@ -31,7 +32,8 @@ const App = () => {
                 <Route path="/bio" element={<BioPage />} />
                 <Route path="/games/puzzle" element={<Puzzle />} />
                 <Route path="/puzzles/noah-ark" element={<PuzzleArk />} />
-                <Route path="/puzzles/daniel-lion" element={<PuzzleDanielLion />} /> {/* Route for Puzzle Daniel Lion */}
+                <Route path="/puzzles/daniel-lion" element={<PuzzleDanielLion />} /> 
+                <Route path="/games/hangman" element={<Hangman />} />
             </Routes>
         </BrowserRouter>
     );
