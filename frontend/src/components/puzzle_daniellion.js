@@ -152,12 +152,12 @@ const PuzzleDanielLion = () => {
 
                     <Row className="puzzle-grid">
                         {['top-left', 'top-center-left', 'top-center-right', 'top-right', 
-                          'middle-left', 'middle-center-left', 'middle-center-right', 'middle-right',
-                          'bottom-left', 'bottom-center-left', 'bottom-center-right', 'bottom-right',
-                          'extra1', 'extra2', 'extra3', 'extra4'].map((position) => (
+                        'middle-left', 'middle-center-left', 'middle-center-right', 'middle-right',
+                        'bottom-left', 'bottom-center-left', 'bottom-center-right', 'bottom-right',
+                        'extra1', 'extra2', 'extra3', 'extra4'].map((position) => (
                             <Col xs={3} className="drop-zone" onDrop={(e) => handleDrop(e, position)} onDragOver={handleDragOver} key={position}>
                                 {droppedPieces[position] && (
-                                    <div onClick={() => handleRemovePiece(position)} className="img-container">
+                                    <div onClick={() => handleRemovePiece(position)} className="">
                                         <img src={droppedPieces[position].src} alt={position} className="img-fluid full-image" />
                                     </div>
                                 )}
