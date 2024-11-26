@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/home_page';
 import Stories from './pages/story_page';
 import Games from './pages/game_page';
@@ -14,6 +15,7 @@ import Puzzle from './pages/puzzle_page';
 import PuzzleArk from './pages/puzzleArk_page';
 import PuzzleDanielLion from './components/puzzle_daniellion'; 
 import Hangman from './components/hangman';
+
 
 const App = () => {
     return (
@@ -34,6 +36,7 @@ const App = () => {
                 <Route path="/puzzles/noah-ark" element={<PuzzleArk />} />
                 <Route path="/puzzles/daniel-lion" element={<PuzzleDanielLion />} /> 
                 <Route path="/games/hangman" element={<Hangman />} />
+                
             </Routes>
         </BrowserRouter>
     );

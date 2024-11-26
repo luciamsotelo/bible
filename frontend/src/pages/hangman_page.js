@@ -7,6 +7,7 @@ const hangman_page = () => {
     <div>
         <Header />
         <Hangman />
+        
     </div>
   )
 }

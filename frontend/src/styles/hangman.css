@@ -7,25 +7,33 @@
 }
 
 .hangman-word {
-  font-size: 2rem;
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-  gap: 1rem; /* Space between words */
+  font-size: 2rem; /* Adjust font size as needed */
+  margin: 20px 15px; /* Add some space around the word */
+  display: flex; /* Use flex for alignment */
+  flex-wrap: wrap; /* Allow words to wrap to the next line */
+  justify-content: center; /* Center the words horizontally */
+  gap: 0.5rem; /* Space between words */
   font-family: 'Courier New', monospace;
+  word-break: break-word; /* Handle very long unbroken words */
 }
 
 .hangman-word span {
   display: inline-block; /* Treat each word separately */
-  letter-spacing: 0.1rem; /* Space between letters */
+  letter-spacing: 0.2rem; /* Space between letters */
+  text-align: center; /* Ensure text stays centered */
+  white-space: pre-wrap; /* Preserve spacing and line breaks */
+  word-wrap: break-word; /* Wrap long words to the next line */   
+  font-weight: bold;  
+  font-size: 1.5rem;
 }
+
 
 .hangman-letters {
   margin: 20px 0;
 }
 
 .letter-button {
-  padding: 10px;
+  padding: 15px;
   margin: 5px;
   font-size: 1rem;
   border: none;
@@ -67,4 +75,18 @@
 
 .reset-button:hover {
   background-color: #0056b3;
+}
+
+.difficulty-buttons {
+  display: flex; /* Arrange buttons in a row */
+  flex-wrap: wrap;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 1rem; /* Add space between buttons */
+  margin: 20px 0; /* Optional: Add some margin above and below the buttons */
+}
+
+.difficulty-buttons button {
+  padding: 10px 20px; /* Adjust padding if needed for consistent button size */
+  font-size: 1rem; /* Ensure text is legible */
+  border-radius: 5px; /* Match existing button styles */
 }
