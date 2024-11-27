@@ -4,7 +4,12 @@
   text-align: center;
   font-family: Arial, sans-serif;
   margin: 20px;
+  background-image: url(""); /* Corrected the URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
 
 .hangman-word {
   font-size: 2rem; /* Adjust font size as needed */
@@ -29,7 +34,7 @@
 
 
 .hangman-letters {
-  margin: 20px 0;
+  margin: 2px 0;
 }
 
 .letter-button {
@@ -37,15 +42,19 @@
   margin: 5px;
   font-size: 1rem;
   border: none;
-  border-radius: 5px;
-  background-color: #f0f0f0;
+  border-radius: 50%; /* Make the button circular */
+  background: #8b7e66; /* Rock-like color */
+  color: white;
+  box-shadow: inset -3px -3px 7px rgba(255,255,255,0.5), inset 3px 3px 5px rgba(0,0,0,0.5); /* Create a rocky texture */
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
 }
 
 .letter-button:hover {
-  background-color: #ddd;
+  background-color: #7a6e57; /* Slightly darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
+
 
 .letter-button:disabled {
   background-color: #ccc;

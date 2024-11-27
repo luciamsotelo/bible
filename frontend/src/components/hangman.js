@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "../styles/hangman.css";
 
+
 const Hangman = () => {
   // Lists of biblical words/phrases by difficulty
   const easyWords = [
@@ -118,16 +119,21 @@ const Hangman = () => {
       default:
         selectedWords = shuffleArray([...easyWords]);
     }
+  
     setDifficulty(level);
     setWordList(selectedWords);
     setWord(getRandomWord(selectedWords));
-    resetGame();
+    setGuesses([]); // Reset guesses
+    setWrongGuesses([]); // Reset wrong guesses
   };
+  
 
   // Check if the game is won
   const isGameWon = word
-    .split("")
-    .every((letter) => letter === " " || guesses.includes(letter));
+  .split("")
+  .filter((char) => !/[.,'";:?!]/.test(char)) // Ignore punctuation
+  .every((letter) => letter === " " || guesses.includes(letter));
+
 
   // Check if the game is lost
   const isGameLost = wrongGuesses.length >= maxGuesses;
@@ -152,13 +158,14 @@ const Hangman = () => {
 
   // Display the current word with guessed letters
   const displayWord = word
-    .split("")
-    .map((char) => {
-      if (char === " ") return " "; // Keep spaces
-      if (/[.,'";:?!]/.test(char)) return char; // Keep punctuation
-      return guesses.includes(char) ? char : "_"; // Display guessed letters or underscores
-    })
-    .join(" ");
+  .split("")
+  .map((char) => {
+    if (char === " ") return " "; // Keep spaces
+    if (/[.,'";:?!]/.test(char)) return char; // Keep punctuation visible
+    return guesses.includes(char) ? char : "_"; // Display guessed letters or underscores
+  })
+  .join(" ");
+
 
   return (
     <div className="hangman-container">
