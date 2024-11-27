@@ -14,7 +14,7 @@ import BioPage from './pages/bio_page';
 import Puzzle from './pages/puzzle_page';
 import PuzzleArk from './pages/puzzleArk_page';
 import PuzzleDanielLion from './components/puzzle_daniellion'; 
-import Hangman from './components/hangman';
+import Hangman from './pages/hangman_page';
 
 
 const App = () => {
