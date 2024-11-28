@@ -12,11 +12,11 @@ const GameCards = () => {
 
   const games = [
     { title: 'Puzzle', img: '/images/puzzle.jpg', type: 'puzzle' },
-    { title: 'Word Search', img: '/path/to/wordsearch-image.jpg', type: 'wordsearch' },
-    { title: 'Maze', img: '/path/to/maze-image.jpg', type: 'maze' },
-    { title: 'Word Jumble', img: '/path/to/wordjumble-image.jpg', type: 'wordjumble' },
-    { title: 'Hangman', img: '/path/to/hangman-image.jpg', type: 'hangman' },
-    { title: 'Trivia', img: '/path/to/trivia-image.jpg', type: 'trivia' },
+    { title: 'Word Search', img: '/images/wordSearch.png', type: 'wordsearch' },
+    { title: 'Maze', img: '/images/maze.jpg', type: 'maze' },
+    { title: 'Word Jumble', img: '/images/wordJumble.jpg', type: 'wordjumble' },
+    { title: 'Hangman', img: '/images/stickMan.jpg', type: 'hangman' },
+    { title: 'Trivia', img: '/images/trivia.png', type: 'trivia' },
   ];
 
   return (

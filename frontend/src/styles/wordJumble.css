@@ -1,0 +1,70 @@
+.word-jumble-page {
+    text-align: center;
+    font-family: 'Arial, sans-serif';
+    background-color: #f0f8ff;
+    padding: 20px;
+}
+
+.category-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.category-buttons button:hover {
+    background-color: #45a049;
+}
+
+.word-jumble-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.jumbled-word {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    letter-spacing: 15px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 90%;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #008cba;
+    color: white;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #005f73;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}

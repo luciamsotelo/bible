@@ -3,8 +3,8 @@
 .hangman-container {
   text-align: center;
   font-family: Arial, sans-serif;
-  margin: 20px;
-  background-image: url(""); /* Corrected the URL */
+    /* margin: 20px;
+    background-image: url("/frontend/src/images/handmanGameTwo.webp"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
