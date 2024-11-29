@@ -1,0 +1,53 @@
+.maze-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    gap: 5px;
+    position: relative;
+  }
+  
+  .maze-row {
+    display: flex;
+  }
+  
+  .maze-cell {
+    width: 25px; 
+    height: 25px; 
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  
+  .maze-cell.player {
+    background-color: lightblue;
+  }
+  
+  .maze-cell.goal {
+    background-color: lightgreen;
+  }
+  
+  .maze-cell.obstacle {
+    background-color: gray;
+  }
+  
+  .victory-message {
+    text-align: center;
+    margin-top: 20px;
+    color: darkgreen;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: green;
+  }
+  
