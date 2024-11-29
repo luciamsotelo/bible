@@ -16,6 +16,7 @@ import PuzzleArk from './pages/puzzleArk_page';
 import PuzzleDanielLion from './components/puzzle_daniellion'; 
 import Hangman from './pages/hangman_page';
 import WordJumble from './pages/wordJumblePage'
+import WordSearch from './pages/wordSearchPage'
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path="/puzzles/daniel-lion" element={<PuzzleDanielLion />} /> 
                 <Route path="/games/hangman" element={<Hangman />} />
                 <Route path="/games/wordJumble" element={<WordJumble />} />
+                <Route path='/games/wordSearch' element={<WordSearch /> } />
                 
             </Routes>
         </BrowserRouter>

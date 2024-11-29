@@ -1,0 +1,57 @@
+.word-search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    gap: 5px;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .cell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .cell.selected {
+    background-color: #d3f9d8;
+  }
+  
+  .word-list ul,
+  .found-words ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .word-list li,
+  .found-words li {
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .word-list li.found {
+    text-decoration: line-through;
+    color: green;
+  }
+  
+  .message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
