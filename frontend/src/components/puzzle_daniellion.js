@@ -30,13 +30,14 @@ const PuzzleDanielLion = () => {
     const [puzzleClose, setPuzzleClose] = useState(false);
     const navigate = useNavigate();
 
+    // Memoize shufflePieces using originalPieces to avoid dependency issues
     const shufflePieces = useCallback(() => {
-        const shuffled = [...pieces].sort(() => Math.random() - 0.5);
+        const shuffled = [...originalPieces].sort(() => Math.random() - 0.5);
         setPieces(shuffled.map(piece => ({ ...piece, position: null })));
         setDroppedPieces({});
         setPuzzleCompleted(false);
         setPuzzleClose(false);
-    }, [pieces]);
+    }, []);
 
     const resetPuzzle = () => {
         setPieces(originalPieces);
@@ -45,8 +46,9 @@ const PuzzleDanielLion = () => {
         setPuzzleClose(false);
     };
 
+    // Shuffle pieces only once when the component mounts
     useEffect(() => {
-        shufflePieces(); // Shuffle pieces when the component mounts
+        shufflePieces();
     }, [shufflePieces]);
 
     const handleDragStart = (e, piece) => {
