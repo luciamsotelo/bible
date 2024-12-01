@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/wordSearch.css';
+import styles from '../styles/wordSearch.module.css';
 
 const WordSearch = () => {
   const grid = [
@@ -19,6 +19,7 @@ const WordSearch = () => {
 
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
+  const [highlightedCells, setHighlightedCells] = useState({});
   const [message, setMessage] = useState('');
 
   const handleCellClick = (row, col) => {
@@ -28,6 +29,11 @@ const WordSearch = () => {
     const selectedWord = newSelection.map(({ row, col }) => grid[row][col]).join('');
     if (words.includes(selectedWord) && !foundWords.includes(selectedWord)) {
       setFoundWords([...foundWords, selectedWord]);
+
+      const newHighlights = { ...highlightedCells };
+      newHighlights[selectedWord] = [...newSelection];
+      setHighlightedCells(newHighlights);
+
       setSelectedCells([]);
       setMessage(`Great job! You found ${selectedWord}`);
     } else if (selectedWord.length > 10) {
@@ -36,19 +42,21 @@ const WordSearch = () => {
     }
   };
 
-  const isCellSelected = (row, col) => {
-    return selectedCells.some(cell => cell.row === row && cell.col === col);
+  const isCellHighlighted = (row, col) => {
+    return Object.values(highlightedCells).some(cells =>
+      cells.some(cell => cell.row === row && cell.col === col)
+    );
   };
 
   return (
-    <div className="word-search-container">
-      <div className="grid">
+    <div className={styles.wordSearchContainer}>
+      <div className={styles.grid}>
         {grid.map((row, rowIndex) => (
-          <div key={rowIndex} className="row">
+          <div key={rowIndex} className={styles.row}>
             {row.map((letter, colIndex) => (
               <div
                 key={colIndex}
-                className={`cell ${isCellSelected(rowIndex, colIndex) ? 'selected' : ''}`}
+                className={`${styles.cell} ${isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''} ${selectedCells.some(cell => cell.row === rowIndex && cell.col === colIndex) ? styles.selected : ''}`}
                 onClick={() => handleCellClick(rowIndex, colIndex)}
               >
                 {letter}
@@ -57,21 +65,18 @@ const WordSearch = () => {
           </div>
         ))}
       </div>
-      <div className="word-list">
+      <div className={styles.wordList}>
         <h3>Word List</h3>
         <ul>
           {words.map((word) => (
-            <li
-              key={word}
-              className={foundWords.includes(word) ? 'found' : ''}
-            >
+            <li key={word} className={foundWords.includes(word) ? styles.found : ''}>
               {word}
             </li>
           ))}
         </ul>
       </div>
-      <div className="message">{message}</div>
-      <div className="found-words">
+      <div className={styles.message}>{message}</div>
+      <div className={styles.foundWords}>
         <h3>Found Words</h3>
         <ul>
           {foundWords.map((word) => (
