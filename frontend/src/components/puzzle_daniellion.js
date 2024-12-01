@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/daniellion.css';
@@ -22,6 +22,7 @@ const originalPieces = [
     { id: 16, src: '/images/puzzledanielandlion16.jpg', position: null },
 ];
 
+
 const PuzzleDanielLion = () => {
     const [pieces, setPieces] = useState(originalPieces);
     const [droppedPieces, setDroppedPieces] = useState({});
@@ -29,13 +30,13 @@ const PuzzleDanielLion = () => {
     const [puzzleClose, setPuzzleClose] = useState(false);
     const navigate = useNavigate();
 
-    const shufflePieces = () => {
+    const shufflePieces = useCallback(() => {
         const shuffled = [...pieces].sort(() => Math.random() - 0.5);
         setPieces(shuffled.map(piece => ({ ...piece, position: null })));
         setDroppedPieces({});
         setPuzzleCompleted(false);
         setPuzzleClose(false);
-    };
+    }, [pieces]);
 
     const resetPuzzle = () => {
         setPieces(originalPieces);
@@ -46,7 +47,7 @@ const PuzzleDanielLion = () => {
 
     useEffect(() => {
         shufflePieces(); // Shuffle pieces when the component mounts
-    }, []); // Empty dependency array ensures this runs once
+    }, [shufflePieces]);
 
     const handleDragStart = (e, piece) => {
         e.dataTransfer.setData("pieceId", piece.id);
