@@ -3,16 +3,16 @@ import styles from '../styles/wordSearch.module.css';
 
 const WordSearch = () => {
   const grid = [
-    ['J', 'E', 'S', 'U', 'S', 'A', 'L', 'M', 'H', 'G'],
-    ['E', 'L', 'I', 'A', 'H', 'O', 'N', 'E', 'V', 'R'],
-    ['D', 'A', 'V', 'I', 'D', 'P', 'E', 'T', 'E', 'R'],
-    ['A', 'N', 'O', 'A', 'H', 'Q', 'A', 'R', 'K', 'H'],
-    ['M', 'O', 'S', 'E', 'S', 'D', 'A', 'N', 'I', 'E'],
-    ['E', 'L', 'A', 'R', 'C', 'H', 'E', 'M', 'I', 'J'],
-    ['S', 'A', 'R', 'A', 'H', 'H', 'A', 'N', 'A', 'H'],
-    ['H', 'I', 'J', 'O', 'S', 'E', 'P', 'H', 'R', 'U'],
-    ['B', 'E', 'T', 'H', 'L', 'E', 'H', 'E', 'M', 'Z'],
-    ['A', 'B', 'R', 'A', 'H', 'A', 'M', 'H', 'E', 'A'],
+    ['J', 'E', 'S', 'U', 'S', 'A', 'L', 'M', 'H', 'G'], // JESUS
+    ['E', 'L', 'I', 'J', 'A', 'H', 'N', 'E', 'V', 'R'], // ELIJAH
+    ['D', 'A', 'V', 'I', 'D', 'P', 'E', 'T', 'E', 'R'], // DAVID and PETER
+    ['A', 'N', 'O', 'A', 'H', 'Q', 'A', 'R', 'K', 'H'], // NOAH
+    ['M', 'O', 'S', 'E', 'S', 'D', 'A', 'N', 'I', 'E'], // MOSES
+    ['E', 'L', 'A', 'R', 'C', 'H', 'E', 'M', 'I', 'J'], // Miscellaneous letters
+    ['S', 'A', 'R', 'A', 'H', 'H', 'A', 'N', 'A', 'H'], // SARAH
+    ['H', 'I', 'J', 'O', 'S', 'E', 'P', 'H', 'R', 'U'], // JOSEPH
+    ['B', 'E', 'T', 'H', 'L', 'E', 'H', 'E', 'M', 'Z'], // BETHLEHEM
+    ['A', 'B', 'R', 'A', 'H', 'A', 'M', 'H', 'E', 'A'], // ABRAHAM
   ];
 
   const words = ['JESUS', 'MOSES', 'NOAH', 'DAVID', 'SARAH', 'PETER', 'ELIJAH', 'BETHLEHEM'];
