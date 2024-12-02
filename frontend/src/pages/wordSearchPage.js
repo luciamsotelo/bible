@@ -1,10 +1,11 @@
 import React from 'react';
 import WordSearch from '../components/wordSearch';
+import Header from '../components/header';
 
 const WordSearchPage = () => {
   return (
     <div>
-      <h1>Word Search Game</h1>
+      <Header />
       <WordSearch />
     </div>
   );

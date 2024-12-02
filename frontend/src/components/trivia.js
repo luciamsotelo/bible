@@ -2,7 +2,18 @@ import React, { useState } from 'react';
 import '../styles/trivia.css';
 
 const Trivia = () => {
-    const questions = [
+    // Function to shuffle an array using Fisher-Yates algorithm
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+
+    // Trivia questions
+    const originalQuestions = [
         {
             question: "Who built the ark?",
             options: ["Noah", "Moses", "Abraham", "David"],
@@ -53,84 +64,63 @@ const Trivia = () => {
             options: ["Samson", "David", "Saul", "Goliath"],
             correctAnswer: "Samson",
         },
-        {
-            question: "What is the last book of the Bible?",
-            options: ["Revelation", "Jude", "Acts", "Malachi"],
-            correctAnswer: "Revelation",
-        },
-        {
-            question: "Who killed Goliath?",
-            options: ["David", "Saul", "Jonathan", "Samson"],
-            correctAnswer: "David",
-        },
-        {
-            question: "What was the name of the place where Jesus was crucified?",
-            options: ["Golgotha", "Bethlehem", "Nazareth", "Jericho"],
-            correctAnswer: "Golgotha",
-        },
-        {
-            question: "What did Jesus turn water into?",
-            options: ["Wine", "Bread", "Milk", "Honey"],
-            correctAnswer: "Wine",
-        },
-        {
-            question: "Who betrayed Jesus for thirty pieces of silver?",
-            options: ["Judas", "Peter", "Thomas", "Matthew"],
-            correctAnswer: "Judas",
-        },
-        {
-            question: "What is the first commandment?",
-            options: [
-                "You shall have no other gods before me.",
-                "You shall not kill.",
-                "Honor your father and mother.",
-                "You shall not steal.",
-            ],
-            correctAnswer: "You shall have no other gods before me.",
-        },
-        {
-            question: "Who was the first king of Israel?",
-            options: ["Saul", "David", "Solomon", "Samuel"],
-            correctAnswer: "Saul",
-        },
-        {
-            question: "What is the name of the river where Jesus was baptized?",
-            options: ["Jordan", "Nile", "Euphrates", "Tigris"],
-            correctAnswer: "Jordan",
-        },
-        {
-            question: "How many plagues did God send on Egypt?",
-            options: ["10", "7", "5", "12"],
-            correctAnswer: "10",
-        },
-        {
-            question: "What food did God provide to the Israelites in the wilderness?",
-            options: ["Manna", "Bread", "Fish", "Quail"],
-            correctAnswer: "Manna",
-        },
     ];
 
+    // State management
+    const [questions, setQuestions] = useState(
+        originalQuestions.map((q) => ({
+            ...q,
+            options: shuffleArray(q.options),
+        }))
+    );
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [score, setScore] = useState(0);
+    const [isGameOver, setIsGameOver] = useState(false);
+    const [showAnimation, setShowAnimation] = useState(false);
 
     const handleAnswerClick = (answer) => {
         setSelectedAnswer(answer);
         if (answer === questions[currentQuestionIndex].correctAnswer) {
             setScore(score + 1);
+            setShowAnimation(true);
+            setTimeout(() => setShowAnimation(false), 2000);
         }
     };
 
     const handleNextQuestion = () => {
         setSelectedAnswer(null);
+        setShowAnimation(false);
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            alert(`Game over! Your score is ${score}/${questions.length}`);
-            setCurrentQuestionIndex(0);
-            setScore(0);
+            setIsGameOver(true);
         }
     };
+
+    const restartGame = () => {
+        setQuestions(
+            originalQuestions.map((q) => ({
+                ...q,
+                options: shuffleArray(q.options),
+            }))
+        );
+        setCurrentQuestionIndex(0);
+        setScore(0);
+        setIsGameOver(false);
+    };
+
+    if (isGameOver) {
+        return (
+            <div className="trivia-container">
+                <h1>Game Over!</h1>
+                <p>Your score is {score}/{questions.length}</p>
+                <button className="next-button" onClick={restartGame}>
+                    Play Again
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="trivia-container">
@@ -158,10 +148,20 @@ const Trivia = () => {
                     ))}
                 </div>
             </div>
-            {selectedAnswer && (
+            {selectedAnswer && !showAnimation && (
                 <button className="next-button" onClick={handleNextQuestion}>
                     Next Question
                 </button>
+            )}
+            {showAnimation && (
+                <div className="animation-container">
+                    <img
+                        src="https://via.placeholder.com/150"
+                        alt="Dove or Cross Animation"
+                        className="animation-image"
+                    />
+                    <p>Great Job! Keep the faith!</p>
+                </div>
             )}
             <p>Score: {score}</p>
         </div>

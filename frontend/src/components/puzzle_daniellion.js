@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import '../styles/daniellion.css';
+import '../styles/puzzledaniellion.css';
 
 const originalPieces = [
     { id: 1, src: '/images/puzzledanielandlion1.jpg', position: null },

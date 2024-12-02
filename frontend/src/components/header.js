@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
     return (
-        <Navbar bg="light" expand="lg" className="text-center">
+        <Navbar bg="info" expand="lg" className="text-center">
             <Container>
                 <Navbar.Brand className="mr-auto">
                     <Link to="/">

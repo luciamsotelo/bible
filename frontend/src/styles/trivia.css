@@ -1,58 +1,78 @@
 .trivia-container {
     text-align: center;
     font-family: Arial, sans-serif;
-    padding: 20px;
+    margin: 2rem auto;
 }
 
 .question-section {
-    margin: 20px auto;
-    max-width: 600px;
+    margin-bottom: 2rem;
 }
 
-.options {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.option-button {
-    padding: 10px 20px;
-    font-size: 16px;
+.options-button {
+    display: inline-block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #0f0e0e;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-.option-button:hover {
-    background-color: #e0e0e0;
-}
-
-.option-button.correct {
-    background-color: #4caf50;
+.options-button.correct {
+    background-color: #33ff57;
     color: white;
-    border: none;
+    
 }
 
-.option-button.incorrect {
-    background-color: #f44336;
+.options-button.incorrect {
+    background-color: #ff5733;
     color: white;
-    border: none;
 }
 
 .next-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #3357ff;
     color: white;
+    cursor: pointer;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }
 
-.next-button:hover {
-    background-color: #0056b3;
+.animation-container {
+    text-align: center;
+    margin: 2rem auto;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+.animation-image {
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

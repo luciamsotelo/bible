@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import WordJumbleComp from '../components/wordJumbleComp';
 import '../styles/wordJumble.css';
+import Header from '../components/header';
 
 const WordJumblePage = () => {
     const [selectedCategory, setSelectedCategory] = useState('easy');
 
     return (
         <div className="word-jumble-page">
-            <h1>Word Jumble Game</h1>
+            <Header />
+            <h1 className="text-center my-4">Word Jumble Game</h1>
             <div className="category-buttons">
                 <button onClick={() => setSelectedCategory('easy')}>Easy</button>
                 <button onClick={() => setSelectedCategory('medium')}>Medium</button>

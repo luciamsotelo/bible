@@ -50,39 +50,45 @@ const WordSearch = () => {
 
   return (
     <div className={styles.wordSearchContainer}>
-      <div className={styles.grid}>
-        {grid.map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.row}>
-            {row.map((letter, colIndex) => (
-              <div
-                key={colIndex}
-                className={`${styles.cell} ${isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''} ${selectedCells.some(cell => cell.row === rowIndex && cell.col === colIndex) ? styles.selected : ''}`}
-                onClick={() => handleCellClick(rowIndex, colIndex)}
-              >
-                {letter}
-              </div>
+      <div className={styles.sidebar}>
+        <div className={styles.wordList}>
+          <h3>Word List</h3>
+          <ul>
+            {words.map((word) => (
+              <li key={word} className={foundWords.includes(word) ? styles.found : ''}>
+                {word}
+              </li>
             ))}
-          </div>
-        ))}
+          </ul>
+        </div>
       </div>
-      <div className={styles.wordList}>
-        <h3>Word List</h3>
-        <ul>
-          {words.map((word) => (
-            <li key={word} className={foundWords.includes(word) ? styles.found : ''}>
-              {word}
-            </li>
+      <div className={styles.gridContainer}>
+        <div className={styles.grid}>
+          {grid.map((row, rowIndex) => (
+            <div key={rowIndex} className={styles.row}>
+              {row.map((letter, colIndex) => (
+                <div
+                  key={colIndex}
+                  className={`${styles.cell} ${isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''} ${selectedCells.some(cell => cell.row === rowIndex && cell.col === colIndex) ? styles.selected : ''}`}
+                  onClick={() => handleCellClick(rowIndex, colIndex)}
+                >
+                  {letter}
+                </div>
+              ))}
+            </div>
           ))}
-        </ul>
+        </div>
+        <div className={styles.message}>{message}</div>
       </div>
-      <div className={styles.message}>{message}</div>
-      <div className={styles.foundWords}>
-        <h3>Found Words</h3>
-        <ul>
-          {foundWords.map((word) => (
-            <li key={word}>{word}</li>
-          ))}
-        </ul>
+      <div className={styles.sidebar}>
+        <div className={styles.foundWords}>
+          <h3>Found Words</h3>
+          <ul>
+            {foundWords.map((word) => (
+              <li key={word}>{word}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

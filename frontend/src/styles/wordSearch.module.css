@@ -1,71 +1,37 @@
-.word-search-container {
+.wordSearchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align content to the top */
+  gap: 20px; /* Space between grid and sidebars */
+  margin: 20px;
+  flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.gridContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center items vertically */
-  height: 1000vh; /* Ensure it takes the full viewport height */
-  margin: 0; /* Remove any margins */
-  text-align: center; /* Center-align text within the container */
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(10, 40px);
-  gap: 25px; /* Sets both column and row gaps */
-  row-gap: px; /* Specifically adjusts vertical spacing */
-  justify-content: center; /* Center the grid horizontally */
-  
-}
-
-.row {
-  
-  
-}
-
-.cell {
-  width: 40px;
-  height: 40px;
+.sidebar {
+  width: 200px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  border-radius: 50%; /* Makes the cells circular */
-  background: linear-gradient(145deg, #ffffff, #d1d9e6); /* Adds 3D light and shadow effect */
-  box-shadow: inset -4px -4px 6px rgba(255, 255, 255, 0.5),
-              inset 4px 4px 6px rgba(0, 0, 0, 0.2),
-              4px 4px 6px rgba(0, 0, 0, 0.1),
-              -4px -4px 6px rgba(255, 255, 255, 0.7); /* 3D shadowing */
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 20px;
 }
 
-.cell:hover {
-  transform: scale(1.1);
-  box-shadow: inset -6px -6px 8px rgba(255, 255, 255, 0.6),
-              inset 6px 6px 8px rgba(0, 0, 0, 0.3),
-              6px 6px 10px rgba(0, 0, 0, 0.2),
-              -6px -6px 10px rgba(255, 255, 255, 0.8); /* Enhanced 3D on hover */
+.wordList,
+.foundWords {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Full width of the sidebar */
 }
 
-.cell.selected {
-  background: linear-gradient(145deg, #d1f8dc, #a5e4ba); /* Greenish shade */
-  box-shadow: inset -4px -4px 6px rgba(255, 255, 255, 0.5),
-              inset 4px 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.cell.highlighted {
-  background: linear-gradient(145deg, #ffe680, #ffc700); /* Golden shade */
-  color: #fff; /* White text for contrast */
-  box-shadow: inset -4px -4px 6px rgba(255, 255, 255, 0.5),
-              inset 4px 4px 6px rgba(0, 0, 0, 0.2),
-              4px 4px 6px rgba(0, 0, 0, 0.3),
-              -4px -4px 6px rgba(255, 255, 255, 0.8);
-}
-
-h3{
+.wordList h3,
+.foundWords h3 {
   text-align: center;
 }
 
@@ -73,7 +39,6 @@ h3{
 .foundWords ul {
   list-style-type: none;
   padding: 0;
-  text-align: center;
 }
 
 .wordList li,
@@ -85,12 +50,44 @@ h3{
 .wordList li.found {
   text-decoration: line-through;
   color: green;
-  text-align: center;
 }
 
-.message {
-  margin-top: 15px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  gap: 4px;
+  justify-content: center;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #d1d9e6);
+  box-shadow: inset -4px -4px 6px rgba(255, 255, 255, 0.5),
+              inset 4px 4px 6px rgba(0, 0, 0, 0.2),
+              4px 4px 6px rgba(0, 0, 0, 0.1),
+              -4px -4px 6px rgba(255, 255, 255, 0.7);
   font-weight: bold;
-  color: #007bff;
-  text-align: center;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cell:hover {
+  transform: scale(1.1);
+}
+
+.cell.selected {
+  background: linear-gradient(145deg, #d1f8dc, #a5e4ba);
+}
+
+.cell.highlighted {
+  background: linear-gradient(145deg, #ffe680, #ffc700);
+  color: #fff;
 }

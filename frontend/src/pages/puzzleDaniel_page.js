@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/header'
-import PuzzleDaniel from '../components/puzzle_daniel'
+import PuzzleDaniel from '../components/puzzle_daniellion'
 
 const puzzleDaniel_page = () => {
   return (

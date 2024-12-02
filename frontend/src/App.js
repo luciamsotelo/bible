@@ -13,7 +13,7 @@ import CreateStory from './pages/CreateStory_page';
 import BioPage from './pages/bio_page'; 
 import Puzzle from './pages/puzzle_page';
 import PuzzleArk from './pages/puzzleArk_page';
-import PuzzleDanielLion from './components/puzzle_daniellion'; 
+import PuzzleDanielLion from './pages/puzzleDaniel_page';
 import Hangman from './pages/hangman_page';
 import WordJumble from './pages/wordJumblePage'
 import WordSearch from './pages/wordSearchPage'
