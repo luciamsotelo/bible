@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../components/header'
+import Footer from '../components/footer'
 import Map from '../components/adventure_map'
 
 const AdventureMap_page = () => {
@@ -7,6 +8,7 @@ const AdventureMap_page = () => {
     <div>
         <Header /> 
         <Map />
+        <Footer />
     </div>
   )
 }

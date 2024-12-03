@@ -1,3 +1,4 @@
+/* Prayer Body */
 .prayer-body {
   width: 100vw;
   height: 100vh; /* Full height of the viewport */
@@ -9,26 +10,69 @@
   display: flex;
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
+  overflow: hidden; /* Prevent scrollbars from floating prayers */
 }
 
+/* Prayer Container */
 .prayer-container {
-  background-color: rgba(255, 255, 255, .1); /* Add transparency */
+  background-color: rgba(255, 255, 255, 0.8); /* Subtle transparency */
   border-radius: 15px;
   padding: 2rem;
   max-width: 600px;
   width: 90%; /* Responsive width */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
 }
 
+/* Prayer Form */
 .prayer-form {
-  background-color: #f0f8ff;
-  padding: 1rem;
+  background-color: #ffffff; /* Clean white */
+  padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 5px solid yellow;
-  margin-bottom: 10rem;
-
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ffc107; /* Yellow border for emphasis */
+  margin-bottom: 2rem;
 }
 
+/* Form Fields */
+.prayer-form input,
+.prayer-form textarea {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.prayer-form input:focus,
+.prayer-form textarea:focus {
+  border-color: #ffc107;
+  outline: none;
+  box-shadow: 0 0 5px #ffc107;
+}
+
+/* Submit Button */
+.prayer-form button {
+  background-color: #ffc107;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.prayer-form button:hover {
+  background-color: #e0a800;
+  transform: translateY(-3px);
+}
+
+.prayer-form button:disabled {
+  background-color: #ffd966;
+  cursor: not-allowed;
+}
+
+/* Prayer Float Container */
 .prayer-float-container {
   height: 400px;
   overflow: hidden;
@@ -36,17 +80,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
-/* Floating prayers */
+/* Floating Prayers */
 .floating-prayer {
   background-color: #ffec99;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   animation: floatUp 7s ease-in-out forwards, fadeOut 10s ease-in-out forwards;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+  position: absolute;
+  width: 80%;
+  text-align: center;
 }
 
+/* Keyframes for Floating Effect */
 @keyframes floatUp {
   0% {
     transform: translateY(50%);
@@ -64,5 +116,31 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .prayer-container {
+    padding: 1.5rem;
+  }
+
+  .prayer-form {
+    padding: 1rem;
+  }
+
+  .prayer-float-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .prayer-container {
+    padding: 1rem;
+  }
+
+  .floating-prayer {
+    font-size: 0.8rem;
+    padding: 8px;
   }
 }
