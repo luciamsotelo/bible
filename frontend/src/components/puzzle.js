@@ -11,7 +11,7 @@ const BiblePuzzleCards = () => {
   };
 
   const puzzles = [
-    { title: 'Noah\'s Ark', img: '/images/puzzleark.jpg', type: 'noah-ark' },
+    { title: "Noah's Ark", img: '/images/puzzleark.jpg', type: 'noah-ark' },
     { title: 'Daniel and the Lion', img: '/images/puzzledanielandlion.jpg', type: 'daniel-lion' },
     { title: 'Joseph and His Coat of Many Colors', img: '/path/to/joseph-coat-image.jpg', type: 'joseph-coat' },
     { title: 'Mary with Baby Jesus', img: '/path/to/mary-jesus-image.jpg', type: 'mary-jesus' },
@@ -20,9 +20,9 @@ const BiblePuzzleCards = () => {
   ];
 
   return (
-    <Container className="mt-5">
-      <h1 className="text-center">Bible Story Puzzles</h1>
-      <Row xs={1} md={2} lg={3} className="g-4">
+    <Container className="mt-5 mb-5">
+      <h1 className="text-center mb-4">Bible Story Puzzles</h1>
+      <Row xs={1} sm={2} md={3} className="g-4">
         {puzzles.map((puzzle, index) => (
           <Col key={index}>
             <Card onClick={() => handleCardClick(puzzle.type)} className="h-100">
