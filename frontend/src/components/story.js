@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import '../styles/story.css'; // Optional: CSS for additional styling
 import AdamEve from '../images/adamandeve.jpg';
@@ -40,7 +40,6 @@ const stories = [
     lesson: "The lesson of the story is With God, even the smallest can overcome great challenges. David’s story teaches us that faith and courage can help us confront our fears and achieve great things.",
     audioFile: '/songs/davidAndGoliath.mp3',
   },
-  
   {
     title: "Daniel and the Lion's Den",
     frontImage: Daniel,
@@ -49,102 +48,88 @@ const stories = [
     lesson: "The lesson of the story is When we trust God, He will take care of us. Daniel teaches us to be brave and always pray, no matter what.",
     audioFile: '/songs/danielAndTheLionDen.mp3',
   },
-  
   {
     title: "Jonah and the Big Fish",
     frontImage: Jonah,
     expandedImage: BigFish,
-    story: "Once upon a time, God asked a man named Jonah to go to a city and tell the people to stop being bad. But Jonah didn’t want to go. He was scared, so he decided to run away. Jonah got on a big ship sailing in the opposite direction. While they were at sea, a huge storm started! The wind blew hard, and the waves were so high that the sailors were afraid. They found Jonah sleeping below deck and woke him up, asking him to pray to God to save them. Jonah knew the storm was because he was running away from God, so he told the sailors to throw him into the sea. They didn’t want to, but the storm got worse, so they did what Jonah said. As soon as Jonah hit the water, the storm stopped! But Jonah wasn’t alone for long. God sent a big fish to swallow him whole. Jonah stayed in the belly of the fish for three days and three nights, praying and asking God for help. Finally, God made the fish spit Jonah out onto dry land. This time, Jonah listened to God and went to tell the people to change their ways. The people of listened to Jonah, and they changed their hearts. God forgave them, and Jonah learned that it’s always best to obey God.",
-    lesson: "The lesson of the story is God loves everyone and gives us second chances. Jonah teaches us that we should listen to God and help others.",
+    story: "Once upon a time, God asked a man named Jonah to go to a city and tell the people to stop being bad. But Jonah didn’t want to go. He was scared, so he decided to run away. Jonah got on a big ship sailing in the opposite direction. While they were at sea, a huge storm started! The wind blew hard, and the waves were so high that the sailors were afraid. They found Jonah sleeping below deck and woke him up, asking him to pray to God to save them. Jonah knew the storm was because he was running away from God, so he told the sailors to throw him into the sea. They didn’t want to, but the storm got worse, so they did what Jonah said. As soon as Jonah hit the water, the storm stopped! But Jonah wasn’t alone for long. God sent a big fish to swallow him whole. Jonah stayed in the belly of the fish for three days and three nights, praying and asking God for help. Finally, God made the fish spit Jonah out onto dry land. This time, Jonah listened to God and went to the city to tell the people to change their ways. They listened and turned from their bad actions. Jonah learned that God is loving and forgiving, even when we make mistakes.",
+    lesson: "The lesson of the story is God’s love and forgiveness: Even when we run away or make mistakes, God is always ready to forgive us and give us a second chance.",
     audioFile: '/songs/jonahAndTheBigFish.mp3',
-  }
-  ,
+  },
   {
-    title: "Moses and the Parting of the Sea",
+    title: "Moses and the Red Sea",
     frontImage: Moses,
     expandedImage: RedSea,
-    story: "A long time ago, the Israelites were slaves in Egypt. God chose a man named Moses to lead them to freedom. Moses went to Pharaoh, the king of Egypt, and told him that God wanted him to let the Israelites go. But Pharaoh refused. So, God sent many plagues to Egypt to show His power, and after the tenth plague, Pharaoh finally agreed to let the Israelites leave. Moses led the Israelites out of Egypt, but soon Pharaoh changed his mind and sent his army to chase them. The Israelites were trapped between the Red Sea and Pharaoh's army, and they were very scared. But Moses trusted God. God told Moses to lift his staff over the water, and something amazing happened! The waters of the Red Sea parted, making a dry path right through the middle. The Israelites walked across safely, with walls of water on each side of them. Once they were on the other side, Pharaoh's army tried to follow, but when Moses lifted his staff again, the sea came back together, and the water covered the army. The Israelites were safe, and they praised God for saving them.",
-    lesson: "The lesson of the story is to Trusting God in difficult times: Moses and the Israelites trusted God, even when they were afraid. This teaches us that God is always with us and will help us through any challenge if we trust in Him.",
-    audioFile: '/songs/mosesAndThePartingSea.mp3',
+    story: "A long time ago, the Israelites were slaves in Egypt. God sent Moses to lead them out of slavery. After many miracles and God's help, the Pharaoh finally let the Israelites go. But Pharaoh soon changed his mind and sent his army to chase after them. The Israelites were trapped by the Red Sea, and there was nowhere to go. But God told Moses to stretch out his staff over the water. When Moses did, God parted the Red Sea, and the Israelites walked through on dry ground. When the Egyptian army followed, the waters returned, and the army was swept away. The Israelites were free, and they praised God for His incredible power.",
+    lesson: "The lesson of the story is Trusting God for deliverance: God has the power to make a way when there seems to be no way.",
+    audioFile: '/songs/mosesRedSea.mp3',
   }
 ];
 
-const BibleStories = () => {
-  // State to track which card is expanded
-  const [expandedCard, setExpandedCard] = useState(null);
-  const audioRef = useRef(null);
+export const BibleStories = () => {
+  const [expandedStory, setExpandedStory] = useState(null);
+  const [audio, setAudio] = useState(null);
 
-  const handleExpand = (index) => {
-    setExpandedCard(index);
-  };
-
-  const handleCollapse = () => {
-    setExpandedCard(null);
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+  // Toggle expanded story view
+  const toggleStory = (index) => {
+    if (expandedStory === index) {
+      setExpandedStory(null);
+      stopAudio();
+    } else {
+      setExpandedStory(index);
     }
   };
 
-  const handlePlayAudio = (audioFile) => {
-    if (audioRef.current) {
-      audioRef.current.src = audioFile;
-      audioRef.current.play();
+  // Play audio for the selected story
+  const playAudio = (audioFile) => {
+    if (audio) {
+      audio.pause(); // Pause any currently playing audio
+    }
+    const newAudio = new Audio(audioFile);
+    newAudio.play();
+    setAudio(newAudio);
+  };
+
+  // Stop audio when the "Stop the Story" button is clicked
+  const stopAudio = () => {
+    if (audio) {
+      audio.pause();
+      setAudio(null); // Reset audio state
     }
   };
 
-  const handleStopAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
+  // Back to story page (reset expanded view)
+  const backToStoryPage = () => {
+    setExpandedStory(null);
+    stopAudio(); // Ensure the audio is stopped when going back
   };
 
   return (
-    <div className="container my-5">
-      <audio ref={audioRef} /> {/* Audio element to play story files */}
-      <Row>
+    <div className="story-container">
+      <Row className="story-cards">
         {stories.map((story, index) => (
-          <Col key={index} xs={12} sm={6} md={4} className="mb-4">
-            {expandedCard === index ? (
-              <Card className="expanded-card">
-                <Button variant="outline-secondary mb-2 text-dark" onClick={handleCollapse}>
-                  Back to Stories
-                </Button>
-                <Card.Img variant="top" src={story.expandedImage} alt={story.title} />
-                <Card.Body>
-                <Button variant="primary" onClick={handleCollapse}>
-                    Next Story
-                  </Button>
-                  <Button
-                    variant="success"
-                    onClick={() => handlePlayAudio(story.audioFile)}
-                    className="ms-2"
-                  >
-                    Read Story
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={handleStopAudio}
-                    className="ms-2"
-                  >
-                    Stop Story
-                  </Button>
-                  <Card.Title>{story.title}</Card.Title>
-                  <Card.Text>{story.story}</Card.Text>
-                  <Card.Text>
-                    <strong>Lesson:</strong> {story.lesson}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            ) : (
-              <Card onClick={() => handleExpand(index)} className="story-card">
+          <Col xs={12} sm={6} md={4} lg={3} key={index}>
+            <Card className={`story-card ${expandedStory === index ? 'flip-card expanded' : ''}`}>
+              <div className="card-front">
                 <Card.Img variant="top" src={story.frontImage} alt={story.title} />
                 <Card.Body>
                   <Card.Title>{story.title}</Card.Title>
+                  <Button variant="primary" onClick={() => toggleStory(index)}>Read More</Button>
                 </Card.Body>
-              </Card>
-            )}
+              </div>
+              <div className="card-back">
+                {expandedStory === index && (
+                  <div className="expanded-story">
+                    <Card.Img variant="top" src={story.expandedImage} alt={`${story.title} Expanded`} />
+                    <Card.Text>{story.story}</Card.Text>
+                    <Card.Text><strong>Lesson:</strong> {story.lesson}</Card.Text>
+                    <Button variant="secondary" onClick={() => playAudio(story.audioFile)}>Play Story</Button>
+                    <Button variant="danger" onClick={stopAudio} style={{ marginLeft: '10px' }}>Stop the Story</Button>
+                    <Button variant="info" onClick={backToStoryPage} style={{ marginLeft: '10px' }}>Back to Story Page</Button>
+                  </div>
+                )}
+              </div>
+            </Card>
           </Col>
         ))}
       </Row>
