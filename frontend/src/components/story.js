@@ -113,12 +113,7 @@ const BibleStories = () => {
                 </Button>
                 <Card.Img variant="top" src={story.expandedImage} alt={story.title} />
                 <Card.Body>
-                  <Card.Title>{story.title}</Card.Title>
-                  <Card.Text>{story.story}</Card.Text>
-                  <Card.Text>
-                    <strong>Lesson:</strong> {story.lesson}
-                  </Card.Text>
-                  <Button variant="primary" onClick={handleCollapse}>
+                <Button variant="primary" onClick={handleCollapse}>
                     Next Story
                   </Button>
                   <Button
@@ -135,6 +130,11 @@ const BibleStories = () => {
                   >
                     Stop Story
                   </Button>
+                  <Card.Title>{story.title}</Card.Title>
+                  <Card.Text>{story.story}</Card.Text>
+                  <Card.Text>
+                    <strong>Lesson:</strong> {story.lesson}
+                  </Card.Text>
                 </Card.Body>
               </Card>
             ) : (
