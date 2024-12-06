@@ -33,10 +33,11 @@ const DressUp = () => {
           <div className="character">
             {/* Updated image path for dressUp.jpg */}
             <Image
-              src="/images/dressUp.jpg" // Base character image path from the public folder
-              alt="Character"
-              className="character-image"
-            />
+  src="/images/dressUp.jpg"
+  alt="Character"
+  className="character-image"
+/>
+
             {clothing.hat && (
               <Image
                 src={`/images/${clothing.hat}`}

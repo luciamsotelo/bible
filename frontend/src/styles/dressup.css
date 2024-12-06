@@ -18,12 +18,13 @@
 }
 
 .character-image {
-  max-width: 100%;
-  height: auto;
-  position: absolute;
-  z-index: 1;
-  animation: fadeIn 1s ease-out;
+  width: 100%; /* Adjust as needed */
+  max-width: 300px; /* Set a maximum size */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center the image */
 }
+
 
 /* Animation for the clothing items */
 .clothing-item {
