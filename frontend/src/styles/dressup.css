@@ -1,0 +1,98 @@
+/* Base container for the dress-up page */
+.dressup-container {
+  margin-top: 20px;
+}
+
+/* Title styling */
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #FF5733; /* Use one of your preferred colors */
+  margin-bottom: 20px;
+}
+
+/* General character styling */
+.character {
+  position: relative;
+  display: inline-block;
+}
+
+.character-image {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  z-index: 1;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Animation for the clothing items */
+.clothing-item {
+  position: absolute;
+  max-width: 100%;
+  height: auto;
+  animation: fadeIn 1s ease-out;
+}
+
+.hat {
+  top: 10px;
+  left: 30px;
+}
+
+.shirt {
+  top: 80px;
+  left: 40px;
+}
+
+.pants {
+  top: 170px;
+  left: 40px;
+}
+
+.shoes {
+  top: 250px;
+  left: 40px;
+}
+
+/* Button styling for clothing options */
+.clothing-options {
+  margin-top: 30px;
+}
+
+.clothing-btn {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #33FF57;
+  color: white;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Highlight selected button with 'btn-selected' class */
+.btn-selected {
+  background-color: #FF5733 !important; /* Highlight color for selected item */
+  border: 2px solid #FF5733;
+}
+
+/* Hover effect for buttons */
+.clothing-btn:hover {
+  background-color: #3357FF;
+  transform: scale(1.1);
+}
+
+/* Clothing selection section styling */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Small animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
