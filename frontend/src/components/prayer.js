@@ -94,7 +94,7 @@ const Prayer = () => {
                   );
                 })
               ) : !messageReceived ? (
-                <h3 className="text-center" style={{ color: "lightblue", fontWeight: "bold", textShadow: "2px 2px 4px black" }}>
+                <h3 className="text-center prayer-message" style={{ color: "lightblue", fontWeight: "bold", textShadow: "2px 2px 4px black" }}>
                   Share a prayer that’s close to your heart!
                 </h3>
               ) : null}
@@ -105,7 +105,7 @@ const Prayer = () => {
           <Row className="justify-content-center">
             <Col xs={10} md={8} className="text-center">
               <div
-                className="p-3"
+                className="prayer-message-box p-3"
                 style={{
                   backgroundColor: "rgba(255, 255, 255, 0.8)",
                   border: "2px solid #ffc107",
@@ -143,7 +143,7 @@ const Prayer = () => {
                   disabled={isSubmitting}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit" className="w-100" disabled={isSubmitting}>
+              <Button variant="primary" type="submit" className="w-100 prayer-submit-btn" disabled={isSubmitting}>
                 {isSubmitting ? "Submitting..." : "Submit Prayer"}
               </Button>
             </Form>

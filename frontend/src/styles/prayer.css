@@ -4,7 +4,7 @@
   height: 100vh; /* Full height of the viewport */
   margin: 0;
   padding: 2rem 0;
-  background-image: url('../images/prayer_background.jpg');
+  background-image: url("../images/prayer_background.jpg");
   background-size: cover;
   background-position: center;
   display: flex;

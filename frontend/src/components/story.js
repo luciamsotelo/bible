@@ -70,69 +70,72 @@ export const BibleStories = () => {
   const [expandedStory, setExpandedStory] = useState(null);
   const [audio, setAudio] = useState(null);
 
-  // Toggle expanded story view
   const toggleStory = (index) => {
     if (expandedStory === index) {
       setExpandedStory(null);
       stopAudio();
     } else {
       setExpandedStory(index);
+      stopAudio(); // Stop current audio before expanding a new story
     }
   };
 
-  // Play audio for the selected story
   const playAudio = (audioFile) => {
     if (audio) {
-      audio.pause(); // Pause any currently playing audio
+      audio.pause();
     }
     const newAudio = new Audio(audioFile);
     newAudio.play();
     setAudio(newAudio);
   };
 
-  // Stop audio when the "Stop the Story" button is clicked
-  const stopAudio = () => {
+  const pauseAudio = () => {
     if (audio) {
       audio.pause();
-      setAudio(null); // Reset audio state
     }
   };
 
-  // Back to story page (reset expanded view)
-  const backToStoryPage = () => {
-    setExpandedStory(null);
-    stopAudio(); // Ensure the audio is stopped when going back
+  const stopAudio = () => {
+    if (audio) {
+      audio.pause();
+      setAudio(null);
+    }
   };
 
   return (
-    <div className="story-container">
-      <Row className="story-cards">
-        {stories.map((story, index) => (
-          <Col xs={12} sm={6} md={4} lg={3} key={index}>
-            <Card className={`story-card ${expandedStory === index ? 'flip-card expanded' : ''}`}>
-              <div className="card-front">
+    <div className="container">
+      {expandedStory === null ? (
+        <Row>
+          {stories.map((story, index) => (
+            <Col key={index} md={4}>
+              <Card className="story-card mb-4">
                 <Card.Img variant="top" src={story.frontImage} alt={story.title} />
                 <Card.Body>
                   <Card.Title>{story.title}</Card.Title>
-                  <Button variant="primary" onClick={() => toggleStory(index)}>Read More</Button>
+                  <Button onClick={() => toggleStory(index)}>Learn More</Button>
                 </Card.Body>
-              </div>
-              <div className="card-back">
-                {expandedStory === index && (
-                  <div className="expanded-story">
-                    <Card.Img variant="top" src={story.expandedImage} alt={`${story.title} Expanded`} />
-                    <Card.Text>{story.story}</Card.Text>
-                    <Card.Text><strong>Lesson:</strong> {story.lesson}</Card.Text>
-                    <Button variant="secondary" onClick={() => playAudio(story.audioFile)}>Play Story</Button>
-                    <Button variant="danger" onClick={stopAudio} style={{ marginLeft: '10px' }}>Stop the Story</Button>
-                    <Button variant="info" onClick={backToStoryPage} style={{ marginLeft: '10px' }}>Back to Story Page</Button>
-                  </div>
-                )}
-              </div>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <div className="expanded-story text-center">
+          <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
+          <h2>{stories[expandedStory].title}</h2>
+          <img
+            src={stories[expandedStory].expandedImage}
+            alt={stories[expandedStory].title}
+            className="img-fluid my-3"
+          />
+          <div className="audio-controls" style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button onClick={() => playAudio(stories[expandedStory].audioFile)} className="me-2">Play Audio</Button>
+            <Button variant="warning" onClick={pauseAudio}>Pause Audio</Button>
+          </div>
+          <p>{stories[expandedStory].story}</p>
+          <p><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
+          
+        </div>
+      )}
     </div>
   );
 };
