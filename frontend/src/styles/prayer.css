@@ -4,13 +4,14 @@
   height: 100vh; /* Full height of the viewport */
   margin: 0;
   padding: 2rem 0;
-  background-image: url("../images/prayer_background.jpg");
+  background-image: url('../images/praying.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
   overflow: hidden; /* Prevent scrollbars from floating prayers */
+  background-attachment: fixed; /* Ensure the background is fixed */
 }
 
 /* Prayer Container */
@@ -26,17 +27,18 @@
 
 /* Prayer Form */
 .prayer-form {
-  background-color: #ffffff; /* Clean white */
+  background-color: transparent; /* Transparent background */
   padding: 1.5rem;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 2px solid #ffc107; /* Yellow border for emphasis */
-  margin-bottom: 2rem;
+  border: 2px solid rgb(124, 23, 158); /* Yellow border for emphasis */
+  margin-bottom: 1rem;
 }
 
 /* Form Fields */
 .prayer-form input,
 .prayer-form textarea {
+  background-color: rgba(0, 0, 0, 0.2);
   border: 1px solid #ced4da;
   border-radius: 8px;
   padding: 0.75rem;
@@ -45,26 +47,39 @@
 
 .prayer-form input:focus,
 .prayer-form textarea:focus {
-  border-color: #ffc107;
+  border-color: rgb(124, 23, 158);
   outline: none;
   box-shadow: 0 0 5px #ffc107;
 }
 
+.prayer-input::placeholder {
+  background-color: #f0f8ff; /* Replace with your preferred color */
+  color: #333; /* Adjust the text color of the placeholder */
+  padding: 5px; /* Optional, if you want padding around the placeholder text */
+}
+
+.prayer-textarea::placeholder {
+  background-color: #ffec99; /* Replace with your preferred color */
+  color: #333; /* Adjust the text color of the placeholder */
+  padding: 5px; /* Optional */
+}
+
 /* Submit Button */
 .prayer-form button {
-  background-color: #ffc107;
+  background-color: rgb(124, 23, 158);
   border: none;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border-radius: 8px;
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .prayer-form button:hover {
   background-color: #e0a800;
   transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
 }
 
 .prayer-form button:disabled {
@@ -89,13 +104,15 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  animation: floatUp 7s ease-in-out forwards, fadeOut 10s ease-in-out forwards;
+  animation: floatUp 10s ease-in-out forwards, fadeOut 10s ease-in-out forwards;
   font-size: 0.9rem;
   font-weight: bold;
   color: #333;
   position: absolute;
   width: 80%;
   text-align: center;
+  left: 10%; /* Adjust this for dynamic floating */
+  animation-delay: calc(2s * var(--index)); /* Stagger animation delay */
 }
 
 /* Keyframes for Floating Effect */

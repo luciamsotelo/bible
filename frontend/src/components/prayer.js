@@ -29,9 +29,17 @@ const Prayer = () => {
     const utterance = new SpeechSynthesisUtterance(prayerText);
     utterance.pitch = 3.0;
     utterance.rate = 0.9;
+
     const voices = window.speechSynthesis.getVoices();
-    const childlikeVoice = voices.find((voice) => voice.name.includes("Google UK English Female")) || voices[4];
-    if (childlikeVoice) utterance.voice = childlikeVoice;
+    const childlikeVoice = voices.find((voice) => voice.lang.includes("en-US") && voice.name.toLowerCase().includes("child"));
+
+    if (childlikeVoice) {
+      utterance.voice = childlikeVoice;
+    } else {
+      const defaultVoice = voices.find((voice) => voice.lang.includes("en-US"));
+      if (defaultVoice) utterance.voice = defaultVoice;
+    }
+
     utterance.onend = callback;
     window.speechSynthesis.speak(utterance);
   };
@@ -94,7 +102,15 @@ const Prayer = () => {
                   );
                 })
               ) : !messageReceived ? (
-                <h3 className="text-center prayer-message" style={{ color: "lightblue", fontWeight: "bold", textShadow: "2px 2px 4px black" }}>
+                <h3 className="text-center prayer-message" style={{
+                  color: "lightblue", 
+                  fontWeight: "bold", 
+                  textShadow: "2px 2px 4px black", 
+                  fontSize: "1.5rem", // Adjust font size
+                  padding: "20px", // Add padding for better spacing
+                  borderRadius: "10px",
+                  backgroundColor: "rgba(255, 255, 255, 0.6)" // Semi-transparent background
+                }}>
                   Share a prayer that’s close to your heart!
                 </h3>
               ) : null}
@@ -121,7 +137,6 @@ const Prayer = () => {
           <Col xs={12} md={8} lg={6} className="mx-auto">
             <Form onSubmit={handleSubmit} className="prayer-form">
               <Form.Group className="mb-3">
-                <Form.Label>Your Name</Form.Label>
                 <Form.Control
                   type="text"
                   value={name}
@@ -129,10 +144,10 @@ const Prayer = () => {
                   placeholder="Enter your name"
                   required
                   disabled={isSubmitting}
+                  className="prayer-input"
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Your Prayer Request</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -141,6 +156,7 @@ const Prayer = () => {
                   placeholder="Enter your prayer request"
                   required
                   disabled={isSubmitting}
+                  className="prayer-textarea"
                 />
               </Form.Group>
               <Button variant="primary" type="submit" className="w-100 prayer-submit-btn" disabled={isSubmitting}>
