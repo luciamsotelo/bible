@@ -1,0 +1,18 @@
+.josephPuzzleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for 3x3 grid */
+  grid-template-rows: repeat(3, 1fr); /* 3 rows for 3x3 grid */
+  gap: 0; /* No gaps between pieces */
+  width: 300px; /* Adjust as needed */
+  height: 300px; /* Adjust as needed */
+  margin: 0 auto; /* Center grid */
+}
+
+.josephPuzzlePiece {
+  width: 100%; /* Fill grid cell */
+  height: 100%; /* Fill grid cell */
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none; /* Remove border for gapless layout */
+}

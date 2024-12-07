@@ -19,6 +19,7 @@ import WordJumble from './pages/wordJumblePage'
 import WordSearch from './pages/wordSearchPage'
 import Maze from './pages/mazePage';
 import Trivia from './pages/triviaPage'
+import JosephCoat from './pages/puzzleJosephAndCoat'
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
                 <Route path='/games/wordSearch' element={<WordSearch /> } />
                 <Route path='/games/maze' element={<Maze /> } />
                 <Route path='/games/trivia' element={<Trivia />} />
+                <Route path='/puzzles/joseph-coat' element={<JosephCoat />} />
                 
             </Routes>
         </BrowserRouter>
