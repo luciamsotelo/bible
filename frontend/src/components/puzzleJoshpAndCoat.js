@@ -13,6 +13,7 @@ const shuffleArray = (array) => {
 const Puzzle = () => {
   const [pieces, setPieces] = useState(shuffleArray([...Array(9).keys()])); // 9 pieces for 3x3 grid
   const [completed, setCompleted] = useState(false);
+  const [showGif, setShowGif] = useState(false);
 
   const handleDrop = (dragIndex, dropIndex) => {
     const newPieces = [...pieces];
@@ -24,6 +25,12 @@ const Puzzle = () => {
 
     if (newPieces.every((piece, index) => piece === index)) {
       setCompleted(true);
+      setShowGif(true);
+
+      // Hide GIF after 2 seconds
+      setTimeout(() => {
+        setShowGif(false);
+      }, 3000);
     }
   };
 
@@ -35,7 +42,16 @@ const Puzzle = () => {
   return (
     <Container className="text-center mt-5">
       <h1>Joseph And His Coat</h1>
-      {completed && <h2>Congratulations! You completed the puzzle!</h2>}
+      {completed && (
+        <h2 className={`${styles.congratulationsMessage} mt-3`}>
+          🎉 Congratulations! You solved the puzzle! 🎉
+        </h2>
+      )}
+      {showGif && (
+        <div className={styles.gifOverlay}>
+          <img src="/images/goodjob.gif" alt="Good Job!" />
+        </div>
+      )}
       <div className="d-flex justify-content-center align-items-center">
         <div className={styles.josephPuzzleGrid}>
           {pieces.map((piece, index) => (
@@ -47,7 +63,7 @@ const Puzzle = () => {
                 backgroundPosition: `${(piece % 3) * 33.33}% ${
                   Math.floor(piece / 3) * 33.33
                 }%`, // Adjusted for 3x3 grid
-                backgroundSize: "394%", // Fit for 3x3 grid
+                backgroundSize: "399%", // Fit for 3x3 grid
               }}
               draggable
               onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
