@@ -21,6 +21,7 @@ import Maze from './pages/mazePage';
 import Trivia from './pages/triviaPage'
 import JosephCoat from './pages/puzzleJosephAndCoat'
 import MaryWithJesus from './pages/maryWithJesusPage'
+import MosesPartSea from './pages/mosesPaartingSeaPage';
 
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
                 <Route path='/games/trivia' element={<Trivia />} />
                 <Route path='/puzzles/joseph-coat' element={<JosephCoat />} />
                 <Route path='/puzzles/mary-jesus' element={< MaryWithJesus />} />
+                <Route path='/puzzles/moses-sea' element={< MosesPartSea />} />
                 
             </Routes>
         </BrowserRouter>

@@ -1,0 +1,18 @@
+.mosesPuzzleGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    grid-template-rows: repeat(5, 1fr);   /* 5 rows */
+    gap: .9px;
+    width: 500px; /* Adjust width and height as needed */
+    height: 500px;
+  }
+  
+  .mosesPuzzlePiece {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0px solid #ccc; /* Optional styling */
+    cursor: grab;
+  }
+  
