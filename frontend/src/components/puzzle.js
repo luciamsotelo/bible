@@ -16,7 +16,7 @@ const BiblePuzzleCards = () => {
     { title: 'Joseph and His Coat of Many Colors', img: '/images/jospephCoatColors.png', type: 'joseph-coat' },
     { title: 'Mary with Baby Jesus', img: '/images/MaryWithBaby.webp', type: 'mary-jesus' },
     { title: 'Moses Parting the Red Sea', img: '/images/mosesPartingSea.webp', type: 'moses-sea' },
-    { title: 'Garden of Eden', img: '/path/to/garden-eden-image.jpg', type: 'garden-eden' },
+    { title: 'Garden of Eden', img: '/images/gardenOfEdenPuzzle.png', type: 'garden-eden' },
   ];
 
   return (

@@ -22,6 +22,7 @@ import Trivia from './pages/triviaPage'
 import JosephCoat from './pages/puzzleJosephAndCoat'
 import MaryWithJesus from './pages/maryWithJesusPage'
 import MosesPartSea from './pages/mosesPaartingSeaPage';
+import GardenOfEden from './pages/gardenOfEdenPage'
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
                 <Route path='/puzzles/joseph-coat' element={<JosephCoat />} />
                 <Route path='/puzzles/mary-jesus' element={< MaryWithJesus />} />
                 <Route path='/puzzles/moses-sea' element={< MosesPartSea />} />
+                <Route path='/puzzles/garden-eden' element={<GardenOfEden />} />
                 
             </Routes>
         </BrowserRouter>
