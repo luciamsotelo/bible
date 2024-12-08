@@ -14,7 +14,7 @@ const BiblePuzzleCards = () => {
     { title: "Noah's Ark", img: '/images/puzzleark.jpg', type: 'noah-ark' },
     { title: 'Daniel and the Lion', img: '/images/puzzledanielandlion.jpg', type: 'daniel-lion' },
     { title: 'Joseph and His Coat of Many Colors', img: '/images/jospephCoatColors.png', type: 'joseph-coat' },
-    { title: 'Mary with Baby Jesus', img: '/path/to/mary-jesus-image.jpg', type: 'mary-jesus' },
+    { title: 'Mary with Baby Jesus', img: '/images/MaryWithBaby.webp', type: 'mary-jesus' },
     { title: 'Moses Parting the Red Sea', img: '/path/to/moses-red-sea-image.jpg', type: 'moses-red-sea' },
     { title: 'Garden of Eden', img: '/path/to/garden-eden-image.jpg', type: 'garden-eden' },
   ];

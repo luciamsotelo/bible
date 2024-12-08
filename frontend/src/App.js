@@ -20,6 +20,7 @@ import WordSearch from './pages/wordSearchPage'
 import Maze from './pages/mazePage';
 import Trivia from './pages/triviaPage'
 import JosephCoat from './pages/puzzleJosephAndCoat'
+import MaryWithJesus from './pages/maryWithJesusPage'
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
                 <Route path='/games/maze' element={<Maze /> } />
                 <Route path='/games/trivia' element={<Trivia />} />
                 <Route path='/puzzles/joseph-coat' element={<JosephCoat />} />
+                <Route path='/puzzles/mary-jesus' element={< MaryWithJesus />} />
                 
             </Routes>
         </BrowserRouter>
