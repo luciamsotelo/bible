@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Container, Button } from 'react-bootstrap';
-
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import '../styles/puzzlenoah.css';
 
 const PuzzleNoah = () => {
-    
+    const navigate = useNavigate(); // Initialize navigate function
 
     const originalPieces = useMemo(() => [
         { id: 1, src: '/images/puzzleark1.jpg', position: null },
@@ -112,9 +112,29 @@ const PuzzleNoah = () => {
 
     return (
         <Container className="pb-5">
+            <Button 
+                variant="dark" 
+                className="mb-4" 
+                onClick={() => navigate('/games/puzzle')}
+            >
+                Back to Puzzle Selection
+            </Button>
+            
             <div className="noah-instructions text-center mb-4">
                 <h2>Puzzle Instructions</h2>
                 <p>Drag and drop the pieces into their correct positions to complete the puzzle.</p>
+                <div className="text-center mt-4">
+                        <Button variant="primary" onClick={shufflePieces} className="m-2">
+                            Shuffle Puzzle
+                        </Button>
+                        <Button variant="secondary" onClick={resetPuzzle} className="m-2">
+                            Reset Puzzle
+                        </Button>
+                        <Button variant="success" onClick={handleLockPuzzle} className="m-2">
+                            Check Puzzle
+                        </Button>
+                    </div>
+
             </div>
 
             {puzzleCompleted ? (
@@ -166,17 +186,7 @@ const PuzzleNoah = () => {
                             ))}
                     </div>
 
-                    <div className="text-center mt-4">
-                        <Button variant="primary" onClick={shufflePieces} className="m-2">
-                            Shuffle Puzzle
-                        </Button>
-                        <Button variant="secondary" onClick={resetPuzzle} className="m-2">
-                            Reset Puzzle
-                        </Button>
-                        <Button variant="success" onClick={handleLockPuzzle} className="m-2">
-                            Check Puzzle
-                        </Button>
-                    </div>
+                    
                 </>
             )}
         </Container>
