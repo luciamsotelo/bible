@@ -60,10 +60,10 @@ const Puzzle = () => {
               className={styles.noahPuzzlePiece}
               style={{
                 backgroundImage: "url('/images/puzzleark.jpg')",
-                backgroundPosition: `${(piece % 2) * 50}% ${
-                  Math.floor(piece / 2) * 50
+                backgroundPosition: `${(piece % 2) * 100}% ${
+                  Math.floor(piece / 2) * 100
                 }%`, // Adjusted for 2x2 grid
-                backgroundSize: "299%", // Fit for 2x2 grid
+                backgroundSize: "200%", // Match for 2x2 grid
               }}
               draggable
               onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
