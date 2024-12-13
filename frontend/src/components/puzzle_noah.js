@@ -1,196 +1,86 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Container, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import '../styles/puzzlenoah.css';
+import React, { useState } from "react";
+import { Button, Container } from "react-bootstrap";
+import styles from "../styles/puzzlenoah.module.css"; // Import the CSS module
 
-const PuzzleNoah = () => {
-    const navigate = useNavigate(); // Initialize navigate function
-
-    const originalPieces = useMemo(() => [
-        { id: 1, src: '/images/puzzleark1.jpg', position: null },
-        { id: 2, src: '/images/puzzleark2.jpg', position: null },
-        { id: 3, src: '/images/puzzleark3.jpg', position: null },
-        { id: 4, src: '/images/puzzleark4.jpg', position: null },
-    ], []);
-
-    const [pieces, setPieces] = useState(originalPieces);
-    const [droppedPieces, setDroppedPieces] = useState({});
-    const [puzzleCompleted, setPuzzleCompleted] = useState(false);
-
-    const shufflePieces = useCallback(() => {
-        const shuffled = [...originalPieces].sort(() => Math.random() - 0.5);
-        setPieces(shuffled.map(piece => ({ ...piece, position: null })));
-        setDroppedPieces({});
-        setPuzzleCompleted(false);
-    }, [originalPieces]);
-
-    useEffect(() => {
-        shufflePieces();
-    }, [shufflePieces]);
-
-    const resetPuzzle = () => {
-        setPieces(originalPieces);
-        setDroppedPieces({});
-        setPuzzleCompleted(false);
-    };
-
-    const handleDragStart = (e, piece) => {
-        e.dataTransfer.setData("pieceId", piece.id);
-    };
-
-    const handleDrop = (e, position) => {
-        e.preventDefault();
-        const pieceId = e.dataTransfer.getData("pieceId");
-        const pieceIndex = pieces.findIndex(piece => piece.id === parseInt(pieceId));
-
-        if (pieceIndex !== -1) {
-            const newDroppedPieces = { ...droppedPieces };
-
-            if (newDroppedPieces[position]) {
-                const existingPieceId = newDroppedPieces[position].id;
-                newDroppedPieces[position] = null;
-                setPieces(prev => prev.map(piece => 
-                    piece.id === existingPieceId ? { ...piece, position: null } : piece
-                ));
-            }
-
-            newDroppedPieces[position] = pieces[pieceIndex];
-            setDroppedPieces(newDroppedPieces);
-
-            setPieces(prev => 
-                prev.map(piece => 
-                    piece.id === pieces[pieceIndex].id ? { ...piece, position } : piece
-                )
-            );
-        }
-    };
-
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
-
-    const handleRemovePiece = (position) => {
-        const pieceToRemove = droppedPieces[position];
-        if (pieceToRemove) {
-            setPieces(prev => 
-                prev.map(piece => 
-                    piece.id === pieceToRemove.id ? { ...piece, position: null } : piece
-                )
-            );
-            setDroppedPieces(prev => ({ ...prev, [position]: null }));
-        }
-    };
-
-    const handleLockPuzzle = () => {
-        const newPieces = [...pieces];
-        const correctPositions = {
-            1: 'top-left',
-            2: 'top-right',
-            3: 'bottom-left',
-            4: 'bottom-right'
-        };
-
-        let correctCount = 0;
-
-        newPieces.forEach(piece => {
-            if (correctPositions[piece.id] === piece.position) {
-                piece.locked = true;
-                correctCount++;
-            }
-        });
-
-        setPieces(newPieces);
-
-        if (correctCount === 4) {
-            setPuzzleCompleted(true);
-        }
-    };
-
-    const playAgain = () => {
-        resetPuzzle();
-    };
-
-    return (
-        <Container className="pb-5">
-            <Button 
-                variant="dark" 
-                className="mb-4" 
-                onClick={() => navigate('/games/puzzle')}
-            >
-                Back to Puzzle Selection
-            </Button>
-            
-            <div className="noah-instructions text-center mb-4">
-                <h2>Puzzle Instructions</h2>
-                <p>Drag and drop the pieces into their correct positions to complete the puzzle.</p>
-                <div className="text-center mt-4">
-                        <Button variant="primary" onClick={shufflePieces} className="m-2">
-                            Shuffle Puzzle
-                        </Button>
-                        <Button variant="secondary" onClick={resetPuzzle} className="m-2">
-                            Reset Puzzle
-                        </Button>
-                        <Button variant="success" onClick={handleLockPuzzle} className="m-2">
-                            Check Puzzle
-                        </Button>
-                    </div>
-
-            </div>
-
-            {puzzleCompleted ? (
-                <div className="text-center">
-                    <img src="/images/puzzleark.jpg" alt="Completed Puzzle" className="img-fluid w-50" />
-                    <h3>Congratulations! You've completed the puzzle!</h3>
-                    <Button variant="success" onClick={playAgain} className="m-2">
-                        Play Again
-                    </Button>
-                </div>
-            ) : (
-                <>
-                    <div className="noah-puzzle-grid">
-                        {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((position) => (
-                            <div
-                                key={position}
-                                className="noah-drop-zone"
-                                onDrop={(e) => handleDrop(e, position)}
-                                onDragOver={handleDragOver}
-                            >
-                                {droppedPieces[position] && (
-                                    <img
-                                        src={droppedPieces[position].src}
-                                        alt={position}
-                                        className="noah-piece-image"
-                                        onClick={() => handleRemovePiece(position)}
-                                    />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="d-flex flex-wrap justify-content-center mt-4">
-                        {pieces
-                            .filter((piece) => piece.position === null)
-                            .map((piece) => (
-                                <div
-                                    key={piece.id}
-                                    className="noah-draggable-piece"
-                                    draggable
-                                    onDragStart={(e) => handleDragStart(e, piece)}
-                                >
-                                    <img
-                                        src={piece.src}
-                                        alt={`Piece ${piece.id}`}
-                                        className="img-fluid"
-                                    />
-                                </div>
-                            ))}
-                    </div>
-
-                    
-                </>
-            )}
-        </Container>
-    );
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 };
 
-export default PuzzleNoah;
+const Puzzle = () => {
+  const [pieces, setPieces] = useState(shuffleArray([...Array(4).keys()])); // 4 pieces for 2x2 grid
+  const [completed, setCompleted] = useState(false);
+  const [showGif, setShowGif] = useState(false);
+
+  const handleDrop = (dragIndex, dropIndex) => {
+    const newPieces = [...pieces];
+    [newPieces[dragIndex], newPieces[dropIndex]] = [
+      newPieces[dropIndex],
+      newPieces[dragIndex],
+    ];
+    setPieces(newPieces);
+
+    if (newPieces.every((piece, index) => piece === index)) {
+      setCompleted(true);
+      setShowGif(true);
+
+      // Hide GIF after 3 seconds
+      setTimeout(() => {
+        setShowGif(false);
+      }, 3000);
+    }
+  };
+
+  const resetPuzzle = () => {
+    setPieces(shuffleArray([...Array(4).keys()])); // Reset to 4 shuffled pieces
+    setCompleted(false);
+  };
+
+  return (
+    <Container className="text-center mt-5">
+      <h1>Noah and the Great Flood</h1>
+      {completed && (
+        <h2 className={`${styles.congratulationsMessage} mt-3`}>
+          🎉 Congratulations! You solved the puzzle! 🎉
+        </h2>
+      )}
+      {showGif && (
+        <div className={styles.gifOverlay}>
+          <img src="/images/goodjob.gif" alt="Good Job!" />
+        </div>
+      )}
+      <div className="d-flex justify-content-center align-items-center">
+        <div className={styles.noahPuzzleGrid}>
+          {pieces.map((piece, index) => (
+            <div
+              key={index}
+              className={styles.noahPuzzlePiece}
+              style={{
+                backgroundImage: "url('/images/puzzleark.jpg')",
+                backgroundPosition: `${(piece % 2) * 50}% ${
+                  Math.floor(piece / 2) * 50
+                }%`, // Adjusted for 2x2 grid
+                backgroundSize: "299%", // Fit for 2x2 grid
+              }}
+              draggable
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                const dragIndex = parseInt(e.dataTransfer.getData("text/plain"));
+                handleDrop(dragIndex, index);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      <Button onClick={resetPuzzle} className="mt-3" variant="primary">
+        Reset Puzzle
+      </Button>
+    </Container>
+  );
+};
+
+export default Puzzle;
