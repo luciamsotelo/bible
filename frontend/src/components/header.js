@@ -5,15 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
     return (
-        <Navbar bg="info" expand="lg" className="text-center">
+        <Navbar expand="lg" className="text-center" style={{ background: 'linear-gradient(135deg, black, #FF5733)' }}>
             <Container>
                 <Navbar.Brand>
                     <Link to="/">
-                        <Button variant="primary">Home</Button>
+                        <Button variant="warning">Home</Button>
                     </Link>
                 </Navbar.Brand>
-                <h1>Biblical Adventure</h1>
-                <Navbar.Toggle aria-controls="navbar-nav" />
+                <h1 style={{ color: '#ffd700', fontSize: '4rem', fontFamily: 'Bubblegum Sans, sans-serif', border: '4px inset yellow', borderRadius: '10px', boxShadow: '0 4px 8px rgba(250, 250, 25, 0.9)',padding: '15px' }}>Biblical Adventure</h1>
+                <Navbar.Toggle aria-controls="navbar-nav" style={{ color: 'white' }} />
                 <Navbar.Collapse id="navbar-nav">
                     <Navbar.Brand className="mx-auto">
                     </Navbar.Brand>
