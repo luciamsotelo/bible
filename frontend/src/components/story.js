@@ -104,14 +104,15 @@ export const BibleStories = () => {
 
   return (
     <div className="container">
+      <h1 className="text-center" style={{ fontFamily: 'quicksand'}}>Bible Stories</h1>
       {expandedStory === null ? (
         <Row>
           {stories.map((story, index) => (
             <Col key={index} md={4}>
               <Card className="story-card mb-4">
                 <Card.Img variant="top" src={story.frontImage} alt={story.title} />
-                <Card.Body>
-                  <Card.Title>{story.title}</Card.Title>
+                <Card.Body style={{ textAlign: 'center'}}>
+                  <Card.Title style={{ fontFamily: 'quicksand' }}>{story.title}</Card.Title>
                   <Button onClick={() => toggleStory(index)}>Learn More</Button>
                 </Card.Body>
               </Card>
@@ -120,17 +121,20 @@ export const BibleStories = () => {
         </Row>
       ) : (
         <div className="expanded-story text-center">
-          <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
+          
           <h2>{stories[expandedStory].title}</h2>
+          <div className="audio-controls" style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
+            <Button onClick={() => playAudio(stories[expandedStory].audioFile)} className="me-2">Play Audio</Button>
+            <Button variant="warning" onClick={pauseAudio}>Pause Audio</Button>
+          </div>
+
           <img
             src={stories[expandedStory].expandedImage}
             alt={stories[expandedStory].title}
             className="img-fluid my-3"
           />
-          <div className="audio-controls" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button onClick={() => playAudio(stories[expandedStory].audioFile)} className="me-2">Play Audio</Button>
-            <Button variant="warning" onClick={pauseAudio}>Pause Audio</Button>
-          </div>
+          
           <p>{stories[expandedStory].story}</p>
           <p><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
           

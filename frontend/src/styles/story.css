@@ -7,6 +7,9 @@ body {
 .story-card {
   cursor: pointer;
   transition: transform 0.3s ease;
+  border: 10px solid #871f08; /* A light gray border */
+  border-radius: 20px; /* Optional: to make corners rounded */
+  box-shadow: 0 4px 8px rgba(230, 234, 239, 3.0); /* Optional: for a subtle shadow */
 }
 
 .story-card:hover {
