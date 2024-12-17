@@ -1,20 +1,20 @@
 .danielPuzzleGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns for 3x3 grid */
-  grid-template-rows: repeat(3, 1fr); /* 3 rows for 3x3 grid */
-  gap: 0; /* No gaps between pieces */
-  width: 500px; /* Default size */
-  height: 500px;
-  margin: 0 auto; /* Center grid */
+  grid-template-columns: repeat(3, 1fr); /* 3x3 grid */
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto; /* Center the grid */
+  aspect-ratio: 1; /* Ensures a square grid */
 }
 
 .danielPuzzlePiece {
-  width: 100%; /* Fill grid cell */
-  height: 100%; /* Fill grid cell */
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   background-repeat: no-repeat;
-  background-size: 300%; /* Adjusted for consistent alignment */
-  border: none; /* Remove border for gapless layout */
+  background-size: 300%; /* Proper scaling for a 3x3 grid */
 }
 
 .congratulationsMessage {
@@ -34,8 +34,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
-  z-index: 1000; /* Above all other content */
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
 }
 
 .gifOverlay img {
@@ -43,7 +43,6 @@
   max-height: 50%;
 }
 
-/* Keyframes for floating and popping effect */
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -62,25 +61,14 @@
   }
 }
 
-@media (max-width: 773px) {
+@media (max-width: 576px) {
   .danielPuzzleGrid {
-    width: 400px; /* Smaller grid */
-    height: 400px;
-  }
-
-  .danielPuzzlePiece {
-    background-size: 400%; /* Adjust background size */
+    max-width: 300px;
   }
 }
 
-/* Media Query for small screens */
-@media (max-width: 563px) {
+@media (max-width: 600px) {
   .danielPuzzleGrid {
-    width: 300px; /* Even smaller grid */
-    height: 300px;
-  }
-
-  .danielPuzzlePiece {
-    background-size: 300%; /* Match the new grid size */
+    max-width: 250px; /* Adjust grid size for smaller screens */
   }
 }
