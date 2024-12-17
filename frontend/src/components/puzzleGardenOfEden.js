@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/gardenOfEden.module.css"; // Import the CSS module
+import { useNavigate } from "react-router-dom"; // Ensure react-router-dom is installed and configured
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -13,6 +14,7 @@ const shuffleArray = (array) => {
 const Puzzle = () => {
   const [pieces, setPieces] = useState(shuffleArray([...Array(25).keys()])); // 25 pieces for 5x5 grid
   const [completed, setCompleted] = useState(false);
+  const navigate = useNavigate();
 
   const handleDrop = (dragIndex, dropIndex) => {
     const newPieces = [...pieces];
@@ -32,10 +34,27 @@ const Puzzle = () => {
     setCompleted(false);
   };
 
+  const goToMainPuzzlePage = () => {
+    navigate("/games/puzzle"); // Update the path based on your routing setup
+  };
+
   return (
     <Container className="text-center mt-5">
       <h1>Garden Of Eden</h1>
-      {completed && <h2>Congratulations! You completed the puzzle!</h2>}
+      {completed && (
+        <h2
+          className={`${styles.congratulationsMessage} mt-3`}
+          style={{
+            color: "purple",
+            textShadow: "2px 2px 8px white",
+            fontFamily: "Allura",
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          🎉 Congratulations! You completed the puzzle! 🎉
+        </h2>
+      )}
       <div className="d-flex justify-content-center align-items-center">
         <div className={styles.gardenPuzzleGrid}>
           {pieces.map((piece, index) => (
@@ -60,9 +79,16 @@ const Puzzle = () => {
           ))}
         </div>
       </div>
-      <Button onClick={resetPuzzle} className="mt-3" variant="primary">
-        Reset Puzzle
-      </Button>
+      <Row className="justify-content-center mt-4">
+        <Col xs={12} md={6} className="d-flex justify-content-between">
+          <Button onClick={resetPuzzle} variant="primary">
+            Reset Puzzle
+          </Button>
+          <Button onClick={goToMainPuzzlePage} variant="secondary">
+            Back to Main Puzzle Page
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };

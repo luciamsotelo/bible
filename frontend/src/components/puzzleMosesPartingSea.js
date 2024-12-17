@@ -38,19 +38,19 @@ const Puzzle = () => {
   };
 
   return (
-     <Container className="text-center mt-5">
-       <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Moses Parts the Red Sea</h1>
-       {completed && (
-         <h2 className={`${styles.congratulationsMessage} mt-3`} style={{
-           color: "purple",
-           textShadow: "2px 2px 8px white",
-           fontFamily: "Allura",
-           fontSize: "2.5rem",
-           fontWeight: "bold",
-         }}>
-           🎉 Congratulations! You solved the puzzle! 🎉
-         </h2>
-       )}
+    <Container className="text-center mt-5">
+      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Moses Parts the Red Sea</h1>
+      {completed && (
+        <h2 className={`${styles.congratulationsMessage} mt-3`} style={{
+          color: "purple",
+          textShadow: "2px 2px 8px white",
+          fontFamily: "Allura",
+          fontSize: "2.5rem",
+          fontWeight: "bold",
+        }}>
+          🎉 Congratulations! You solved the puzzle! 🎉
+        </h2>
+      )}
       <div className="d-flex justify-content-center align-items-center">
         <div className={styles.mosesPuzzleGrid}>
           {pieces.map((piece, index) => (
