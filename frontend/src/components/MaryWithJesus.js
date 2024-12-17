@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
-import styles from "../styles/maryWithJesus.module.css"; // Import the CSS module
+import { Button, Container, Row, Col } from "react-bootstrap";
+import styles from "../styles/maryWithJesus.module.css"; // Updated CSS Module import
+import { useNavigate } from "react-router-dom"; // Ensure react-router-dom is configured
 
+// Shuffle the puzzle pieces array
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -10,10 +12,16 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const Puzzle = () => {
-  const [pieces, setPieces] = useState(shuffleArray([...Array(16).keys()])); // 16 pieces for 4x4 grid
-  const [completed, setCompleted] = useState(false);
+const MaryWithJesusPuzzle = () => {
+  const gridSize = 4; // 4x4 Grid
+  const totalPieces = gridSize * gridSize;
 
+  const [pieces, setPieces] = useState(shuffleArray([...Array(totalPieces).keys()]));
+  const [completed, setCompleted] = useState(false);
+  const [showGif, setShowGif] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle drag-and-drop events
   const handleDrop = (dragIndex, dropIndex) => {
     const newPieces = [...pieces];
     [newPieces[dragIndex], newPieces[dropIndex]] = [
@@ -22,49 +30,87 @@ const Puzzle = () => {
     ];
     setPieces(newPieces);
 
+    // Check for completion
     if (newPieces.every((piece, index) => piece === index)) {
       setCompleted(true);
+      setShowGif(true);
+      setTimeout(() => setShowGif(false), 3000); // Hide GIF after 3 seconds
     }
   };
 
+  // Reset the puzzle
   const resetPuzzle = () => {
-    setPieces(shuffleArray([...Array(16).keys()])); // Reset to 16 shuffled pieces
+    setPieces(shuffleArray([...Array(totalPieces).keys()]));
     setCompleted(false);
+  };
+
+  // Navigate back to main puzzle page
+  const goToMainPuzzlePage = () => {
+    navigate("/games/puzzle"); // Update the path based on your routing setup
   };
 
   return (
     <Container className="text-center mt-5">
-      <h1>Mary and Baby Jesus Puzzle</h1>
-      {completed && <h2>Congratulations! You completed the puzzle!</h2>}
-      <div className="d-flex justify-content-center align-items-center">
-        <div className={styles.maryPuzzleGrid}>
-          {pieces.map((piece, index) => (
-            <div
-              key={index}
-              className={styles.maryPuzzlePiece}
-              style={{
-                backgroundImage: "url('/images/MaryWithBaby.webp')",
-                backgroundPosition: `${(piece % 4) * 25}% ${
-                  Math.floor(piece / 4) * 25
-                }%`, // Adjusted for 4x4 grid
-                backgroundSize: "510%", // Fit for 4x4 grid
-              }}
-              draggable
-              onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                const dragIndex = parseInt(e.dataTransfer.getData("text/plain"));
-                handleDrop(dragIndex, index);
-              }}
-            />
-          ))}
+      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>
+        Mary and Baby Jesus
+      </h1>
+      {completed && (
+        <h2
+          className={`${styles.congratulationsMessage} mt-3`}
+          style={{
+            color: "purple",
+            textShadow: "2px 2px 8px white",
+            fontFamily: "Allura",
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          🎉 Congratulations! You solved the puzzle! 🎉
+        </h2>
+      )}
+      {showGif && (
+        <div className={styles.gifOverlay}>
+          <img src="/images/goodjob.gif" alt="Good Job!" />
         </div>
-      </div>
-      <Button onClick={resetPuzzle} className="mt-3" variant="primary">
-        Reset Puzzle
-      </Button>
+      )}
+      <Row className="justify-content-center align-items-center mt-4">
+        <Col xs={12} sm={10} md={8} lg={6}>
+          <div className={styles.maryPuzzleGrid}>
+            {pieces.map((piece, index) => (
+              <div
+                key={index}
+                className={styles.maryPuzzlePiece}
+                style={{
+                  backgroundImage: "url('/images/MaryWithBaby.webp')",
+                  backgroundPosition: `${(piece % gridSize) * 100 / (gridSize - 1)}% ${
+                    Math.floor(piece / gridSize) * 100 / (gridSize - 1)
+                  }%`,
+                  backgroundSize: "400%",
+                }}
+                draggable
+                onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  const dragIndex = parseInt(e.dataTransfer.getData("text/plain"));
+                  handleDrop(dragIndex, index);
+                }}
+              />
+            ))}
+          </div>
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-4">
+        <Col xs={12} md={6} className="d-flex justify-content-between">
+          <Button onClick={resetPuzzle} variant="primary">
+            Reset Puzzle
+          </Button>
+          <Button onClick={goToMainPuzzlePage} variant="secondary">
+            Back to Main Puzzle Page
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };
 
-export default Puzzle;
+export default MaryWithJesusPuzzle;
