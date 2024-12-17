@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import "../styles/header.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
                         <Button variant="warning">Home</Button>
                     </Link>
                 </Navbar.Brand>
-                <h1 style={{ color: '#ffd700', fontSize: '4rem', fontFamily: 'Bubblegum Sans, sans-serif', border: '4px inset yellow', borderRadius: '10px', boxShadow: '0 4px 8px rgba(250, 250, 25, 0.9)',padding: '15px' }}>Biblical Adventure</h1>
+                <h1 style={{ color: '#ffd700', fontSize: '4rem', fontFamily: 'Bubblegum Sans, sans-serif', border: '4px inset yellow', borderRadius: '10px', boxShadow: '0 4px 8px rgba(250, 250, 25, 0.9)',padding: '15px', marginBottom: "30px" }}>Biblical Adventure</h1>
                 <Navbar.Toggle aria-controls="navbar-nav" style={{ color: 'white' }} />
                 <Navbar.Collapse id="navbar-nav">
                     <Navbar.Brand className="mx-auto">

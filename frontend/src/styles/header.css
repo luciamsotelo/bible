@@ -1,0 +1,72 @@
+/* Ensures Navbar Toggler border is white */
+.navbar-toggler {
+    border-color: white !important;
+}
+
+/* Custom Navbar Toggler Icon */
+.navbar-toggler-icon {
+    background-image: none; /* Removes default Bootstrap icon */
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    position: relative;
+}
+
+/* Top, Middle, and Bottom Lines */
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after,
+.navbar-toggler-icon span {
+    content: '';
+    background-color: white; /* White lines from the start */
+    position: absolute;
+    width: 100%;
+    height: 4px; /* Thickness of the lines */
+    left: 0;
+    border-radius: 2px;
+    transition: none; /* Prevents color transition */
+}
+
+.navbar-toggler-icon::before {
+    top: 0; /* Top line position */
+}
+
+.navbar-toggler-icon::after {
+    bottom: 0; /* Bottom line position */
+}
+
+.navbar-toggler-icon span {
+    top: 50%; /* Middle line position */
+    transform: translateY(-50%);
+}
+
+/* Optional: Ensures lines stay white when toggled (clicked) */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:hover {
+    outline: none;
+    box-shadow: none; /* Removes Bootstrap's default focus outline */
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after,
+.navbar-toggler-icon span {
+    background-color: white !important; /* Force white color in all states */
+}
+
+/* Ensure links display horizontally inside Navbar.Collapse */
+.navbar-nav {
+    flex-direction: row !important; /* Forces horizontal alignment */
+    justify-content: center; /* Centers the links horizontally */
+    align-items: center; /* Aligns vertically */
+}
+
+.navbar-nav .nav-link {
+    display: inline-block; /* Ensures inline display */
+    margin: 0 5px; /* Adds spacing between links */
+}
+
+/* Optional: Make sure buttons behave properly */
+.navbar-nav .btn {
+    white-space: nowrap; /* Prevents text wrapping */
+    margin: 0 5px; /* Spacing between buttons */
+}
