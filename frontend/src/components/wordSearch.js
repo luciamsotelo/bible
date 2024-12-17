@@ -4,7 +4,7 @@ import styles from '../styles/wordSearch.module.css';
 const WordSearch = () => {
   const gridSize = 10;
 
-  // UseMemo to initialize words only once
+  // Initialize words once using useMemo
   const words = useMemo(() => ['JESUS', 'MOSES', 'NOAH', 'DAVID', 'SARAH', 'PETER', 'ELIJAH', 'BETHLEHEM'], []);
 
   const [grid, setGrid] = useState([]);
@@ -13,7 +13,7 @@ const WordSearch = () => {
   const [highlightedCells, setHighlightedCells] = useState({});
   const [message, setMessage] = useState('');
 
-  // initializeGrid with useCallback
+  // Function to initialize the grid with words
   const initializeGrid = useCallback(() => {
     const directions = [
       { row: 0, col: 1 },   // Horizontal
@@ -77,6 +77,7 @@ const WordSearch = () => {
     initializeGrid();
   }, [initializeGrid]);
 
+  // Handle cell selection
   const handleCellClick = (row, col) => {
     const cell = { row, col };
     const alreadySelected = selectedCells.some(
@@ -94,23 +95,30 @@ const WordSearch = () => {
   
       if (!direction) {
         setMessage('Invalid selection! Must be in a straight line.');
+        setSelectedCells([]);
         return;
       }
   
-      const selectedWord = newSelection
-        .sort((a, b) => (direction.row !== 0 ? a.row - b.row : a.col - b.col))
-        .map(({ row, col }) => grid[row][col])
-        .join('');
+      // Use natural selection order without sorting
+      const selectedLetters = newSelection.map(({ row, col }) => grid[row][col]);
+      const selectedWord = selectedLetters.join('');
+      const reversedWord = [...selectedLetters].reverse().join('');
   
-      if (words.includes(selectedWord) && !foundWords.includes(selectedWord)) {
-        setFoundWords([...foundWords, selectedWord]);
+      // Check for the word or its reverse
+      if (
+        (words.includes(selectedWord) || words.includes(reversedWord)) &&
+        !foundWords.includes(selectedWord) &&
+        !foundWords.includes(reversedWord)
+      ) {
+        const finalWord = words.includes(selectedWord) ? selectedWord : reversedWord;
+        setFoundWords([...foundWords, finalWord]);
   
         const newHighlights = { ...highlightedCells };
-        newHighlights[selectedWord] = [...newSelection];
+        newHighlights[finalWord] = [...newSelection];
         setHighlightedCells(newHighlights);
   
         setSelectedCells([]);
-        setMessage(`Great job! You found ${selectedWord}`);
+        setMessage(`Great job! You found ${finalWord}`);
       } else if (selectedWord.length > 10) {
         setSelectedCells([]);
         setMessage('Keep searching!');
@@ -118,33 +126,31 @@ const WordSearch = () => {
     }
   };
   
-  // Helper function to calculate the direction of the selection
+  
+
+  // Check if selection is in a valid direction
   const calculateDirection = (cells) => {
     if (cells.length < 2) return null;
-  
+
     const rowDiff = cells[1].row - cells[0].row;
     const colDiff = cells[1].col - cells[0].col;
-  
-    // Prevent division by zero
+
     if (rowDiff === 0 && colDiff === 0) return null;
-  
+
     for (let i = 1; i < cells.length; i++) {
       const currentRowDiff = cells[i].row - cells[0].row;
       const currentColDiff = cells[i].col - cells[0].col;
-  
-      // Check for consistency
+
       if (
-        (rowDiff !== 0 && currentRowDiff / rowDiff !== i) || // Check row alignment
-        (colDiff !== 0 && currentColDiff / colDiff !== i)    // Check column alignment
+        (rowDiff !== 0 && currentRowDiff / rowDiff !== i) ||
+        (colDiff !== 0 && currentColDiff / colDiff !== i)
       ) {
-        return null; // Not a valid straight line
+        return null;
       }
     }
-  
+
     return { row: rowDiff, col: colDiff };
   };
-  
-  
 
   const isCellHighlighted = (row, col) => {
     return Object.values(highlightedCells).some((cells) =>
@@ -190,7 +196,19 @@ const WordSearch = () => {
             </div>
           ))}
         </div>
-        <div className={styles.message}>{message}</div>
+        <div className={`${styles.message} ${message.includes('Great job!') ? styles.messageSuccess : ''}`}>
+          {message}
+        </div>
+      </div>
+      <div className={styles.sidebar}>
+        <div className={styles.foundWords}>
+          <h3>Found Words</h3>
+          <ul>
+            {foundWords.map((word) => (
+              <li key={word}>{word}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
