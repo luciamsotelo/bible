@@ -1,29 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import styles from '../styles/wordSearch.module.css';
 
 const WordSearch = () => {
-  const grid = [
-    ['J', 'E', 'S', 'U', 'S', 'A', 'L', 'M', 'H', 'G'], // JESUS
-    ['E', 'L', 'I', 'J', 'A', 'H', 'N', 'E', 'V', 'R'], // ELIJAH
-    ['D', 'A', 'V', 'I', 'D', 'P', 'E', 'T', 'E', 'R'], // DAVID and PETER
-    ['A', 'N', 'O', 'A', 'H', 'Q', 'A', 'R', 'K', 'H'], // NOAH
-    ['M', 'O', 'S', 'E', 'S', 'D', 'A', 'N', 'I', 'E'], // MOSES
-    ['E', 'L', 'A', 'R', 'C', 'H', 'E', 'M', 'I', 'J'], // Miscellaneous letters
-    ['S', 'A', 'R', 'A', 'H', 'H', 'A', 'N', 'A', 'H'], // SARAH
-    ['H', 'I', 'J', 'O', 'S', 'E', 'P', 'H', 'R', 'U'], // JOSEPH
-    ['B', 'E', 'T', 'H', 'L', 'E', 'H', 'E', 'M', 'Z'], // BETHLEHEM
-    ['A', 'B', 'R', 'A', 'H', 'A', 'M', 'H', 'E', 'A'], // ABRAHAM
-  ];
+  const gridSize = 10;
 
-  const words = ['JESUS', 'MOSES', 'NOAH', 'DAVID', 'SARAH', 'PETER', 'ELIJAH', 'BETHLEHEM'];
+  // UseMemo to initialize words only once
+  const words = useMemo(() => ['JESUS', 'MOSES', 'NOAH', 'DAVID', 'SARAH', 'PETER', 'ELIJAH', 'BETHLEHEM'], []);
 
+  const [grid, setGrid] = useState([]);
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
   const [message, setMessage] = useState('');
 
+  // initializeGrid with useCallback
+  const initializeGrid = useCallback(() => {
+    const directions = [
+      { row: 0, col: 1 },   // Horizontal
+      { row: 1, col: 0 },   // Vertical
+      { row: 1, col: 1 },   // Diagonal down-right
+      { row: -1, col: 1 },  // Diagonal up-right
+    ];
+
+    let newGrid = Array.from({ length: gridSize }, () => Array(gridSize).fill(''));
+
+    const placeWord = (word) => {
+      let placed = false;
+
+      while (!placed) {
+        const direction = directions[Math.floor(Math.random() * directions.length)];
+        const startRow = Math.floor(Math.random() * gridSize);
+        const startCol = Math.floor(Math.random() * gridSize);
+
+        let canPlace = true;
+        for (let i = 0; i < word.length; i++) {
+          const row = startRow + i * direction.row;
+          const col = startCol + i * direction.col;
+
+          if (
+            row < 0 ||
+            row >= gridSize ||
+            col < 0 ||
+            col >= gridSize ||
+            (newGrid[row][col] !== '' && newGrid[row][col] !== word[i])
+          ) {
+            canPlace = false;
+            break;
+          }
+        }
+
+        if (canPlace) {
+          for (let i = 0; i < word.length; i++) {
+            const row = startRow + i * direction.row;
+            const col = startCol + i * direction.col;
+            newGrid[row][col] = word[i];
+          }
+          placed = true;
+        }
+      }
+    };
+
+    words.forEach((word) => placeWord(word));
+
+    for (let row = 0; row < gridSize; row++) {
+      for (let col = 0; col < gridSize; col++) {
+        if (newGrid[row][col] === '') {
+          newGrid[row][col] = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        }
+      }
+    }
+
+    setGrid(newGrid);
+  }, [words, gridSize]);
+
+  useEffect(() => {
+    initializeGrid();
+  }, [initializeGrid]);
+
   const handleCellClick = (row, col) => {
-    // Add or remove cell selection on click
     const cell = { row, col };
     const alreadySelected = selectedCells.some(
       (selected) => selected.row === row && selected.col === col
@@ -35,7 +89,6 @@ const WordSearch = () => {
 
     setSelectedCells(newSelection);
 
-    // Check if the selected cells match any word regardless of order
     const selectedLetters = newSelection.map(({ row, col }) => grid[row][col]).sort().join('');
     const matchingWord = words.find(
       (word) => word.split('').sort().join('') === selectedLetters
@@ -44,12 +97,11 @@ const WordSearch = () => {
     if (matchingWord && !foundWords.includes(matchingWord)) {
       setFoundWords([...foundWords, matchingWord]);
 
-      // Highlight the word
       const newHighlights = { ...highlightedCells };
       newHighlights[matchingWord] = [...newSelection];
       setHighlightedCells(newHighlights);
 
-      setSelectedCells([]); // Clear selection
+      setSelectedCells([]);
       setMessage(`Great job! You found ${matchingWord}`);
     } else if (selectedLetters.length > 10) {
       setSelectedCells([]);
@@ -102,16 +154,6 @@ const WordSearch = () => {
           ))}
         </div>
         <div className={styles.message}>{message}</div>
-      </div>
-      <div className={styles.sidebar}>
-        <div className={styles.foundWords}>
-          <h3>Found Words</h3>
-          <ul>
-            {foundWords.map((word) => (
-              <li key={word}>{word}</li>
-            ))}
-          </ul>
-        </div>
       </div>
     </div>
   );
