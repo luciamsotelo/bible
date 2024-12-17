@@ -1,18 +1,74 @@
 .mosesPuzzleGrid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns */
-    grid-template-rows: repeat(5, 1fr);   /* 5 rows */
-    gap: .9px;
-    width: 500px; /* Adjust width and height as needed */
-    height: 500px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Responsive grid for 5x5 */
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto; /* Center grid */
+  aspect-ratio: 1; /* Ensures square grid */
+}
+
+.mosesPuzzlePiece {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 600%;
+}
+
+.congratulationsMessage {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff9800;
+  text-shadow: 2px 2px 5px #000;
+  animation: float 1.5s infinite ease-in-out, pop 0.3s ease-in-out;
+}
+
+.gifOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+  z-index: 1000; /* Above all other content */
+}
+
+.gifOverlay img {
+  max-width: 50%;
+  max-height: 50%;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  .mosesPuzzlePiece {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 0px solid #ccc; /* Optional styling */
-    cursor: grab;
+  50% {
+    transform: translateY(-10px);
   }
-  
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 576px) {
+  .mosesPuzzleGrid {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mosesPuzzleGrid {
+    max-width: 250px; /* Adjust grid size for smaller screens */
+  }
+}

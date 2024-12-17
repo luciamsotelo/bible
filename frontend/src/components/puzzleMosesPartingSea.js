@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/mosesPartingSea.module.css"; // Import the CSS module
 
 const shuffleArray = (array) => {
@@ -32,10 +32,25 @@ const Puzzle = () => {
     setCompleted(false);
   };
 
+  const goToMainPuzzlePage = () => {
+    // Redirect to main puzzle page
+    window.location.href = "/games/puzzle"; // Adjust the path as needed
+  };
+
   return (
-    <Container className="text-center mt-5">
-      <h1>Moses Parting the Red Sea</h1>
-      {completed && <h2>Congratulations! You completed the puzzle!</h2>}
+     <Container className="text-center mt-5">
+       <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Moses Parts the Red Sea</h1>
+       {completed && (
+         <h2 className={`${styles.congratulationsMessage} mt-3`} style={{
+           color: "purple",
+           textShadow: "2px 2px 8px white",
+           fontFamily: "Allura",
+           fontSize: "2.5rem",
+           fontWeight: "bold",
+         }}>
+           🎉 Congratulations! You solved the puzzle! 🎉
+         </h2>
+       )}
       <div className="d-flex justify-content-center align-items-center">
         <div className={styles.mosesPuzzleGrid}>
           {pieces.map((piece, index) => (
@@ -60,9 +75,16 @@ const Puzzle = () => {
           ))}
         </div>
       </div>
-      <Button onClick={resetPuzzle} className="mt-3" variant="primary">
-        Reset Puzzle
-      </Button>
+      <Row className="justify-content-center mt-4">
+        <Col xs={12} md={6} className="d-flex justify-content-between">
+          <Button onClick={resetPuzzle} variant="primary">
+            Reset Puzzle
+          </Button>
+          <Button onClick={goToMainPuzzlePage} variant="secondary">
+            Back to Main Puzzle Page
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };
