@@ -82,32 +82,69 @@ const WordSearch = () => {
     const alreadySelected = selectedCells.some(
       (selected) => selected.row === row && selected.col === col
     );
-
+  
     const newSelection = alreadySelected
       ? selectedCells.filter((selected) => !(selected.row === row && selected.col === col))
       : [...selectedCells, cell];
-
+  
     setSelectedCells(newSelection);
-
-    const selectedLetters = newSelection.map(({ row, col }) => grid[row][col]).sort().join('');
-    const matchingWord = words.find(
-      (word) => word.split('').sort().join('') === selectedLetters
-    );
-
-    if (matchingWord && !foundWords.includes(matchingWord)) {
-      setFoundWords([...foundWords, matchingWord]);
-
-      const newHighlights = { ...highlightedCells };
-      newHighlights[matchingWord] = [...newSelection];
-      setHighlightedCells(newHighlights);
-
-      setSelectedCells([]);
-      setMessage(`Great job! You found ${matchingWord}`);
-    } else if (selectedLetters.length > 10) {
-      setSelectedCells([]);
-      setMessage('Keep searching!');
+  
+    if (newSelection.length > 1) {
+      const direction = calculateDirection(newSelection);
+  
+      if (!direction) {
+        setMessage('Invalid selection! Must be in a straight line.');
+        return;
+      }
+  
+      const selectedWord = newSelection
+        .sort((a, b) => (direction.row !== 0 ? a.row - b.row : a.col - b.col))
+        .map(({ row, col }) => grid[row][col])
+        .join('');
+  
+      if (words.includes(selectedWord) && !foundWords.includes(selectedWord)) {
+        setFoundWords([...foundWords, selectedWord]);
+  
+        const newHighlights = { ...highlightedCells };
+        newHighlights[selectedWord] = [...newSelection];
+        setHighlightedCells(newHighlights);
+  
+        setSelectedCells([]);
+        setMessage(`Great job! You found ${selectedWord}`);
+      } else if (selectedWord.length > 10) {
+        setSelectedCells([]);
+        setMessage('Keep searching!');
+      }
     }
   };
+  
+  // Helper function to calculate the direction of the selection
+  const calculateDirection = (cells) => {
+    if (cells.length < 2) return null;
+  
+    const rowDiff = cells[1].row - cells[0].row;
+    const colDiff = cells[1].col - cells[0].col;
+  
+    // Prevent division by zero
+    if (rowDiff === 0 && colDiff === 0) return null;
+  
+    for (let i = 1; i < cells.length; i++) {
+      const currentRowDiff = cells[i].row - cells[0].row;
+      const currentColDiff = cells[i].col - cells[0].col;
+  
+      // Check for consistency
+      if (
+        (rowDiff !== 0 && currentRowDiff / rowDiff !== i) || // Check row alignment
+        (colDiff !== 0 && currentColDiff / colDiff !== i)    // Check column alignment
+      ) {
+        return null; // Not a valid straight line
+      }
+    }
+  
+    return { row: rowDiff, col: colDiff };
+  };
+  
+  
 
   const isCellHighlighted = (row, col) => {
     return Object.values(highlightedCells).some((cells) =>
