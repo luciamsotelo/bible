@@ -69,6 +69,7 @@ const stories = [
 export const BibleStories = () => {
   const [expandedStory, setExpandedStory] = useState(null);
   const [audio, setAudio] = useState(null);
+  const [paused, setPaused] = useState(true);
 
   const toggleStory = (index) => {
     if (expandedStory === index) {
@@ -82,16 +83,18 @@ export const BibleStories = () => {
 
   const playAudio = (audioFile) => {
     if (audio) {
-      audio.pause();
-    }
-    const newAudio = new Audio(audioFile);
-    newAudio.play();
-    setAudio(newAudio);
-  };
-
-  const pauseAudio = () => {
-    if (audio) {
-      audio.pause();
+      if (paused) {
+        audio.play();
+        setPaused(false);
+      } else {
+        audio.pause();
+        setPaused(true);
+      }
+    } else {
+      const newAudio = new Audio(audioFile);
+      newAudio.play();
+      setAudio(newAudio);
+      setPaused(false);
     }
   };
 
@@ -104,14 +107,14 @@ export const BibleStories = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center" style={{ fontFamily: 'quicksand'}}>Bible Stories</h1>
+      <h1 className="text-center" style={{ fontFamily: 'quicksand' }}>Bible Stories</h1>
       {expandedStory === null ? (
         <Row>
           {stories.map((story, index) => (
             <Col key={index} md={4}>
               <Card className="story-card mb-4">
                 <Card.Img variant="top" src={story.frontImage} alt={story.title} />
-                <Card.Body style={{ textAlign: 'center'}}>
+                <Card.Body style={{ textAlign: 'center' }}>
                   <Card.Title style={{ fontFamily: 'quicksand' }}>{story.title}</Card.Title>
                   <Button onClick={() => toggleStory(index)}>Learn More</Button>
                 </Card.Body>
@@ -121,23 +124,23 @@ export const BibleStories = () => {
         </Row>
       ) : (
         <div className="expanded-story text-center">
-          
           <h2>{stories[expandedStory].title}</h2>
           <div className="audio-controls" style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
-            <Button onClick={() => playAudio(stories[expandedStory].audioFile)} className="me-2">Play Audio</Button>
-            <Button variant="warning" onClick={pauseAudio}>Pause Audio</Button>
+            <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
+            <Button 
+              onClick={() => playAudio(stories[expandedStory].audioFile)} 
+              className="me-2"
+            >
+              {paused ? "Play Audio" : "Pause Audio"}
+            </Button>
           </div>
-
           <img
             src={stories[expandedStory].expandedImage}
             alt={stories[expandedStory].title}
             className="img-fluid my-3"
           />
-          
           <p>{stories[expandedStory].story}</p>
           <p><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
-          
         </div>
       )}
     </div>
