@@ -23,28 +23,43 @@ const WordSearch = () => {
   const [message, setMessage] = useState('');
 
   const handleCellClick = (row, col) => {
-    const newSelection = [...selectedCells, { row, col }];
+    // Add or remove cell selection on click
+    const cell = { row, col };
+    const alreadySelected = selectedCells.some(
+      (selected) => selected.row === row && selected.col === col
+    );
+
+    const newSelection = alreadySelected
+      ? selectedCells.filter((selected) => !(selected.row === row && selected.col === col))
+      : [...selectedCells, cell];
+
     setSelectedCells(newSelection);
 
-    const selectedWord = newSelection.map(({ row, col }) => grid[row][col]).join('');
-    if (words.includes(selectedWord) && !foundWords.includes(selectedWord)) {
-      setFoundWords([...foundWords, selectedWord]);
+    // Check if the selected cells match any word regardless of order
+    const selectedLetters = newSelection.map(({ row, col }) => grid[row][col]).sort().join('');
+    const matchingWord = words.find(
+      (word) => word.split('').sort().join('') === selectedLetters
+    );
 
+    if (matchingWord && !foundWords.includes(matchingWord)) {
+      setFoundWords([...foundWords, matchingWord]);
+
+      // Highlight the word
       const newHighlights = { ...highlightedCells };
-      newHighlights[selectedWord] = [...newSelection];
+      newHighlights[matchingWord] = [...newSelection];
       setHighlightedCells(newHighlights);
 
-      setSelectedCells([]);
-      setMessage(`Great job! You found ${selectedWord}`);
-    } else if (selectedWord.length > 10) {
+      setSelectedCells([]); // Clear selection
+      setMessage(`Great job! You found ${matchingWord}`);
+    } else if (selectedLetters.length > 10) {
       setSelectedCells([]);
       setMessage('Keep searching!');
     }
   };
 
   const isCellHighlighted = (row, col) => {
-    return Object.values(highlightedCells).some(cells =>
-      cells.some(cell => cell.row === row && cell.col === col)
+    return Object.values(highlightedCells).some((cells) =>
+      cells.some((cell) => cell.row === row && cell.col === col)
     );
   };
 
@@ -69,7 +84,15 @@ const WordSearch = () => {
               {row.map((letter, colIndex) => (
                 <div
                   key={colIndex}
-                  className={`${styles.cell} ${isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''} ${selectedCells.some(cell => cell.row === rowIndex && cell.col === colIndex) ? styles.selected : ''}`}
+                  className={`${styles.cell} ${
+                    isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''
+                  } ${
+                    selectedCells.some(
+                      (cell) => cell.row === rowIndex && cell.col === colIndex
+                    )
+                      ? styles.selected
+                      : ''
+                  }`}
                   onClick={() => handleCellClick(rowIndex, colIndex)}
                 >
                   {letter}
