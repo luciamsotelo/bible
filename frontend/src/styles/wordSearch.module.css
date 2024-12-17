@@ -1,5 +1,6 @@
 .wordSearchContainer {
   display: flex;
+  font-family: Rye;
   justify-content: center;
   align-items: flex-start; /* Align content to the top */
   gap: 20px; /* Space between grid and sidebars */
