@@ -1,6 +1,6 @@
 .wordSearchContainer {
   display: flex;
-  font-family: Rye;
+  font-family: Rye, Arial, Helvetica, sans-serif;
   justify-content: center;
   align-items: flex-start; /* Align content to the top */
   gap: 20px; /* Space between grid and sidebars */
@@ -10,7 +10,7 @@
 
 .messageSuccess {
   color: #28a745; /* Bright green */
-  font-family: Rye;
+  font-family: Rye, Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 2.5em;
   text-align: center;
