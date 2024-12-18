@@ -1,11 +1,43 @@
 .wordSearchContainer {
   display: flex;
+  font-family: Rye, Arial, Helvetica, sans-serif;
   justify-content: center;
   align-items: flex-start; /* Align content to the top */
   gap: 20px; /* Space between grid and sidebars */
   margin: 20px;
   flex-wrap: wrap; /* Ensure responsiveness */
 }
+
+.messageSuccess {
+  color: #28a745; /* Bright green */
+  font-family: Rye, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: 10px;
+
+  /* 3D text effect */
+  text-shadow: 2px 2px 0px #1d6c31, 
+               4px 4px 0px #155424, 
+               6px 6px 5px rgba(0, 0, 0, 0.3);
+
+  /* Add a slight bounce animation */
+  animation: bounce 0.8s ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+  transform: translateZ(20px);
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  from {
+    transform: translateY(0px) scale(1);
+  }
+  to {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+
 
 .gridContainer {
   display: flex;
@@ -91,3 +123,4 @@
   background: linear-gradient(145deg, #ffe680, #ffc700);
   color: #fff;
 }
+
