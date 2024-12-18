@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import styles from '../styles/wordSearch.module.css';
 
 const WordSearch = () => {
   const gridSize = 10;
 
-  // Initialize words once using useMemo
   const words = useMemo(() => ['JESUS', 'MOSES', 'NOAH', 'DAVID', 'SARAH', 'PETER', 'ELIJAH', 'BETHLEHEM'], []);
-
   const [grid, setGrid] = useState([]);
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
   const [message, setMessage] = useState('');
+  const [timer, setTimer] = useState(null);
 
-  // Function to initialize the grid with words
   const initializeGrid = useCallback(() => {
     const directions = [
-      { row: 0, col: 1 },   // Horizontal
-      { row: 1, col: 0 },   // Vertical
-      { row: 1, col: 1 },   // Diagonal down-right
-      { row: -1, col: 1 },  // Diagonal up-right
+      { row: 0, col: 1 },
+      { row: 1, col: 0 },
+      { row: 1, col: 1 },
+      { row: -1, col: 1 },
     ];
 
     let newGrid = Array.from({ length: gridSize }, () => Array(gridSize).fill(''));
@@ -77,34 +76,31 @@ const WordSearch = () => {
     initializeGrid();
   }, [initializeGrid]);
 
-  // Handle cell selection
   const handleCellClick = (row, col) => {
     const cell = { row, col };
     const alreadySelected = selectedCells.some(
       (selected) => selected.row === row && selected.col === col
     );
-  
+
     const newSelection = alreadySelected
       ? selectedCells.filter((selected) => !(selected.row === row && selected.col === col))
       : [...selectedCells, cell];
-  
+
     setSelectedCells(newSelection);
-  
+
     if (newSelection.length > 1) {
       const direction = calculateDirection(newSelection);
-  
+
       if (!direction) {
         setMessage('Invalid selection! Must be in a straight line.');
         setSelectedCells([]);
         return;
       }
-  
-      // Use natural selection order without sorting
+
       const selectedLetters = newSelection.map(({ row, col }) => grid[row][col]);
       const selectedWord = selectedLetters.join('');
       const reversedWord = [...selectedLetters].reverse().join('');
-  
-      // Check for the word or its reverse
+
       if (
         (words.includes(selectedWord) || words.includes(reversedWord)) &&
         !foundWords.includes(selectedWord) &&
@@ -112,23 +108,24 @@ const WordSearch = () => {
       ) {
         const finalWord = words.includes(selectedWord) ? selectedWord : reversedWord;
         setFoundWords([...foundWords, finalWord]);
-  
+
         const newHighlights = { ...highlightedCells };
         newHighlights[finalWord] = [...newSelection];
         setHighlightedCells(newHighlights);
-  
+
         setSelectedCells([]);
         setMessage(`Great job! You found ${finalWord}`);
+
+        // Set a timer to clear the message after 3 seconds
+        clearTimeout(timer);
+        setTimer(setTimeout(() => setMessage(''), 3000));
       } else if (selectedWord.length > 10) {
         setSelectedCells([]);
         setMessage('Keep searching!');
       }
     }
   };
-  
-  
 
-  // Check if selection is in a valid direction
   const calculateDirection = (cells) => {
     if (cells.length < 2) return null;
 
@@ -159,58 +156,54 @@ const WordSearch = () => {
   };
 
   return (
-    <div className={styles.wordSearchContainer}>
-      <div className={styles.sidebar}>
-        <div className={styles.wordList}>
-          <h3>Word List</h3>
-          <ul>
-            {words.map((word) => (
-              <li key={word} className={foundWords.includes(word) ? styles.found : ''}>
-                {word}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className={styles.gridContainer}>
-        <div className={styles.grid}>
-          {grid.map((row, rowIndex) => (
-            <div key={rowIndex} className={styles.row}>
-              {row.map((letter, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`${styles.cell} ${
-                    isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''
-                  } ${
-                    selectedCells.some(
-                      (cell) => cell.row === rowIndex && cell.col === colIndex
-                    )
-                      ? styles.selected
-                      : ''
-                  }`}
-                  onClick={() => handleCellClick(rowIndex, colIndex)}
-                >
-                  {letter}
-                </div>
+    <Container className={styles.wordSearchContainer}>
+      <Row>
+      <Col xs={12} sm={6} md={4} lg={3}>
+          <Card className="p-3" mb-5>
+            <h3>Word List</h3>
+            <ul style={{ listStyleType: 'none', textAlign: 'left' }}>
+              {words.map((word) => (
+                <li key={word} className={foundWords.includes(word) ? styles.found : ''}>
+                  {foundWords.includes(word) ? <s>{word}</s> : word}
+                </li>
               ))}
-            </div>
-          ))}
-        </div>
-        <div className={`${styles.message} ${message.includes('Great job!') ? styles.messageSuccess : ''}`}>
-          {message}
-        </div>
-      </div>
-      <div className={styles.sidebar}>
-        <div className={styles.foundWords}>
-          <h3>Found Words</h3>
-          <ul>
-            {foundWords.map((word) => (
-              <li key={word}>{word}</li>
+            </ul>
+          </Card>
+        </Col>
+        <Col md={9}>
+          <div className={styles.grid}>
+            {grid.map((row, rowIndex) => (
+              <div key={rowIndex} className={styles.row}>
+                {row.map((letter, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`${styles.cell} ${
+                      isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''
+                    } ${
+                      selectedCells.some(
+                        (cell) => cell.row === rowIndex && cell.col === colIndex
+                      )
+                        ? styles.selected
+                        : ''
+                    }`}
+                    onClick={() => handleCellClick(rowIndex, colIndex)}
+                  >
+                    {letter}
+                  </div>
+                ))}
+              </div>
             ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+          </div>
+          <div
+            className={`${styles.message} ${
+              message.includes('Great job!') ? styles.messageSuccess : ''
+            }`}
+          >
+            {message}
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
