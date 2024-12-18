@@ -42,26 +42,32 @@
   margin: 10px auto;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-  to {
-    opacity: 1;
+  50% {
+    transform: translateY(-10px);
   }
 }
 
-@media (max-width: 768px) {
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 576px) {
   .josephPuzzleGrid {
-    width: 90%; /* Adjust grid size for smaller screens */
-    height: auto;
+    max-width: 300px;
   }
+}
 
-  .josephPuzzlePiece {
-    border-radius: 5px; /* Optional: Rounded corners on smaller screens */
-  }
-
-  .gifOverlay img {
-    width: 150px; /* Adjust GIF size */
+@media (max-width: 600px) {
+  .josephPuzzleGrid {
+    max-width: 250px; /* Adjust grid size for smaller screens */
   }
 }
