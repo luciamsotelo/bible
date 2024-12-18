@@ -5,6 +5,8 @@
   width: 300px;
   height: 300px;
   margin: 0 auto;
+  border: 2px solid #000; /* Optional: Add a border around the grid */
+  background-color: #f5f5f5; /* Optional: Light background for better visibility */
 }
 
 .josephPuzzlePiece {
@@ -13,10 +15,25 @@
   background-repeat: no-repeat;
   background-size: cover;
   cursor: grab;
+  transition: border 0.3s ease, transform 0.2s ease; /* Add smooth animations for interactions */
+}
+
+.josephPuzzlePiece:active {
+  cursor: grabbing; /* Change cursor when dragging */
+  transform: scale(1.05); /* Slightly enlarge the piece when dragged */
+}
+
+.josephPuzzlePiece.valid-drop {
+  border: 2px dashed #33ff57; /* Highlight valid drop zones */
 }
 
 .congratulationsMessage {
   animation: fadeIn 2s;
+  color: purple;
+  font-size: 2rem;
+  text-shadow: 2px 2px 8px white;
+  font-family: "Allura", cursive;
+  font-weight: bold;
 }
 
 .gifOverlay img {
@@ -31,5 +48,20 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .josephPuzzleGrid {
+    width: 90%; /* Adjust grid size for smaller screens */
+    height: auto;
+  }
+
+  .josephPuzzlePiece {
+    border-radius: 5px; /* Optional: Rounded corners on smaller screens */
+  }
+
+  .gifOverlay img {
+    width: 150px; /* Adjust GIF size */
   }
 }

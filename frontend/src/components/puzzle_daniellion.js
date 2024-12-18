@@ -14,7 +14,6 @@ const shuffleArray = (array) => {
 const Puzzle = () => {
   const [pieces, setPieces] = useState(shuffleArray([...Array(9).keys()])); // 9 pieces for 3x3 grid
   const [completed, setCompleted] = useState(false);
-  const [setShowGif] = useState(false);
   const navigate = useNavigate();
 
   const handleDrop = (dragIndex, dropIndex) => {
@@ -27,11 +26,6 @@ const Puzzle = () => {
 
     if (newPieces.every((piece, index) => piece === index)) {
       setCompleted(true);
-      setShowGif(true);
-
-      setTimeout(() => {
-        setShowGif(false);
-      }, 3000);
     }
   };
 

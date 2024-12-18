@@ -14,7 +14,6 @@ const shuffleArray = (array) => {
 const Puzzle = () => {
   const [pieces, setPieces] = useState(shuffleArray([...Array(4).keys()])); // 4 pieces for 2x2 grid
   const [completed, setCompleted] = useState(false);
-  const [setShowGif] = useState(false);
   const navigate = useNavigate();
 
   const handleDrop = (dragIndex, dropIndex) => {
@@ -27,11 +26,9 @@ const Puzzle = () => {
 
     if (newPieces.every((piece, index) => piece === index)) {
       setCompleted(true);
-      setShowGif(true);
 
       // Hide GIF after 3 seconds
       setTimeout(() => {
-        setShowGif(false);
       }, 3000);
     }
   };

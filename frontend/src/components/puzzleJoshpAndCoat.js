@@ -18,7 +18,6 @@ const Puzzle = () => {
   const initialPieces = [...Array(GRID_SIZE * GRID_SIZE).keys()]; // Create array of grid pieces
   const [pieces, setPieces] = useState(shuffleArray([...initialPieces]));
   const [completed, setCompleted] = useState(false);
-  const [setShowGif] = useState(false);
   const navigate = useNavigate(); // React Router navigation hook
 
   const handleDrop = (dragIndex, dropIndex) => {
@@ -32,10 +31,6 @@ const Puzzle = () => {
     // Check if the puzzle is solved
     if (newPieces.every((piece, index) => piece === index)) {
       setCompleted(true);
-      setShowGif(true);
-
-      // Hide GIF after 3 seconds
-      setTimeout(() => setShowGif(false), 3000);
     }
   };
 

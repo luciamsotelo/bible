@@ -18,7 +18,6 @@ const MaryWithJesusPuzzle = () => {
 
   const [pieces, setPieces] = useState(shuffleArray([...Array(totalPieces).keys()]));
   const [completed, setCompleted] = useState(false);
-  const [setShowGif] = useState(false);
   const navigate = useNavigate();
 
   // Handle drag-and-drop events
@@ -33,8 +32,6 @@ const MaryWithJesusPuzzle = () => {
     // Check for completion
     if (newPieces.every((piece, index) => piece === index)) {
       setCompleted(true);
-      setShowGif(true);
-      setTimeout(() => setShowGif(false), 3000); // Hide GIF after 3 seconds
     }
   };
 
