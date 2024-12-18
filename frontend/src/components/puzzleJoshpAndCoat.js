@@ -18,7 +18,7 @@ const Puzzle = () => {
   const initialPieces = [...Array(GRID_SIZE * GRID_SIZE).keys()]; // Create array of grid pieces
   const [pieces, setPieces] = useState(shuffleArray([...initialPieces]));
   const [completed, setCompleted] = useState(false);
-  const [showGif, setShowGif] = useState(false);
+  const [setShowGif] = useState(false);
   const navigate = useNavigate(); // React Router navigation hook
 
   const handleDrop = (dragIndex, dropIndex) => {
@@ -67,12 +67,6 @@ const Puzzle = () => {
           🎉 Congratulations! You solved the puzzle! 🎉
         </h2>
       )}
-      {showGif && (
-        <div className={styles.gifOverlay}>
-          <img src="/images/goodjob.gif" alt="Good Job!" />
-        </div>
-      )}
-
       <Row className="justify-content-center align-items-center mt-4">
         <Col xs={12} sm={10} md={8} lg={6}>
           <div className={styles.josephPuzzleGrid}>

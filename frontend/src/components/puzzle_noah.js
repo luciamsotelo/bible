@@ -14,7 +14,7 @@ const shuffleArray = (array) => {
 const Puzzle = () => {
   const [pieces, setPieces] = useState(shuffleArray([...Array(4).keys()])); // 4 pieces for 2x2 grid
   const [completed, setCompleted] = useState(false);
-  const [showGif, setShowGif] = useState(false);
+  const [setShowGif] = useState(false);
   const navigate = useNavigate();
 
   const handleDrop = (dragIndex, dropIndex) => {
@@ -58,11 +58,6 @@ const Puzzle = () => {
         }}>
           🎉 Congratulations! You solved the puzzle! 🎉
         </h2>
-      )}
-      {showGif && (
-        <div className={styles.gifOverlay}>
-          <img src="/images/goodjob.gif" alt="Good Job!" />
-        </div>
       )}
       <Row className="justify-content-center align-items-center mt-4">
         <Col xs={12} sm={10} md={8} lg={6}>

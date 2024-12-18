@@ -57,12 +57,12 @@ const stories = [
     audioFile: '/songs/jonahAndTheBigFish.mp3',
   },
   {
-    title: "Moses and the Red Sea",
+    title: "Moses and the Parting of the Red Sea",
     frontImage: Moses,
     expandedImage: RedSea,
-    story: "A long time ago, the Israelites were slaves in Egypt. God sent Moses to lead them out of slavery. After many miracles and God's help, the Pharaoh finally let the Israelites go. But Pharaoh soon changed his mind and sent his army to chase after them. The Israelites were trapped by the Red Sea, and there was nowhere to go. But God told Moses to stretch out his staff over the water. When Moses did, God parted the Red Sea, and the Israelites walked through on dry ground. When the Egyptian army followed, the waters returned, and the army was swept away. The Israelites were free, and they praised God for His incredible power.",
-    lesson: "The lesson of the story is Trusting God for deliverance: God has the power to make a way when there seems to be no way.",
-    audioFile: '/songs/mosesRedSea.mp3',
+    story: "A long time ago, the Israelites were slaves in Egypt. God chose a man named Moses to lead them to freedom. Moses went to Pharaoh the king of Egypt and told him that God wanted him to let the Israelites go, but Pharaoh refused so God sent many plagues to Egypt to show his power and after the tenth plague Pharaoh finally agreed to let the Israelites leave. Moses led the Israelites out of Egypt but soon Pharaoh changed his mind and sent his army to chase them. The Israelites were trapped between the Red Sea and the Pharaoh's army and they were very scared. But Moses trusted God. God told Moses to lift his staff over the water and something amazing happened. The waters of the Red Sea parted making a dry path right through the middle. The Israelites walked across safely with walls of water on each side of them. Once they were on the other side Pharaoh's army tried to follow but when Moses lifted his staff again the sea came back together and the water covered the army. The Israelites were safe and they praised God for saving them.",
+    lesson: "The lesson of the story is to trust in God in difficult times. Moses and the Israelites trusted God even when they were afraid. This teaches us that God is always with us and will help us through any challenge if we trust in him.",
+    audioFile: '/songs/mosesAndThePartingSea.mp3',
   }
 ];
 
