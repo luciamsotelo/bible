@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from '../styles/wordSearch.module.css';
-import backgroundImg from '../../src/images/wordSearchBG.webp'
+import backgroundImg from '../../src/images/wordSearchBG.webp';
 
 const WordSearch = () => {
   const [level, setLevel] = useState(1);
@@ -11,34 +11,25 @@ const WordSearch = () => {
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
-  const [timer, setTimer] = useState(null); // Added timer state
-  const [message, setMessage] = useState(''); // Message state for encouragement
-  const [messageVisible, setMessageVisible] = useState(false); // State to control message visibility
+  const [timer, setTimer] = useState(null); // Timer for messages
+  const [message, setMessage] = useState(''); // Encouragement message
+  const [messageVisible, setMessageVisible] = useState(false); // Message visibility control
+
+  const maxLevel = 9; // Defined maximum level
 
   const words = useMemo(() => {
     const levelWords = [
       ['JESUS', 'NOAH'], // Level 1
-      ['MOSES', 'DAVID', 'SARAH'], // Level 2
+      ['MOSES', 'DAVID'], // Level 2
       ['PETER', 'ELIJAH', 'JUDAS'], // Level 3
-      ['BETHLEHEM', 'CAPERNAUM', 'JERUSALEM'], // Level 4
-      ['JACOB', 'ISAAC', 'ABRAHAM', 'DANIEL','JOHN'], // Level 5
-      ['MATHEW', 'MARK', 'LUKE', 'JOHN', 'ACTS'], // Level 6
-      ['GENESIS', 'EXODUS', 'LEVITUS', 'NUMBERS', 'DEUTERONOMY'], // Level 7
-      ['FAITH', 'LOVE', 'HOPE', 'JOY', 'PEACE', 'GRACE', 'TRUTH', 'MERCY'], // Level 8
-      ['RUTH', 'SUSAN', 'ESTHER'], // Level 9
-      ['ELIJAH', 'SAMSON', 'ELISHA'], // Level 10
-      ['ZEBULON', 'SIMEON', 'GAD'], // Level 11
-      ['JEREMIAH', 'ABIGAIL', 'PRISCILLA'], // Level 12
-      ['EZRA', 'NAOMI', 'RHODA'], // Level 13
-      ['JONI', 'ZEPHANIAH', 'DEUTERONOMY'], // Level 14
-      ['ABDIAS', 'LYDIA', 'HOSANNA'], // Level 15
-      ['HEZEKIAH', 'APHRAH', 'ELON'], // Level 16
-      ['ZECHARIAH', 'JONAS', 'LYSIAS'], // Level 17
-      ['AMMIEL', 'HAGGAI', 'CORINTH'], // Level 18
-      ['NAHUM', 'BARNABAS', 'JAPHETH'], // Level 19
-      ['MEHERSHALALHASHBAZ', 'TYRE', 'URIM'], // Level 20
+      ['BETHLEHEM', 'CAPERNAUM', 'JERUSALEM', 'GALILEE'], // Level 4
+      ['JACOB', 'ISAAC', 'ABRAHAM', 'DANIEL', 'JOHN'], // Level 5
+      ['MATHEW', 'MARK', 'LUKE', 'JOHN', 'ACTS', 'ROMANS'], // Level 6
+      ['GENESIS', 'EXODUS', 'LEVITICUS', 'NUMBERS'], // Level 7
+      ['FAITH', 'LOVE', 'HOPE', 'JOY', 'PEACE', 'GRACE'], // Level 8
+      ['RUTH', 'SARAH', 'ESTHER', 'MARY', 'EVE', 'REBEKAH', 'LEAH', 'HANNAH', 'JUDITH'], // Level 9
     ];
-    return levelWords[level - 1] || [];
+    return levelWords[level - 1] || []; // Fallback to an empty array if level is undefined
   }, [level]);
 
   const initializeGrid = useCallback(() => {
@@ -178,7 +169,7 @@ const WordSearch = () => {
   };
 
   const nextLevel = () => {
-    if (level < 100) {
+    if (level < maxLevel) {
       setLevel((prev) => prev + 1);
       setFoundWords([]);
       setHighlightedCells({});
@@ -195,6 +186,11 @@ const WordSearch = () => {
         backgroundPosition: 'center',
       }}
     >
+      {level === maxLevel && foundWords.length === words.length && (
+        <p className={styles.message} style={{ color: 'purple', fontSize: '3rem', fontFamily: 'allura', fontWeight: 'bold', background: 'transparent' }}>
+          Congratulations! You completed all levels!
+        </p>
+      )}
       <Row>
         <Col xs={12} sm={4}>
           <Card className="p-3 mb-3">
@@ -209,8 +205,14 @@ const WordSearch = () => {
             <h4>Score: {score}</h4>
             <h5>Level: {level}</h5>
             {messageVisible && <p className={styles.message}>{message}</p>}
+            {foundWords.length === words.length && (
+              <Button className="mt-3" onClick={nextLevel}>
+                Next Level
+              </Button>
+            )}
           </Card>
         </Col>
+
         <Col xs={12} sm={8}>
           <div className={styles.grid}>
             {grid.map((row, rowIndex) => (
@@ -235,11 +237,6 @@ const WordSearch = () => {
               </div>
             ))}
           </div>
-          {foundWords.length === words.length && (
-            <Button className="mt-3" onClick={nextLevel}>
-              Next Level
-            </Button>
-          )}
         </Col>
       </Row>
     </Container>
