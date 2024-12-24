@@ -7,7 +7,7 @@
   overflow: hidden;
   gap: 2px; /* Space between grid and sidebars */
   flex-wrap: wrap; /* Ensure responsiveness */
-  background: linear-gradient(135deg, #c3cfe2); /* Light gradient background */
+  background: linear-gradient(135deg, #c3cfe2); 
 }
 
 .messageSuccess {
