@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from '../styles/wordSearch.module.css';
+import backgroundImg from '../../src/images/wordSearchBG.webp'
 
 const WordSearch = () => {
   const [level, setLevel] = useState(1);
@@ -186,7 +187,14 @@ const WordSearch = () => {
   };
 
   return (
-    <Container className={styles.wordSearchContainer}>
+    <Container
+      className={styles.wordSearchContainer}
+      style={{
+        backgroundImage: `url(${backgroundImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <Row>
         <Col xs={12} sm={4}>
           <Card className="p-3 mb-3">
