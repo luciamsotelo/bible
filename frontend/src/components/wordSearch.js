@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from '../styles/wordSearch.module.css';
 import backgroundImg from '../../src/images/wordSearchBG.webp';
@@ -11,13 +11,13 @@ const WordSearch = () => {
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
-  const [timer, setTimer] = useState(null);
   const [message, setMessage] = useState('');
   const [messageVisible, setMessageVisible] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(60); // Timer for the current level
-  const [gameOverMessage, setGameOverMessage] = useState(''); // Display message when time is up
-  const [showPlayAgain, setShowPlayAgain] = useState(false); // Show "Play Again" button
+  const [timeLeft, setTimeLeft] = useState(60);
+  const [gameOverMessage, setGameOverMessage] = useState('');
+  const [showPlayAgain, setShowPlayAgain] = useState(false);
 
+  const timerRef = useRef(null);
   const maxLevel = 9;
 
   const words = useMemo(() => {
@@ -92,9 +92,27 @@ const WordSearch = () => {
     setGrid(newGrid);
   }, [words, gridSize]);
 
-  useEffect(() => {
-    initializeGrid();
-  }, [initializeGrid]);
+  const startTimer = useCallback(() => {
+    const initialTime = level <= 5 ? 60 : 120;
+    setTimeLeft(initialTime);
+
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+
+    timerRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev > 0) {
+          return prev - 1;
+        } else {
+          clearInterval(timerRef.current);
+          setGameOverMessage("Time's up.");
+          setShowPlayAgain(true);
+          return 0;
+        }
+      });
+    }, 1000);
+  }, [level]);
 
   const restartGame = useCallback(() => {
     setLevel(1);
@@ -105,27 +123,16 @@ const WordSearch = () => {
     setGameOverMessage('');
     setShowPlayAgain(false);
     initializeGrid();
-  }, [initializeGrid]);
+    startTimer();
+  }, [initializeGrid, startTimer]);
 
   useEffect(() => {
-    const initialTime = level <= 5 ? 60 : 120; // Set timer based on level
-    setTimeLeft(initialTime);
-
-    const timerInterval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev > 0) {
-          return prev - 1;
-        } else {
-          clearInterval(timerInterval);
-          setGameOverMessage("Time's up."); // Show game over message
-          setShowPlayAgain(true); // Show "Play Again" button
-          return 0;
-        }
-      });
-    }, 1000);
-
-    return () => clearInterval(timerInterval);
-  }, [level, restartGame]);
+    initializeGrid();
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [initializeGrid, startTimer]);
 
   const handleCellClick = (row, col) => {
     const cell = { row, col };
@@ -167,8 +174,7 @@ const WordSearch = () => {
 
         setMessage(`Great job! You found: ${finalWord}`);
         setMessageVisible(true);
-        clearTimeout(timer);
-        setTimer(setTimeout(() => setMessageVisible(false), 3000));
+        setTimeout(() => setMessageVisible(false), 3000);
       }
     }
   };
@@ -196,12 +202,6 @@ const WordSearch = () => {
     return { row: rowDiff, col: colDiff };
   };
 
-  const isCellHighlighted = (row, col) => {
-    return Object.values(highlightedCells).some((cells) =>
-      cells.some((cell) => cell.row === row && cell.col === col)
-    );
-  };
-
   const nextLevel = () => {
     if (level < maxLevel) {
       setLevel((prev) => prev + 1);
@@ -209,6 +209,12 @@ const WordSearch = () => {
       setHighlightedCells({});
       setSelectedCells([]);
     }
+  };
+
+  const isCellHighlighted = (row, col) => {
+    return Object.values(highlightedCells).some((cells) =>
+      cells.some((cell) => cell.row === row && cell.col === col)
+    );
   };
 
   return (
