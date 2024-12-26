@@ -6,16 +6,19 @@ import backgroundImg from '../../src/images/wordSearchBG.webp';
 const WordSearch = () => {
   const [level, setLevel] = useState(1);
   const [score, setScore] = useState(0);
-  const [gridSize] = useState(10); // Set a constant grid size
+  const [gridSize] = useState(10);
   const [grid, setGrid] = useState([]);
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
-  const [timer, setTimer] = useState(null); // Timer for messages
-  const [message, setMessage] = useState(''); // Encouragement message
-  const [messageVisible, setMessageVisible] = useState(false); // Message visibility control
+  const [timer, setTimer] = useState(null);
+  const [message, setMessage] = useState('');
+  const [messageVisible, setMessageVisible] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(60); // Timer for the current level
+  const [gameOverMessage, setGameOverMessage] = useState(''); // Display message when time is up
+  const [showPlayAgain, setShowPlayAgain] = useState(false); // Show "Play Again" button
 
-  const maxLevel = 9; // Defined maximum level
+  const maxLevel = 9;
 
   const words = useMemo(() => {
     const levelWords = [
@@ -29,7 +32,7 @@ const WordSearch = () => {
       ['FAITH', 'LOVE', 'HOPE', 'JOY', 'PEACE', 'GRACE'], // Level 8
       ['RUTH', 'SARAH', 'ESTHER', 'MARY', 'EVE', 'REBEKAH', 'LEAH', 'HANNAH', 'JUDITH'], // Level 9
     ];
-    return levelWords[level - 1] || []; // Fallback to an empty array if level is undefined
+    return levelWords[level - 1] || [];
   }, [level]);
 
   const initializeGrid = useCallback(() => {
@@ -92,6 +95,37 @@ const WordSearch = () => {
   useEffect(() => {
     initializeGrid();
   }, [initializeGrid]);
+
+  const restartGame = useCallback(() => {
+    setLevel(1);
+    setScore(0);
+    setFoundWords([]);
+    setHighlightedCells({});
+    setSelectedCells([]);
+    setGameOverMessage('');
+    setShowPlayAgain(false);
+    initializeGrid();
+  }, [initializeGrid]);
+
+  useEffect(() => {
+    const initialTime = level <= 5 ? 60 : 120; // Set timer based on level
+    setTimeLeft(initialTime);
+
+    const timerInterval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev > 0) {
+          return prev - 1;
+        } else {
+          clearInterval(timerInterval);
+          setGameOverMessage("Time's up."); // Show game over message
+          setShowPlayAgain(true); // Show "Play Again" button
+          return 0;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timerInterval);
+  }, [level, restartGame]);
 
   const handleCellClick = (row, col) => {
     const cell = { row, col };
@@ -186,10 +220,17 @@ const WordSearch = () => {
         backgroundPosition: 'center',
       }}
     >
-      {level === maxLevel && foundWords.length === words.length && (
-        <p className={styles.message} style={{ color: 'purple', fontSize: '3rem', fontFamily: 'allura', fontWeight: 'bold', background: 'transparent' }}>
-          Congratulations! You completed all levels!
-        </p>
+      {gameOverMessage && (
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <p className={styles.message} style={{ color: 'red', fontSize: '2rem' }}>
+            {gameOverMessage}
+          </p>
+          {showPlayAgain && (
+            <Button onClick={restartGame} variant="primary">
+              Play Again
+            </Button>
+          )}
+        </div>
       )}
       <Row>
         <Col xs={12} sm={4}>
@@ -204,6 +245,7 @@ const WordSearch = () => {
             </ul>
             <h4>Score: {score}</h4>
             <h5>Level: {level}</h5>
+            <h5>Time Left: {timeLeft}s</h5>
             {messageVisible && <p className={styles.message}>{message}</p>}
             {foundWords.length === words.length && (
               <Button className="mt-3" onClick={nextLevel}>
