@@ -3,8 +3,12 @@
     justify-content: center;
     align-items: center;
     outline: none;
-    gap: 5px;
+    gap: 0px;
     position: relative;
+    background-image: url('../images/maze-background.webp');
+    background-size: cover;
+    background-position: center;
+
   }
   
   .maze-row {
@@ -20,16 +24,23 @@
   
   
   .maze-cell.player {
-    background-color: lightblue;
+    background-image: url('../images/player-sprite.webp');
+    background-size: cover;
+    background-position: center;
   }
   
   .maze-cell.goal {
-    background-color: lightgreen;
+    background-image: url('../images/goal-sprite.png');
+    background-size: cover;
+    background-position: center;
   }
   
   .maze-cell.obstacle {
-    background-color: gray;
+    background-image: url('../images/obstacle-sprite.webp');
+    background-size: cover;
+    background-position: center;
   }
+  
   
   .victory-message {
     text-align: center;
@@ -58,4 +69,5 @@
   p {
     text-align: center;
   }
+  
   
