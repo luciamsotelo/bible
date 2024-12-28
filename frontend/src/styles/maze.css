@@ -33,6 +33,8 @@
     background-image: url('../images/goal-sprite.png');
     background-size: cover;
     background-position: center;
+    border-color: rgb(243, 12, 50);
+    border-radius: 20%;
   }
   
   .maze-cell.obstacle {
