@@ -169,7 +169,7 @@ const Hangman = () => {
 
   return (
     <div className="hangman-container">
-      <h1>Hangman: Biblical Edition</h1>
+      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'60px'}}>Hangman: Biblical Edition</h1>
 
       {/* Current Difficulty */}
       <div className="difficulty-info">
