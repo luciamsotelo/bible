@@ -113,7 +113,7 @@ export const BibleStories = () => {
           {stories.map((story, index) => (
             <Col key={index} md={4}>
               <Card className="story-card mb-4">
-                <Card.Img variant="top" src={story.frontImage} alt={story.title} />
+                <Card.Img variant="top" className='img-fluid rounded-pill' src={story.frontImage} alt={story.title} />
                 <Card.Body style={{ textAlign: 'center' }}>
                   <Card.Title style={{ fontFamily: 'quicksand' }}>{story.title}</Card.Title>
                   <Button onClick={() => toggleStory(index)}>Learn More</Button>
@@ -137,10 +137,10 @@ export const BibleStories = () => {
           <img
             src={stories[expandedStory].expandedImage}
             alt={stories[expandedStory].title}
-            className="img-fluid my-3"
+            className="img-fluid rounded-pill border border-success shadow-lg my-3"
           />
-          <p>{stories[expandedStory].story}</p>
-          <p><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
+          <p className='bg-dark rounded p-3 text-white'>{stories[expandedStory].story}</p>
+          <p className='bg-warning rounded-pill p-5 text-black'><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
         </div>
       )}
     </div>
