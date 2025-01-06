@@ -1,75 +1,64 @@
 .maze-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    gap: 0px;
-    position: relative;
-    background-image: url('../images/maze-background.webp');
-    background-size: cover;
-    background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the grid horizontally */
+  justify-content: center; /* Centers the grid vertically */
+  outline: none;
+  gap: 10px; /* Adds spacing between elements like the grid and buttons */
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh; /* Ensures the container spans the full height of the viewport */
+}
 
-  }
-  
-  .maze-row {
-    display: flex;
-  }
-  
-  .maze-cell {
-    width: 25px; 
-    height: 25px; 
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
-  
-  
-  .maze-cell.player {
-    background-image: url('../images/player-sprite.webp');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .maze-cell.goal {
-    background-image: url('../images/goal-sprite.png');
-    background-size: cover;
-    background-position: center;
-    border-color: rgb(243, 12, 50);
-    border-radius: 20%;
-  }
-  
-  .maze-cell.obstacle {
-    background-image: url('../images/obstacle-sprite.webp');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  
-  .victory-message {
-    text-align: center;
-    margin-top: 20px;
-    color: darkgreen;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: darkgreen;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: green;
-  }
+.maze-row {
+  display: flex;
+}
 
-  h1 {
-    text-align: center;
-  }
+.maze-cell {
+  width: 25px; 
+  height: 25px; 
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
 
-  p {
-    text-align: center;
-  }
-  
-  
+.maze-cell.player {
+  background-image: url('../images/player-sprite.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.maze-cell.goal {
+  background-image: url('../images/goal-sprite.png');
+  background-size: cover;
+  background-position: center;
+  border-color: rgb(243, 12, 50);
+  border-radius: 20%;
+}
+
+.maze-cell.obstacle {
+  background-image: url('../images/obstacle-sprite.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.victory-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: goldenrod;
+}
+
+
+button:hover {
+  background-color: green;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}

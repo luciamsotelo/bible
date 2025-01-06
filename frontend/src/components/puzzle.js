@@ -21,7 +21,7 @@ const BiblePuzzleCards = () => {
 
   return (
     <Container className="mt-5 mb-5">
-      <Button variant="primary" className="mb-3" style={{float: "right", fontFamily: "quicksand"}} onClick={() => navigate('/games')}>Back Main Game Page</Button>
+      <Button variant="primary" className="mb-3" style={{float: "right", fontFamily: "quicksand"}} onClick={() => navigate('/games')}>Back To Main Game Page</Button>
       <h1 className="text-center mb-4" style={{  color: "goldenrod",
           textShadow: "2px 2px 8px black",
           fontFamily: "Allura",
