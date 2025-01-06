@@ -11,7 +11,7 @@ const home_page = () => {
         <Header />
         <MemoryVerse/>
         <div className="text-center" >
-          <Image className='rounded' src={biblePicture} alt="Bible" fluid style={{height: "50vh", marginBottom:'13vh'}} />
+          <Image className='rounded' src={biblePicture} alt="Bible" fluid style={{height: "50vh", marginBottom:'18vh'}} />
         </div>
         
         <Footer />

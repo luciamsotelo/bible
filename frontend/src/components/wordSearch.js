@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from '../styles/wordSearch.module.css';
-import backgroundImg from '../../src/images/wordSearchBG.webp';
+import { useNavigate } from 'react-router-dom'; // To handle navigation
+
+
 
 const WordSearch = () => {
   const [level, setLevel] = useState(1);
@@ -16,6 +18,8 @@ const WordSearch = () => {
   const [timeLeft, setTimeLeft] = useState(60);
   const [gameOverMessage, setGameOverMessage] = useState('');
   const [showPlayAgain, setShowPlayAgain] = useState(false);
+
+  const navigate = useNavigate();
 
   const timerRef = useRef(null);
   const maxLevel = 9;
@@ -218,14 +222,14 @@ const WordSearch = () => {
   };
 
   return (
-    <Container
-      className={styles.wordSearchContainer}
-      style={{
-        backgroundImage: `url(${backgroundImg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <Container className="mt-5 mb-5">
+      <Button variant="primary" className="mb-3" style={{ float: 'right', fontFamily: 'Quicksand', fontWeight: 'bold'}} onClick={() => navigate('/games')}>Back Main Game Page</Button>
+            <h1 className="text-center mb-4" style={{  color: "goldenrod",
+                textShadow: "2px 2px 8px black",
+                fontFamily: "Allura",
+                fontSize: "3rem",
+                fontWeight: "bold",}}>Bible Word Search</h1>
+                <p className="text-center" style ={{ fontSize: "2rem",  color: "purple", fontFamily: "Quicksand"}}>Find the words before time runs out</p>
       {gameOverMessage && (
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           <p className={styles.message} style={{ color: 'red', fontSize: '2rem' }}>
@@ -252,13 +256,14 @@ const WordSearch = () => {
             <h4>Score: {score}</h4>
             <h5>Level: {level}</h5>
             <h5>Time Left: {timeLeft}s</h5>
-            {messageVisible && <p className={styles.message}>{message}</p>}
+            
             {foundWords.length === words.length && (
               <Button className="mt-3" onClick={nextLevel}>
                 Next Level
               </Button>
             )}
           </Card>
+          {messageVisible && <p className={styles.message}>{message}</p>}
         </Col>
 
         <Col xs={12} sm={8}>

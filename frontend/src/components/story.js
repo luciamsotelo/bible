@@ -33,7 +33,7 @@ const stories = [
     audioFile: '/songs/NohasArk.mp3',
   },
   {
-    title: "David and Goliath",
+    title: "David & Goliath",
     frontImage: David,
     expandedImage: Goliath,
     story: "In ancient Israel, there was a great war between the Israelites and the Philistines. The Philistines had a giant warrior named Goliath, who was over nine feet tall. Every day, Goliath challenged the Israelites to send out a champion to fight him, but the Israelites were terrified of him. One day, a young shepherd named David came to the battlefield to bring food to his brothers. When he heard Goliath's taunts, he was outraged that no one would stand up to the giant. David believed that God would protect him, so he volunteered to fight Goliath. King Saul was hesitant but eventually agreed, giving David his armor, which was too heavy for him. Instead, David chose to face Goliath with only his sling and five smooth stones. When Goliath saw David, he laughed and mocked him, but David declared that he came in the name of the Lord. David slung a stone with great skill, hitting Goliath in the forehead. The giant fell to the ground, defeated. David then took Goliath's sword and held it high, showing everyone that the Israelites had won a great victory. David's faith in God and courage to face the giant became legendary.",
@@ -57,7 +57,7 @@ const stories = [
     audioFile: '/songs/jonahAndTheBigFish.mp3',
   },
   {
-    title: "Moses and the Parting of the Red Sea",
+    title: "Moses and the Red Sea",
     frontImage: Moses,
     expandedImage: RedSea,
     story: "A long time ago, the Israelites were slaves in Egypt. God chose a man named Moses to lead them to freedom. Moses went to Pharaoh the king of Egypt and told him that God wanted him to let the Israelites go, but Pharaoh refused so God sent many plagues to Egypt to show his power and after the tenth plague Pharaoh finally agreed to let the Israelites leave. Moses led the Israelites out of Egypt but soon Pharaoh changed his mind and sent his army to chase them. The Israelites were trapped between the Red Sea and the Pharaoh's army and they were very scared. But Moses trusted God. God told Moses to lift his staff over the water and something amazing happened. The waters of the Red Sea parted making a dry path right through the middle. The Israelites walked across safely with walls of water on each side of them. Once they were on the other side Pharaoh's army tried to follow but when Moses lifted his staff again the sea came back together and the water covered the army. The Israelites were safe and they praised God for saving them.",
@@ -107,7 +107,7 @@ export const BibleStories = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center" style={{ fontFamily: 'quicksand' }}>Bible Stories</h1>
+      <h2 className="text-center" style={{ fontFamily: 'quicksand', fontWeight: 'bold', color: 'goldenrod' }}>Bible Stories</h2>
       {expandedStory === null ? (
         <Row>
           {stories.map((story, index) => (
@@ -124,7 +124,7 @@ export const BibleStories = () => {
         </Row>
       ) : (
         <div className="expanded-story text-center">
-          <h2>{stories[expandedStory].title}</h2>
+          <h1 style={{ fontFamily: 'sacramento', fontSize: '3rem', color: 'blue' }}>{stories[expandedStory].title}</h1>
           <div className="audio-controls" style={{ display: 'flex', justifyContent: 'center' }}>
             <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
             <Button 
@@ -137,7 +137,7 @@ export const BibleStories = () => {
           <img
             src={stories[expandedStory].expandedImage}
             alt={stories[expandedStory].title}
-            className="img-fluid rounded-pill border border-success shadow-lg my-3"
+            className="img-fluid rounded border border-success shadow-lg my-3"
           />
           <p className='bg-dark rounded p-3 text-white'>{stories[expandedStory].story}</p>
           <p className='bg-warning rounded-pill p-5 text-black'><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>

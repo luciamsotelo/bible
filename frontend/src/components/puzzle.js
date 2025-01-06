@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // To handle navigation
 
 const BiblePuzzleCards = () => {
@@ -21,10 +21,11 @@ const BiblePuzzleCards = () => {
 
   return (
     <Container className="mt-5 mb-5">
-      <h1 className="text-center mb-4" style={{  color: "purple",
-          textShadow: "2px 2px 8px white",
+      <Button variant="primary" className="mb-3" style={{float: "right", fontFamily: "quicksand"}} onClick={() => navigate('/games')}>Back Main Game Page</Button>
+      <h1 className="text-center mb-4" style={{  color: "goldenrod",
+          textShadow: "2px 2px 8px black",
           fontFamily: "Allura",
-          fontSize: "5rem",
+          fontSize: "3rem",
           fontWeight: "bold",}}>Bible Story Puzzles</h1>
           <p className="text-center" style ={{ fontSize: "2rem",  color: "purple", fontFamily: "Quicksand"}}>Select The Puzzle You Want To solve</p>
       <Row xs={1} sm={2} md={3} className="g-4">

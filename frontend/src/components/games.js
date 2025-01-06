@@ -21,6 +21,7 @@ const GameCards = () => {
 
   return (
     <Container className="mt-5">
+      <h1 className="text-center mb-4" style={{ color: "purple", textShadow: "2px 2px 8px white", fontFamily: "quicksand", fontSize: "3rem", fontWeight: "bold", }}> Games</h1>
       <Row xs={1} md={2} lg={3} className="g-4">
         {games.map((game, index) => (
           <Col key={index}>
