@@ -1,14 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import '../styles/footer.css'
 
 const Footer = () => {
     return (
-    <footer className="fixed-bottom bg-gradient text-dark text-center text-lg-start mt-auto">
-      <Container className="p-0">
+    <footer className="fixed-bottom background-bottom text-dark text-center text-lg-start mt-auto">
+      <Container className="p-1">
         <Row className="align-items-center">
           <Col xs={12} sm={12} md={6} lg={6} className="">
-            <p className="" style={{ color: "#751B07" }}>
+            <p className="" style={{ color: "white" }}>
               We provide engaging activities, stories and fun that bring
               biblical characters to life. Join us on this adventure!
             </p>
