@@ -78,3 +78,7 @@ body {
 .flip-card-back {
   transform: rotateY(180deg);
 }
+
+.story-box {
+  background: linear-gradient(135deg, #c2afd7, #bc6edb, #b8782a);
+}

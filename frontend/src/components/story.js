@@ -41,7 +41,7 @@ const stories = [
     audioFile: '/songs/davidAndGoliath.mp3',
   },
   {
-    title: "Daniel and the Lion's Den",
+    title: "Daniel & the Lion's Den",
     frontImage: Daniel,
     expandedImage: Lion,
     story: "A long time ago, there was a kind man named Daniel who loved God very much. Daniel was a good worker, and he helped the king make decisions. Everyone liked Daniel, but some people were jealous of him. They wanted to get rid of him, so they tricked the king into making a new law. This law said that no one could pray to anyone except the king for thirty days. Daniel knew this law was wrong, but he loved God and wanted to keep praying to Him. So, Daniel continued to pray three times a day, just as he always did. The jealous men saw him and rushed to tell the king. The king was sad because he liked Daniel, but he had to follow his own law. They threw Daniel into a den full of hungry lions as a punishment. But Daniel wasn’t scared because he trusted God. That night, while Daniel was in the den, God sent an angel to close the lions' mouths so they wouldn’t hurt him. The next morning, the king came to see if Daniel was okay. When he called out, Daniel answered happily, saying that God had protected him. The king was overjoyed! He ordered Daniel to be lifted out of the den, and he declared that everyone should respect Daniel’s God. Daniel’s bravery and faith showed everyone that God is always there to help us.",
@@ -139,8 +139,8 @@ export const BibleStories = () => {
             alt={stories[expandedStory].title}
             className="img-fluid rounded border border-success shadow-lg my-3"
           />
-          <p className='bg-dark rounded p-3 text-white'>{stories[expandedStory].story}</p>
-          <p className='bg-warning rounded-pill p-5 text-black'><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
+          <p className='story-box p-3' style={{textAlign:'justify'}}>{stories[expandedStory].story}</p>
+          <p className='bg-info rounded-pill p-5 text-dark'><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
         </div>
       )}
     </div>
