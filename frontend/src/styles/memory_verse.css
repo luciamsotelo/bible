@@ -5,6 +5,7 @@
   padding: 20px;
   text-align: center;
   margin: 20px;
+  transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .memory-verse-container h2 {
@@ -18,4 +19,18 @@
   font-size: 1.5rem;
   font-family: 'Georgia', serif;
   color: #555;
+  transition: color 0.5s ease;
+}
+
+.memory-verse-container p.flash {
+  animation: font-flash 1s ease-in-out 3;
+}
+
+@keyframes font-flash {
+  0%, 100% {
+    color: #555;
+  }
+  50% {
+    color: rgb(255, 97, 5);
+  }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../styles/memory_verse.css';
 
 
@@ -49,13 +49,28 @@ const getDayOfYear = () => {
 };
 
 const MemoryVerse = () => {
-  // Calculate index based on the current day of the year
+  const verseRef = useRef(null); // Initialize verseRef using useRef
+
+  useEffect(() => {
+    const element = verseRef.current;
+    if (element) {
+      const startAnimation = setTimeout(() => {
+        element.classList.add('flash');
+        const stopAnimation = setTimeout(() => {
+          element.classList.remove('flash');
+        }, 3000); // Duration of the flash animation
+        return () => clearTimeout(stopAnimation);
+      }, 1000); // Delay before animation starts
+      return () => clearTimeout(startAnimation);
+    }
+  }, []);
+
   const verseIndex = getDayOfYear() % memoryVerses.length;
 
   return (
     <div className="memory-verse-container">
       <h2>Today's Memory Verse</h2>
-      <p>{memoryVerses[verseIndex]}</p>
+      <p ref={verseRef}>{memoryVerses[verseIndex]}</p>
     </div>
   );
 };
