@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/create_story.css';
 
+
+
 const CreateStory = () => {
     const [story, setStory] = useState("Welcome to your adventure! Let's pick a path to start.");
     const [choices, setChoices] = useState([]);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [hasStarted, setHasStarted] = useState(false);
 
+    
     // Start the adventure when the component first loads
     const startJourney = () => {
         updateStory(
@@ -210,13 +213,14 @@ const CreateStory = () => {
                                 startJourney();
                             }}
                         >
-                            Start Reading Story
+                            Eli's Journey
                         </Button>
                     ) : (
-                        <>
+                        <div className="story-container">
                             <p>{story}</p>
                             {choices.map((choice, index) => (
-                                <Button className="choice-button"
+                                <Button
+                                    className="choice-button"
                                     key={index}
                                     onClick={() => {
                                         stopSpeaking();
@@ -228,12 +232,28 @@ const CreateStory = () => {
                                 </Button>
                             ))}
                             <Button variant="danger" onClick={stopSpeaking}>Stop Speaking</Button>
-                        </>
+
+                            <Button
+  variant="primary"
+  className="mb-3"
+  style={{ float: "right", fontFamily: "quicksand" }}
+  onClick={() => {
+    setStory("Welcome to your adventure! Let's pick a path to start.");
+    setChoices([]);
+    setHasStarted(false);
+    stopSpeaking(); // Stop any ongoing narration
+  }}
+>
+  Start Again
+</Button>
+
+                        </div>
                     )}
                 </Col>
             </Row>
         </Container>
     );
+    
 };
 
 export default CreateStory;

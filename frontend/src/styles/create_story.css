@@ -24,3 +24,18 @@
   font-size: 16px;
   transition: background-color 0.2s ease;
 }
+
+.story-container {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto; /* Adds vertical scrolling if content overflows */
+  padding: 1rem;
+  border: 1px solid #ccc; /* Optional: add a border for better visual distinction */
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9); /* Optional: slightly opaque background */
+}
+
+@media (max-width: 576px) { /* Target small screens */
+  .story-container {
+      max-height: 200px; /* Adjust for smaller screen real estate */
+  }
+}
