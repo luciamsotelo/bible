@@ -1,0 +1,33 @@
+{
+    "start": "step1",
+    "steps": {
+      "step1": {
+        "title": "Eli's Adventure Begins",
+        "description": "Eli stood in front of the big, green valley. The light that everyone talked about was shining in the distance, and Eli wanted to find it. Eli’s mom had said, “God will always show you the way, just trust Him.” But there were many paths in the valley, and Eli wasn’t sure which one to take.",
+        "images": [
+          { "src": "/images/step1-1.webp", "duration": 10500 },
+          { "src": "/images/step1-2.webp", "duration": 7000 },
+          { "src": "/images/step1-3.webp", "duration": 6000 }
+        ],
+        "audio": "/audio/step1-1.mp3",
+        "choices": [
+          { "text": "Take the Rocky Path", "nextStep": "step2" },
+          { "text": "Take the Easy Path", "nextStep": "step3" }
+        ]
+      },
+      "step2": {
+        "title": "The Rocky Path",
+        "description": "Eli chooses the rocky path. It’s tough but rewarding.",
+        "images": [
+          { "src": "/images/step2-1.jpg", "duration": 4000 },
+          { "src": "/images/step2-2.jpg", "duration": 2500 }
+        ],
+        "audio": "/audio/step2.mp3",
+        "choices": [
+          { "text": "Keep Walking", "nextStep": "step4" },
+          { "text": "Drink from the Pond", "nextStep": "step5" }
+        ]
+      }
+    }
+  }
+  

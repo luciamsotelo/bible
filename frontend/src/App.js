@@ -24,6 +24,7 @@ import MaryWithJesus from './pages/maryWithJesusPage'
 import MosesPartSea from './pages/mosesPaartingSeaPage';
 import GardenOfEden from './pages/gardenOfEdenPage'
 import BackgroundVideo from './components/BackgroundVideo';
+import CarvePath from './components/carvePath'
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
             <Route path="/dress-up" element={<CharacterDressUp />} />
             <Route path="/adventure-map" element={<AdventureMap />} />
             <Route path="/create-story" element={<CreateStory />} />
+            <Route path='/carve-path' element={<CarvePath />} />
             <Route path="/bio" element={<BioPage />} />
             <Route path="/games/puzzle" element={<Puzzle />} />
             <Route path="/puzzles/noah-ark" element={<PuzzleArk />} />
