@@ -1,33 +1,81 @@
 {
-    "start": "step1",
-    "steps": {
-      "step1": {
-        "title": "Eli's Adventure Begins",
-        "description": "Eli stood in front of the big, green valley. The light that everyone talked about was shining in the distance, and Eli wanted to find it. Eli’s mom had said, “God will always show you the way, just trust Him.” But there were many paths in the valley, and Eli wasn’t sure which one to take.",
-        "images": [
-          { "src": "/images/step1-1.webp", "duration": 10500 },
-          { "src": "/images/step1-2.webp", "duration": 7000 },
-          { "src": "/images/step1-3.webp", "duration": 6000 }
-        ],
-        "audio": "/audio/step1-1.mp3",
-        "choices": [
-          { "text": "Take the Rocky Path", "nextStep": "step2" },
-          { "text": "Take the Easy Path", "nextStep": "step3" }
-        ]
-      },
-      "step2": {
-        "title": "The Rocky Path",
-        "description": "Eli chooses the rocky path. It’s tough but rewarding.",
-        "images": [
-          { "src": "/images/step2-1.jpg", "duration": 4000 },
-          { "src": "/images/step2-2.jpg", "duration": 2500 }
-        ],
-        "audio": "/audio/step2.mp3",
-        "choices": [
-          { "text": "Keep Walking", "nextStep": "step4" },
-          { "text": "Drink from the Pond", "nextStep": "step5" }
-        ]
-      }
+  "start": "step1",
+  "steps": {
+    "step1": {
+      "title": "Eli's Adventure Begins",
+      "description": "Eli stood in front of the big, green valley. The light that everyone talked about was shining in the distance, and Eli wanted to find it. Eli’s mom had said, “God will always show you the way, just trust Him.” But there were many paths in the valley, and Eli wasn’t sure which one to take.",
+      "images": [
+        { "src": "/images/step1-1.webp", "duration": 10500 },
+        { "src": "/images/step1-2.webp", "duration": 7000 },
+        { "src": "/images/step1-3.webp", "duration": 6000 }
+      ],
+      "audio": "/audio/step1-1.mp3",
+      "choices": [
+        { "text": "Take the Rocky Path", "nextStep": "step2" },
+        { "text": "Take the Easy Path", "nextStep": "step3" }
+      ]
+    },
+    "step2": {
+      "title": "The Rocky Path",
+      "description": "Eli begins walking on the rocky path. It’s not easy, but Eli is brave. After a while, he comes across a deep, still pond. A voice comes from the pond saying, 'Drink some water from me, and you’ll feel better.'",
+      "images": [
+        { "src": "/images/step2-1.webp", "duration": 10000 },
+        { "src": "/images/step2-2.webp", "duration": 4000 },
+        { "src": "/images/step2-3.webp", "duration": 4000 }
+      ],
+      "audio": "/audio/step2-1.mp3",
+      "choices": [
+        { "text": "Keep Walking", "nextStep": "step4" },
+        { "text": "Drink from the Pond", "nextStep": "step5" }
+      ]
+    },
+    "step3": {
+      "title": "The Easy Path",
+      "description": "Eli walks along the wide, easy path. Soon, he meets some friendly people sitting by the road. They offer him some cookies and say, 'Come sit with us and rest for a while.'",
+      "images": [
+        { "src": "/images/step3-1.webp", "duration": 9000 },
+        { "src": "/images/step3-2.webp", "duration": 6000 }
+      ],
+      "audio": "/audio/step3-1.mp3",
+      "choices": [
+        { "text": "Stay and Rest", "nextStep": "step6" },
+        { "text": "Keep Walking", "nextStep": "step7" }
+      ]
+    },
+    "step4": {
+      "title": "Trusting God",
+      "description": "Eli continues along the rocky path and does not stop for a drink, trusting God to help him. After overcoming the tough parts, Eli finds the light, learning that trusting God is always the best choice, even when things are hard.",
+      "images": [
+        { "src": "/images/step4-1.webp", "duration": 10000 },
+        { "src": "/images/step4-2.webp", "duration": 7000 }
+      ],
+      "audio": "/audio/step4-1.mp3",
+      "choices": []
+    },
+    "step5": {
+      "title": "A Sleepy Mistake",
+      "description": "Eli drinks from the pond, but it’s not the right choice, and he feels sleepy and lost. After praying and asking God for help, he finds his way again, learning that the right path might be harder, but it always leads to something good.",
+      "images": [{ "src": "/images/step5.jpg", "duration": 5000 }],
+      "audio": "/audio/step5.mp3",
+      "choices": []
+    },
+    "step6": {
+      "title": "Losing Focus",
+      "description": "Eli rests with the people and forgets his adventure for a while. When he gets up to keep going, he realizes he’s farther away from the light. But he learns that God is always there to guide him back on the right path.",
+      "images": [
+        { "src": "/images/step6-1.webp", "duration": 9000 },
+        { "src": "/images/step6-2.webp", "duration": 5000 },
+        { "src": "/images/step6-3.webp", "duration": 3000 }
+      ],
+      "audio": "/audio/step6-1.mp3",
+      "choices": []
+    },
+    "step7": {
+      "title": "Staying Focused",
+      "description": "Eli chooses to keep walking instead of resting with the people. He eventually finds the shining light, which shows him God's wisdom and peace.",
+      "images": [{ "src": "/images/step7.jpg", "duration": 5000 }],
+      "audio": "/audio/step7.mp3",
+      "choices": []
     }
   }
-  
+}
