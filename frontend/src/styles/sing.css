@@ -4,7 +4,7 @@
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 0.5s ease-in-out;
-  height: 100vh;
+  height: 45vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,23 +19,18 @@
 }
 
 .lyrics-container {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  background-color: black;
-  font-size: 2rem; /* Increase font size */
-  color: white;
-  position: absolute;
-  bottom: 10px;
+  border: 3px solid #716c6c;
+  border-radius: 10px;
+  margin: 10px auto;
+  padding: .5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem; /* Increase font size */
+  position: relative;
+  bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 100%;
   text-align: center;
-}
-
-.highlighted {
-  color: white;
-  font-weight: bold;
-  position: relative;
 }
 
 .highlighted::before {
@@ -52,5 +47,22 @@
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 576px) {
+  .karaoke-container {
+    height: 40vh; /* Reduce height on smaller screens */
+    padding-top: 1rem; /* Adjust padding */
+  }
+
+  .play-button-container {
+    bottom: 80px; /* Bring button closer to the image */
+  }
+
+  .lyrics-container {
+    bottom: 20px; /* Move lyrics closer to the button */
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
   }
 }

@@ -40,42 +40,39 @@ const Sing = ({ songData }) => {
   return (
     <div>
       <Button
-  className="w-100 mx-auto d-block play-button-container mb-3"
-  variant="success"
-  onClick={handlePlayPause}
-  size="lg"
-  style={{
-    zIndex: 1,
-    position: 'relative',
-    bottom: '20px',
-  }}
->
-  Play
-</Button>
+        className="w-100 mx-auto d-block play-button-container mb-3"
+        variant="success"
+        onClick={handlePlayPause}
+        size="lg"
+        style={{
+          zIndex: 1,
+          position: 'relative',
+          bottom: '20px',
+        }}
+      >
+        {isPlaying ? 'Pause' : 'Play'}
+      </Button>
 
-    <Container
-      className="karaoke-container"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '100vh',
-        padding: '2rem',
-      }}
-    >
-      <Row className="justify-content-center">
-        <Col xs={12} md={8} lg={6} className="text-center">
-          <h1 className="mb-4 text-white">{songData.title}</h1>
-          <div className="play-button-container mb-4">
-            
-          </div>
-          <div className="lyrics-container">
-            <p className="highlighted text-white">{songData.lyrics[currentLine]?.text}</p>
-          </div>
-        </Col>
-      </Row>
-      <audio ref={audioRef} src={songData.audio} />
-    </Container>
+      <Container
+        className="karaoke-container"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'contain', // This will make the image smaller but ensure it's fully visible
+          backgroundPosition: 'center',
+          padding: '1rem',
+        }}
+      >
+        <Row className="justify-content-center">
+          <Col xs={12} md={8} lg={6} className="text-center">
+            <div className="lyrics-container" style={{ fontFamily: 'comic sans ms', color: '' }}>
+              <p className="highlighted text-white">
+                {songData.lyrics[currentLine]?.text}
+              </p>
+            </div>
+          </Col>
+        </Row>
+        <audio ref={audioRef} src={songData.audio} />
+      </Container>
     </div>
   );
 };

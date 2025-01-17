@@ -9,10 +9,10 @@
       { "text": "Yes, Jesus loves me!", "startTime": 25, "endTime": 28, "image": "/images/yesJesusLovesMe2.jpg" },
       { "text": "Yes, Jesus loves me!", "startTime": 29, "endTime": 32, "image": "/images/yesJesusLovesMe2.jpg" },
       { "text": "The Bible tells me so.", "startTime": 33, "endTime": 38, "image": "/images/forTheBibleTellsMeSo.webp" },
-      { "text": "Jesus loves me! He who died", "startTime": 39, "endTime": 43.5, "image": "/images/jesusLovesMeHeWhoDied.webp" },
-      { "text": "Heaven’s gate to open wide;", "startTime": 43.7, "endTime": 48, "image": "/images/heavensGateToOpenWide.webp" },
-      { "text": "He will wash away my sin,", "startTime": 48.2, "endTime": 52, "image": "/images/heWillWashAwayMySin.webp" },
-      { "text": "Let His little child come in.", "startTime": 53, "endTime": 59, "image": "/images/letHisLittleChildComeIn.webp" }
+      { "text": "Yes, Jesus loves me!", "startTime": 39, "endTime": 43.5, "image": "/images/jesusLovesMeHeWhoDied.webp" },
+      { "text": "Yes, Jesus loves me!", "startTime": 43.7, "endTime": 48, "image": "/images/heavensGateToOpenWide.webp" },
+      { "text": "Yes, Jesus loves me!", "startTime": 48.2, "endTime": 52, "image": "/images/heWillWashAwayMySin.webp" },
+      { "text": "The Bible tells me so.", "startTime": 53, "endTime": 59, "image": "/images/letHisLittleChildComeIn.webp" }
       ],
     "audio": "/songs/jesus-loves-me.mp3"
   }

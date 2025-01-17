@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import "../styles/header.css"
+import "../styles/header.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
@@ -13,12 +13,24 @@ const Header = () => {
                         <Button variant="warning">Home</Button>
                     </Link>
                 </Navbar.Brand>
-                <h1 style={{ color: '#ffd700', fontSize: '2.5rem', fontFamily: 'Bubblegum Sans, sans-serif', border: '4px inset yellow', borderRadius: '10px', boxShadow: '0 4px 8px rgba(250, 250, 25, 0.9)',padding: '10px', marginBottom: "10px" }}>Biblical Adventure</h1>
+                <h1 
+                    style={{ 
+                        color: '#ffd700', 
+                        fontSize: '2.1rem', 
+                        fontFamily: 'Bubblegum Sans, sans-serif', 
+                        border: '1px inset yellow', 
+                        borderRadius: '10px', 
+                        boxShadow: '0 4px 8px rgba(250, 250, 25, 0.9)', 
+                        padding: '5px', 
+                        marginBottom: '5px'
+                    }}
+                    className="navbar-title"
+                >
+                    Biblical Adventure
+                </h1>
                 <Navbar.Toggle aria-controls="navbar-nav" style={{ color: 'white' }} />
                 <Navbar.Collapse id="navbar-nav">
-                    <Navbar.Brand className="mx-auto">
-                    </Navbar.Brand>
-                    <Nav className="ml-auto d-flexjustify-content-center flex-wrap">
+                    <Nav className="ml-auto d-flex justify-content-center flex-wrap">
                         <Link to="/stories">
                             <Button variant="outline-secondary" className="m-1 text-warning">Short Stories</Button>
                         </Link>
