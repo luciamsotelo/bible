@@ -6,7 +6,7 @@
       "description": "Eli stood in front of the big, green valley. The light that everyone talked about was shining in the distance, and Eli wanted to find it. Eli’s mom had said, “God will always show you the way, just trust Him.” But there were many paths in the valley, and Eli wasn’t sure which one to take.",
       "images": [
         { "src": "/images/step1-1.webp", "duration": 10500 },
-        { "src": "/images/step1-2.webp", "duration": 7000 },
+        { "src": "/images/step1-2.webp", "duration": 6000 },
         { "src": "/images/step1-3.webp", "duration": 6000 }
       ],
       "audio": "/audio/step1-1.mp3",
@@ -55,8 +55,12 @@
     "step5": {
       "title": "A Sleepy Mistake",
       "description": "Eli drinks from the pond, but it’s not the right choice, and he feels sleepy and lost. After praying and asking God for help, he finds his way again, learning that the right path might be harder, but it always leads to something good.",
-      "images": [{ "src": "/images/step5.jpg", "duration": 5000 }],
-      "audio": "/audio/step5.mp3",
+      "images": [
+        { "src": "/images/step5-1.png", "duration": 6500 },
+        { "src": "/images/step5-2.png", "duration": 5000 },
+        { "src": "/images/step5-3.png", "duration": 5000 }
+      ],
+      "audio": "/audio/step5-1.mp3",
       "choices": []
     },
     "step6": {
@@ -73,8 +77,21 @@
     "step7": {
       "title": "Staying Focused",
       "description": "Eli chooses to keep walking instead of resting with the people. He eventually finds the shining light, which shows him God's wisdom and peace.",
-      "images": [{ "src": "/images/step7.jpg", "duration": 5000 }],
-      "audio": "/audio/step7.mp3",
+      "images": [
+        { "src": "/images/step7-1.png", "duration": 6000 },
+        { "src": "/images/step7-2.png", "duration": 5000 }
+      ],
+      "audio": "/audio/step7-1.mp3",
+      "choices": []
+    },
+    "step8": {
+      "title": "God's Love and Guidance",
+      "description": "Eli stood in the warmth of the shining light, his heart full of joy. The journey had not been easy, but he had learned something precious on every path he had taken. Whether the way was rocky and hard or smooth and shadowy, Eli realized that God’s love had been with him the entire time. On the rocky trail, God gave him the strength to climb and overcome. On the smooth trail, even when he strayed or made mistakes, God gently guided him back to where he needed to be. Eli thought about the voice he had heard in his heart when he prayed, the moments when light broke through the shadows, and the peace he felt when he chose to trust. Each step taught him that God’s love doesn’t depend on the path we choose—it is always there, waiting for us to turn to Him. Looking back at the valley, Eli whispered, “Thank You, God, for always showing me the way and for never leaving me, even when I get lost. Your love and guidance are my light.” With a deep breath, Eli turned to share what he had learned with others, his heart filled with faith and gratitude.",
+      "images": [
+        { "src": "/images/step7-1.png", "duration": 6000 },
+        { "src": "/images/step7-2.png", "duration": 5000 }
+      ],
+      "audio": "/audio/step7-1.mp3",
       "choices": []
     }
   }
