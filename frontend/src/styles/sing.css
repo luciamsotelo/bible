@@ -12,11 +12,10 @@
 }
 
 .play-button-container {
-  position: absolute;
+  position: relative;
   bottom: 120px; /* Position the button above the lyrics */
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 10px;
 }
 
 .lyrics-container {

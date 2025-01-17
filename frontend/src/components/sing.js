@@ -38,6 +38,21 @@ const Sing = ({ songData }) => {
   const backgroundImage = songData.lyrics[currentLine]?.image;
 
   return (
+    <div>
+      <Button
+  className="w-100 mx-auto d-block play-button-container mb-3"
+  variant="success"
+  onClick={handlePlayPause}
+  size="lg"
+  style={{
+    zIndex: 1,
+    position: 'relative',
+    bottom: '20px',
+  }}
+>
+  Play
+</Button>
+
     <Container
       className="karaoke-container"
       style={{
@@ -52,14 +67,7 @@ const Sing = ({ songData }) => {
         <Col xs={12} md={8} lg={6} className="text-center">
           <h1 className="mb-4 text-white">{songData.title}</h1>
           <div className="play-button-container mb-4">
-            <Button
-              variant="primary"
-              onClick={handlePlayPause}
-              size="lg"
-              className="w-100"
-            >
-              {isPlaying ? 'Pause' : 'Play'}
-            </Button>
+            
           </div>
           <div className="lyrics-container">
             <p className="highlighted text-white">{songData.lyrics[currentLine]?.text}</p>
@@ -68,6 +76,7 @@ const Sing = ({ songData }) => {
       </Row>
       <audio ref={audioRef} src={songData.audio} />
     </Container>
+    </div>
   );
 };
 
