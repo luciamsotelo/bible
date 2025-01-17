@@ -72,11 +72,7 @@ const Prayer = () => {
     }
   };
 
-  const getRandomPosition = () => {
-    const left = Math.random() * 80;
-    return { left: `${left}%` };
-  };
-
+  
   return (
     <div className="prayer-body">
       <Container className="py-4">
@@ -85,7 +81,7 @@ const Prayer = () => {
             <div className="prayer-float-container">
               {prayers.length > 0 ? (
                 prayers.map((prayer) => {
-                  const { left } = getRandomPosition();
+                  const { left } = prayer;
                   return (
                     <div
                       key={prayer.id}
