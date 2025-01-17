@@ -107,7 +107,7 @@ export const BibleStories = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center" style={{ fontFamily: 'quicksand', fontWeight: 'bold', color: 'goldenrod' }}>Bible Stories</h2>
+      <h2 className="text-center" style={{ fontFamily: 'allura', fontWeight: 'bold', color: 'goldenrod', fontSize: '3rem', textShadow: "2px 2px 9px rgb(110, 23, 4)"}}>Bible Stories</h2>
       {expandedStory === null ? (
         <Row>
           {stories.map((story, index) => (
