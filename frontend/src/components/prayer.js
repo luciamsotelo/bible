@@ -27,22 +27,38 @@ const Prayer = () => {
   const handleSpeak = (prayerText, callback) => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(prayerText);
-    utterance.pitch = 3.0;
-    utterance.rate = 0.9;
+  
+    // Create a soft and sweet childlike voice for speech synthesis
+utterance.pitch = 8.5; // Lower pitch slightly for a softer tone
+utterance.rate = 0.9;  // Slightly slower rate for clarity and gentleness
 
-    const voices = window.speechSynthesis.getVoices();
-    const childlikeVoice = voices.find((voice) => voice.lang.includes("en-US") && voice.name.toLowerCase().includes("child"));
+// Get the available voices from the Speech Synthesis API
+const voices = window.speechSynthesis.getVoices();
 
-    if (childlikeVoice) {
-      utterance.voice = childlikeVoice;
-    } else {
-      const defaultVoice = voices.find((voice) => voice.lang.includes("en-US"));
-      if (defaultVoice) utterance.voice = defaultVoice;
-    }
+// Select a childlike, unisex voice with an English (US) accent
+const childlikeVoice = voices.find((voice) => 
+    voice.lang.includes("en-US") && 
+    voice.name.toLowerCase().includes("child")
+);
 
-    utterance.onend = callback;
+// Assign the selected voice to the utterance if available
+if (childlikeVoice) {
+    utterance.voice = childlikeVoice;
+}
+
+  
+    // Add event listeners for better control and callback execution
+    utterance.onend = () => {
+      if (callback) callback();
+    };
+  
+    utterance.onerror = (event) => {
+      console.error('Speech synthesis error:', event.error);
+      if (callback) callback(event.error);
+    };
+  
     window.speechSynthesis.speak(utterance);
-  };
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
