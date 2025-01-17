@@ -94,14 +94,15 @@ const StoryComponent = () => {
 
   return (
     <div className="container text-center mt-4">
-      <h2>{currentStep.title}</h2>
-      <p>{currentStep.description}</p>
+      <h2 style={{fontFamily: "quicksand", color: "black", textShadow: "2px 2px 8px goldenrod", fontSize: "2rem"}}>{currentStep.title}</h2>
+      <p style={{fontSize: "1.2rem", fontFamily: "quicksand", color: "black"}}>{currentStep.description}</p>
       <div className="mb-4">
         {currentStep.images.length > 0 && (
           <img
             src={currentStep.images[imageIndex]?.src}
             alt="Story Scene"
-            className="img-fluid rounded border border- w-50"
+            className="img-fluid rounded-5 border border-light border-5 w-50"
+
           />
         )}
       </div>
@@ -119,7 +120,7 @@ const StoryComponent = () => {
         {currentStep.choices.map((choice, index) => (
           <button
             key={index}
-            className="btn btn-outline-primary m-2"
+            className="btn btn-outline-light bg-success text-white m-2"
             onClick={() => handleChoice(choice.nextStep)}
           >
             {choice.text}
