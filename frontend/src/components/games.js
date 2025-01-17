@@ -15,22 +15,22 @@ const GameCards = () => {
     { title: 'Word Search', img: '/images/wordSearch.png', type: 'wordsearch' },
     { title: 'Maze', img: '/images/maze.jpg', type: 'maze' },
     { title: 'Word Jumble', img: '/images/wordJumble.jpg', type: 'wordjumble' },
-    { title: 'Hangman', img: '/images/stickMan.jpg', type: 'hangman' },
+    { title: 'Biblical Challenge', img: '/images/hangman.jpg', type: 'hangman' },
     { title: 'Trivia', img: '/images/trivia.png', type: 'trivia' },
   ];
 
   return (
     <Container className="mt-5">
-      <h1 className="text-center mb-4" style={{ color: "purple", textShadow: "2px 2px 8px white", fontFamily: "quicksand", fontSize: "3rem", fontWeight: "bold", }}> Games</h1>
+      <h1 className="text-center mb-4" style={{ color: "purple", textShadow: "2px 2px 8px white", fontFamily: "allura", fontSize: "4rem", fontWeight: "bold", }}> Games</h1>
       <Row xs={1} md={2} lg={3} className="g-4">
         {games.map((game, index) => (
           <Col key={index}>
-            <Card onClick={() => handleCardClick(game.type)} className="h-100">
-              <Card.Img variant="top" src={game.img} alt={game.title} />
+            <Card onClick={() => handleCardClick(game.type)} className="h-100" style={{ border: "20px inset goldenrod" }}>
+              <Card.Img variant="bottom" src={game.img} alt={game.title} />
               <Card.Body>
-                <Card.Title>{game.title}</Card.Title>
-                <Card.Text>
-                  Click here to explore multiple {game.title} games!
+                <Card.Title className="text-center" style={{ color: "purple", textShadow: "2px 2px 2px goldenrod", fontFamily: "rye", fontSize: "2rem", fontWeight: "", }}>{game.title}</Card.Title>
+                <Card.Text className="text-center" style={{ color: "purple", fontFamily: "quicksand", fontSize: "1rem", }}>
+                  Click here for a fun {game.title}!
                 </Card.Text>
               </Card.Body>
             </Card>
