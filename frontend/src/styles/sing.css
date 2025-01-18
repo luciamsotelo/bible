@@ -19,12 +19,9 @@
 }
 
 .lyrics-container {
-  border: 3px solid #716c6c;
-  border-radius: 10px;
-  margin: 10px auto;
+  position: relative;
   padding: .5rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  font-size: 1.5rem; /* Increase font size */
+  font-size: 1.4rem; /* Increase font size */
   position: relative;
   bottom: 5px;
   left: 50%;

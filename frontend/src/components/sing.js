@@ -65,7 +65,7 @@ const Sing = ({ songData }) => {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6} className="text-center">
             <div className="lyrics-container" style={{ fontFamily: 'comic sans ms', color: '' }}>
-              <p className="highlighted text-white">
+              <p className="highlighted text-shadow">
                 {songData.lyrics[currentLine]?.text}
               </p>
             </div>

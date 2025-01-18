@@ -1,9 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../styles/footer.css'
 
 const Footer = () => {
+  const navigate = useNavigate();
     return (
     <footer className="fixed-bottom background-bottom text-dark text-center text-lg-start mt-auto">
       <Container className="p-1">
@@ -28,6 +30,7 @@ const Footer = () => {
                 background:
                   "linear-gradient(100deg,rgb(191, 44, 11), rgba(200, 200, 13, 0.9))",
               }}
+              onClick={() => navigate("/contactUs")}
             >
               Contact Us
             </Button>
