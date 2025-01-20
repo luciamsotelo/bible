@@ -41,7 +41,7 @@ const AdventureMap = () => {
         <Card className="info-card">
           <Card.Img variant="top" src={selectedPoint.image} />
           <Card.Body>
-            <Card.Title>{selectedPoint.name}</Card.Title>
+            <Card.Title className='cardTitle'>{selectedPoint.name}</Card.Title>
             <Card.Text className='text-start'>{selectedPoint.description}</Card.Text>
             <Button variant="secondary" onClick={() => setSelectedPoint(null)}>
               Close
