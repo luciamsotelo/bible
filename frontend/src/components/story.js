@@ -66,7 +66,7 @@ const stories = [
   }
 ];
 
-export const BibleStories = () => {
+const BibleStories = () => {
   const [expandedStory, setExpandedStory] = useState(null);
   const [audio, setAudio] = useState(null);
   const [paused, setPaused] = useState(true);
@@ -107,15 +107,33 @@ export const BibleStories = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center" style={{ fontFamily: 'allura', fontWeight: 'bold', color: 'goldenrod', fontSize: '3rem', textShadow: "2px 2px 9px rgb(110, 23, 4)"}}>Bible Stories</h2>
+      <h2
+        className="text-center"
+        style={{
+          fontFamily: 'allura',
+          fontWeight: 'bold',
+          color: 'goldenrod',
+          fontSize: '3rem',
+          textShadow: '2px 2px 9px rgb(110, 23, 4)',
+        }}
+      >
+        Bible Stories
+      </h2>
       {expandedStory === null ? (
         <Row>
           {stories.map((story, index) => (
             <Col key={index} md={4}>
               <Card className="story-card mb-4">
-                <Card.Img variant="top" className='img-fluid rounded-pill' src={story.frontImage} alt={story.title} />
+                <Card.Img
+                  variant="top"
+                  className="img-fluid rounded-pill"
+                  src={story.frontImage}
+                  alt={story.title}
+                />
                 <Card.Body style={{ textAlign: 'center' }}>
-                  <Card.Title style={{ fontFamily: 'quicksand' }}>{story.title}</Card.Title>
+                  <Card.Title style={{ fontFamily: 'quicksand' }}>
+                    {story.title}
+                  </Card.Title>
                   <Button onClick={() => toggleStory(index)}>Learn More</Button>
                 </Card.Body>
               </Card>
@@ -124,23 +142,46 @@ export const BibleStories = () => {
         </Row>
       ) : (
         <div className="expanded-story text-center">
-          <h1 style={{ fontFamily: 'sacramento', fontSize: '3rem', color: 'blue' }}>{stories[expandedStory].title}</h1>
-          <div className="audio-controls" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
-            <Button 
-              onClick={() => playAudio(stories[expandedStory].audioFile)} 
+          <h1
+            style={{
+              fontFamily: 'sacramento',
+              fontSize: '3rem',
+              color: 'blue',
+            }}
+          >
+            {stories[expandedStory].title}
+          </h1>
+          <div
+            className="audio-controls"
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <Button variant="secondary" onClick={() => toggleStory(null)}>
+              Back to Stories
+            </Button>
+            <Button
+              onClick={() =>
+                playAudio(stories[expandedStory].audioFile)
+              }
               className="me-2"
             >
-              {paused ? "Play Audio" : "Pause Audio"}
+              {paused ? 'Play Audio' : 'Pause Audio'}
             </Button>
           </div>
-          <img
-            src={stories[expandedStory].expandedImage}
-            alt={stories[expandedStory].title}
-            className="img-fluid rounded border border-success shadow-lg my-3"
-          />
-          <p className='story-box p-3' style={{textAlign:'justify'}}>{stories[expandedStory].story}</p>
-          <p className='bg-info rounded-pill p-5 text-dark'><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
+          <div className="image-container">
+            <img
+              src={stories[expandedStory].expandedImage}
+              alt={stories[expandedStory].title}
+              className="img-fluid rounded border border-success shadow-lg my-3"
+            />
+            <div className="overlay">
+              <p className="story-box p-3">
+                {stories[expandedStory].story}
+              </p>
+              <p className="bg-info rounded-pill p-5 text-dark">
+                <strong>Lesson:</strong> {stories[expandedStory].lesson}
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>

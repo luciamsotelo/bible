@@ -30,16 +30,7 @@ const AdventureMap = () => {
           {/* Button positioned near the point */}
           <button
             className="map-button"
-            onClick={() => setSelectedPoint(point)}
-            style={{
-              position: 'absolute',
-              top: '-00%',
-              left: '-775%', // Offset to the right of the point
-              transform: 'translateY(-50%)',
-              fontSize:'10px',
-              padding:'5px'
-            }}
-          >
+            onClick={() => setSelectedPoint(point)}>
              {point.name}
           </button>
         </div>
