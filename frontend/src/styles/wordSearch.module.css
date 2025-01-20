@@ -161,3 +161,220 @@
     transform: scale(1);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .wordSearchContainer {
+    flex-direction: column; /* Stack items vertically */
+    align-items: stretch; /* Allow children to stretch full width */
+    padding: 10px; /* Add padding for better spacing */
+    height: auto; /* Let content define the height */
+    gap: 10px; /* Increase the gap between elements */
+  }
+
+  .gridContainer {
+    width: 100%; /* Ensure it spans the available width */
+  }
+
+  .sidebar {
+    width: 100%; /* Make the sidebar full width */
+    align-items: flex-start; /* Align content to the left */
+    gap: 10px; /* Adjust the spacing */
+  }
+
+  .wordList,
+  .foundWords {
+    width: 100%; 
+    font-size: 1rem; 
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); 
+    gap: 2px; 
+  }
+
+  .cell {
+    width: 30px; 
+    height: 30px;
+    font-size: 12px; 
+  }
+
+  .messageSuccess {
+    font-size: 2rem; 
+    margin-top: 5px; 
+  }
+
+  .message {
+    font-size: 0.9rem; 
+    padding: 5px; 
+    margin: 5px auto; 
+  }
+
+  .gridContainer,
+  .sidebar,
+  .messageSuccess,
+  .message {
+    text-align: center; 
+  }
+}
+
+@media screen and (max-width: 574px) {
+  .wordSearchContainer {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align all children */
+    padding: 10px; /* Add padding for spacing */
+    gap: 20px; /* Increase spacing between elements */
+    height: auto; /* Let content determine the height */
+  }
+
+  .gridContainer {
+    width: 100%; /* Full width for smaller screens */
+    padding: 5px; /* Add padding */
+  }
+
+  .sidebar {
+    width: 100%; /* Take full width */
+    align-items: center; /* Center content */
+    gap: 10px; /* Adjust spacing */
+    margin-bottom: 15px; /* Add margin for spacing below */
+  }
+
+  .wordList,
+  .foundWords {
+    width: 100%; /* Take full width */
+    font-size: 0.9rem; /* Smaller font size for better fit */
+    padding: 10px; /* Add padding for touch-friendly UI */
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); /* Smaller grid cells */
+    gap: 10px; /* Reduce gap between cells */
+  }
+
+  .cell {
+    width: 100%; /* Smaller cell size */
+    height: 15%;
+    font-size: 15px; /* Adjust font size */
+    line-height: 2; /* Tighter line height */
+  }
+
+  .messageSuccess {
+    font-size: 1.8rem; /* Smaller font size */
+    margin-top: 5px; /* Reduce margin */
+  }
+
+  .message {
+    font-size: 0.8rem; /* Adjust font size for messages */
+    padding: 5px; /* Smaller padding */
+    margin: 5px 0; /* Compact margins */
+  }
+
+  h1 {
+    font-size: .5rem; /* Reduce heading size */
+    text-align: center; /* Center align text */
+  }
+
+  p {
+    font-size: 1.2rem; /* Reduce paragraph size */
+    text-align: center; /* Center align */
+  }
+
+  .sidebar h3 {
+    font-size: 1rem; /* Smaller heading in the sidebar */
+  }
+
+  .sidebar ul {
+    font-size: 0.8rem; /* Reduce font size of the list */
+  }
+
+  button {
+    font-size: 0.5rem; /* Smaller button font */
+    padding: 8px 12px; /* Adjust button padding */
+  }
+
+  .message,
+  .messageSuccess {
+    text-align: center; /* Center all messages */
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .wordSearchContainer {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align all children */
+    padding: 10px; /* Add padding for spacing */
+    gap: 20px; /* Increase spacing between elements */
+    height: auto; /* Let content determine the height */
+  }
+
+  .gridContainer {
+    width: 100%; /* Full width for smaller screens */
+    padding: 5px; /* Add padding */
+  }
+
+  .sidebar {
+    width: 100%; /* Take full width */
+    align-items: center; /* Center content */
+    gap: 10px; /* Adjust spacing */
+    margin-bottom: 15px; /* Add margin for spacing below */
+  }
+
+
+  .wordList,
+  .foundWords {
+    width: 100%; /* Take full width */
+    font-size: 0.9rem; /* Smaller font size for better fit */
+    padding: 10px; /* Add padding for touch-friendly UI */
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); /* Smaller grid cells */
+    gap: 10px; /* Reduce gap between cells */
+  }
+
+  .cell {
+    width: 100%; /* Smaller cell size */
+    height: 15%;
+    font-size: 10px; /* Adjust font size */
+    line-height: 2.5; /* Tighter line height */
+  }
+
+  .messageSuccess {
+    font-size: 1.8rem; /* Smaller font size */
+    margin-top: 5px; /* Reduce margin */
+  }
+
+  .message {
+    font-size: 0.8rem; /* Adjust font size for messages */
+    padding: 5px; /* Smaller padding */
+    margin: 5px 0; /* Compact margins */
+  }
+
+  h1 {
+    font-size: 1rem; /* Reduce heading size */
+    text-align: center; /* Center align text */
+  }
+
+  p {
+    font-size: 1.2rem; /* Reduce paragraph size */
+    text-align: center; /* Center align */
+  }
+
+  .sidebar h3 {
+    font-size: 1rem; /* Smaller heading in the sidebar */
+  }
+
+  .sidebar ul {
+    font-size: 0.8rem; /* Reduce font size of the list */
+  }
+
+  button {
+    font-size: 0.5rem; /* Smaller button font */
+    padding: 8px 12px; /* Adjust button padding */
+  }
+
+  .message,
+  .messageSuccess {
+    text-align: center; /* Center all messages */
+  }
+}
+
