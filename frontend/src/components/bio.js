@@ -98,15 +98,6 @@ const BioCard = ({ character }) => {
     }
   };
 
-  const handleStopAudio = () => {
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0; // Reset audio to the start
-      setAudioPosition(0); // Reset playback position
-      setAudio(null);
-      setIsPaused(true); // Set to paused when audio is stopped
-    }
-  };
 
   return (
     <Col xs={12} sm={6} md={4} className="bio-mb-4">
@@ -131,9 +122,6 @@ const BioCard = ({ character }) => {
                 onClick={isPaused ? handlePlayAudio : handlePauseAudio}
               >
                 {isPaused ? "Continue Playing" : "Pause the Speaker"}
-              </Button>{" "}
-              <Button variant="danger" onClick={handleStopAudio}>
-                Stop Audio
               </Button>{" "}
               <Button variant="secondary" onClick={() => setFlipped(false)}>
                 Back
