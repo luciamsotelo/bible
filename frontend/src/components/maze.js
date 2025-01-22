@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/maze.css";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Maze = () => {
@@ -9,6 +9,8 @@ const Maze = () => {
   const [obstacles, setObstacles] = useState([]);
   const [isVictory, setIsVictory] = useState(false);
   const gridSize = 20;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const initializeGame = () => {
@@ -40,8 +42,6 @@ const Maze = () => {
 
     initializeGame();
   }, [gridSize]);
-
-  const navigate = useNavigate();
 
   const movePlayer = (direction) => {
     setPlayerPosition((prevPosition) => {
@@ -79,27 +79,6 @@ const Maze = () => {
     });
   };
 
-  const handleKeyDown = (e) => {
-    if (isVictory) return;
-
-    switch (e.key) {
-      case "ArrowUp":
-        movePlayer("UP");
-        break;
-      case "ArrowDown":
-        movePlayer("DOWN");
-        break;
-      case "ArrowLeft":
-        movePlayer("LEFT");
-        break;
-      case "ArrowRight":
-        movePlayer("RIGHT");
-        break;
-      default:
-        break;
-    }
-  };
-
   useEffect(() => {
     if (
       playerPosition.x === goalPosition.x &&
@@ -112,69 +91,23 @@ const Maze = () => {
   const resetGame = () => {
     setPlayerPosition({ x: 0, y: 0 });
     setIsVictory(false);
-
-    const newGoal = {
-      x: Math.floor(Math.random() * gridSize),
-      y: Math.floor(Math.random() * gridSize),
-    };
-    setGoalPosition(newGoal);
-
-    const obstacleCount = 80;
-    const newObstacles = [];
-    while (newObstacles.length < obstacleCount) {
-      const obstacle = {
-        x: Math.floor(Math.random() * gridSize),
-        y: Math.floor(Math.random() * gridSize),
-      };
-      if (
-        !newObstacles.some(
-          (obs) => obs.x === obstacle.x && obs.y === obstacle.y
-        ) &&
-        !(obstacle.x === 0 && obstacle.y === 0) &&
-        !(obstacle.x === newGoal.x && obstacle.y === newGoal.y)
-      ) {
-        newObstacles.push(obstacle);
-      }
-    }
-    setObstacles(newObstacles);
   };
 
   return (
-    <Container
-      className="maze-container mt-5 mb-5"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between"}}>
-      
-      <h1
-        className="text-center mb-4"
-        style={{
-          color: "goldenrod",
-          textShadow: "2px 2px 8px black",
-          fontFamily: "Allura",
-          fontSize: "3rem",
-          fontWeight: "bold",
-        }}
-      >
-        Bible Maze
+    <Container className="maze-container text-center">
+      <Row>
+        <Col>
+          <Button variant="primary" onClick={() => navigate('/games')}>
+            Back to Main Game Page
+          </Button>
+        </Col>
+      </Row>
+      <h1 className="my-1" style={{ color: "goldenrod", textShadow: "2px 2px 8px black", fontFamily: "allura", fontSize: "3rem", fontWeight: "bold", }}>
+        Maze
       </h1>
-      <Button
-        variant="primary"
-        className="mb-5"
-        fontFamily="quicksand"
-        onClick={() => navigate("/games")}
-      >
-        Back To Main Game Page
-      </Button>
-      </div>
-      <p
-        className="text-center"
-        style={{ fontSize: "2rem", color: "purple", fontFamily: "Quicksand" }}
-      >
-        Help the player reach the goal! Use arrow keys to move.
-      </p>
-      <div className="maze-grid">
+      <p className="my-1" style ={{ fontSize: "1.2rem",  color: "purple", fontFamily: "Quicksand"}}>Help the player reach the goal! Use arrow keys or buttons to move.</p>
+
+      <div className="maze-grid mx-auto">
         {Array.from({ length: gridSize }).map((_, row) => (
           <div key={row} className="maze-row">
             {Array.from({ length: gridSize }).map((_, col) => (
@@ -194,12 +127,44 @@ const Maze = () => {
           </div>
         ))}
       </div>
+
       {isVictory && (
-        <div className="victory-message">
-          <p>🎉 You reached the goal! 🎉</p>
-          <button onClick={resetGame}>Play Again</button>
-        </div>
+        <Alert variant="success" className="my-3">
+          🎉 You reached the goal! 🎉
+          <div>
+            <Button onClick={resetGame} className="mt-2">
+              Play Again
+            </Button>
+          </div>
+        </Alert>
       )}
+
+      <div className="controls mt-4">
+        <Row>
+          <Col xs={12}>
+            <Button variant="secondary" onClick={() => movePlayer("UP")}>
+              &uarr;
+            </Button>
+          </Col>
+        </Row>
+        <Row className="justify-content-center mt-2">
+          <Col xs="auto">
+            <Button variant="secondary" onClick={() => movePlayer("LEFT")}>
+              &larr;
+            </Button>
+          </Col>
+          <Col xs="auto">
+            <Button variant="secondary" onClick={() => movePlayer("DOWN")}>
+              &darr;
+            </Button>
+          </Col>
+          <Col xs="auto">
+            <Button variant="secondary" onClick={() => movePlayer("RIGHT")}>
+              &rarr;
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </Container>
   );
 };

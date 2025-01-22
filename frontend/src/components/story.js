@@ -112,9 +112,9 @@ const BibleStories = () => {
         style={{
           fontFamily: 'allura',
           fontWeight: 'bold',
-          color: 'goldenrod',
+          color: 'blue',
           fontSize: '3rem',
-          textShadow: '2px 2px 9px rgb(110, 23, 4)',
+          textShadow: '2px 2px 8px rgb(239, 174, 22)',
         }}
       >
         Bible Stories

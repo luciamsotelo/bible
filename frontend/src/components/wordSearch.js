@@ -13,8 +13,8 @@ const WordSearch = () => {
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
-  const [message, setMessage] = useState('');
-  const [messageVisible, setMessageVisible] = useState(false);
+  const [ setMessage] = useState('');
+  const [setMessageVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   const [gameOverMessage, setGameOverMessage] = useState('');
   const [showPlayAgain, setShowPlayAgain] = useState(false);
@@ -222,14 +222,15 @@ const WordSearch = () => {
   };
 
   return (
-    <Container className="mt-5 mb-5">
+    <Container className="mt-5 mb-5"> 
+    <div className="d-flex flex-column justify-content-center align-items-center ">
       <Button variant="primary" className="mb-3" style={{ float: 'right', fontFamily: 'Quicksand', fontWeight: 'bold'}} onClick={() => navigate('/games')}>Back Main Game Page</Button>
-            <h1 className="text-center mb-4" style={{  color: "goldenrod",
+            <h1 className="text-center mb-2" style={{  color: "goldenrod",
                 textShadow: "2px 2px 8px black",
                 fontFamily: "Allura",
                 fontSize: "3rem",
-                fontWeight: "bold",}}>Bible Word Search</h1>
-                <p className="text-center" style ={{ fontSize: "2rem",  color: "purple", fontFamily: "Quicksand"}}>Find the words before time runs out</p>
+                fontWeight: "bold",}}>Word Search</h1>
+                <p className="text-center" style ={{ fontSize: "1.4rem",  color: "purple", fontFamily: "Quicksand"}}>Find the words before time runs out</p></div>
       {gameOverMessage && (
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           <p className={styles.message} style={{ color: 'red', fontSize: '2rem' }}>
@@ -263,7 +264,7 @@ const WordSearch = () => {
               </Button>
             )}
           </Card>
-          {messageVisible && <p className={styles.message}>{message}</p>}
+        
         </Col>
 
         <Col xs={12} sm={8}>
