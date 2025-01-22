@@ -4,10 +4,9 @@
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 0.5s ease-in-out;
-  height: 45vh; /* Adjust for larger screens */
+  height: 100vh;
+  width: 100vw; /* Adjust for larger screens */
   position: relative;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -20,9 +19,8 @@
 
 .lyrics-container {
   position: relative;
-  padding: 1rem;
-  font-size: 1.2rem; /* Adjust for larger screens */
-  width: 80%; /* Use percentage for responsiveness */
+  font-size: 2rem; /* Adjust for larger screens */
+  width: 100%; /* Use percentage for responsiveness */
   text-align: center;
   background: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better visibility */
   border-radius: 8px;
@@ -49,6 +47,8 @@
   .karaoke-container {
     height: 40vh; /* Adjust height for tablets */
     padding-top: 1rem;
+    display: inline-flex;
+    flex-direction: column;
   }
 
   .lyrics-container {
@@ -63,13 +63,17 @@
 
 @media (max-width: 576px) {
   .karaoke-container {
-    height: 35vh; /* Further reduce height for mobile screens */
+    height: 30vh; /* Adjust height for mobile */
     padding: 0.5rem;
+    display: inline-flex;
+    flex-direction: column;
   }
 
   .lyrics-container {
     font-size: 0.9rem;
-    padding: 0.3rem;
+    padding: 0.5rem;
+    width: 100%;
+    justify-content: center;  
   }
 
   .play-button-container {
