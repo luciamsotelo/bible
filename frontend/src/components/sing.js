@@ -40,7 +40,7 @@ const Sing = ({ songData }) => {
   return (
     <div>
       <Button
-        className="w-100 mx-auto d-block play-button-container mb-3"
+        className="w-25 mx-auto d-block play-button-container mb-3"
         variant="success"
         onClick={handlePlayPause}
         size="lg"
@@ -54,25 +54,33 @@ const Sing = ({ songData }) => {
       </Button>
 
       <Container
-        className="karaoke-container"
+  className="karaoke-container"
+  style={{
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
+    padding: '1rem',
+  }}
+>
+  <Row className="justify-content-center">
+    <Col xs={12} md={8} lg={6} className="text-center">
+      <div
+        className="lyrics-container"
         style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'contain', // This will make the image smaller but ensure it's fully visible
-          backgroundPosition: 'center',
-          padding: '1rem',
+          fontFamily: 'Comic Sans MS',
+          color: 'white',
+          textShadow: '2px 2px 4px black',
         }}
       >
-        <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6} className="text-center">
-            <div className="lyrics-container" style={{ fontFamily: 'comic sans ms', color: '' }}>
-              <p className="highlighted text-shadow">
-                {songData.lyrics[currentLine]?.text}
-              </p>
-            </div>
-          </Col>
-        </Row>
-        <audio ref={audioRef} src={songData.audio} />
-      </Container>
+        <p className="highlighted">
+          {songData.lyrics[currentLine]?.text || 'Get ready to sing!'}
+        </p>
+      </div>
+    </Col>
+  </Row>
+  <audio ref={audioRef} src={songData.audio} />
+</Container>
+
     </div>
   );
 };

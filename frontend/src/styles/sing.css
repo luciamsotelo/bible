@@ -4,37 +4,34 @@
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 0.5s ease-in-out;
-  height: 45vh;
+  height: 45vh; /* Adjust for larger screens */
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .play-button-container {
   position: relative;
-  bottom: 120px; /* Position the button above the lyrics */
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 1rem; /* Adjust spacing for responsiveness */
 }
 
 .lyrics-container {
   position: relative;
-  padding: .5rem;
-  font-size: 1.4rem; /* Increase font size */
-  position: relative;
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem; /* Adjust for larger screens */
+  width: 80%; /* Use percentage for responsiveness */
   text-align: center;
+  background: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better visibility */
+  border-radius: 8px;
 }
 
 .highlighted::before {
   content: '⚽'; /* Bouncing ball icon */
-  position: absolute;
-  left: -20px;
-  top: -5px;
+  position: relative;
+  margin-right: 8px;
   animation: bounce 1s infinite;
 }
 
@@ -47,19 +44,36 @@
   }
 }
 
-/* Media Queries for Mobile */
-@media (max-width: 576px) {
+/* Media Queries */
+@media (max-width: 992px) {
   .karaoke-container {
-    height: 40vh; /* Reduce height on smaller screens */
-    padding-top: 1rem; /* Adjust padding */
-  }
-
-  .play-button-container {
-    bottom: 80px; /* Bring button closer to the image */
+    height: 40vh; /* Adjust height for tablets */
+    padding-top: 1rem;
   }
 
   .lyrics-container {
-    bottom: 20px; /* Move lyrics closer to the button */
-    font-size: 1.5rem; /* Adjust font size for smaller screens */
+    font-size: 1rem; /* Smaller font size */
+    padding: 0.5rem;
+  }
+
+  .play-button-container {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .karaoke-container {
+    height: 35vh; /* Further reduce height for mobile screens */
+    padding: 0.5rem;
+  }
+
+  .lyrics-container {
+    font-size: 0.9rem;
+    padding: 0.3rem;
+  }
+
+  .play-button-container {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
   }
 }
