@@ -117,7 +117,7 @@ const BibleStories = () => {
           textShadow: '2px 2px 8px rgb(239, 174, 22)',
         }}
       >
-        Bible Stories
+        Short Stories
       </h2>
       {expandedStory === null ? (
         <Row>
@@ -174,7 +174,7 @@ const BibleStories = () => {
               className="img-fluid rounded border border-success shadow-lg my-3"
             />
             <div className="overlay">
-              <p className="story-box p-3">
+              <p className="story-box p-2 rounded" style={{ fontFamily: 'quicksand', fontSize: '1rem', textAlign: 'justify', color: 'white', fontWeight: 'bold', backgroundColor: 'rgba(10, 84, 144, 0.8)'}}>
                 {stories[expandedStory].story}
               </p>
               <p className="bg-info rounded-pill p-5 text-dark">
