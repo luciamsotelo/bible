@@ -3,8 +3,6 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from '../styles/wordSearch.module.css';
 import { useNavigate } from 'react-router-dom'; // To handle navigation
 
-
-
 const WordSearch = () => {
   const [level, setLevel] = useState(1);
   const [score, setScore] = useState(0);
@@ -13,28 +11,27 @@ const WordSearch = () => {
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
-  const [ setMessage] = useState('');
-  const [setMessageVisible] = useState(false);
+  const [message, setMessage] = useState('');
+  const [messageVisible, setMessageVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   const [gameOverMessage, setGameOverMessage] = useState('');
   const [showPlayAgain, setShowPlayAgain] = useState(false);
 
   const navigate = useNavigate();
-
   const timerRef = useRef(null);
   const maxLevel = 9;
 
   const words = useMemo(() => {
     const levelWords = [
-      ['JESUS', 'NOAH'], // Level 1
-      ['MOSES', 'DAVID'], // Level 2
-      ['PETER', 'ELIJAH', 'JUDAS'], // Level 3
-      ['BETHLEHEM', 'CAPERNAUM', 'JERUSALEM', 'GALILEE'], // Level 4
-      ['JACOB', 'ISAAC', 'ABRAHAM', 'DANIEL', 'JOHN'], // Level 5
-      ['MATHEW', 'MARK', 'LUKE', 'JOHN', 'ACTS', 'ROMANS'], // Level 6
-      ['GENESIS', 'EXODUS', 'LEVITICUS', 'NUMBERS'], // Level 7
-      ['FAITH', 'LOVE', 'HOPE', 'JOY', 'PEACE', 'GRACE'], // Level 8
-      ['RUTH', 'SARAH', 'ESTHER', 'MARY', 'EVE', 'REBEKAH', 'LEAH', 'HANNAH', 'JUDITH'], // Level 9
+      ['JESUS', 'NOAH'],
+      ['MOSES', 'DAVID'],
+      ['PETER', 'ELIJAH', 'JUDAS'],
+      ['BETHLEHEM', 'CAPERNAUM', 'JERUSALEM', 'GALILEE'],
+      ['JACOB', 'ISAAC', 'ABRAHAM', 'DANIEL', 'JOHN'],
+      ['MATHEW', 'MARK', 'LUKE', 'JOHN', 'ACTS', 'ROMANS'],
+      ['GENESIS', 'EXODUS', 'LEVITICUS', 'NUMBERS'],
+      ['FAITH', 'LOVE', 'HOPE', 'JOY', 'PEACE', 'GRACE'],
+      ['RUTH', 'SARAH', 'ESTHER', 'MARY', 'EVE', 'REBEKAH', 'LEAH', 'HANNAH', 'JUDITH'],
     ];
     return levelWords[level - 1] || [];
   }, [level]);
@@ -222,78 +219,145 @@ const WordSearch = () => {
   };
 
   return (
-    <Container className="mt-5 mb-5"> 
-    <div className="d-flex flex-column justify-content-center align-items-center ">
-      <Button variant="primary" className="mb-3" style={{ float: 'right', fontFamily: 'Quicksand', fontWeight: 'bold'}} onClick={() => navigate('/games')}>Back Main Game Page</Button>
-            <h1 className="text-center mb-2" style={{  color: "goldenrod",
-                textShadow: "2px 2px 8px black",
-                fontFamily: "Allura",
-                fontSize: "3rem",
-                fontWeight: "bold",}}>Word Search</h1>
-                <p className="text-center" style ={{ fontSize: "1.4rem",  color: "purple", fontFamily: "Quicksand"}}>Find the words before time runs out</p></div>
+    <Container className="mt-5 mb-5">
+    <div className="d-flex flex-column justify-content-center align-items-center">
+      <Button
+        variant="primary"
+        className="mb-3"
+        style={{ float: 'right', fontFamily: 'Quicksand', fontWeight: 'bold' }}
+        onClick={() => navigate('/games')}
+      >
+        Back Main Game Page
+      </Button>
+      <h1
+        className="text-center mb-2"
+        style={{
+          color: 'goldenrod',
+          textShadow: '2px 2px 8px black',
+          fontFamily: 'Allura',
+          fontSize: '3rem',
+          fontWeight: 'bold',
+        }}
+      >
+        Word Search
+      </h1>
+      <p
+        className="text-center"
+        style={{
+          fontSize: '1.4rem',
+          color: 'purple',
+          fontFamily: 'Quicksand',
+        }}
+      >
+        Find the words before the timer runs out. Good Luck!
+      </p>
+      <Card
+        className="p-3 text-center"
+        style={{
+          fontFamily: 'Quicksand',
+          fontSize: '1.2rem',
+          width: '70%',
+          margin: '0 auto',
+        }}
+      >
+        Level: {level} | Score: {score} | Time Left: {timeLeft}s
+      </Card>
+      
+      {/* Words List Section */}
+      <div className="word-list mt-3">
+        <h3>Words to Find:</h3>
+        <ul>
+          {words.map((word, index) => (
+            <li key={index}>{word}</li>
+          ))}
+        </ul>
+      </div>
+  
       {gameOverMessage && (
-        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <p className={styles.message} style={{ color: 'red', fontSize: '2rem' }}>
-            {gameOverMessage}
-          </p>
-          {showPlayAgain && (
-            <Button onClick={restartGame} variant="primary">
-              Play Again
-            </Button>
-          )}
+        <div
+          className="mt-3 alert alert-danger"
+          style={{
+            textAlign: 'center',
+            fontFamily: 'Quicksand',
+            fontSize: '1.5rem',
+          }}
+        >
+          {gameOverMessage}
         </div>
       )}
-      <Row>
-        <Col xs={12} sm={4}>
-          <Card className="p-3 mb-3">
-            <h3>Word List</h3>
-            <ul style={{ listStyleType: 'none' }}>
-              {words.map((word) => (
-                <li key={word} className={foundWords.includes(word) ? styles.found : ''}>
-                  {foundWords.includes(word) ? <s>{word}</s> : word}
-                </li>
+    </div>
+    <Row className="justify-content-center mt-3">
+      <Col xs={12} className="d-flex justify-content-center">
+        <div className={styles.grid}>
+          {grid.map((row, rowIndex) => (
+            <div key={rowIndex} className={styles.row}>
+              {row.map((letter, colIndex) => (
+                <div
+                  key={`${rowIndex}-${colIndex}`}
+                  className={`${styles.cell} ${
+                    isCellHighlighted(rowIndex, colIndex)
+                      ? styles.highlighted
+                      : ''
+                  } ${
+                    selectedCells.some(
+                      (cell) =>
+                        cell.row === rowIndex && cell.col === colIndex
+                    )
+                      ? styles.selected
+                      : ''
+                  }`}
+                  onClick={() => handleCellClick(rowIndex, colIndex)}
+                >
+                  {letter}
+                </div>
               ))}
-            </ul>
-            <h4>Score: {score}</h4>
-            <h5>Level: {level}</h5>
-            <h5>Time Left: {timeLeft}s</h5>
-            
-            {foundWords.length === words.length && (
-              <Button className="mt-3" onClick={nextLevel}>
-                Next Level
-              </Button>
-            )}
-          </Card>
-        
-        </Col>
-
-        <Col xs={12} sm={8}>
-          <div className={styles.grid}>
-            {grid.map((row, rowIndex) => (
-              <div key={rowIndex} className={styles.row}>
-                {row.map((letter, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className={`${styles.cell} ${
-                      isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''
-                    } ${
-                      selectedCells.some(
-                        (cell) => cell.row === rowIndex && cell.col === colIndex
-                      )
-                        ? styles.selected
-                        : ''
-                    }`}
-                    onClick={() => handleCellClick(rowIndex, colIndex)}
-                  >
-                    {letter}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+            </div>
+          ))}
+        </div>
+      </Col>
+    </Row>
+    {messageVisible && (
+      <div
+        className="mt-3 alert alert-success text-center"
+        style={{
+          fontFamily: 'Quicksand',
+          fontSize: '1.2rem',
+          width: '70%',
+          margin: '0 auto',
+        }}
+      >
+        {message}
+      </div>
+    )}
+    {foundWords.length === words.length && !gameOverMessage && (
+      <div
+        className="mt-3 alert alert-success text-center"
+        style={{
+          fontFamily: 'Quicksand',
+          fontSize: '1.5rem',
+        }}
+      >
+        Congrats! You've found all the words!
+        {level < maxLevel && (
+          <Button
+            className="mt-2"
+            variant="success"
+            onClick={nextLevel}
+          >
+            Next Level
+          </Button>
+        )}
+      </div>
+    )}
+    {showPlayAgain && (
+      <div className="text-center mt-4">
+        <Button variant="primary" onClick={restartGame}>
+          Play Again
+        </Button>
+      </div>
+    )}
+  </Container>
+  
   );
 };
 

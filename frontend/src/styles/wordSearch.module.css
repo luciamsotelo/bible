@@ -378,3 +378,62 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .wordSearchContainer {
+    flex-direction: row; /* Keep the flex direction as it is */
+    align-items: center; /* Keep items centered */
+    padding: 10px; /* Keep padding */
+    height: 100vh; /* Maintain full height */
+    gap: 2px; /* Keep gap between elements */
+  }
+
+  .gridContainer {
+    width: 100%; /* Keep it full width */
+  }
+
+  .sidebar {
+    width: 200px; /* Keep the sidebar width */
+    align-items: center; /* Keep the alignment */
+    gap: 20px; /* Keep the spacing */
+  }
+
+  .wordList,
+  .foundWords {
+    width: 100%; 
+    font-size: 1rem; /* Keep the font size */
+  }
+
+  .grid {
+    grid-template-columns: repeat(10, 40px); /* Keep the grid layout */
+    gap: 1px; /* Keep the gap */
+  }
+
+  .cell {
+    width: 30px; 
+    height: 30px; 
+    font-size: 12px; /* Keep the font size */
+    line-height: 2; /* Keep the line height */
+    border: 1px solid #ccc; /* Keep the border */ 
+    background-color: #fff; /* Keep the background color */
+    cursor: pointer; /* Keep the cursor */  
+  }
+
+  .messageSuccess {
+    font-size: 2.5rem; 
+    margin-top: 10px; 
+  }
+
+  .message {
+    font-size: 1rem; 
+    padding: 10px; 
+    margin: 10px auto; 
+  }
+
+  .gridContainer,
+  .sidebar,
+  .messageSuccess,
+  .message {
+    text-align: center; 
+  }
+}
+
