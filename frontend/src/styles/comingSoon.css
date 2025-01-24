@@ -1,0 +1,31 @@
+.coming-soon-container {
+  background-color: rgba(189, 26, 226, 0.3); /* Subtle transparency */
+  padding: 5rem 1rem;
+}
+
+.coming-soon-title {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 3rem;
+  color: #6c1e0d;
+  animation: bounce 2s infinite;
+}
+
+.coming-soon-message {
+  font-size: 1.5rem;
+  color: #efece8;
+  margin-top: 1rem;
+  font-family: 'quicksand', sans-serif;
+  animation: fadeIn 3s ease-in-out;
+}
+
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

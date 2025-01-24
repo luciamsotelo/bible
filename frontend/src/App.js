@@ -26,6 +26,7 @@ import GardenOfEden from './pages/gardenOfEdenPage'
 import BackgroundVideo from './components/BackgroundVideo';
 import CarvePath from './components/carvePath'
 import ContactUs from './pages/contactUs_page'
+import ComingSoon from './pages/comingSoon_page'
 
 
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
             <Route path="/puzzles/moses-sea" element={<MosesPartSea />} />
             <Route path="/puzzles/garden-eden" element={<GardenOfEden />} />
             <Route path="/ContactUs" element={<ContactUs />} />
+            <Route path="/comingSoon" element={<ComingSoon />} />
           </Routes>
         </div>
       </BrowserRouter>
