@@ -69,23 +69,17 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%; /* Full width of the sidebar */
-}
-
-.wordList h3,
-.foundWords h3 {
-  text-align: center;
-}
-
-.wordList ul,
-.foundWords ul {
+  text-decoration: none;
   list-style-type: none;
-  padding: 0;
+
 }
 
 .wordList li,
 .foundWords li {
   margin: 5px 0;
   cursor: pointer;
+  text-decoration: none;
+  list-style-type: none;
 }
 
 .wordList li.found {
@@ -139,6 +133,11 @@
 .highlighted {
   background-color: yellow; /* Highlighted word effect */
   color: black;
+}
+
+.ul {
+  list-style-type: none;
+  padding: 10px;
 }
 
 /* Bounce Animation */

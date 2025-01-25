@@ -220,22 +220,40 @@ const WordSearch = () => {
 
   return (
     <Container className="mt-5 mb-5">
-    <div className="d-flex flex-column justify-content-center align-items-center">
+
+{messageVisible && (
+  <div className="alert alert-info mt-3">
+    {message}
+  </div>
+)}
+
+
+    <div className="d-flex flex-row justify-content-center align-items-center">
       <Button
         variant="primary"
-        className="mb-3"
-        style={{ float: 'right', fontFamily: 'Quicksand', fontWeight: 'bold' }}
+        className=""
+        style={{ fontFamily: 'Quicksand'}}
         onClick={() => navigate('/games')}
       >
         Back Main Game Page
       </Button>
+
+      {showPlayAgain && (
+      <div className="">
+        <Button variant="primary" onClick={restartGame}>
+          Play Again
+        </Button>
+      </div>
+    )}
+    </div>
+    <div>
       <h1
         className="text-center mb-2"
         style={{
           color: 'goldenrod',
           textShadow: '2px 2px 8px black',
           fontFamily: 'Allura',
-          fontSize: '3rem',
+          fontSize: '2.2rem',
           fontWeight: 'bold',
         }}
       >
@@ -244,7 +262,7 @@ const WordSearch = () => {
       <p
         className="text-center"
         style={{
-          fontSize: '1.4rem',
+          fontSize: '1rem',
           color: 'purple',
           fontFamily: 'Quicksand',
         }}
@@ -252,39 +270,57 @@ const WordSearch = () => {
         Find the words before the timer runs out. Good Luck!
       </p>
       <Card
-        className="p-3 text-center"
+        className="p-1 text-center"
         style={{
           fontFamily: 'Quicksand',
-          fontSize: '1.2rem',
-          width: '70%',
+          fontSize: '1rem',
+          width: '100%',
           margin: '0 auto',
+          color: 'white',
+          background: 'linear-gradient(to right,rgb(145, 209, 224), #0083B0)',
+          border: '20px double green',
+          boxShadow: '2px 2px 8px navy',
+          
         }}
       >
         Level: {level} | Score: {score} | Time Left: {timeLeft}s
-      </Card>
-      
-      {/* Words List Section */}
-      <div className="word-list mt-3">
-        <h3>Words to Find:</h3>
-        <ul>
-          {words.map((word, index) => (
-            <li key={index}>{word}</li>
-          ))}
-        </ul>
-      </div>
-  
-      {gameOverMessage && (
+
+        {gameOverMessage && (
         <div
           className="mt-3 alert alert-danger"
           style={{
             textAlign: 'center',
+            fontWeight: 'bold',
             fontFamily: 'Quicksand',
-            fontSize: '1.5rem',
+            fontSize: '1rem',
+            width: '50%',
+            margin: '0 auto',
+            color: 'black',
+            background: 'linear-gradient(to right,rgb(7, 101, 7),rgb(238, 242, 244))',
+            border: '2px inset green',
+            boxShadow: '2px 2px 1px navy',
+            borderRadius: '25px',
+            padding: '10px',
           }}
         >
           {gameOverMessage}
         </div>
       )}
+
+      </Card>
+      
+      {/* Words List Section */}
+      <div className="word-list mt-1">
+  <h3 className="text-center" style={{ fontFamily: 'Quicksand', fontSize: '1.2rem', color: 'purple', textShadow: '2px 2px 1px yellow' }}>Words to Find:</h3>
+  <ul className="d-flex flex-wrap justify-content-center" style={{ fontFamily: 'Quicksand', fontSize: '1rem', color: 'purple', textShadow: '2px 2px 5px hotpink' }}>
+    {words.map((word, index) => (
+      <ul key={index} className={foundWords.includes(word) ? styles.foundWord : '' }>
+        {word}
+      </ul>
+    ))}
+  </ul>
+</div>
+
     </div>
     <Row className="justify-content-center mt-3">
       <Col xs={12} className="d-flex justify-content-center">
@@ -316,28 +352,21 @@ const WordSearch = () => {
         </div>
       </Col>
     </Row>
-    {messageVisible && (
+    {}
+    {foundWords.length === words.length && (
       <div
         className="mt-3 alert alert-success text-center"
         style={{
           fontFamily: 'Quicksand',
-          fontSize: '1.2rem',
-          width: '70%',
+          fontSize: 'rem',
+          width: '80%',
           margin: '0 auto',
+          background: 'linear-gradient(to right,rgb(7, 101, 7),rgb(238, 242, 244))',
+          border: '2px inset green',
+          boxShadow: '2px 2px 1px navy',
         }}
       >
-        {message}
-      </div>
-    )}
-    {foundWords.length === words.length && !gameOverMessage && (
-      <div
-        className="mt-3 alert alert-success text-center"
-        style={{
-          fontFamily: 'Quicksand',
-          fontSize: '1.5rem',
-        }}
-      >
-        Congrats! You've found all the words!
+    Congrats! You've found all the words!
         {level < maxLevel && (
           <Button
             className="mt-2"
@@ -347,13 +376,6 @@ const WordSearch = () => {
             Next Level
           </Button>
         )}
-      </div>
-    )}
-    {showPlayAgain && (
-      <div className="text-center mt-4">
-        <Button variant="primary" onClick={restartGame}>
-          Play Again
-        </Button>
       </div>
     )}
   </Container>
