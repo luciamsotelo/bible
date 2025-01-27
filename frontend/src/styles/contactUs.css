@@ -1,1 +1,20 @@
-
+.contact-img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .contact-img img,
+  .contact-img video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .contact-video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
