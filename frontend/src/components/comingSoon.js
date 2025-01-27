@@ -11,6 +11,16 @@ const ComingSoon = () => {
           <p className="coming-soon-message">
             We're preparing something magical just for you! Stay tuned for an adventure through the Bible in a fun and colorful way!
           </p>
+          <div className="coming-soon-video">
+            <video
+              src="/videos/underConstruction.mp4"
+              controls
+              autoPlay
+              muted
+              loop
+              className="video-player"
+            ></video>
+          </div>
         </Col>
       </Row>
     </Container>
