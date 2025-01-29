@@ -229,22 +229,7 @@ const WordSearch = () => {
 
 
     <div className="d-flex flex-row justify-content-center align-items-center">
-      <Button
-        variant="primary"
-        className=""
-        style={{ fontFamily: 'Quicksand'}}
-        onClick={() => navigate('/games')}
-      >
-        Back Main Game Page
-      </Button>
-
-      {showPlayAgain && (
-      <div className="">
-        <Button variant="primary" onClick={restartGame}>
-          Play Again
-        </Button>
-      </div>
-    )}
+      
     </div>
     <div>
       <h1
@@ -259,6 +244,22 @@ const WordSearch = () => {
       >
         Word Search
       </h1>
+      <div className="d-flex justify-content-center mb-3">
+  <Button
+    variant="primary"
+    className="me-2"
+    style={{ fontFamily: 'Quicksand' }}
+    onClick={() => navigate('/games')}
+  >
+    Games Menu
+  </Button>
+  {showPlayAgain && (
+    <Button variant="primary" onClick={restartGame}>
+      Play Again
+    </Button>
+  )}
+</div>
+
       <p
         className="text-center"
         style={{
@@ -309,17 +310,40 @@ const WordSearch = () => {
 
       </Card>
       
-      {/* Words List Section */}
-      <div className="word-list mt-1">
-  <h3 className="text-center" style={{ fontFamily: 'Quicksand', fontSize: '1.2rem', color: 'purple', textShadow: '2px 2px 1px yellow' }}>Words to Find:</h3>
-  <ul className="d-flex flex-wrap justify-content-center" style={{ fontFamily: 'Quicksand', fontSize: '1rem', color: 'purple', textShadow: '2px 2px 5px hotpink' }}>
+    {/* Words List Section */}
+<div className="word-list mt-1">
+  <h3
+    className="text-center"
+    style={{
+      fontFamily: 'Quicksand',
+      fontSize: '1.2rem',
+      color: 'purple',
+      textShadow: '2px 2px 1px yellow',
+    }}
+  >
+    Words to Find:
+  </h3>
+  <ul
+    className="d-flex flex-wrap justify-content-center list-unstyled"
+    style={{
+      fontFamily: 'Quicksand',
+      fontSize: '1rem',
+      color: 'purple',
+      textShadow: '2px 2px 5px hotpink',
+    }}
+  >
     {words.map((word, index) => (
-      <ul key={index} className={foundWords.includes(word) ? styles.foundWord : '' }>
+      <li
+        key={index}
+        className={foundWords.includes(word) ? styles.foundWord : ''}
+        style={{ margin: '0.5rem' }}  // Adding spacing between words
+      >
         {word}
-      </ul>
+      </li>
     ))}
   </ul>
 </div>
+
 
     </div>
     <Row className="justify-content-center mt-3">
@@ -354,30 +378,39 @@ const WordSearch = () => {
     </Row>
     {}
     {foundWords.length === words.length && (
-      <div
-        className="mt-3 alert alert-success text-center"
-        style={{
-          fontFamily: 'Quicksand',
-          fontSize: 'rem',
-          width: '80%',
-          margin: '0 auto',
-          background: 'linear-gradient(to right,rgb(7, 101, 7),rgb(238, 242, 244))',
-          border: '2px inset green',
-          boxShadow: '2px 2px 1px navy',
-        }}
+  <div
+    className="mt-3 alert alert-success text-center"
+    style={{
+      fontFamily: 'Quicksand',
+      fontSize: '1rem',
+      width: '80%',
+      margin: '0 auto',
+      background: 'linear-gradient(to right,rgb(7, 101, 7),rgb(238, 242, 244))',
+      border: '2px inset green',
+      boxShadow: '2px 2px 1px navy',
+    }}
+  >
+    <h3
+      style={{
+        color: 'purple',
+        fontFamily: 'Quicksand',
+        fontSize: '1.7rem',
+      }}
+    >
+      Awesome! You've uncovered every word!
+    </h3>
+    {level < maxLevel && (
+      <Button
+        className="mt-1"
+        variant="success"
+        onClick={nextLevel}
       >
-    Congrats! You've found all the words!
-        {level < maxLevel && (
-          <Button
-            className="mt-2"
-            variant="success"
-            onClick={nextLevel}
-          >
-            Next Level
-          </Button>
-        )}
-      </div>
+        Next Level
+      </Button>
     )}
+  </div>
+)}
+
   </Container>
   
   );
