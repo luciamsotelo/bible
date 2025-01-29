@@ -8,20 +8,17 @@ const Footer = () => {
   const navigate = useNavigate();
     return (
     <footer className="fixed-bottom background-bottom text-dark text-center text-lg-start mt-auto">
-      <Container className="p-1">
+      <Container className="">
         <Row className="align-items-center">
           <Col xs={12} sm={12} md={6} lg={6} className="">
-            <p className="" style={{ color: "white" }}>
-              We provide engaging activities, stories and fun that bring
-              biblical characters to life. Join us on this adventure!
-            </p>
+          <p className="" style={{ color: "white", marginBottom: 0 }}>Explore, imagine, and grow in faith! </p>
           </Col>
           <Col
             xs={12}
             sm={12}
             md={6}
             lg={6}
-            className="d-flex justify-content-center align-items-center mb-2 mb-md-0"
+            className="d-flex justify-content-center align-items-center"
           >
             <Button
               variant="outline-dark"
