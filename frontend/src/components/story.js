@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import '../styles/story.css'; // Optional: CSS for additional styling
 import AdamEve from '../images/adamandeve.jpg';
@@ -78,6 +78,13 @@ const BibleStories = () => {
     } else {
       setExpandedStory(index);
       stopAudio(); // Stop current audio before expanding a new story
+
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }, 100); // Delay to ensure state updates first
     }
   };
 
@@ -113,8 +120,9 @@ const BibleStories = () => {
           fontFamily: 'allura',
           fontWeight: 'bold',
           color: 'blue',
-          fontSize: '3rem',
+          fontSize: '2.7rem',
           textShadow: '2px 2px 8px rgb(239, 174, 22)',
+          margin: '2%',
         }}
       >
         Short Stories
@@ -145,7 +153,7 @@ const BibleStories = () => {
           <h1
             style={{
               fontFamily: 'sacramento',
-              fontSize: '3rem',
+              fontSize: '2rem',
               color: 'blue',
             }}
           >

@@ -20,21 +20,47 @@ const BiblePuzzleCards = () => {
   ];
 
   return (
-    <Container className="mt-5 mb-5">
-      <Button variant="primary" className="mb-3" style={{float: "right", fontFamily: "quicksand"}} onClick={() => navigate('/games')}>Back To Main Game Page</Button>
-      <h1 className="text-center mb-4" style={{  color: "goldenrod",
-          textShadow: "2px 2px 8px black",
-          fontFamily: "Allura",
-          fontSize: "3rem",
-          fontWeight: "bold",}}>Bible Story Puzzles</h1>
-          <p className="text-center" style ={{ fontSize: "2rem",  color: "purple", fontFamily: "Quicksand"}}>Select The Puzzle You Want To solve</p>
+    <Container className="mt-2">
+      {/* Centering title and button */}
+      <div className="d-flex flex-column align-items-center mb-4">
+        <h1 
+          className="text-center mb-1" 
+          style={{  
+            color: "goldenrod",
+            textShadow: "2px 2px 1px black",
+            fontFamily: "Allura",
+            fontSize: "2.8rem",
+            fontWeight: "bold",
+          }}
+        >
+          Puzzles
+        </h1>
+        <Button 
+          variant="primary" 
+          className="mb-1" 
+          style={{ fontFamily: "Quicksand" }} 
+          onClick={() => navigate('/games')}
+        >
+          Games Menu
+        </Button>
+      </div>
+  
+      <p 
+        className="text-center" 
+        style={{ fontSize: "1.3rem", color: "purple", fontFamily: "Quicksand" }}
+      >
+        Select The Puzzle You Want To Solve
+      </p>
+  
       <Row xs={1} sm={2} md={3} className="g-4">
         {puzzles.map((puzzle, index) => (
           <Col key={index}>
             <Card onClick={() => handleCardClick(puzzle.type)} className="h-100">
               <Card.Img variant="top" src={puzzle.img} alt={puzzle.title} />
               <Card.Body>
-                <Card.Title style={{fontFamily:"quicksand", color: "coral", fontWeight: "bold"}}>{puzzle.title}</Card.Title>
+                <Card.Title style={{ fontFamily: "Quicksand", color: "coral", fontWeight: "bold" }}>
+                  {puzzle.title}
+                </Card.Title>
               </Card.Body>
             </Card>
           </Col>
@@ -42,6 +68,7 @@ const BiblePuzzleCards = () => {
       </Row>
     </Container>
   );
+  
 };
 
 export default BiblePuzzleCards;
