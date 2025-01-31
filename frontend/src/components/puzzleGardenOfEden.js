@@ -40,7 +40,7 @@ const Puzzle = () => {
 
   return (
     <Container className="text-center mt-5">
-      <h1>Garden Of Eden</h1>
+      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Garden Of Eden</h1>
       {completed && (
         <h2
           className={`${styles.congratulationsMessage} mt-3`}
@@ -80,12 +80,12 @@ const Puzzle = () => {
         </div>
       </div>
       <Row className="justify-content-center mt-4">
-        <Col xs={12} md={6} className="d-flex justify-content-between">
-          <Button onClick={resetPuzzle} variant="primary">
-            Reset Puzzle
+        <Col xs={12} md={6} className="d-flex justify-content-center">
+          <Button onClick={resetPuzzle} variant="warning">
+            Reset
           </Button>
-          <Button onClick={goToMainPuzzlePage} variant="secondary">
-            Back to Main Puzzle Page
+          <Button onClick={goToMainPuzzlePage} variant="success">
+            Puzzle Page
           </Button>
         </Col>
       </Row>

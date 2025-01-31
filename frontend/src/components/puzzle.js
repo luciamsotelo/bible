@@ -58,7 +58,7 @@ const BiblePuzzleCards = () => {
             <Card onClick={() => handleCardClick(puzzle.type)} className="h-100">
               <Card.Img variant="top" src={puzzle.img} alt={puzzle.title} />
               <Card.Body>
-                <Card.Title style={{ fontFamily: "Quicksand", color: "coral", fontWeight: "bold" }}>
+                <Card.Title style={{ fontFamily: "Quicksand", color: "coral", fontWeight: "bold", textAlign: "center", fontSize: "1rem" }}>
                   {puzzle.title}
                 </Card.Title>
               </Card.Body>

@@ -1,5 +1,5 @@
 import React from 'react'
-import MaryWJesus from '../components/MaryWithJesus'
+import MaryWJesus from '../components/puzzleMaryWithJesus'
 import Header from '../components/header'
 
 const maryWithJesusPage = () => {

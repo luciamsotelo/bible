@@ -288,20 +288,17 @@ const WordSearch = () => {
 
         {gameOverMessage && (
         <div
-          className="mt-3 alert alert-danger"
+          className="mt-3 alert alert"
           style={{
             textAlign: 'center',
             fontWeight: 'bold',
             fontFamily: 'Quicksand',
-            fontSize: '1rem',
+            fontSize: '1.5rem',
             width: '50%',
             margin: '0 auto',
-            color: 'black',
-            background: 'linear-gradient(to right,rgb(7, 101, 7),rgb(238, 242, 244))',
-            border: '2px inset green',
-            boxShadow: '2px 2px 1px navy',
-            borderRadius: '25px',
-            padding: '10px',
+            color: 'Green',
+            background: 'transparent',
+            padding: '1px',
           }}
         >
           {gameOverMessage}

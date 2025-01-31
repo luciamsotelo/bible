@@ -20,7 +20,7 @@ import WordSearch from './pages/wordSearchPage'
 import Maze from './pages/mazePage';
 import Trivia from './pages/triviaPage'
 import JosephCoat from './pages/puzzleJosephAndCoat'
-import MaryWithJesus from './pages/maryWithJesusPage'
+import MaryWithJesus from './pages/puzzlemaryWithJesusPage'
 import MosesPartSea from './pages/mosesPaartingSeaPage';
 import GardenOfEden from './pages/gardenOfEdenPage'
 import BackgroundVideo from './components/BackgroundVideo';

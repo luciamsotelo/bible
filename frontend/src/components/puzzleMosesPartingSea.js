@@ -76,13 +76,13 @@ const Puzzle = () => {
         </div>
       </div>
       <Row className="justify-content-center mt-4">
-        <Col xs={12} md={6} className="d-flex justify-content-between">
-          <Button onClick={resetPuzzle} variant="primary">
-            Reset Puzzle
-          </Button>
-          <Button onClick={goToMainPuzzlePage} variant="secondary">
-            Back to Main Puzzle Page
-          </Button>
+        <Col xs={12} md={6} className="d-flex justify-content-center">
+          <Button onClick={resetPuzzle} variant="warning">
+                      Reset
+                    </Button>
+                    <Button onClick={goToMainPuzzlePage} variant="success">
+                      Puzzle Page
+                    </Button>
         </Col>
       </Row>
     </Container>
