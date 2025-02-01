@@ -68,6 +68,6 @@
 
 @media (max-width: 600px) {
   .josephPuzzleGrid {
-    max-width: 250px; /* Adjust grid size for smaller screens */
+    max-width: 600px; /* Adjust grid size for smaller screens */
   }
 }
