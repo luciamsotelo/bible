@@ -38,7 +38,7 @@ const Sing = ({ songData }) => {
   const backgroundImage = songData.lyrics[currentLine]?.image;
 
   return (
-    <div>
+    <div className="sing-container">
       <Button
         className="w-25 mx-auto d-block play-button-container mb-3"
         variant="success"
@@ -53,34 +53,30 @@ const Sing = ({ songData }) => {
         {isPlaying ? 'Pause' : 'Play'}
       </Button>
 
+      {/* Karaoke Container with Background */}
       <Container
-  className="karaoke-container"
-  style={{
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
-    padding: '1rem',
-  }}
->
-  <Row className="justify-content-center">
-    <Col xs={12} md={8} lg={6} className="text-center">
-      <div
-        className="lyrics-container"
+        fluid
+        className="karaoke-container d-flex flex-column align-items-center justify-content-start"
         style={{
-          fontFamily: 'Comic Sans MS',
-          color: 'white',
-          textShadow: '2px 2px 4px black',
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
-        <p className="highlighted">
-          {songData.lyrics[currentLine]?.text || 'Get ready to sing!'}
-        </p>
-      </div>
-    </Col>
-  </Row>
-  <audio ref={audioRef} src={songData.audio} />
-</Container>
+        {/* Lyrics Container at the Top */}
+        <Row className="w-100">
+          <Col xs={12} className="text-center">
+            <div className="lyrics-container">
+              <p className="highlighted">
+                {songData.lyrics[currentLine]?.text || 'Get ready to sing!'}
+              </p>
+            </div>
+          </Col>
+        </Row>
 
+        {/* Background Image Filler to Keep Proper Spacing */}
+        <audio ref={audioRef} src={songData.audio} />
+      </Container>
     </div>
   );
 };

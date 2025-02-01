@@ -1,38 +1,58 @@
 .karaoke-container {
-  padding-top: 2rem;
+  height: 100vh;
+  width: 80vw;
+  padding-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: background-image 0.5s ease-in-out;
-  height: 100vh;
-  width: 100vw; /* Adjust for larger screens */
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
+/* Play Button Styling */
 .play-button-container {
   position: relative;
-  margin-top: 1rem; /* Adjust spacing for responsiveness */
+  margin-top: 1rem;
 }
 
+/* Lyrics Container - Fixed at the Top */
 .lyrics-container {
-  position: relative;
-  font-size: 2rem; /* Adjust for larger screens */
-  width: 100%; /* Use percentage for responsiveness */
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better visibility */
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  padding: 0.8rem;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  z-index: 10;
 }
 
+/* Bounce Animation for Highlighted Text */
 .highlighted::before {
-  content: '⚽'; /* Bouncing ball icon */
+  content: '🎤'; /* Microphone icon */
+  display: inline-block; /* Ensures transform works */
   position: relative;
   margin-right: 8px;
-  animation: bounce 1s infinite;
+  animation: bounce 0.8s infinite ease-in-out;
 }
 
+.highlighted{
+  color: rgb(240, 235, 235);
+  font-weight: bolder;
+  text-shadow: 2px 2px 5px rgb(226, 9, 9)
+}
+
+/* Bouncing Effect */
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -42,42 +62,17 @@
   }
 }
 
-/* Media Queries */
+/* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
-  .karaoke-container {
-    height: 40vh; /* Adjust height for tablets */
-    padding-top: 1rem;
-    display: inline-flex;
-    flex-direction: column;
-  }
-
   .lyrics-container {
-    font-size: 1rem; /* Smaller font size */
-    padding: 0.5rem;
-  }
-
-  .play-button-container {
-    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    width: 95%;
   }
 }
 
 @media (max-width: 576px) {
-  .karaoke-container {
-    height: 30vh; /* Adjust height for mobile */
-    padding: 0.5rem;
-    display: inline-flex;
-    flex-direction: column;
-  }
-
   .lyrics-container {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-    width: 100%;
-    justify-content: center;  
-  }
-
-  .play-button-container {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
+    width: 98%;
   }
 }
