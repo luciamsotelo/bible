@@ -24,7 +24,7 @@ import MaryWithJesus from './pages/puzzlemaryWithJesusPage'
 import MosesPartSea from './pages/mosesPaartingSeaPage';
 import GardenOfEden from './pages/gardenOfEdenPage'
 import BackgroundVideo from './components/BackgroundVideo';
-import CarvePath from './components/carvePath'
+import CarvePath from './pages/carvePathPage'
 import ContactUs from './pages/contactUs_page'
 import ComingSoon from './pages/comingSoon_page'
 
