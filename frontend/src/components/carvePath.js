@@ -24,12 +24,16 @@ const StoryComponent = () => {
       .catch((error) => console.error("Error loading story data:", error));
   }, []);
 
-  // Stop blinking effect after 5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  // Function to start and stop blinking effect
+  const triggerBlinkEffect = () => {
+    setBlink(true);
+    setTimeout(() => {
       setBlink(false);
-    }, 5000);
-    return () => clearTimeout(timer);
+    }, 5000); // Stops blinking after 5 seconds
+  };
+
+  useEffect(() => {
+    triggerBlinkEffect(); // Start blinking on initial load
   }, []);
 
   const handleChoice = (nextStep) => {
@@ -37,6 +41,8 @@ const StoryComponent = () => {
     setImageIndex(0);
     setIsPlaying(false);
     setIsPaused(false);
+    triggerBlinkEffect(); // Restart blinking when a new step is chosen
+
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
