@@ -40,7 +40,7 @@ const Header = () => {
                         <Link to="/sing-along">
                             <Button variant="outline-secondary" className="m-1 text-warning">Sing Along</Button>
                         </Link>
-                        <Link to="/crafts">
+                        <Link to="/comingSoon">
                             <Button variant="outline-secondary" className="m-1 text-warning">Printable Crafts</Button>
                         </Link>
                         <Link to="/prayer-board">
