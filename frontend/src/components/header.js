@@ -49,7 +49,7 @@ const Header = () => {
                         <Link to="/bio">
                             <Button variant="outline-secondary" className="m-1 text-warning">Character Bios</Button>
                         </Link>
-                        <Link to="/dress-up">
+                        <Link to="/comingSoon">
                             <Button variant="outline-secondary" className="m-1 text-warning">Character Dress Up</Button>
                         </Link>
                         <Link to="/adventure-map">

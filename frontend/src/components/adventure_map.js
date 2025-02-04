@@ -15,6 +15,7 @@ const AdventureMap = () => {
   ];
 
   return (
+  <div><h1 className="map-title" style={{ color: "green", textShadow: "2px 2px 1px white", fontFamily: "Allura", fontSize: "3.5rem", textAlign: "center", marginTop: "2rem", fontWeight: "bold", }}>Adventure Map</h1>
     <div className="map-container">
       <img src="/images/israel.png" alt="Adventure Map" className="map-image" />
 
@@ -31,7 +32,7 @@ const AdventureMap = () => {
           <button
             className="map-button"
             onClick={() => setSelectedPoint(point)}>
-             {point.name}
+            {point.name}
           </button>
         </div>
       ))}
@@ -50,6 +51,7 @@ const AdventureMap = () => {
         </Card>
       )}
     </div>
+  </div>
   );
 };
 
