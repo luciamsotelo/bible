@@ -40,14 +40,14 @@ const Sing = ({ songData }) => {
   return (
     <div className="sing-container">
       <Button
-        className="w-25 mx-auto d-block play-button-container mb-3"
+        className="w-25 mx-auto d-block play-button-container mb-2"
         variant="success"
         onClick={handlePlayPause}
         size="lg"
         style={{
           zIndex: 1,
           position: 'relative',
-          bottom: '20px',
+          bottom: '15px',
         }}
       >
         {isPlaying ? 'Pause' : 'Play'}

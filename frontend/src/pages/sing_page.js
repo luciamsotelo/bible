@@ -8,8 +8,6 @@ const songs = [
   { title: "Amazing Grace", file: '/lyrics/amazing-grace.json' },
   { title: "Holy, Holy, Holy", file: '/lyrics/holy-holy-holy.json' },
   { title: "How Great Thou Art", file: '/lyrics/how-great-thou-art.json' },
-  { title: "Rock of Ages", file: '/lyrics/rock-of-ages.json' },
-  { title: "This Little Light of Mine", file: '/lyrics/this-little-light.json' },
 ];
 
 const SingPage = () => {
@@ -34,12 +32,12 @@ const SingPage = () => {
     <div>
       <Header />
       <Container className="sing-page text-center">
-        <h2>
+        <h2 className="text-center my-4" style={{ color: "goldenrod", textShadow: "2px 2px 8px black", fontFamily: "allura", fontSize: "3rem", fontWeight: "bold", }}>
           Choose a Song and Get Ready to Sing Along!
         </h2>
 
         {/* Dropdown Menu */}
-        <Dropdown as={ButtonGroup} className="mb-5">
+        <Dropdown as={ButtonGroup} className="mt-1 mb-1">
           <Dropdown.Toggle
             variant="secondary"
             id="dropdown-basic"
@@ -47,16 +45,16 @@ const SingPage = () => {
               backgroundColor: 'purple',
               border: 'none',
               fontFamily: 'quicksand',
-              textShadow: '1px 1px 2px goldenrod',
+              textShadow: '1px 1px 1px goldenrod',
               fontSize: '1.3rem',
             }}
           >
             {selectedTitle}
           </Dropdown.Toggle>
 
-          <Dropdown.Menu>
+          <Dropdown.Menu className='dropdown-menu'>
             {songs.map((song, index) => (
-              <Dropdown.Item
+              <Dropdown.Item className='dropdown-item'
                 key={index}
                 onClick={() => handleSongChange(song)}
                 active={selectedSong === song.file}

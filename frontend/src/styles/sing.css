@@ -13,7 +13,7 @@
 /* Lyrics Display */
 .lyrics-container {
   position: absolute;
-  top: 15%;
+  top: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -21,11 +21,10 @@
   font-size: 2rem;
   font-weight: bold;
   text-shadow: 3px 3px 5px black;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   padding: 1.5rem;
   border-radius: 15px;
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
 }
 
 .karaoke-wrapper {
@@ -49,15 +48,14 @@
   text-shadow: 2px 2px 4px #ff1493; /* Pinkish glow for fun */
 }
 
-.sing-page {
-  color: purple;
-  font-weight: extrabold;
+.dropdown-item {
+  max-height: 200px;
+  overflow-y: scroll;
+  color: #ff1493; /* Bright gold color for excitement */
+  font-weight: bold;
+  font-size: 1rem;
   text-align: center;
-  font-size: 1.2rem;
-  text-shadow: 2px 2px 1px goldenrod;
-  margin-top: 1.5rem;
-}
-
+  }
 
 /* Bouncing Animation */
 @keyframes bounce {
