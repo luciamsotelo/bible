@@ -34,15 +34,7 @@ const SingPage = () => {
     <div>
       <Header />
       <Container className="sing-page text-center">
-        <h2
-          style={{
-            color: 'purple',
-            fontFamily: 'quicksand',
-            fontSize: '1.6rem',
-            textShadow: '2px 2px 3px goldenrod',
-            marginBottom: '1rem',
-          }}
-        >
+        <h2>
           Choose a Song and Get Ready to Sing Along!
         </h2>
 
@@ -56,7 +48,7 @@ const SingPage = () => {
               border: 'none',
               fontFamily: 'quicksand',
               textShadow: '1px 1px 2px goldenrod',
-              fontSize: '1.5rem',
+              fontSize: '1.3rem',
             }}
           >
             {selectedTitle}

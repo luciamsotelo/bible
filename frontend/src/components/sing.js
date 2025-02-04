@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Container, Button, Row, Col } from 'react-bootstrap';
-import '../styles/sing.css';
+import React, { useState, useEffect, useRef } from "react";
+import { Container, Button } from "react-bootstrap";
+import "../styles/sing.css";
 
 const Sing = ({ songData }) => {
   const [currentLine, setCurrentLine] = useState(0);
@@ -28,59 +28,43 @@ const Sing = ({ songData }) => {
         setCurrentLine(currentLyricsIndex);
       }
     };
-    audio.addEventListener('timeupdate', handleTimeUpdate);
+
+    audio.addEventListener("timeupdate", handleTimeUpdate);
     return () => {
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, [songData]);
 
-  // Get the background image URL for the current line
+  // Set background image
   const backgroundImage = songData.lyrics[currentLine]?.image;
 
   return (
-    <div>
-      <Button
-        className="w-25 mx-auto d-block play-button-container mb-3"
-        variant="success"
-        onClick={handlePlayPause}
-        size="lg"
-        style={{
-          zIndex: 1,
-          position: 'relative',
-          bottom: '20px',
-        }}
-      >
-        {isPlaying ? 'Pause' : 'Play'}
+    <div className="karaoke-wrapper">
+      {/* Play/Pause Button */}
+      <Button className="play-button" variant="success" onClick={handlePlayPause} size="lg">
+        {isPlaying ? "Pause 🎵" : "Play ▶️"}
       </Button>
 
+      {/* Karaoke Container with Background Image */}
       <Container
-  className="karaoke-container"
-  style={{
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
-    padding: '1rem',
-  }}
->
-  <Row className="justify-content-center">
-    <Col xs={12} md={8} lg={6} className="text-center">
-      <div
-        className="lyrics-container"
+        className="karaoke-container"
         style={{
-          fontFamily: 'Comic Sans MS',
-          color: 'white',
-          textShadow: '2px 2px 4px black',
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat", // Ensures the image only appears once
         }}
       >
-        <p className="highlighted">
-          {songData.lyrics[currentLine]?.text || 'Get ready to sing!'}
-        </p>
-      </div>
-    </Col>
-  </Row>
-  <audio ref={audioRef} src={songData.audio} />
-</Container>
+        {/* Lyrics Display */}
+        <div className="lyrics-container">
+          <p className="highlighted">
+            {songData.lyrics[currentLine]?.text || "Get ready to sing! 🎤"}
+          </p>
+        </div>
 
+        {/* Audio Element */}
+        <audio ref={audioRef} src={songData.audio} />
+      </Container>
     </div>
   );
 };

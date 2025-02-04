@@ -1,83 +1,110 @@
+/* Main Karaoke Container */
 .karaoke-container {
-  padding-top: 2rem;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  transition: background-image 0.5s ease-in-out;
-  height: 100vh;
-  width: 100vw; /* Adjust for larger screens */
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
-.play-button-container {
-  position: relative;
-  margin-top: 1rem; /* Adjust spacing for responsiveness */
-}
-
+/* Lyrics Display */
 .lyrics-container {
-  position: relative;
-  font-size: 2rem; /* Adjust for larger screens */
-  width: 100%; /* Use percentage for responsiveness */
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  background: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better visibility */
-  border-radius: 8px;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 5px black;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1.5rem;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 600px;
 }
 
+.karaoke-wrapper {
+  margin-top: -65px;
+  
+}
+
+/* Fun Bouncing Ball for Sing-along */
 .highlighted::before {
-  content: '⚽'; /* Bouncing ball icon */
-  position: relative;
-  margin-right: 8px;
-  animation: bounce 1s infinite;
+  content: '🎤'; /* Microphone emoji instead of soccer ball */
+  display: inline-block;
+  margin-right: 10px;
+  animation: bounce 1s infinite ease-in-out;
 }
 
+/* Highlighted Lyrics Text */
+.highlighted {
+  color: #FFD700; /* Bright gold color for excitement */
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 4px #ff1493; /* Pinkish glow for fun */
+}
+
+.sing-page {
+  color: purple;
+  font-weight: extrabold;
+  text-align: center;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 1px goldenrod;
+  margin-top: 1.5rem;
+}
+
+
+/* Bouncing Animation */
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
-/* Media Queries */
+/* Play Button Container */
+.play-button-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Responsive Design */
 @media (max-width: 992px) {
-  .karaoke-container {
-    height: 40vh; /* Adjust height for tablets */
-    padding-top: 1rem;
-    display: inline-flex;
-    flex-direction: column;
-  }
-
   .lyrics-container {
-    font-size: 1rem; /* Smaller font size */
-    padding: 0.5rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: 90%;
   }
-
-  .play-button-container {
-    margin-top: 0.5rem;
+  
+  .highlighted {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 576px) {
   .karaoke-container {
-    height: 30vh; /* Adjust height for mobile */
-    padding: 0.5rem;
-    display: inline-flex;
+    height: 90vh; /* Better experience on mobile */
     flex-direction: column;
   }
 
   .lyrics-container {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-    width: 100%;
-    justify-content: center;  
+    font-size: 1.5rem;
+    padding: 0.8rem;
   }
 
-  .play-button-container {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
+  .highlighted {
+    font-size: 1rem;
   }
+
+  .karaoke-wrapper {
+    margin-top: -3rem;
+  }
+
 }
