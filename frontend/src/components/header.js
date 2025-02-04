@@ -55,11 +55,8 @@ const Header = () => {
                         <Link to="/adventure-map">
                             <Button variant="outline-secondary" className="m-1 text-warning">Adventure Map</Button>
                         </Link>
-                        <Link to="/create-story">
-                            <Button variant="outline-secondary" className="m-1 text-warning">Create Your Own Story</Button>
-                        </Link>
                         <Link to="/carve-path">
-                            <Button variant="outline-secondary" className="m-1 text-warning">Carve Path</Button>
+                            <Button variant="outline-secondary" className="m-1 text-warning">Eli's Journey</Button>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>

@@ -9,7 +9,6 @@ import PrintableCrafts from './pages/craft_page';
 import PrayerBoard from './pages/prayer_page';
 import CharacterDressUp from './pages/dressup_page';
 import AdventureMap from './pages/AdventureMap_page';
-import CreateStory from './pages/CreateStory_page';
 import BioPage from './pages/bio_page'; 
 import Puzzle from './pages/puzzle_page';
 import PuzzleArk from './pages/puzzleArk_page';
@@ -47,7 +46,6 @@ const App = () => {
             <Route path="/prayer-board" element={<PrayerBoard />} />
             <Route path="/dress-up" element={<CharacterDressUp />} />
             <Route path="/adventure-map" element={<AdventureMap />} />
-            <Route path="/create-story" element={<CreateStory />} />
             <Route path='/carve-path' element={<CarvePath />} />
             <Route path="/bio" element={<BioPage />} />
             <Route path="/games/puzzle" element={<Puzzle />} />
