@@ -1,0 +1,78 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* Allows vertical scroll but prevents horizontal overflow */
+}
+
+/* Ensures page fills screen on all devices */
+.fullScreen {
+  min-height: 100vh; /* Always fills full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensures proper scaling and centering */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Story styles */
+.storyContainer {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typography */
+.storyTitle {
+  font-family: "Quicksand", sans-serif;
+  color: black;
+  text-shadow: 2px 2px 8px goldenrod;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.storyDescription {
+  font-size: 1rem;
+  font-family: "Quicksand", sans-serif;
+  color: black;
+  text-align: center;
+}
+
+/* Responsive image */
+.storyImage {
+  max-width: 50%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: contain; /* Ensures image maintains aspect ratio */
+}
+
+@keyframes blinkBorder {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+    border-color: yellow;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 1);
+    border-color: orange;
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+    border-color: yellow;
+  }
+}
+
+/* Apply blinking effect to Play Story buttons */
+.blinkingButton {
+  animation: blinkBorder 1s infinite alternate;
+  border: 3px solid yellow; /* Initial border color */
+  transition: border-color 0.3s ease-in-out;
+}
+

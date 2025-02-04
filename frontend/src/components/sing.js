@@ -39,6 +39,7 @@ const Sing = ({ songData }) => {
   const backgroundImage = songData.lyrics[currentLine]?.image;
 
   return (
+<<<<<<< HEAD
     <div className="karaoke-wrapper">
       {/* Play/Pause Button */}
       <Button className="play-button" variant="success" onClick={handlePlayPause} size="lg">
@@ -63,6 +64,45 @@ const Sing = ({ songData }) => {
         </div>
 
         {/* Audio Element */}
+=======
+    <div className="sing-container">
+      <Button
+        className="w-25 mx-auto d-block play-button-container mb-3"
+        variant="success"
+        onClick={handlePlayPause}
+        size="lg"
+        style={{
+          zIndex: 1,
+          position: 'relative',
+          bottom: '20px',
+        }}
+      >
+        {isPlaying ? 'Pause' : 'Play'}
+      </Button>
+
+      {/* Karaoke Container with Background */}
+      <Container
+        fluid
+        className="karaoke-container d-flex flex-column align-items-center justify-content-start"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Lyrics Container at the Top */}
+        <Row className="w-100">
+          <Col xs={12} className="text-center">
+            <div className="lyrics-container">
+              <p className="highlighted">
+                {songData.lyrics[currentLine]?.text || 'Get ready to sing!'}
+              </p>
+            </div>
+          </Col>
+        </Row>
+
+        {/* Background Image Filler to Keep Proper Spacing */}
+>>>>>>> 64e3c09fdcfeb3414a335a43dd989d3b196541d2
         <audio ref={audioRef} src={songData.audio} />
       </Container>
     </div>
