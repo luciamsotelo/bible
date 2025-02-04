@@ -4,6 +4,7 @@ import '../styles/Adventure_map.css';
 
 const AdventureMap = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
+  const [cardPosition, setCardPosition] = useState({ top: '50%', left: '50%' });
 
   const points = [
     { id: 1, x: '60%', y: '95%', name: 'Bethlehem', description: 'Jesus was born in Bethlehem, fulfilling Old Testament prophecy. Angels announced His birth to shepherds nearby, marking the arrival of the promised Savior. His humble birth in a stable underscored His role as a servant King who came to save humanity.', image: "/images/bethlehem.jpg" },
@@ -14,44 +15,50 @@ const AdventureMap = () => {
     { id: 6, x: '50%', y: '40%', name: 'Mount of Olives', description: 'Jesus often visited the Mount of Olives for prayer and reflection. Here, He delivered the Olivet Discourse, prophesying future events and the end times. The Mount of Olives was also the site of His ascension into heaven, where He left His disciples with a promise of His eventual return.', image: '/images/mountolives.jpg' },
   ];
 
+  const handleClick = (point) => {
+    if (selectedPoint?.id === point.id) {
+      setSelectedPoint(null);
+    } else {
+      // Generate a random horizontal position (between 20% and 80%) and fix the top position to the upper part of the screen
+      const randomX = Math.floor(Math.random() * 60) + 20; // Random between 20% and 80%
+      const randomY = Math.floor(Math.random() * 20) + 10; // Random between 10% and 30%
+  
+      setCardPosition({ top: `${randomY}%`, left: `${randomX}%` });
+      setSelectedPoint(point);
+    }
+  };
+
   return (
-  <div><h1 className="map-title" style={{ color: "green", textShadow: "2px 2px 1px white", fontFamily: "Allura", fontSize: "3.5rem", textAlign: "center", marginTop: "2rem", fontWeight: "bold", }}>Adventure Map</h1>
-    <div className="map-container">
-      <img src="/images/israel.png" alt="Adventure Map" className="map-image" />
+    <div>
+      <h1 className="map-title" style={{ color: "green", textShadow: "2px 2px 10px white", fontFamily: "Allura", fontSize: "2rem", textAlign: "center", marginTop: "1rem", fontWeight: "bold" }}>
+        Adventure Map
+      </h1>
+      <p className="map-description" style={{ color: "black", fontFamily: "Quicksand", fontSize: ".9rem", textAlign: "center", margin: ".5rem", fontWeight: "bold" }}>
+        Embark on an exciting journey through the places where Jesus walked! Click on different locations on the map to learn about important events in His life. Discover where He was born, performed miracles, and shared His teachings.
+      </p>
+      <div className="map-container" style={{ marginTop: ".5rem", marginBottom: "20rem" }}>
+        <img src="/images/israel.png" alt="Adventure Map" className="map-image" />
 
-      {points.map((point) => (
-        <div
-          key={point.id}
-          className="map-point"
-          style={{ top: point.y, left: point.x }}
-        >
-          {/* Map point tooltip */}
-          <span className="tooltip">{point.name}</span>
+        {points.map((point) => (
+          <div key={point.id} className="map-point" style={{ top: point.y, left: point.x }}>
+            <span className="tooltip">{point.name}</span>
+            <button className="map-button" onClick={() => handleClick(point)}>{point.name}</button>
+          </div>
+        ))}
 
-          {/* Button positioned near the point */}
-          <button
-            className="map-button"
-            onClick={() => setSelectedPoint(point)}>
-            {point.name}
-          </button>
-        </div>
-      ))}
-
-      {/* Card for the selected point */}
-      {selectedPoint && (
-        <Card className="info-card">
-          <Card.Img variant="top" src={selectedPoint.image} />
-          <Card.Body>
-            <Card.Title className='cardTitle'>{selectedPoint.name}</Card.Title>
-            <Card.Text className='text-start'>{selectedPoint.description}</Card.Text>
-            <Button variant="secondary" onClick={() => setSelectedPoint(null)}>
-              Close
-            </Button>
-          </Card.Body>
-        </Card>
-      )}
+        {/* Card for the selected point, positioned randomly */}
+        {selectedPoint && (
+          <Card className="info-card" style={{ position: "absolute", top: cardPosition.top, left: cardPosition.left, zIndex: 10 }}>
+            <Card.Img variant="top" src={selectedPoint.image} />
+            <Card.Body>
+              <Card.Title className="cardTitle">{selectedPoint.name}</Card.Title>
+              <Card.Text className="text-start">{selectedPoint.description}</Card.Text>
+              <Button variant="secondary" onClick={() => setSelectedPoint(null)}>Close</Button>
+            </Card.Body>
+          </Card>
+        )}
+      </div>
     </div>
-  </div>
   );
 };
 

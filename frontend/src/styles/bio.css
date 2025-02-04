@@ -1,11 +1,19 @@
 /* src/styles/bio.css */
 
-/* Container styling for the bio page */
+.bio-container-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px; /* Add space at the bottom for footer */
+}
+
+/* Ensure content area grows and doesn't cut off */
 .bio-container {
   background-color: #f4e1d2; /* Light pastel background */
   padding: 20px;
   border-radius: 10px;
   animation: fadeIn 1s ease-out;
+  flex-grow: 1; /* Allows content to expand and fill space */
 }
 
 .bio-container .row {
@@ -125,3 +133,34 @@
   font-size: 16px;
   color: #333;
 }
+
+/* Add some fun background and color for text */
+.bio-button {
+  background-color: #FF5733; /* Fun border color */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  animation: fadeIn 1.5s ease-out;
+}
+
+/* bio.css */
+.centered-card {
+  transform: scale(1.1); /* Slightly scale up the selected card */
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Ensure the selected card stays on top */
+}
+
+.bio-container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Scroll smooth behavior */
+html {
+  scroll-behavior: smooth;
+}
+

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sing from '../components/sing';
 import { Spinner, Container, Dropdown, ButtonGroup } from 'react-bootstrap';
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 const songs = [
   { title: "Jesus Loves Me", file: '/lyrics/jesus-loves-me.json' },
@@ -76,6 +77,7 @@ const SingPage = () => {
           </div>
         )}
       </Container>
+      <Footer />
     </div>
   );
 };

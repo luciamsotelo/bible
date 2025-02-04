@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/header'
 import GameCards from '../components/games'
+import Footer from '../components/footer'
 
 
 const game_page = () => {
@@ -8,6 +9,7 @@ const game_page = () => {
     <div>
         <Header />
         <GameCards />
+        <Footer />
     </div>
   )
 }

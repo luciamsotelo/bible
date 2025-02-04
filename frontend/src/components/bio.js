@@ -1,5 +1,4 @@
-// src/components/Bio.js
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import "../styles/bio.css"; // Ensure you have responsive styles
 
@@ -62,7 +61,7 @@ const characters = [
   },
 ];
 
-const BioCard = ({ character }) => {
+const BioCard = ({ character, isSelected, onSelect }) => {
   const [flipped, setFlipped] = useState(false);
   const [audio, setAudio] = useState(null); // Store the audio instance
   const [audioPosition, setAudioPosition] = useState(0);
@@ -98,11 +97,11 @@ const BioCard = ({ character }) => {
     }
   };
 
-
   return (
-    <Col xs={12} sm={6} md={4} className="bio-mb-4">
+    <Col xs={12} sm={6} md={4} className="bio-m1-">
       <Card
-        className={`bio-character-card mt-5 ${flipped ? "bio-flipped" : ""}`}
+        className={`bio-character-card mt-1 ${flipped ? "bio-flipped" : ""} ${isSelected ? "centered-card" : ""}`}
+        onClick={() => onSelect(character.name)} // Pass the selected character name to parent
       >
         <Card.Img variant="top" src={character.image} alt={character.name} />
         <Card.Body>
@@ -135,14 +134,38 @@ const BioCard = ({ character }) => {
 };
 
 const Bio = () => {
+  const [selectedCharacter, setSelectedCharacter] = useState(null); // Track selected character
+  const containerRef = useRef(null);
+
+  const handleSelectCharacter = (name) => {
+    setSelectedCharacter(name);
+    const card = containerRef.current.querySelector(`.bio-character-card[data-name='${name}']`);
+    if (card) {
+      card.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
   return (
-    <Container className="bio-container">
-      <Row className="bio-justify-content-center">
-        {characters.map((character, index) => (
-          <BioCard key={index} character={character} />
-        ))}
-      </Row>
-    </Container>
+    <div className="bio-container-wrapper" style={{ marginTop: "10px", marginBottom: "150px" }}>
+      <Container className="bio-container" ref={containerRef}>
+        <h1 className="text-center" style={{ color: "purple", textShadow: "1px 1px 1px goldenrod", fontFamily: "allura", fontSize: "2.5rem", fontWeight: "bold" }}>
+          Biblical Figures
+        </h1>
+        <Row className="bio-justify-content-center">
+          {characters.map((character, index) => (
+            <BioCard
+              key={index}
+              character={character}
+              isSelected={selectedCharacter === character.name} // Check if this card is selected
+              onSelect={handleSelectCharacter} // Pass handler to select card
+            />
+          ))}
+        </Row>
+      </Container>
+    </div>
   );
 };
 

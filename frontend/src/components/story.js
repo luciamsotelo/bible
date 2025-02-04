@@ -114,21 +114,13 @@ const BibleStories = () => {
 
   return (
     <div className="container">
-      <h2
-        className="text-center"
-        style={{
-          fontFamily: 'allura',
-          fontWeight: 'bold',
-          color: 'blue',
-          fontSize: '2.7rem',
-          textShadow: '2px 2px 8px rgb(239, 174, 22)',
-          margin: '2%',
-        }}
-      >
-        Short Stories
-      </h2>
+    <div className="bible-story-paragraph">
+  <h2>Discover the Power of Bible Stories</h2>
+  <p>Explore captivating Bible stories that teach valuable lessons about faith, hope, and God's love.</p>
+</div>
+
       {expandedStory === null ? (
-        <Row>
+        <Row className='story-row justify-content-center' style={{ marginBottom: '150px' }}>
           {stories.map((story, index) => (
             <Col key={index} md={4}>
               <Card className="story-card mb-4">
@@ -138,7 +130,7 @@ const BibleStories = () => {
                   src={story.frontImage}
                   alt={story.title}
                 />
-                <Card.Body style={{ textAlign: 'center' }}>
+                <Card.Body style={{ textAlign: 'center'}}>
                   <Card.Title style={{ fontFamily: 'quicksand' }}>
                     {story.title}
                   </Card.Title>
@@ -181,11 +173,11 @@ const BibleStories = () => {
               alt={stories[expandedStory].title}
               className="img-fluid rounded border border-success shadow-lg my-3"
             />
-            <div className="overlay">
+            <div className="overlay" style={{marginBottom: '20rem' }}>
               <p className="story-box p-2 rounded" style={{ fontFamily: 'quicksand', fontSize: '1rem', textAlign: 'justify', color: 'white', fontWeight: 'bold', backgroundColor: 'rgba(10, 84, 144, 0.8)'}}>
                 {stories[expandedStory].story}
               </p>
-              <p className="bg-info rounded-pill p-5 text-dark">
+              <p className="bg-info rounded-pill p-4 text-dark">
                 <strong>Lesson:</strong> {stories[expandedStory].lesson}
               </p>
             </div>

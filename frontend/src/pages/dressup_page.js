@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/header'
 import DressUp from '../components/dressup'
+import Footer from '../components/footer'
 
 
 const dressup_page = () => {
@@ -8,6 +9,7 @@ const dressup_page = () => {
     <div>
         <Header />
         <DressUp />
+        <Footer />
   
     </div>
   )
