@@ -64,6 +64,14 @@
 .hangman-status {
   margin: 20px 0;
   font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.hangman-status p {
+  color: black;
+  font-family: 'quicksand', monospace;
+  font-size: 1.5rem;
+  
 }
 
 .game-message {

@@ -1,5 +1,7 @@
 // src/components/hangman.js
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; // Correct import
 import "../styles/hangman.css";
 
 
@@ -97,6 +99,9 @@ const Hangman = () => {
   const [wrongGuesses, setWrongGuesses] = useState([]);
   const [maxGuesses] = useState(6);
 
+ // Initialize navigate
+ const navigate = useNavigate(); // Fix here
+
   // Handle difficulty selection
   const selectDifficulty = (level) => {
     let selectedWords;
@@ -169,7 +174,17 @@ const Hangman = () => {
 
   return (
     <div className="hangman-container mt-5">
-      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'60px'}}>Hangman: Biblical Edition</h1>
+
+<Button 
+          variant="primary" 
+          className="mb-4" 
+          style={{ fontFamily: "Quicksand" }} 
+          onClick={() => navigate('/games')}
+        >
+          Games Menu
+        </Button>
+
+      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'250%'}}>Hangman: Biblical Edition</h1>
 
       {/* Current Difficulty */}
       <div className="difficulty-info">
