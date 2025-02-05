@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "../styles/prayer.css";
-import "../App.css";
+
 
 const Prayer = () => {
   const [prayers, setPrayers] = useState([]);
@@ -148,7 +148,7 @@ if (childlikeVoice) {
         <Row>
           <Col xs={12} md={8} lg={6} className="mx-auto">
             <Form onSubmit={handleSubmit} className="prayer-form">
-              <Form.Group className="mb-3">
+              <Form.Group className="mb-3 prayer-textarea">
                 <Form.Control
                   type="text"
                   value={name}
@@ -159,7 +159,7 @@ if (childlikeVoice) {
                   className="prayer-input"
                 />
               </Form.Group>
-              <Form.Group className="mb-3">
+              <Form.Group className="mb-3 prayer-textarea">
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -168,7 +168,7 @@ if (childlikeVoice) {
                   placeholder="Enter your prayer request"
                   required
                   disabled={isSubmitting}
-                  className="prayer-textarea"
+                  className=""
                 />
               </Form.Group>
               <Button variant="primary" type="submit" className="w-100 prayer-submit-btn" disabled={isSubmitting}>
