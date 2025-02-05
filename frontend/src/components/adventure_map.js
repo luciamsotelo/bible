@@ -4,7 +4,6 @@ import '../styles/Adventure_map.css';
 
 const AdventureMap = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
-  const [cardPosition, setCardPosition] = useState({ top: '50%', left: '50%' });
 
   const points = [
     { id: 1, x: '60%', y: '95%', name: 'Bethlehem', description: 'Jesus was born in Bethlehem, fulfilling Old Testament prophecy. Angels announced His birth to shepherds nearby, marking the arrival of the promised Savior. His humble birth in a stable underscored His role as a servant King who came to save humanity.', image: "/images/bethlehem.jpg" },
@@ -19,14 +18,11 @@ const AdventureMap = () => {
     if (selectedPoint?.id === point.id) {
       setSelectedPoint(null);
     } else {
-      // Generate a random horizontal position (between 20% and 80%) and fix the top position to the upper part of the screen
-      const randomX = Math.floor(Math.random() * 60) + 20; // Random between 20% and 80%
-      const randomY = Math.floor(Math.random() * 20) + 10; // Random between 10% and 30%
-  
-      setCardPosition({ top: `${randomY}%`, left: `${randomX}%` });
+      // Fix the card position at the top and center it horizontally
       setSelectedPoint(point);
     }
   };
+  
 
   return (
     <div>
@@ -48,7 +44,7 @@ const AdventureMap = () => {
 
         {/* Card for the selected point, positioned randomly */}
         {selectedPoint && (
-          <Card className="info-card" style={{ position: "absolute", top: cardPosition.top, left: cardPosition.left, zIndex: 10 }}>
+          <Card className="info-card">
             <Card.Img variant="top" src={selectedPoint.image} />
             <Card.Body>
               <Card.Title className="cardTitle">{selectedPoint.name}</Card.Title>

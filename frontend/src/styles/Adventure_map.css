@@ -153,7 +153,7 @@
     height: 12px;
   }
 
-  .tooltip {
+ .tooltip {
     font-size: 10px;
     top: -20px;
   }
@@ -161,16 +161,17 @@
   .info-card {
     top: 5%;
     left: 5%;
-    max-width: 40%;
+    max-width: 60%;
     max-height: 100%;
     transform: scale(0.9);
     transform-origin: bottom left;
-    width: 25vw;
-    font-size: .5rem;
+    width: 100vw;
+    font-size: 1rem;
+    text-align: left;
   }
 
   .cardTitle{
-    font-size: .7rem;
+    font-size: 1.3rem;
   }
 
   .map-button {
@@ -183,7 +184,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 574px) {
   .map-container {
     margin-top: 2vh;
     border-radius: 80px;
@@ -203,10 +204,19 @@
   .info-card {
     top: 5%;
     left: 5%;
-    max-width: 100%;
-    max-height: 60%;
+    max-width: 90%;
+    max-height: 90%;
     transform: scale(1);
     transform-origin: top left;
+
+  }
+
+  .cardTitle{
+    font-size: 1rem;
+  }
+
+  .text-start{
+    font-size: .8rem;
   }
 
   .map-button {
