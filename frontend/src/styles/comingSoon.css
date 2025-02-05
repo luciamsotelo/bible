@@ -1,18 +1,28 @@
 .coming-soon-container {
-  background-color: rgba(189, 26, 226, 0.3); /* Subtle transparency */
-  padding: 2rem 1rem; /* Adjust padding for better spacing */
+  min-height: calc(100vh - 200px); /* Adjust 200px to fit your footer height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+
+.coming-soon-container:last-child {
+  margin-bottom: 80%; /* Adjust this value as needed */
+  display: block;
+}
+
 
 .coming-soon-title {
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  font-size: 2.5rem; /* Scales well on smaller screens */
+  font-size: 2rem; /* Scales well on smaller screens */
   color: #6c1e0d;
   animation: bounce 2s infinite;
 }
 
 .coming-soon-message {
-  font-size: 1.2rem; /* Slightly smaller for better scaling */
-  color: #efece8;
+  font-size: 1rem; /* Slightly smaller for better scaling */
+  color: #86118a;
   margin-top: 1rem;
   font-family: 'Quicksand', sans-serif;
   animation: fadeIn 3s ease-in-out;
