@@ -57,7 +57,7 @@
   
   /* Fixes overlap issue */
   .game-cards-container {
-    padding-bottom: 80px; /* Adjusted for footer height */
+    padding-bottom: 12%; /* Adjusted for footer height */
   }
   
   /* Footer Styling */
@@ -69,4 +69,11 @@
     text-align: center;
     color: white;
   }
+
+  @media (max-width: 768px) {
+    .game-cards-container {
+      padding-bottom: 160px; /* More space on mobile */
+    }
+  }
+  
   
