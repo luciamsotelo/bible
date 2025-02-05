@@ -1,17 +1,18 @@
-import React from 'react'
-import Header from '../components/header'
-import GameCards from '../components/games'
-import Footer from '../components/footer'
-
+import React from 'react';
+import Header from '../components/header';
+import GameCards from '../components/games';
+import Footer from '../components/footer';
 
 const game_page = () => {
   return (
-    <div>
-        <Header />
+    <div className="page-container">
+      <Header />
+      <div className="content">
         <GameCards />
-        <Footer />
+      </div>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default game_page
+export default game_page;

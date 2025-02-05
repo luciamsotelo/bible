@@ -1,13 +1,13 @@
 import React from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Correct import for react-router-dom v6
+import { useNavigate } from 'react-router-dom';
+import '../styles/gameCards.css'; // Import the CSS file
 
 const GameCards = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
-  // Function to handle card clicks
   const handleCardClick = (gameType) => {
-    navigate(`/games/${gameType}`); // Use navigate instead of history.push
+    navigate(`/games/${gameType}`);
   };
 
   const games = [
@@ -20,16 +20,16 @@ const GameCards = () => {
   ];
 
   return (
-    <Container className="mt-2">
-      <h1 className="text-center mb-2" style={{ color: "purple", textShadow: "2px 2px 8px white", fontFamily: "allura", fontSize: "2.7rem", fontWeight: "bold", }}> Games</h1>
+    <Container className="game-cards-container">
+      <h1 className="game-title">Games</h1>
       <Row xs={1} md={2} lg={3} className="g-4">
         {games.map((game, index) => (
           <Col key={index}>
-            <Card onClick={() => handleCardClick(game.type)} className="h-100" style={{ border: "20px inset goldenrod" }}>
+            <Card onClick={() => handleCardClick(game.type)} className="game-card">
               <Card.Img variant="bottom" src={game.img} alt={game.title} />
               <Card.Body>
-                <Card.Title className="text-center" style={{ color: "purple", textShadow: "2px 2px 2px goldenrod", fontFamily: "rye", fontSize: "2rem", fontWeight: "", }}>{game.title}</Card.Title>
-                <Card.Text className="text-center" style={{ color: "purple", fontFamily: "quicksand", fontSize: "1rem", }}>
+                <Card.Title className="game-card-title">{game.title}</Card.Title>
+                <Card.Text className="game-card-text">
                   Click here for a fun {game.title}!
                 </Card.Text>
               </Card.Body>
