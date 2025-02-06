@@ -1,36 +1,49 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow-x: hidden; /* Allows vertical scroll but prevents horizontal overflow */
+  overflow-x: hidden;
 }
 
-/* Ensures page fills screen on all devices */
+/* Ensures page fills the screen */
 .fullScreen {
-  min-height: 100vh; /* Always fills full viewport height */
+  min-height: 100vh; /* Full viewport height */
   display: flex;
   flex-direction: column;
+  overflow-y: auto; /* Allows scrolling if needed */
 }
 
-/* Ensures proper scaling and centering */
+/* Centers content while ensuring proper spacing */
 .pageContainer {
+  flex: 1; /* Makes content fill available space */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 20px;
+  padding-bottom: 80px; /* Prevents buttons from being covered */
 }
 
 /* Story styles */
 .storyContainer {
-  max-width: 100%;
+  max-width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 80px; /* Space to prevent buttons from hiding */
 }
 
-/* Typography */
+/* Footer stays at the bottom */
+.footer {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+}
+
+/* Responsive Typography */
 .storyTitle {
   font-family: "Quicksand", sans-serif;
   color: black;
@@ -40,20 +53,55 @@ html, body {
 }
 
 .storyDescription {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: "Quicksand", sans-serif;
   color: black;
   text-align: center;
 }
 
-/* Responsive image */
+/* Responsive Image */
 .storyImage {
-  max-width: 50%;
+  width: 60%;
+  max-width: 400px;
   height: auto;
   border-radius: 20px;
-  object-fit: contain; /* Ensures image maintains aspect ratio */
+  object-fit: contain;
 }
 
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .storyTitle {
+    font-size: 1.2rem;
+  }
+
+  .storyDescription {
+    font-size: .8rem;
+  }
+
+  .storyImage {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .storyTitle {
+    font-size: 2.5rem;
+  }
+
+  .storyDescription {
+    font-size: 1.5rem;
+  }
+
+  .storyImage {
+    width: 50%;
+    max-width: 500px;
+  }
+}
+
+/* Blinking effect remains active */
 @keyframes blinkBorder {
   0% {
     box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
@@ -69,10 +117,30 @@ html, body {
   }
 }
 
-/* Apply blinking effect to Play Story buttons */
+/* Apply blinking effect to Play Story button */
 .blinkingButton {
   animation: blinkBorder 1s infinite alternate;
-  border: 3px solid yellow; /* Initial border color */
+  border: 3px solid yellow;
   transition: border-color 0.3s ease-in-out;
 }
+
+/* Default button styles */
+.btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Adjust button size at 419px width */
+@media (max-width: 437px) {
+  .storyTitle {
+    font-size: 1.3rem;
+  }
+
+  .storyDescription {
+    font-size: .7rem;
+  }
+}
+
+
 

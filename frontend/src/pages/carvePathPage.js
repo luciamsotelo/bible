@@ -10,8 +10,8 @@ const CarvePathPage = () => {
       <Header />
       <div className={`flex-grow-1 d-flex align-items-center justify-content-center ${styles.pageContainer}`}>
         <CarvePathComp />
-        <Footer />
       </div>
+      <Footer /> {/* Moved footer outside flex-grow container */}
     </div>
   );
 };

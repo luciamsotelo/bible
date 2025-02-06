@@ -94,10 +94,10 @@ const StoryComponent = () => {
   }
 
   return (
-    <div className={`container text-center mt-4 ${styles.storyContainer}`}>
+    <div className={`container text-center ${styles.storyContainer}`}>
       <h2 className={styles.storyTitle}>{currentStep.title}</h2>
       <p className={styles.storyDescription}>{currentStep.description}</p>
-      <div className="mb-4">
+      <div className="">
         {currentStep.images.length > 0 && (
           <img
             src={currentStep.images[imageIndex]?.src}
@@ -107,9 +107,9 @@ const StoryComponent = () => {
         )}
       </div>
       {currentStep.audio && (
-        <div className="mb-3">
+        <div className="mb-">
           <button
-            className={`btn btn-primary me-2 ${blink ? styles.blinkingButton : ""}`}
+            className={`btn btn-primary ${blink ? styles.blinkingButton : ""}`}
             onClick={playAudio}
           >
             {isPaused ? "Resume Story" : "Play Story"}
@@ -123,7 +123,7 @@ const StoryComponent = () => {
         {currentStep.choices.map((choice, index) => (
           <button
             key={index}
-            className="btn btn-outline-light bg-success text-white m-2"
+            className="btn btn-outline-light bg-success text-white m-"
             onClick={() => handleChoice(choice.nextStep)}
           >
             {choice.text}
