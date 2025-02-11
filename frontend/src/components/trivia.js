@@ -77,20 +77,16 @@ const Trivia = () => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [score, setScore] = useState(0);
     const [isGameOver, setIsGameOver] = useState(false);
-    const [showAnimation, setShowAnimation] = useState(false);
 
     const handleAnswerClick = (answer) => {
         setSelectedAnswer(answer);
         if (answer === questions[currentQuestionIndex].correctAnswer) {
             setScore(score + 1);
-            setShowAnimation(true);
-            setTimeout(() => setShowAnimation(false), 2000);
         }
     };
 
     const handleNextQuestion = () => {
         setSelectedAnswer(null);
-        setShowAnimation(false);
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
@@ -148,20 +144,10 @@ const Trivia = () => {
                     ))}
                 </div>
             </div>
-            {selectedAnswer && !showAnimation && (
+            {selectedAnswer && (
                 <button className="next-button" onClick={handleNextQuestion}>
                     Next Question
                 </button>
-            )}
-            {showAnimation && (
-                <div className="animation-container">
-                    <img
-                        src="https://via.placeholder.com/150"
-                        alt="Dove or Cross Animation"
-                        className="animation-image"
-                    />
-                    <p>Great Job! Keep the faith!</p>
-                </div>
             )}
             <p>Score: {score}</p>
         </div>
