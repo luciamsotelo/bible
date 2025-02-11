@@ -1,8 +1,26 @@
 .background-bottom {
-    background: linear-gradient(90deg, rgba(233, 19, 19, 0.925), rgba(15, 0, 0, 0.959));
+  background: linear-gradient(90deg, rgba(233, 19, 19, 0.925), rgba(15, 0, 0, 0.959));
+}
+
+  .paragraph {
+    font-size: 14px;
   }
 
-  .message {
-    padding: 1px;
-  }
-  
+.explore {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+.button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  transition: background-color 0.3s ease;
+}
