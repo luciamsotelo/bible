@@ -219,7 +219,7 @@ const WordSearch = () => {
   };
 
   return (
-    <Container className="mt-5 mb-5">
+    <Container className="mt-2 mb-2">
 
 {messageVisible && (
   <div className="alert alert-info mt-3">
@@ -233,7 +233,7 @@ const WordSearch = () => {
     </div>
     <div>
       <h1
-        className="text-center mb-2"
+        className="text-center mb-1"
         style={{
           color: 'goldenrod',
           textShadow: '2px 2px 8px black',
@@ -244,10 +244,10 @@ const WordSearch = () => {
       >
         Word Search
       </h1>
-      <div className="d-flex justify-content-center mb-3">
+      <div className="d-flex justify-content-center mb-1">
   <Button
     variant="primary"
-    className="me-2"
+    className="me-1"
     style={{ fontFamily: 'Quicksand' }}
     onClick={() => navigate('/games')}
   >
@@ -260,22 +260,13 @@ const WordSearch = () => {
   )}
 </div>
 
-      <p
-        className="text-center"
-        style={{
-          fontSize: '1rem',
-          color: 'purple',
-          fontFamily: 'Quicksand',
-        }}
-      >
-        Find the words before the timer runs out. Good Luck!
-      </p>
+      <p>Can you find all the words before the timer runs out. Good Luck!</p>
       <Card
         className="p-1 text-center"
         style={{
           fontFamily: 'Quicksand',
           fontSize: '1rem',
-          width: '100%',
+          width: '80%',
           margin: '0 auto',
           color: 'white',
           background: 'linear-gradient(to right,rgb(145, 209, 224), #0083B0)',
@@ -321,14 +312,7 @@ const WordSearch = () => {
     Words to Find:
   </h3>
   <ul
-    className="d-flex flex-wrap justify-content-center list-unstyled"
-    style={{
-      fontFamily: 'Quicksand',
-      fontSize: '1rem',
-      color: 'purple',
-      textShadow: '2px 2px 5px hotpink',
-    }}
-  >
+    className="words-list d-flex flex-wrap justify-content-center list-unstyled">
     {words.map((word, index) => (
       <li
         key={index}
@@ -344,7 +328,8 @@ const WordSearch = () => {
 
     </div>
     <Row className="justify-content-center mt-3">
-      <Col xs={12} className="d-flex justify-content-center">
+    <Col xs={12} md={6} lg={4} className="d-flex justify-content-center">
+
         <div className={styles.grid}>
           {grid.map((row, rowIndex) => (
             <div key={rowIndex} className={styles.row}>

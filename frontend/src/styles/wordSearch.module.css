@@ -5,113 +5,33 @@
   align-items: center;
   height: 100vh; /* Ensure full screen height */
   overflow: hidden;
-  gap: 2px;
+  gap: 20px;
   flex-wrap: wrap;
   background: linear-gradient(135deg, #c3cfe2);
   position: relative; /* Ensure content in the container can overlap */
 }
 
-.messageSuccess,
-.message {
-  position: absolute; /* Position them over the grid */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust to make sure the center point aligns */
-  z-index: 9999; /* Ensure it appears above other elements */
-  width: 100%; /* Stretch the width across the screen */
-  text-align: center; /* Center the text */
-  font-family: Rye, Arial, Helvetica, sans-serif;
-}
-
-.messageSuccess {
-  color: #28a745;
-  font-weight: bold;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 0px #1d6c31, 4px 4px 0px #155424, 6px 6px 5px rgba(0, 0, 0, 0.3);
-  animation: bounce 0.8s ease-in-out infinite alternate;
-}
-
-.message {
-  color: goldenrod;
-  font-weight: bold;
-  font-size: 1rem;
-  border: #155424 2px solid;
-  border-radius: 10px;
-  padding: 10px;
-  background: linear-gradient(145deg, rgb(10, 1, 10), purple);
-  max-width: 80%;
-  overflow-wrap: break-word;
-  box-sizing: border-box;
-}
-
-
-
-.gridContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-}
-
-.sidebar {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.wordList,
-.foundWords {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%; /* Full width of the sidebar */
-  text-decoration: none;
-  list-style-type: none;
-
-}
-
-.wordList li,
-.foundWords li {
-  margin: 5px 0;
-  cursor: pointer;
-  text-decoration: none;
-  list-style-type: none;
-}
-
-.wordList li.found {
-  text-decoration: line-through;
-  color: green;
-}
-
 .grid {
   display: grid;
-  grid-template-columns: repeat(10, 40px);
-  gap: 4px;
+  grid-template-columns: repeat(10, 30px);
+  gap: 0px;
   justify-content: center;
 }
 
+
 .cell {
-  width: 40px;
-  height: 40px;
+  width: 30px; 
+  height: 30px;
+  font-size: 16px; /* Make the letters larger */
+  line-height: 1; /* Tighter line height */
+  text-align: center; /* Center the letters */
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   background: linear-gradient(145deg, rgb(236, 231, 236), purple); /* Light gradient background */
-  box-shadow: inset -4px -4px 6px rgba(255, 255, 255, 0.5),
-              inset 4px 4px 6px rgba(0, 0, 0, 0.2),
-              4px 4px 6px rgba(0, 0, 0, 0.1),
-              -4px -4px 6px rgba(255, 255, 255, 0.7);
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  animation: fadeIn 0.5s ease-in;
+  border: 1px solid #f23eaa; /* Border color */
+  background-color: #2ac911; /* Keep the background color */
+  cursor: pointer; /* Keep the cursor */
 }
 
 .cell:hover {
@@ -134,339 +54,17 @@
   color: black;
 }
 
-.ul {
-  list-style-type: none;
-  padding: 10px;
+p {
+  font-family: quicksand;
+  font-size: 1.2rem;
+  margin: 0;
+  color: rgb(142, 59, 201);
 }
 
-/* Bounce Animation */
-@keyframes bounce {
-  from {
-    transform: translateY(0px) scale(1);
-  }
-  to {
-    transform: translateY(-8px) scale(1.05);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .wordSearchContainer {
-    flex-direction: column; /* Stack items vertically */
-    align-items: stretch; /* Allow children to stretch full width */
-    padding: 10px; /* Add padding for better spacing */
-    height: auto; /* Let content define the height */
-    gap: 10px; /* Increase the gap between elements */
-  }
-
-  .gridContainer {
-    width: 100%; /* Ensure it spans the available width */
-  }
-
-  .sidebar {
-    width: 100%; /* Make the sidebar full width */
-    align-items: flex-start; /* Align content to the left */
-    gap: 10px; /* Adjust the spacing */
-  }
-
-  .wordList,
-  .foundWords {
-    width: 100%; 
-    font-size: 1rem; 
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); 
-    gap: 2px; 
-  }
-
-  .cell {
-    width: 30px; 
-    height: 30px;
-    font-size: 12px; 
-  }
-
-  .messageSuccess {
-    font-size: 2rem; 
-    margin-top: 5px; 
-  }
-
-  .message {
-    font-size: 0.9rem; 
-    padding: 5px; 
-    margin: 5px auto; 
-  }
-
-  .gridContainer,
-  .sidebar,
-  .messageSuccess,
-  .message {
-    text-align: center; 
-  }
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.alert-container {
-  text-align: center;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 100%;
-}
-
-.overlay h3 {
-  color: goldenrod;
-  font-family: 'Quicksand';
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.overlay .btn {
-  margin-top: 1rem;
-}
-
-
-@media screen and (max-width: 574px) {
-  .wordSearchContainer {
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center align all children */
-    padding: 10px; /* Add padding for spacing */
-    gap: 20px; /* Increase spacing between elements */
-    height: auto; /* Let content determine the height */
-  }
-
-  .gridContainer {
-    width: 100%; /* Full width for smaller screens */
-    padding: 5px; /* Add padding */
-  }
-
-  .sidebar {
-    width: 100%; /* Take full width */
-    align-items: center; /* Center content */
-    gap: 10px; /* Adjust spacing */
-    margin-bottom: 15px; /* Add margin for spacing below */
-  }
-
-  .wordList,
-  .foundWords {
-    width: 100%; /* Take full width */
-    font-size: 0.9rem; /* Smaller font size for better fit */
-    padding: 10px; /* Add padding for touch-friendly UI */
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); /* Smaller grid cells */
-    gap: 10px; /* Reduce gap between cells */
-  }
-
-  .cell {
-    width: 100%; /* Smaller cell size */
-    height: 15%;
-    font-size: 15px; /* Adjust font size */
-    line-height: 2; /* Tighter line height */
-  }
-
-  .messageSuccess {
-    font-size: 1.8rem; /* Smaller font size */
-    margin-top: 5px; /* Reduce margin */
-  }
-
-  .message {
-    font-size: 0.8rem; /* Adjust font size for messages */
-    padding: 5px; /* Smaller padding */
-    margin: 5px 0; /* Compact margins */
-  }
-
-  h1 {
-    font-size: .5rem; /* Reduce heading size */
-    text-align: center; /* Center align text */
-  }
-
-  p {
-    font-size: 1.2rem; /* Reduce paragraph size */
-    text-align: center; /* Center align */
-  }
-
-  .sidebar h3 {
-    font-size: 1rem; /* Smaller heading in the sidebar */
-  }
-
-  .sidebar ul {
-    font-size: 0.8rem; /* Reduce font size of the list */
-  }
-
-  button {
-    font-size: 0.5rem; /* Smaller button font */
-    padding: 8px 12px; /* Adjust button padding */
-  }
-
-  .message,
-  .messageSuccess {
-    text-align: center; /* Center all messages */
-  }
-}
-
-@media screen and (max-width: 365px) {
-  .wordSearchContainer {
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center align all children */
-    padding: 10px; /* Add padding for spacing */
-    gap: 20px; /* Increase spacing between elements */
-    height: auto; /* Let content determine the height */
-  }
-
-  .gridContainer {
-    width: 100%; /* Full width for smaller screens */
-    padding: 5px; /* Add padding */
-  }
-
-  .sidebar {
-    width: 100%; /* Take full width */
-    align-items: center; /* Center content */
-    gap: 10px; /* Adjust spacing */
-    margin-bottom: 15px; /* Add margin for spacing below */
-  }
-
-
-  .wordList,
-  .foundWords {
-    width: 100%; /* Take full width */
-    font-size: 0.9rem; /* Smaller font size for better fit */
-    padding: 10px; /* Add padding for touch-friendly UI */
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); /* Smaller grid cells */
-    gap: 10px; /* Reduce gap between cells */
-  }
-
-  .cell {
-    width: 100%; /* Smaller cell size */
-    height: 15%;
-    font-size: 10px; /* Adjust font size */
-    line-height: 2.5; /* Tighter line height */
-  }
-
-  .messageSuccess {
-    font-size: 1.8rem; /* Smaller font size */
-    margin-top: 5px; /* Reduce margin */
-  }
-
-  .message {
-    font-size: 0.8rem; /* Adjust font size for messages */
-    padding: 5px; /* Smaller padding */
-    margin: 5px 0; /* Compact margins */
-  }
-
-  h1 {
-    font-size: 1rem; /* Reduce heading size */
-    text-align: center; /* Center align text */
-  }
-
-  p {
-    font-size: 1.2rem; /* Reduce paragraph size */
-    text-align: center; /* Center align */
-  }
-
-  .sidebar h3 {
-    font-size: 1rem; /* Smaller heading in the sidebar */
-  }
-
-  .sidebar ul {
-    font-size: 0.8rem; /* Reduce font size of the list */
-  }
-
-  button {
-    font-size: 0.5rem; /* Smaller button font */
-    padding: 8px 12px; /* Adjust button padding */
-  }
-
-  .message,
-  .messageSuccess {
-    text-align: center; /* Center all messages */
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .wordSearchContainer {
-    flex-direction: row; /* Keep the flex direction as it is */
-    align-items: center; /* Keep items centered */
-    padding: 10px; /* Keep padding */
-    height: 100vh; /* Maintain full height */
-    gap: 2px; /* Keep gap between elements */
-  }
-
-  .gridContainer {
-    width: 100%; /* Keep it full width */
-  }
-
-  .sidebar {
-    width: 200px; /* Keep the sidebar width */
-    align-items: center; /* Keep the alignment */
-    gap: 20px; /* Keep the spacing */
-  }
-
-  .wordList,
-  .foundWords {
-    width: 100%; 
-    font-size: 1rem; /* Keep the font size */
-  }
-
-  .grid {
-    grid-template-columns: repeat(10, 40px); /* Keep the grid layout */
-    gap: 1px; /* Keep the gap */
-  }
-
-  .cell {
-    width: 30px; 
-    height: 30px; 
-    font-size: 12px; /* Keep the font size */
-    line-height: 2; /* Keep the line height */
-    border: 1px solid #ccc; /* Keep the border */ 
-    background-color: #fff; /* Keep the background color */
-    cursor: pointer; /* Keep the cursor */  
-  }
-
-  .messageSuccess {
-    font-size: 2.5rem; 
-    margin-top: 10px; 
-  }
-
-  .message {
-    font-size: 1rem; 
-    padding: 10px; 
-    margin: 10px auto; 
-  }
-
-  .gridContainer,
-  .sidebar,
-  .messageSuccess,
-  .message {
-    text-align: center; 
-  }
+.score-card {
+  font-family: quicksand;
+  font-size: 1.2rem;
+  margin: 0;
+  color: rgb(142, 59, 201);
 }
 
