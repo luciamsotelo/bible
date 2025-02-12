@@ -72,23 +72,6 @@
   background: linear-gradient(145deg, #0a3804, #0bd491);
 }
 
-h2 {
-  font-family: quicksand;
-  font-size: 1.5rem;
-  margin: 0;
-  color: rgb(142, 59, 201);
-  border: 1px solid #2ac911;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  background: linear-gradient(145deg, #ff9a9e, #fad0c4);
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-out;
-  cursor: pointer;
-  text-align: center;
-}
-
 .foundWord {
   text-decoration: line-through; /* Strikethrough effect */
   color: gray; /* Optional: Make it look faded */
@@ -99,4 +82,52 @@ h2 {
   display: none; /* Hides the word completely */
 }
 
+.gridContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(208, 14, 153, 0.9);
+  padding: 40px 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  animation: fadeIn 0.9s ease-in-out;
+  min-width: 300px;
+}
+
+h2 {
+  font-family: quicksand;
+  font-size: 1.5rem;
+  margin: 0;
+  color: rgb(142, 59, 201);
+  border: 1px solid #2ac911;
+  border-radius: 5px;
+  padding: 30px;
+  background: linear-gradient(145deg, #ff9a9e, #fad0c4);
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
 

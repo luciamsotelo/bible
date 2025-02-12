@@ -287,57 +287,48 @@ const WordSearch = () => {
 
     </div>
     <Row className="justify-content-center mt-3">
-    <Col xs={12} md={6} lg={4} className="d-flex justify-content-center">
-
-        <div className={styles.grid}>
-          {grid.map((row, rowIndex) => (
-            <div key={rowIndex} className={styles.row}>
-              {row.map((letter, colIndex) => (
-                <div
-                  key={`${rowIndex}-${colIndex}`}
-                  className={`${styles.cell} ${
-                    isCellHighlighted(rowIndex, colIndex)
-                      ? styles.highlighted
-                      : ''
-                  } ${
-                    selectedCells.some(
-                      (cell) =>
-                        cell.row === rowIndex && cell.col === colIndex
-                    )
-                      ? styles.selected
-                      : ''
-                  }`}
-                  onClick={() => handleCellClick(rowIndex, colIndex)}
-                >
-                  {letter}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </Col>
-    </Row>
-    {}
-    {foundWords.length === words.length && (
-  <div>
-    <h2>
-      Awesome! You've uncovered every word!
-
-      {level < maxLevel && (
-      <Button
-        className="mt-1"
-        variant="success"
-        onClick={nextLevel}
-      >
-        Next Level
-      </Button>
-    )}
-
-    </h2>
+  <Col xs={12} md={6} lg={4} className="d-flex justify-content-center position-relative">
     
-  </div>
-)}
+    {/* Grid Container */}
+    <div className={styles.gridContainer}>
+      <div className={styles.grid}>
+        {grid.map((row, rowIndex) => (
+          <div key={rowIndex} className={styles.row}>
+            {row.map((letter, colIndex) => (
+              <div
+                key={`${rowIndex}-${colIndex}`}
+                className={`${styles.cell} ${
+                  isCellHighlighted(rowIndex, colIndex) ? styles.highlighted : ''
+                } ${
+                  selectedCells.some(cell => cell.row === rowIndex && cell.col === colIndex)
+                    ? styles.selected
+                    : ''
+                }`}
+                onClick={() => handleCellClick(rowIndex, colIndex)}
+              >
+                {letter}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
 
+      {/* Success Message Overlay */}
+      {foundWords.length === words.length && (
+        <div className={styles.overlay}>
+          <h2>
+            Awesome! You've found every word! <br/>Your Score: {score}
+          </h2>
+          {level < maxLevel && (
+            <Button className="mt-1" variant="success" onClick={nextLevel}>
+              Next Level
+            </Button>
+          )}
+        </div>
+      )}
+    </div>
+  </Col>
+</Row>
   </Container>
   
   );
