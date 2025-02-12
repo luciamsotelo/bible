@@ -259,43 +259,16 @@ const WordSearch = () => {
     </Button>
   )}
 </div>
-
-      <p>Can you find all the words before the timer runs out. Good Luck!</p>
+      <p className={styles.paragraph}>Can you find all the words before the timer runs out. Good Luck!</p>
       <Card
-        className="p-1 text-center"
-        style={{
-          fontFamily: 'Quicksand',
-          fontSize: '1rem',
-          width: '80%',
-          margin: '0 auto',
-          color: 'white',
-          background: 'linear-gradient(to right,rgb(145, 209, 224), #0083B0)',
-          border: '20px double green',
-          boxShadow: '2px 2px 8px navy',
-          
-        }}
-      >
+        className={styles.score}>
         Level: {level} | Score: {score} | Time Left: {timeLeft}s
 
         {gameOverMessage && (
-        <div
-          className="mt-3 alert alert"
-          style={{
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontFamily: 'Quicksand',
-            fontSize: '1.5rem',
-            width: '50%',
-            margin: '0 auto',
-            color: 'Green',
-            background: 'transparent',
-            padding: '1px',
-          }}
-        >
+        <div>
           {gameOverMessage}
         </div>
       )}
-
       </Card>
       
     {/* Words List Section */}
@@ -360,28 +333,11 @@ const WordSearch = () => {
     </Row>
     {}
     {foundWords.length === words.length && (
-  <div
-    className="mt-3 alert alert-success text-center"
-    style={{
-      fontFamily: 'Quicksand',
-      fontSize: '1rem',
-      width: '80%',
-      margin: '0 auto',
-      background: 'linear-gradient(to right,rgb(7, 101, 7),rgb(238, 242, 244))',
-      border: '2px inset green',
-      boxShadow: '2px 2px 1px navy',
-    }}
-  >
-    <h3
-      style={{
-        color: 'purple',
-        fontFamily: 'Quicksand',
-        fontSize: '1.7rem',
-      }}
-    >
+  <div>
+    <h2>
       Awesome! You've uncovered every word!
-    </h3>
-    {level < maxLevel && (
+
+      {level < maxLevel && (
       <Button
         className="mt-1"
         variant="success"
@@ -390,6 +346,9 @@ const WordSearch = () => {
         Next Level
       </Button>
     )}
+
+    </h2>
+    
   </div>
 )}
 
