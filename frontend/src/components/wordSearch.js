@@ -316,7 +316,7 @@ const WordSearch = () => {
       {/* Success Message Overlay */}
       {foundWords.length === words.length && (
         <div className={styles.overlay}>
-          <h2>
+          <h2 className={styles.successMessage}>
             Awesome! You've found every word! <br/>Your Score: {score}
           </h2>
           {level < maxLevel && (
