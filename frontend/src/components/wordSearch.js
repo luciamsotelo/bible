@@ -11,8 +11,6 @@ const WordSearch = () => {
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [highlightedCells, setHighlightedCells] = useState({});
-  const [message, setMessage] = useState('');
-  const [messageVisible, setMessageVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   const [gameOverMessage, setGameOverMessage] = useState('');
   const [showPlayAgain, setShowPlayAgain] = useState(false);
@@ -172,10 +170,6 @@ const WordSearch = () => {
 
         setSelectedCells([]);
         setScore((prev) => prev + finalWord.length * 10);
-
-        setMessage(`Great job! You found: ${finalWord}`);
-        setMessageVisible(true);
-        setTimeout(() => setMessageVisible(false), 3000);
       }
     }
   };
@@ -220,14 +214,6 @@ const WordSearch = () => {
 
   return (
     <Container className="mt-2 mb-2">
-
-{messageVisible && (
-  <div className="alert alert-info mt-3">
-    {message}
-  </div>
-)}
-
-
     <div className="d-flex flex-row justify-content-center align-items-center">
       
     </div>
