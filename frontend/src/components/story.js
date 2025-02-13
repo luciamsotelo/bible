@@ -115,8 +115,8 @@ const BibleStories = () => {
   return (
     <div className="container">
     <div className="bible-story-paragraph">
-  <h2>Discover the Power of Bible Stories</h2>
-  <p>Explore captivating Bible stories that teach valuable lessons about faith, hope, and God's love.</p>
+  <h1>Bible Stories</h1>
+  <p>Discover faith, hope, and God’s love through stories. Scroll to read or press play to listen!</p>
 </div>
 
       {expandedStory === null ? (
@@ -142,15 +142,15 @@ const BibleStories = () => {
         </Row>
       ) : (
         <div className="expanded-story text-center">
-          <h1
+          <h2
             style={{
               fontFamily: 'sacramento',
-              fontSize: '2rem',
+              fontSize: '3rem',
               color: 'blue',
             }}
           >
             {stories[expandedStory].title}
-          </h1>
+          </h2>
           <div
             className="audio-controls"
             style={{ display: 'flex', justifyContent: 'center' }}
