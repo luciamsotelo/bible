@@ -1,6 +1,6 @@
 .word-jumble-page {
     background-color: #f0f8ff;
-    padding: 20px;
+    height: 100vh;
 }
 
 .category-buttons button {
