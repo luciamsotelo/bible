@@ -14,7 +14,7 @@ const GameCards = () => {
     { title: 'Puzzle', img: '/images/puzzle.jpg', type: 'puzzle' },
     { title: 'Word Search', img: '/images/wordSearch.png', type: 'wordsearch' },
     { title: 'Maze', img: '/images/maze.jpg', type: 'maze' },
-    { title: 'Word Jumble', img: '/images/wordJumble.jpg', type: 'wordjumble' },
+    { title: 'Word Shuffle', img: '/images/wordJumble.jpg', type: 'wordjumble' },
     { title: 'Biblical Challenge', img: '/images/hangman.jpg', type: 'hangman' },
     { title: 'Trivia', img: '/images/trivia.png', type: 'trivia' },
   ];

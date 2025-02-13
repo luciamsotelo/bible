@@ -105,7 +105,7 @@ const Maze = () => {
       <h1 className="my-1" style={{ color: "goldenrod", textShadow: "2px 2px 8px black", fontFamily: "allura", fontSize: "3rem", fontWeight: "bold", }}>
         Maze
       </h1>
-      <p className="my-1" style ={{ fontSize: "1.2rem",  color: "purple", fontFamily: "Quicksand"}}>Help the player reach the goal! Use arrow keys or buttons to move.</p>
+      <p className="my-1" style ={{ fontSize: "1.2rem",  color: "purple", fontFamily: "Quicksand"}}>Guide the player through the maze! Use the arrow keys or on-screen buttons to find the way to the goal.</p>
 
       <div className="maze-grid mx-auto">
         {Array.from({ length: gridSize }).map((_, row) => (

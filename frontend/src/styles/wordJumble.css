@@ -1,70 +1,60 @@
 .word-jumble-page {
-    text-align: center;
-    font-family: 'Arial, sans-serif';
+    background-color: #f0f8ff;
     padding: 20px;
-    
 }
 
 .category-buttons button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4caf50;
+    font-size: 1.25rem;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #ffc107;
     color: white;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .category-buttons button:hover {
-    background-color: #45a049;
-}
-
-.word-jumble-container {
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 400px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #fff;
+    background-color: #ffb300;
 }
 
 .jumbled-word {
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: bold;
     margin: 20px 0;
-    letter-spacing: 15px;
+    letter-spacing: 10px;
+    color: #4caf50;
 }
 
 input {
-    padding: 10px;
-    margin: 10px 0;
-    width: 90%;
+    padding: 12px;
     font-size: 16px;
 }
 
 button {
-    padding: 10px 20px;
     font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #008cba;
-    color: white;
-    margin: 10px;
+    padding: 12px;
+    border-radius: 15px;
 }
 
 button:hover {
-    background-color: #005f73;
+    background-color: #4caf50;
 }
 
-.correct {
-    color: green;
-    font-weight: bold;
+@media (max-width: 768px) {
+    .jumbled-word {
+        font-size: 1.5rem;
+    }
 }
 
-.incorrect {
-    color: red;
-    font-weight: bold;
+@media (max-width: 480px) {
+    .category-buttons button {
+        font-size: 14px;
+    }
+
+    .jumbled-word {
+        font-size: 1.2rem;
+    }
+
+    input {
+        font-size: 14px;
+    }
 }

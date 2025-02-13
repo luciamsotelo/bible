@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Form, Alert, Container, Row, Col } from 'react-bootstrap';
 import '../styles/wordJumble.css';
 
 const wordSets = {
@@ -49,7 +50,6 @@ const wordSets = {
     ],
 };
 
-
 const shuffleWord = (word) => word.split('').sort(() => Math.random() - 0.5).join('');
 
 const WordJumbleComp = ({ category }) => {
@@ -89,22 +89,30 @@ const WordJumbleComp = ({ category }) => {
     };
 
     return (
-        <div className="word-jumble-container">
-            <h2>Category: {category}</h2>
-            <p>Clue: {currentWord.clue}</p>
-            <div className="jumbled-word">{shuffleWord(currentWord.word)}</div>
-            <input
-                type="text"
-                value={input}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyPress} // Check for the Enter key
-                placeholder="Unscramble the word"
-            />
-            <button onClick={checkAnswer}>Check Answer</button>
-            {checked && correct && <p className="correct">Correct! Great job!</p>}
-            {checked && !correct && <p className="incorrect">Try again!</p>}
-            <button onClick={nextWord}>Next Word</button>
-        </div>
+        <Container>
+            <Row className="justify-content-center">
+                <Col xs={12} md={8} lg={6}>
+                    <h3>Clue: {currentWord.clue}</h3>
+                    <div className="jumbled-word">{shuffleWord(currentWord.word)}</div>
+                    <Form.Control
+                        type="text"
+                        value={input}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKeyPress}
+                        placeholder="Unscramble the word"
+                        className="mb-3"
+                    />
+                    <Button variant="success" onClick={checkAnswer} className="w-100 mb-2">
+                        Check Answer
+                    </Button>
+                    {checked && correct && <Alert variant="success">Correct! Great job!</Alert>}
+                    {checked && !correct && <Alert variant="danger">Try again!</Alert>}
+                    <Button variant="info" onClick={nextWord} className="w-100">
+                        Next Word
+                    </Button>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

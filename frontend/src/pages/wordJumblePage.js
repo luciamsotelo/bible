@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap'; // Importing Button from React Bootstrap
-import { useNavigate } from 'react-router-dom'; // Importing navigate hook for navigation
+import { Button, Container, Row, Col } from 'react-bootstrap'; // Importing necessary components
+import { useNavigate } from 'react-router-dom';
 import WordJumbleComp from '../components/wordJumbleComp';
 import Header from '../components/header';
 import '../styles/wordJumble.css';
@@ -12,19 +12,41 @@ const WordJumblePage = () => {
     return (
         <div className="word-jumble-page">
             <Header />
-            <Button variant="primary" onClick={() => navigate('/games')}>
-                Back to Main Game Page
-            </Button>
-            <h1 className="text-center my-4" style={{ color: "goldenrod", textShadow: "2px 2px 8px black", fontFamily: "allura", fontSize: "3rem", fontWeight: "bold", }}>Word Jumble</h1>
-
-            <p className="my-1" style ={{ fontSize: "1.2rem",  color: "purple", fontFamily: "Quicksand"}}>Unscramble the letters to find the correct word! Type your answer and click "Check Answer" to see if you're right.</p>
-
-            <div className="category-buttons my-3">
-                <button onClick={() => setSelectedCategory('easy')}>Easy</button>
-                <button onClick={() => setSelectedCategory('medium')}>Medium</button>
-                <button onClick={() => setSelectedCategory('hard')}>Hard</button>
-            </div>
-            <WordJumbleComp category={selectedCategory} />
+            <Container className="py-4">
+                <Row className="justify-content-center mb-4">
+                    <Col xs={12} md={8} lg={6}>
+                        <Button variant="primary" onClick={() => navigate('/games')} className="w-100">
+                            Back to Main Game Page
+                        </Button>
+                    </Col>
+                </Row>
+                <Row className="text-center">
+                    <Col>
+                        <h1 className="text-center mb-2" style={{ color: "purple", fontFamily: "Allura", fontSize: "2.5rem" }}>Bible Word Shuffle</h1>
+                        <p style={{ fontSize: "1rem", color: "black", fontFamily: "Quicksand" }}>
+                            Unshuffle the letters to discover the biblical word! Type your answer and click 'Check Answer' to see if you're correct.
+                        </p>
+                    </Col>
+                </Row>
+                <Row className="category-buttons justify-content-center mb-3">
+                    <Col xs={4} sm={3} md={2}>
+                        <Button variant="success" onClick={() => setSelectedCategory('easy')} className="w-100">
+                            Easy
+                        </Button>
+                    </Col>
+                    <Col xs={4} sm={3} md={2}>
+                        <Button variant="warning" onClick={() => setSelectedCategory('medium')} className="w-100">
+                            Medium
+                        </Button>
+                    </Col>
+                    <Col xs={4} sm={3} md={2}>
+                        <Button variant="danger" onClick={() => setSelectedCategory('hard')} className="w-100">
+                            Hard
+                        </Button>
+                    </Col>
+                </Row>
+                <WordJumbleComp category={selectedCategory} />
+            </Container>
         </div>
     );
 };
