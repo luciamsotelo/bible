@@ -49,7 +49,7 @@ const BiblePuzzleCards = () => {
         className="text-center" 
         style={{ fontSize: "1.3rem", color: "purple", fontFamily: "Quicksand" }}
       >
-        Select The Puzzle You Want To Solve
+      Select a puzzle and uncover God’s story piece by piece!
       </p>
   
       <Row xs={1} sm={2} md={3} className="g-4">

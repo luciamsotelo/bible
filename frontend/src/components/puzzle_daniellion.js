@@ -43,6 +43,9 @@ const Puzzle = () => {
       <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>
         Daniel and the Lion's Den
       </h1>
+
+      <p style={{ color: "black", fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Daniel and the lion’s den! <em>"My God sent his angel, and he shut the mouths of the lions." – Daniel 6:22</em></p>
+
       {completed && (
         <h2
           className={`${styles.congratulationsMessage} mt-3`}

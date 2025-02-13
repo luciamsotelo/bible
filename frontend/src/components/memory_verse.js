@@ -70,7 +70,7 @@ const MemoryVerse = () => {
   return (
     <div className="memory-verse-container">
       <h2 className="" style= {{fontFamily: "allura", color: "black", textShadow: "2px 2px 8px goldenrod"}}>Today's Memory Verse</h2>
-      <p className="memory-verse-container" style={{ fontFamily: "quicksand", color: "black", textShadow: "2px 1px 2px #ff5733", margin: "8px 20px"}} ref={verseRef}>{memoryVerses[verseIndex]}</p>
+      <p className="memory-verse-container" style={{ fontFamily: "quicksand", color: "black", margin: "8px 20px"}} ref={verseRef}>{memoryVerses[verseIndex]}</p>
     </div>
   );
 };

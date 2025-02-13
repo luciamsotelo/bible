@@ -5,6 +5,7 @@
   transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
+/* Heading - Keeps it bold and engaging */
 .memory-verse-container h2 {
   font-size: 3rem;
   color: #333;
@@ -12,50 +13,69 @@
   padding: 1rem;
 }
 
+/* Fun animated paragraph for the memory verse */
 .memory-verse-container p {
-  transition: color 0.5s ease, text-shadow 0.5s ease; 
   font-size: 2rem;
+  text-align: center;
+  transition: color 0.5s ease, text-shadow 0.5s ease;  
+  animation: bounce-in 1s ease-out, glow-text 3s ease-in-out;
 }
 
+/* Adds an extra glowing effect */
 .memory-verse-container p.flash {
-  animation: font-flash 1s ease-in-out 2;
+  animation: glow-text 1s ease-in-out 2;
 }
 
-@keyframes font-flash {
+/* Bouncing fade-in animation for a fun entrance */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glowing text effect to make the verse stand out */
+@keyframes glow-text {
   0%, 100% {
     color: #555;
     text-shadow: none;
   }
   50% {
-    color: rgb(255, 97, 5);
+    color: rgb(179, 22, 196);
     text-shadow: 
-      1px 1px 2px #333, 
-      2px 2px 4px #555, 
+      2px 2px 4px #333, 
       3px 3px 6px rgba(0, 0, 0, 0.5);
   }
 }
 
-
-/* Media Query for Smaller Screens (e.g., Cell Phones) */
+/* Responsive design for tablets */
 @media (max-width: 768px) {
   .memory-verse-container h2 {
-    font-size: 2.5rem; /* Adjust header font size */
+    font-size: 2.5rem;
   }
-
+  
   .memory-verse-container p {
-    font-size: 1.5rem; /* Adjust paragraph font size */
-    line-height: 1.4; /* Adjust line height for better readability */
+    font-size: 1.5rem;
+    line-height: 1.4;
   }
 }
 
-/* Media Query for Smaller Screens (e.g., Cell Phones) */
+/* Responsive design for smaller mobile screens */
 @media (max-width: 415px) {
   .memory-verse-container h2 {
-    font-size: 2.2rem; /* Adjust header font size */
+    font-size: 2.2rem;
   }
-
+  
   .memory-verse-container p {
-    font-size: 1.2rem; /* Adjust paragraph font size */
-    line-height: 1.4; /* Adjust line height for better readability */
+    font-size: 1.2rem;
+    line-height: 1.4;
   }
 }
