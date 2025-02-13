@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Form, Alert, Container, Row, Col } from 'react-bootstrap';
 import '../styles/wordJumble.css';
 
@@ -56,60 +56,123 @@ const WordJumbleComp = ({ category }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [input, setInput] = useState('');
     const [correct, setCorrect] = useState(false);
-    const [checked, setChecked] = useState(false); // Tracks if the answer has been checked
+    const [checked, setChecked] = useState(false);
+    const [attempts, setAttempts] = useState(0);
+    const [score, setScore] = useState(0);
+    const [revealedAnswer, setRevealedAnswer] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
+
+    // Reference to input element to focus on it
+    const inputRef = useRef(null);
 
     const currentSet = wordSets[category];
     const currentWord = currentSet[currentIndex];
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
-        setChecked(false); // Reset checked state when input changes
+        setChecked(false);
     };
 
     const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !correct && attempts < 3) {
             checkAnswer();
         }
     };
 
     const checkAnswer = () => {
-        setChecked(true); // Mark as checked
+        setChecked(true);
+        setAttempts(attempts + 1);
+    
         if (input.toLowerCase() === currentWord.word.toLowerCase()) {
             setCorrect(true);
+            setScore(score + 10);
         } else {
             setCorrect(false);
+            if (attempts === 2) {
+                setRevealedAnswer(true);
+                setTimeout(() => {
+                    nextWord(); // Automatically move to the next word after 2 seconds
+                }, 2000);  // 2 second delay
+            }
         }
     };
-
+    
     const nextWord = () => {
+        if (currentIndex + 1 < currentSet.length) {
+            setInput('');
+            setCorrect(false);
+            setChecked(false);
+            setAttempts(0);
+            setRevealedAnswer(false);
+            setCurrentIndex((prev) => prev + 1);
+        } else {
+            setGameOver(true);
+        }
+    };
+    
+
+    const restartGame = () => {
+        setCurrentIndex(0);
         setInput('');
         setCorrect(false);
-        setChecked(false); // Reset checked state for the next word
-        setCurrentIndex((prev) => (prev + 1) % currentSet.length);
+        setChecked(false);
+        setAttempts(0);
+        setScore(0);
+        setRevealedAnswer(false);
+        setGameOver(false);
     };
+
+    // Automatically move to next word after a correct guess
+    if (correct && attempts < 3) {
+        setTimeout(() => {
+            nextWord();
+        }, 1500);
+    }
+
+    // Automatically focus on input when game starts or when new word is shown
+    useEffect(() => {
+        if (!gameOver && !correct) {
+            inputRef.current?.focus();
+        }
+    }, [currentIndex, gameOver, correct]);
 
     return (
         <Container>
             <Row className="justify-content-center">
                 <Col xs={12} md={8} lg={6}>
-                    <h3>Clue: {currentWord.clue}</h3>
-                    <div className="jumbled-word">{shuffleWord(currentWord.word)}</div>
-                    <Form.Control
-                        type="text"
-                        value={input}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKeyPress}
-                        placeholder="Unscramble the word"
-                        className="mb-3"
-                    />
-                    <Button variant="success" onClick={checkAnswer} className="w-100 mb-2">
-                        Check Answer
-                    </Button>
-                    {checked && correct && <Alert variant="success">Correct! Great job!</Alert>}
-                    {checked && !correct && <Alert variant="danger">Try again!</Alert>}
-                    <Button variant="info" onClick={nextWord} className="w-100">
-                        Next Word
-                    </Button>
+                    {!gameOver ? (
+                        <>
+                            <h3>Clue: {currentWord.clue}</h3>
+                            <div className="jumbled-word">{shuffleWord(currentWord.word)}</div>
+                            <Form.Control
+                                ref={inputRef} // Reference for auto-focus
+                                type="text"
+                                value={input}
+                                onChange={handleInputChange}
+                                onKeyDown={handleKeyPress}
+                                placeholder="Unscramble the word"
+                                className="mb-3"
+                                disabled={correct || attempts === 3}
+                            />
+                            <Button variant="success" onClick={checkAnswer} className="w-100 mb-2" disabled={correct || attempts === 3}>
+                                Check Answer
+                            </Button>
+                            {checked && correct && <Alert variant="success">Correct! Great job!</Alert>}
+                            {checked && !correct && <Alert variant="danger">Try again!</Alert>}
+                            {revealedAnswer && <Alert variant="info">The correct answer is: {currentWord.word}</Alert>}
+
+                            <div className="mt-4">
+                                <h4>Score: {score}</h4>
+                                <p>Attempts remaining: {3 - attempts}</p>
+                            </div>
+                        </>
+                    ) : (
+                        <div>
+                            <h3>Game Over!</h3>
+                            <h4>Your Final Score: {score}</h4>
+                            <Button variant="info" onClick={restartGame}>Restart Game</Button>
+                        </div>
+                    )}
                 </Col>
             </Row>
         </Container>
