@@ -45,6 +45,9 @@ const Puzzle = () => {
   return (
     <Container className="text-center mt-5">
       <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Noah and the Great Flood</h1>
+
+      <p style={{ color: "white", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Noah and the great flood! "The rain fell for forty days and forty nights." – Genesis 7:12</p>
+
       {completed && (
         <h2 className={`${styles.congratulationsMessage} mt-3`} style={{
           color: "purple",
@@ -61,25 +64,33 @@ const Puzzle = () => {
           <div className={styles.noahPuzzleGrid}>
             {pieces.map((piece, index) => (
               <div
-                key={index}
-                className={styles.noahPuzzlePiece}
-                style={{
-                  backgroundImage: "url('/images/puzzleark.jpg')",
-                  backgroundPosition: `${(piece % 2) * 100}% ${
-                    Math.floor(piece / 2) * 100
-                  }%`, // Adjusted for 2x2 grid
-                  backgroundSize: "200%", // Match for 2x2 grid
-                }}
-                draggable
-                onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => {
-                  const dragIndex = parseInt(
-                    e.dataTransfer.getData("text/plain")
-                  );
-                  handleDrop(dragIndex, index);
-                }}
-              />
+              key={index}
+              className={styles.noahPuzzlePiece}
+              style={{
+                backgroundImage: "url('/images/puzzleark.jpg')",
+                backgroundPosition: `${(piece % 2) * 100}% ${Math.floor(piece / 2) * 100}%`,
+                backgroundSize: "200%", // Match for 2x2 grid
+              }}
+              draggable
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
+              onTouchStart={(e) => {
+                // Prevent long-press behavior
+                e.preventDefault();
+                const touch = e.touches[0]; 
+                const element = e.target;
+                element.dispatchEvent(new MouseEvent("mousedown", {
+                  bubbles: true,
+                  cancelable: true,
+                  clientX: touch.clientX,
+                  clientY: touch.clientY
+                }));
+              }}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                const dragIndex = parseInt(e.dataTransfer.getData("text/plain"));
+                handleDrop(dragIndex, index);
+              }}
+            />
             ))}
           </div>
         </Col>

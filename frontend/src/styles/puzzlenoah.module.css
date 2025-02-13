@@ -26,6 +26,12 @@
   animation: float 1.5s infinite ease-in-out, pop 0.3s ease-in-out;
 }
 
+.noahPuzzlePiece {
+  touch-action: none;
+  -webkit-user-select: none; 
+  -webkit-touch-callout: none; /* Prevents long press actions */
+  user-select: none;
+}
 
 @keyframes float {
   0%, 100% {
@@ -51,8 +57,3 @@
   }
 }
 
-@media (max-width: 600px) {
-  .noahPuzzleGrid {
-    max-width: 250px; /* Adjust grid size for smaller screens */
-  }
-}
