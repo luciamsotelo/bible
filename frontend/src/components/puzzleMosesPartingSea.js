@@ -55,7 +55,7 @@ Click and drag the pieces to place them where they belong. Solve the puzzle and 
           fontSize: "2.5rem",
           fontWeight: "bold",
         }}>
-          🎉 Congratulations! You solved the puzzle! 🎉
+          Congratulations! You solved the puzzle!
         </h2>
       )}
       <div className="d-flex justify-content-center align-items-center">

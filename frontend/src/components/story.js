@@ -116,7 +116,7 @@ const BibleStories = () => {
     <div className="container">
     <div className="bible-story-paragraph">
   <h1>Bible Stories</h1>
-  <p>Discover faith, hope, and God’s love through stories. Scroll to read or press play to listen!</p>
+  <p className="bible-story-paragraph">Discover faith, hope, and God’s love through stories. Choose a story then scroll to read or press play to listen!</p>
 </div>
 
       {expandedStory === null ? (

@@ -56,7 +56,7 @@ const Puzzle = () => {
           fontSize: "2.5rem",
           fontWeight: "bold",
         }}>
-          🎉 Congratulations! You solved the puzzle! 🎉
+          Congratulations! You solved the puzzle!
         </h2>
       )}
       <Row className="justify-content-center align-items-center mt-4">

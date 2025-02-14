@@ -69,7 +69,7 @@ Click and drag the pieces to place them where they belong. Solve the puzzle and 
             fontWeight: "bold",
           }}
         >
-          🎉 Congratulations! You solved the puzzle! 🎉
+          Congratulations! You solved the puzzle! 
         </h2>
       )}
       <Row className="justify-content-center align-items-center mt-4">

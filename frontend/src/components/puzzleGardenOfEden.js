@@ -56,7 +56,7 @@ const Puzzle = () => {
             fontWeight: "bold",
           }}
         >
-          🎉 Congratulations! You completed the puzzle! 🎉
+          Congratulations! You completed the puzzle! 
         </h2>
       )}
       <div className="d-flex justify-content-center align-items-center">

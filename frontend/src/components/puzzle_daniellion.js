@@ -57,7 +57,7 @@ const Puzzle = () => {
             fontWeight: "bold",
           }}
         >
-          🎉 Congratulations! You solved the puzzle! 🎉
+        Congratulations! You solved the puzzle!
         </h2>
       )}
       
