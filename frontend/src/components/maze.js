@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import "../styles/maze.css";
 import { Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 
 const Maze = () => {
   const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
-  const [goalPosition, setGoalPosition] = useState(null); // Set to null initially
+  const [goalPosition, setGoalPosition] = useState(null);
   const [obstacles, setObstacles] = useState([]);
   const [isVictory, setIsVictory] = useState(false);
-  const gridSize = 20;
+  const [gridSize] = useState(20);
   const navigate = useNavigate();
+  const [gameStarted, setGameStarted] = useState(false);
 
-  /** Generate a random position */
-  const generateRandomPosition = () => ({
+  /** Generate a random position - MEMOIZED with useCallback */
+  const generateRandomPosition = useCallback(() => ({ // ADDED useCallback
     x: Math.floor(Math.random() * gridSize),
     y: Math.floor(Math.random() * gridSize),
-  });
+  }), [gridSize]); // ADDED dependency array for useCallback - gridSize
 
   /** Initialize the game (Goal + Obstacles) */
   useEffect(() => {
@@ -24,14 +24,14 @@ const Maze = () => {
       let newGoal;
       do {
         newGoal = generateRandomPosition();
-      } while (newGoal.x === 0 && newGoal.y === 0); // Ensure goal doesn't spawn at player start
+      } while (newGoal.x === 0 && newGoal.y === 0);
 
       setGoalPosition(newGoal);
 
-      // Initialize obstacles
-      const obstacleCount = 80;
-      const newObstacles = [];
+      // Initialize obstacles at Medium difficulty - HARDCODED
+      const obstacleCount = 80; // Medium difficulty obstacle count
 
+      const newObstacles = [];
       while (newObstacles.length < obstacleCount) {
         const obstacle = generateRandomPosition();
         if (
@@ -39,7 +39,7 @@ const Maze = () => {
             (obs) => obs.x === obstacle.x && obs.y === obstacle.y
           ) &&
           !(obstacle.x === 0 && obstacle.y === 0) &&
-          !(obstacle.x === newGoal.x && obstacle.y === newGoal.y) // Ensure goal is not blocked
+          !(obstacle.x === newGoal.x && obstacle.y === newGoal.y)
         ) {
           newObstacles.push(obstacle);
         }
@@ -47,8 +47,10 @@ const Maze = () => {
       setObstacles(newObstacles);
     };
 
-    initializeGame();
-  }, [gridSize]); // Only runs once when the component mounts
+    if (gameStarted) {
+      initializeGame();
+    }
+  }, [gameStarted, gridSize, generateRandomPosition]); // ADDED generateRandomPosition to dependency array
 
   /** Move obstacles every 2 seconds */
   const moveObstaclesIntervalRef = useRef(null);
@@ -61,53 +63,60 @@ const Maze = () => {
   }, [playerPosition, goalPosition]);
 
   useEffect(() => {
+    if (!gameStarted) {
+      clearInterval(moveObstaclesIntervalRef.current);
+      return;
+    }
+
     if (moveObstaclesIntervalRef.current) {
       clearInterval(moveObstaclesIntervalRef.current);
     }
-  
+
     moveObstaclesIntervalRef.current = setInterval(() => {
       setObstacles((prevObstacles) =>
         prevObstacles.map((obs) => {
-          let newX = obs.x, newY = obs.y;
-          let validMove = false;
-  
-          while (!validMove) {
-            const moveDirection = Math.floor(Math.random() * 4);
-            switch (moveDirection) {
-              case 0: // Move up
-                newY = obs.y > 0 ? obs.y - 1 : obs.y;
-                break;
-              case 1: // Move down
-                newY = obs.y < gridSize - 1 ? obs.y + 1 : obs.y;
-                break;
-              case 2: // Move left
-                newX = obs.x > 0 ? obs.x - 1 : obs.x;
-                break;
-              case 3: // Move right
-                newX = obs.x < gridSize - 1 ? obs.x + 1 : obs.x;
-                break;
-              default: 
-                // Default case (this should never run, but it's needed for ESLint)
-                break;
-            }
-  
-            validMove =
-              !(newX === playerRef.current.x && newY === playerRef.current.y) &&
-              !(newX === goalRef.current?.x && newY === goalRef.current?.y);
+          let newX = obs.x,
+            newY = obs.y;
+          const originalX = obs.x;
+          const originalY = obs.y;
+
+          const moveDirection = Math.floor(Math.random() * 4);
+          switch (moveDirection) {
+            case 0:
+              newY = obs.y > 0 ? obs.y - 1 : obs.y;
+              break;
+            case 1:
+              newY = obs.y < gridSize - 1 ? obs.y + 1 : obs.y;
+              break;
+            case 2:
+              newX = obs.x > 0 ? obs.x - 1 : obs.x;
+              break;
+            case 3:
+              newX = obs.x < gridSize - 1 ? obs.x + 1 : obs.x;
+              break;
+            default:
+              break;
           }
-  
-          return { x: newX, y: newY };
+
+          if (
+            (newX === playerRef.current.x && newY === playerRef.current.y) ||
+            (newX === goalRef.current?.x && newY === goalRef.current?.y)
+          ) {
+            return { x: originalX, y: originalY };
+          } else {
+            return { x: newX, y: newY };
+          }
         })
       );
-    }, 2000); // Moves every 2 seconds
-  
+    }, 2000);
+
     return () => clearInterval(moveObstaclesIntervalRef.current);
-  }, []);
-  
+  }, [gameStarted, gridSize]);
 
   /** Move player */
   const movePlayer = useCallback(
     (direction) => {
+      if (!gameStarted) return;
       setPlayerPosition((prevPosition) => {
         const { x, y } = prevPosition;
         let newPosition = prevPosition;
@@ -142,7 +151,7 @@ const Maze = () => {
         return newPosition;
       });
     },
-    [obstacles, gridSize]
+    [obstacles, gridSize, gameStarted]
   );
 
   /** Check for victory condition */
@@ -153,12 +162,15 @@ const Maze = () => {
       playerPosition.y === goalPosition.y
     ) {
       setIsVictory(true);
+      clearInterval(moveObstaclesIntervalRef.current);
+      setGameStarted(false);
     }
   }, [playerPosition, goalPosition]);
 
   /** Keyboard event listener */
   useEffect(() => {
     const handleKeyDown = (event) => {
+      if (!gameStarted) return;
       switch (event.key) {
         case "ArrowUp":
           movePlayer("UP");
@@ -179,18 +191,26 @@ const Maze = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [movePlayer]);
+  }, [movePlayer, gameStarted]);
 
   /** Reset game */
   const resetGame = () => {
     setPlayerPosition({ x: 0, y: 0 });
     setIsVictory(false);
+    setGameStarted(true);
     let newGoal;
     do {
       newGoal = generateRandomPosition();
     } while (newGoal.x === 0 && newGoal.y === 0);
     setGoalPosition(newGoal);
   };
+
+  const startGame = () => {
+    resetGame();
+    setGameStarted(true);
+    setIsVictory(false);
+  };
+
 
   return (
     <Container className="maze-container text-center">
@@ -221,6 +241,12 @@ const Maze = () => {
         buttons to find the way to the goal.
       </p>
 
+      {!gameStarted && (
+        <Button variant="success" className="mb-3" onClick={startGame}>
+          Start Game
+        </Button>
+      )}
+
       <div className="maze-grid">
         {Array.from({ length: gridSize }).map((_, row) =>
           Array.from({ length: gridSize }).map((_, col) => {
@@ -243,7 +269,6 @@ const Maze = () => {
           })
         )}
 
-        {/* Render obstacles separately so they slide correctly */}
         {obstacles.map((obstacle, index) => (
           <div
             key={index}
@@ -268,7 +293,6 @@ const Maze = () => {
         </Alert>
       )}
 
-      {/* 🔽🔽🔽 RE-ADDED ON-SCREEN CONTROLS 🔽🔽🔽 */}
       <div className="controls mt-4">
         <Row>
           <Col xs={12}>
@@ -295,7 +319,6 @@ const Maze = () => {
           </Col>
         </Row>
       </div>
-      {/* 🔼🔼🔼 RE-ADDED ON-SCREEN CONTROLS 🔼🔼🔼 */}
     </Container>
   );
 };
