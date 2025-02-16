@@ -4,7 +4,6 @@ import { Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
-
 const Maze = () => {
   const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
   const [goalPosition, setGoalPosition] = useState(null); // Set to null initially
@@ -36,7 +35,9 @@ const Maze = () => {
       while (newObstacles.length < obstacleCount) {
         const obstacle = generateRandomPosition();
         if (
-          !newObstacles.some((obs) => obs.x === obstacle.x && obs.y === obstacle.y) &&
+          !newObstacles.some(
+            (obs) => obs.x === obstacle.x && obs.y === obstacle.y
+          ) &&
           !(obstacle.x === 0 && obstacle.y === 0) &&
           !(obstacle.x === newGoal.x && obstacle.y === newGoal.y) // Ensure goal is not blocked
         ) {
@@ -53,71 +54,104 @@ const Maze = () => {
   const moveObstaclesIntervalRef = useRef(null);
   const playerRef = useRef(playerPosition);
   const goalRef = useRef(goalPosition);
-  
+
   useEffect(() => {
-    playerRef.current = playerPosition; // Keep latest player position
-    goalRef.current = goalPosition; // Keep latest goal position
+    playerRef.current = playerPosition;
+    goalRef.current = goalPosition;
   }, [playerPosition, goalPosition]);
-  
+
   useEffect(() => {
     if (moveObstaclesIntervalRef.current) {
-      clearInterval(moveObstaclesIntervalRef.current); // Ensure only one interval runs
+      clearInterval(moveObstaclesIntervalRef.current);
     }
   
     moveObstaclesIntervalRef.current = setInterval(() => {
       setObstacles((prevObstacles) =>
         prevObstacles.map((obs) => {
-          let newX, newY;
-          do {
-            newX = Math.max(0, Math.min(gridSize - 1, obs.x + (Math.random() > 0.5 ? 1 : -1)));
-            newY = Math.max(0, Math.min(gridSize - 1, obs.y + (Math.random() > 0.5 ? 1 : -1)));
-          } while (
-            (newX === playerRef.current.x && newY === playerRef.current.y) || 
-            (newX === goalRef.current?.x && newY === goalRef.current?.y)
-          );
+          let newX = obs.x, newY = obs.y;
+          let validMove = false;
+  
+          while (!validMove) {
+            const moveDirection = Math.floor(Math.random() * 4);
+            switch (moveDirection) {
+              case 0: // Move up
+                newY = obs.y > 0 ? obs.y - 1 : obs.y;
+                break;
+              case 1: // Move down
+                newY = obs.y < gridSize - 1 ? obs.y + 1 : obs.y;
+                break;
+              case 2: // Move left
+                newX = obs.x > 0 ? obs.x - 1 : obs.x;
+                break;
+              case 3: // Move right
+                newX = obs.x < gridSize - 1 ? obs.x + 1 : obs.x;
+                break;
+              default: 
+                // Default case (this should never run, but it's needed for ESLint)
+                break;
+            }
+  
+            validMove =
+              !(newX === playerRef.current.x && newY === playerRef.current.y) &&
+              !(newX === goalRef.current?.x && newY === goalRef.current?.y);
+          }
+  
           return { x: newX, y: newY };
         })
       );
-    }, 2000); // ✅ Ensures obstacles move every 2 seconds
+    }, 2000); // Moves every 2 seconds
   
-    return () => clearInterval(moveObstaclesIntervalRef.current); // Cleanup interval on unmount
+    return () => clearInterval(moveObstaclesIntervalRef.current);
   }, []);
-
+  
 
   /** Move player */
-  const movePlayer = useCallback((direction) => {
-    setPlayerPosition((prevPosition) => {
-      const { x, y } = prevPosition;
-      let newPosition = prevPosition;
+  const movePlayer = useCallback(
+    (direction) => {
+      setPlayerPosition((prevPosition) => {
+        const { x, y } = prevPosition;
+        let newPosition = prevPosition;
 
-      switch (direction) {
-        case "UP":
-          newPosition = y > 0 ? { ...prevPosition, y: y - 1 } : prevPosition;
-          break;
-        case "DOWN":
-          newPosition = y < gridSize - 1 ? { ...prevPosition, y: y + 1 } : prevPosition;
-          break;
-        case "LEFT":
-          newPosition = x > 0 ? { ...prevPosition, x: x - 1 } : prevPosition;
-          break;
-        case "RIGHT":
-          newPosition = x < gridSize - 1 ? { ...prevPosition, x: x + 1 } : prevPosition;
-          break;
-        default:
-          break;
-      }
+        switch (direction) {
+          case "UP":
+            newPosition = y > 0 ? { ...prevPosition, y: y - 1 } : prevPosition;
+            break;
+          case "DOWN":
+            newPosition =
+              y < gridSize - 1 ? { ...prevPosition, y: y + 1 } : prevPosition;
+            break;
+          case "LEFT":
+            newPosition = x > 0 ? { ...prevPosition, x: x - 1 } : prevPosition;
+            break;
+          case "RIGHT":
+            newPosition =
+              x < gridSize - 1 ? { ...prevPosition, x: x + 1 } : prevPosition;
+            break;
+          default:
+            break;
+        }
 
-      if (obstacles.some((obs) => obs.x === newPosition.x && obs.y === newPosition.y)) {
-        return prevPosition;
-      }
+        if (
+          obstacles.some(
+            (obs) => obs.x === newPosition.x && obs.y === newPosition.y
+          )
+        ) {
+          return prevPosition;
+        }
 
-      return newPosition;
-    });
-  }, [obstacles, gridSize]);
+        return newPosition;
+      });
+    },
+    [obstacles, gridSize]
+  );
 
   /** Check for victory condition */
   useEffect(() => {
-    if (goalPosition && playerPosition.x === goalPosition.x && playerPosition.y === goalPosition.y) {
+    if (
+      goalPosition &&
+      playerPosition.x === goalPosition.x &&
+      playerPosition.y === goalPosition.y
+    ) {
       setIsVictory(true);
     }
   }, [playerPosition, goalPosition]);
@@ -162,39 +196,67 @@ const Maze = () => {
     <Container className="maze-container text-center">
       <Row>
         <Col>
-          <Button variant="primary" onClick={() => navigate('/games')}>
+          <Button variant="primary" onClick={() => navigate("/games")}>
             Back to Main Game Page
           </Button>
         </Col>
       </Row>
-      <h1 className="my-1" style={{ color: "goldenrod", textShadow: "2px 2px 8px black", fontFamily: "allura", fontSize: "3rem", fontWeight: "bold", }}>
+      <h1
+        className="my-1"
+        style={{
+          color: "goldenrod",
+          textShadow: "2px 2px 8px black",
+          fontFamily: "allura",
+          fontSize: "3rem",
+          fontWeight: "bold",
+        }}
+      >
         Maze
       </h1>
-      <p className="my-1" style={{ fontSize: "1.2rem", color: "purple", fontFamily: "Quicksand" }}>
-        Guide the player through the maze! Use the arrow keys or on-screen buttons to find the way to the goal.
+      <p
+        className="my-1"
+        style={{ fontSize: "1.2rem", color: "purple", fontFamily: "Quicksand" }}
+      >
+        Guide the player through the maze! Use the arrow keys or on-screen
+        buttons to find the way to the goal.
       </p>
-  
-      <div className="maze-grid mx-auto">
-        {Array.from({ length: gridSize }).map((_, row) => (
-          <div key={row} className="maze-row">
-            {Array.from({ length: gridSize }).map((_, col) => (
+
+      <div className="maze-grid">
+        {Array.from({ length: gridSize }).map((_, row) =>
+          Array.from({ length: gridSize }).map((_, col) => {
+            const isPlayer =
+              playerPosition.x === col && playerPosition.y === row;
+            const isGoal = goalPosition?.x === col && goalPosition?.y === row;
+
+            return (
               <div
-                key={col}
+                key={`${row}-${col}`}
                 className={`maze-cell ${
-                  playerPosition.x === col && playerPosition.y === row
-                    ? "player"
-                    : goalPosition?.x === col && goalPosition?.y === row
-                    ? "goal"
-                    : obstacles.some((obs) => obs.x === col && obs.y === row)
-                    ? "obstacle"
-                    : ""
+                  isPlayer ? "player" : isGoal ? "goal" : ""
                 }`}
+                style={{
+                  gridColumn: col + 1,
+                  gridRow: row + 1,
+                }}
               ></div>
-            ))}
-          </div>
+            );
+          })
+        )}
+
+        {/* Render obstacles separately so they slide correctly */}
+        {obstacles.map((obstacle, index) => (
+          <div
+            key={index}
+            className="maze-cell obstacle"
+            style={{
+              transform: `translate(${obstacle.x * 30}px, ${
+                obstacle.y * 30
+              }px)`,
+            }}
+          ></div>
         ))}
       </div>
-  
+
       {isVictory && (
         <Alert variant="success" className="my-3">
           🎉 You reached the goal! 🎉
@@ -205,7 +267,7 @@ const Maze = () => {
           </div>
         </Alert>
       )}
-  
+
       {/* 🔽🔽🔽 RE-ADDED ON-SCREEN CONTROLS 🔽🔽🔽 */}
       <div className="controls mt-4">
         <Row>
@@ -234,7 +296,6 @@ const Maze = () => {
         </Row>
       </div>
       {/* 🔼🔼🔼 RE-ADDED ON-SCREEN CONTROLS 🔼🔼🔼 */}
-  
     </Container>
   );
 };
