@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import "../styles/maze.css";
+import styles from "../styles/maze.module.css";
 import { Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -247,40 +247,44 @@ const Maze = () => {
         </Button>
       )}
 
-      <div className="maze-grid">
-        {Array.from({ length: gridSize }).map((_, row) =>
-          Array.from({ length: gridSize }).map((_, col) => {
-            const isPlayer =
-              playerPosition.x === col && playerPosition.y === row;
-            const isGoal = goalPosition?.x === col && goalPosition?.y === row;
+<div className={styles.mazeGrid}>
+  {Array.from({ length: gridSize }).map((_, row) =>
+    Array.from({ length: gridSize }).map((_, col) => {
+      const isPlayer = playerPosition.x === col && playerPosition.y === row;
+      const isGoal = goalPosition?.x === col && goalPosition?.y === row;
 
-            return (
-              <div
-                key={`${row}-${col}`}
-                className={`maze-cell ${
-                  isPlayer ? "player" : isGoal ? "goal" : ""
-                }`}
-                style={{
-                  gridColumn: col + 1,
-                  gridRow: row + 1,
-                }}
-              ></div>
-            );
-          })
-        )}
+      return (
+        <div
+          key={`${row}-${col}`}
+          className={`${styles.mazeCell} ${isPlayer ? styles.player : isGoal ? styles.goal : ""}`}
+          style={{
+            gridColumn: col + 1,
+            gridRow: row + 1,
+          }}
+        ></div>
+      );
+    })
+  )}
 
-        {obstacles.map((obstacle, index) => (
-          <div
-            key={index}
-            className="maze-cell obstacle"
-            style={{
-              transform: `translate(${obstacle.x * 30}px, ${
-                obstacle.y * 30
-              }px)`,
-            }}
-          ></div>
-        ))}
-      </div>
+  {/* Render obstacles with correct movement inside the grid */}
+  {obstacles.map((obstacle, index) => (
+    <div
+      key={index}
+      className={styles.obstacle}
+      style={{
+        width: `calc(100% / ${gridSize})`, 
+        height: `calc(100% / ${gridSize})`,
+        position: "absolute",
+        left: `calc(${obstacle.x} * (100% / ${gridSize}))`,
+        top: `calc(${obstacle.y} * (100% / ${gridSize}))`,
+        transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
+      }}
+    ></div>
+  ))}
+</div>
+
+
+
 
       {isVictory && (
         <Alert variant="success" className="my-3">

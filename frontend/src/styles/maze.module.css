@@ -1,61 +1,69 @@
-.maze-container {
+.mazeContainer {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers the grid horizontally */
-  justify-content: center; /* Centers the grid vertically */
+  align-items: center;
+  justify-content: center;
   position: relative;
   background-size: contain;
   background-position: center;
   padding: 5%;
-  height: 100vh; /* Ensures the container spans the full height of the viewport */
-  overflow: hidden; /* Prevents scrollbars if content overflows */
+  height: 100vh;
+  overflow: hidden;
+  max-width: 100vw;
 }
 
-.maze-grid {
-  position: relative;
+/* Grid layout */
+.mazeGrid {
+  position: relative; /* Ensures obstacles are positioned within */
   display: grid;
-  grid-template-columns: repeat(20, 30px);
-  grid-template-rows: repeat(20, 30px);
-  width: 600px;
-  height: 600px;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  width: min(80vw, 600px);
+  height: min(80vw, 600px);
+  border: 2px solid black;
 }
 
-.maze-row {
+/* General cell appearance */
+.mazeCell {
+  width: 100%;
+  height: 100%;
   display: flex;
-}
-
-.maze-cell {
-  width: 30px; 
-  height: 30px; 
+  align-items: center;
+  justify-content: center;
   border: 1px solid #ccc;
   background-color: white;
 }
 
-.maze-cell.player {
-  background-image: url('../images/player-sprite.webp');
+/* Player appearance */
+.player {
+  background-image: url("../images/player-sprite.webp");
   background-size: contain;
   background-position: center;
-  border: 2px solid #FFD700; /* Gold border for the player */
+  background-repeat: no-repeat;
+  border: 2px solid #FFD700;
 }
 
-.maze-cell.goal {
-  background-image: url('../images/goal-sprite.png');
-  background-size: cover;
+/* Goal appearance */
+.goal {
+  background-image: url("../images/goal-sprite.png");
+  background-size: contain;
   background-position: center;
-  border: 2px solid #F30C32; /* Red border for visibility */
-  border-radius: 50%; /* Circular goal shape */
+  border: 2px solid #F30C32;
+  border-radius: 50%;
 }
 
-.maze-cell.obstacle {
+/* Obstacles - Fixed to grid positioning */
+.obstacle {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-image: url('../images/obstacle-sprite.webp');
-  background-size: cover;
+  background-image: url("../images/obstacle-sprite.webp");
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.8;
-  transition: transform 0.5s ease-in-out;
+  transition: left 0.5s ease-in-out, top 0.5s ease-in-out;
 }
+
+
 
 .maze-cell:hover {
   transform: scale(1.1); /* Hover effect for visual feedback */
