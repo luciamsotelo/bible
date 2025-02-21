@@ -1,29 +1,37 @@
-.mazeContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-size: contain;
-  background-position: center;
-  padding: 5%;
-  height: 100vh;
-  overflow: hidden;
-  max-width: 100vw;
+.text-shadow {
+  text-shadow: 2px 2px 8px black;
 }
 
-/* Grid layout */
+.text-purple {
+  color: purple;
+}
+
+.font-allura {
+  font-family: "Allura", cursive;
+}
+
+.font-quicksand {
+  font-family: "Quicksand", sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: purple 1px 0 10px;
+  font-family: "Allura", cursive;
+}
 .mazeGrid {
-  position: relative; /* Ensures obstacles are positioned within */
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
   width: min(80vw, 600px);
   height: min(80vw, 600px);
   border: 2px solid black;
+  margin: 20px auto;
+  position: relative;
 }
 
-/* General cell appearance */
 .mazeCell {
   width: 100%;
   height: 100%;
@@ -34,139 +42,29 @@
   background-color: white;
 }
 
-/* Player appearance */
 .player {
-  background-image: url("../images/player-sprite.webp");
+  background: url("../images/player-sprite.webp") no-repeat center;
   background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px solid #FFD700;
+  border: 2px solid gold;
 }
 
-/* Goal appearance */
 .goal {
-  background-image: url("../images/goal-sprite.png");
+  background: url("../images/goal-sprite.png") no-repeat center;
   background-size: contain;
-  background-position: center;
-  border-radius: 35%;
-}
-
-/* Obstacles - Fixed to grid positioning */
-.obstacle {
-  position: absolute;
-  background-image: url("../images/obstacle-sprite.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.8;
-  transition: left 0.5s ease-in-out, top 0.5s ease-in-out;
-}
-
-
-
-.maze-cell:hover {
-  transform: scale(1.1); /* Hover effect for visual feedback */
-}
-
-.victory-message {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #FFD700;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-button:hover {
-  background-color: #28a745; /* Bootstrap success green */
-  color: white;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-p {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #6c757d; /* Muted text color */
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  gap: 0.5rem;
-}
-
-.controls button {
-  width: 60px;
-  height: 60px;
-  margin: 0.2rem;
-  font-size: 1.5rem;
-  background-color: #007bff; /* Bootstrap primary blue */
-  color: white;
-  border: none;
   border-radius: 50%;
-  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.controls button:active {
-  transform: scale(0.9); /* Click effect */
+.obstacle {
+  background: url("../images/obstacle-sprite.png") no-repeat center;
+  background-size: contain;
+  position: absolute;
+  width: 5%;
+  height: 5%;
 }
 
-.controls button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Media Queries */
 @media (max-width: 768px) {
-  .maze-container {
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .maze-cell {
-    width: 20px;
-    height: 20px;
-  }
-
-  .controls button {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-  }
-
-  .victory-message {
-    font-size: 1.2rem;
+  .mazeGrid {
+    width: 90vw;
+    height: 90vw;
   }
 }
-
-@media (max-width: 576px) {
-  .maze-cell {
-    width: 15px;
-    height: 15px;
-  }
-
-  .controls button {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-}
-

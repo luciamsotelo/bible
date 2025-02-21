@@ -212,79 +212,74 @@ const Maze = () => {
   };
 
 
+
   return (
-    <Container className="maze-container text-center">
-      <Row>
-        <Col>
+    <Container className="text-center mt-3">
+      {/* Back Button */}
+      <Row className="justify-content-center">
+        <Col xs="auto">
           <Button variant="primary" onClick={() => navigate("/games")}>
             Back to Main Game Page
           </Button>
         </Col>
       </Row>
-      <h1
-        className="my-1"
-        style={{
-          color: "goldenrod",
-          textShadow: "2px 2px 8px black",
-          fontFamily: "allura",
-          fontSize: "3rem",
-          fontWeight: "bold",
-        }}
-      >
-        Maze
+  
+      {/* Title */}
+      <h1 className="my-3 text-warning text-shadow display-4 font-allura">
+        Maze Adventure
       </h1>
-      <p
-        className="my-1 mb-4 text-center"
-        style={{ fontSize: "1rem", color: "purple", fontFamily: "Quicksand" }}
-      >
-      Let your light shine and find the way!  Use the arrow keys or on-screen buttons to move forward, but be careful—don't let the moving boulders block your path! <br/> 'Your word is a lamp to my feet and a light to my path.' (Psalm 119:105)
+  
+      {/* Instructions */}
+      <p className="my-1 mb-4 text-center text-purple font-quicksand lead">
+        Let your light shine and find the way! Use the arrow keys or on-screen buttons to move forward, but be careful—don't let the moving boulders block your path! <br /> 
+        <strong>'Your word is a lamp to my feet and a light to my path.' (Psalm 119:105)</strong>
       </p>
-
+  
+      {/* Start Game Button */}
       {!gameStarted && (
         <Button variant="success" className="mb-3" onClick={startGame}>
           Start Game
         </Button>
       )}
-
-<div className={styles.mazeGrid}>
-  {Array.from({ length: gridSize }).map((_, row) =>
-    Array.from({ length: gridSize }).map((_, col) => {
-      const isPlayer = playerPosition.x === col && playerPosition.y === row;
-      const isGoal = goalPosition?.x === col && goalPosition?.y === row;
-
-      return (
-        <div
-          key={`${row}-${col}`}
-          className={`${styles.mazeCell} ${isPlayer ? styles.player : isGoal ? styles.goal : ""}`}
-          style={{
-            gridColumn: col + 1,
-            gridRow: row + 1,
-          }}
-        ></div>
-      );
-    })
-  )}
-
-  {/* Render obstacles with correct movement inside the grid */}
-  {obstacles.map((obstacle, index) => (
-    <div
-      key={index}
-      className={styles.obstacle}
-      style={{
-        width: `calc(100% / ${gridSize})`, 
-        height: `calc(100% / ${gridSize})`,
-        position: "absolute",
-        left: `calc(${obstacle.x} * (100% / ${gridSize}))`,
-        top: `calc(${obstacle.y} * (100% / ${gridSize}))`,
-        transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
-      }}
-    ></div>
-  ))}
-</div>
-
-
-
-
+  
+      {/* Maze Grid */}
+      <div className={styles.mazeGrid}>
+        {Array.from({ length: gridSize }).map((_, row) =>
+          Array.from({ length: gridSize }).map((_, col) => {
+            const isPlayer = playerPosition.x === col && playerPosition.y === row;
+            const isGoal = goalPosition?.x === col && goalPosition?.y === row;
+  
+            return (
+              <div
+                key={`${row}-${col}`}
+                className={`${styles.mazeCell} ${isPlayer ? styles.player : isGoal ? styles.goal : ""}`}
+                style={{
+                  gridColumn: col + 1,
+                  gridRow: row + 1,
+                }}
+              ></div>
+            );
+          })
+        )}
+  
+        {/* Render obstacles with correct movement inside the grid */}
+        {obstacles.map((obstacle, index) => (
+          <div
+            key={index}
+            className={styles.obstacle}
+            style={{
+              width: `calc(100% / ${gridSize})`,
+              height: `calc(100% / ${gridSize})`,
+              position: "absolute",
+              left: `calc(${obstacle.x} * (100% / ${gridSize}))`,
+              top: `calc(${obstacle.y} * (100% / ${gridSize}))`,
+              transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
+            }}
+          ></div>
+        ))}
+      </div>
+  
+      {/* Victory Message */}
       {isVictory && (
         <Alert variant="success" className="my-3">
           🎉 You reached the goal! 🎉
@@ -295,10 +290,11 @@ const Maze = () => {
           </div>
         </Alert>
       )}
-
+  
+      {/* Controls Section */}
       <div className="controls mt-4">
-        <Row>
-          <Col xs={12}>
+        <Row className="justify-content-center">
+          <Col xs="auto">
             <Button variant="secondary" onClick={() => movePlayer("UP")}>
               &uarr;
             </Button>
@@ -324,6 +320,7 @@ const Maze = () => {
       </div>
     </Container>
   );
+  
 };
 
 export default Maze;
