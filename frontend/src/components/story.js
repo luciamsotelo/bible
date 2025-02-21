@@ -115,8 +115,8 @@ const BibleStories = () => {
   return (
     <div className="container">
     <div className="bible-story-paragraph">
-  <h1>Bible Stories</h1>
-  <p className="bible-story-paragraph">Discover faith, hope, and God’s love through stories. Choose a story then scroll to read or press play to listen!</p>
+  <h1>The Bible Stories</h1>
+  <p className="bible-story-paragraph">Discover faith, hope, and God’s love through stories. Choose a story, then scroll to read or press play to listen! Journey through timeless Bible stories and learn the lessons that guide our hearts. <br/><i>“All Scripture is God’s Word and is good for teaching.”</i> – 2 Timothy 3:16 </p>
 </div>
 
       {expandedStory === null ? (
