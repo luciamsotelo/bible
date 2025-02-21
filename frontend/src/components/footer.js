@@ -7,7 +7,7 @@ import "../styles/footer.css";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <footer className="fixed-bottom background-bottom text-dark text-lg-start">
+    <footer className="background-bottom text-dark text-lg-start">
       <Container>
         <Row className="d-flex justify-content-between align-items-center py-1">
           <Col className="text-light text-bold explore-text">
