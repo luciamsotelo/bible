@@ -26,11 +26,11 @@ const AdventureMap = () => {
 
   return (
     <div>
-      <h1 className="map-title" style={{ color: "green", textShadow: "2px 2px 10px white", fontFamily: "Allura", fontSize: "2rem", textAlign: "center", marginTop: "1rem", fontWeight: "bold" }}>
-        Adventure Map
+      <h1 className="map-title" style={{ color: "green", textShadow: "2px 2px 10px white", fontFamily: "Allura", fontSize: "3rem", textAlign: "center", marginTop: "1rem", fontWeight: "bold" }}>
+        The Adventure Map
       </h1>
       <p className="map-description" style={{ color: "black", fontFamily: "Quicksand", fontSize: ".9rem", textAlign: "center", margin: ".5rem", fontWeight: "bold" }}>
-        Embark on an exciting journey through the places where Jesus walked! Click on different locations on the map to learn about important events in His life. Discover where He was born, performed miracles, and shared His teachings.
+      Welcome to the Adventure Map! Explore the places where Jesus lived, taught, and performed miracles. Click on the locations to learn about key events in His life, from His birth in Bethlehem to His resurrection in Jerusalem. Let’s begin the journey!<br/><i>“For we walk by faith, not by sight.” – 2 Corinthians 5:7</i>
       </p>
       <div className="map-container" style={{ marginTop: ".5rem", marginBottom: "20rem" }}>
         <img src="/images/israel.png" alt="Adventure Map" className="map-image" />

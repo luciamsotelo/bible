@@ -1,166 +1,36 @@
-/* src/styles/bio.css */
-
-.bio-container-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 50px; /* Add space at the bottom for footer */
-}
-
-/* Ensure content area grows and doesn't cut off */
-.bio-container {
-  background-color: #f4e1d2; /* Light pastel background */
-  padding: 20px;
-  border-radius: 10px;
-  animation: fadeIn 1s ease-out;
-  flex-grow: 1; /* Allows content to expand and fill space */
-}
-
-.bio-container .row {
-  margin-top: 20px;
-}
-
-/* Card styling */
-.bio-character-card {
-  border: 2px solid #FF5733; /* Fun border color */
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  background-color: #fff6e5; /* Light yellow background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* Fun and playful hover effect for the card */
 .bio-character-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: rotateY(10deg) scale(1.05); /* Slight tilt on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
 }
 
-.bio-character-card img {
-  transition: transform 0.5s ease-in-out;
-  border-bottom: 2px solid #FF5733;
-}
-
-.bio-character-card:hover img {
-  transform: scale(1.1);
-}
-
-/* Flip animation */
-.bio-character-card.flipped {
-  transform: rotateY(180deg);
-}
-
-.bio-character-card .card-body {
-  padding: 15px;
-}
-
-.bio-character-card .card-body p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555;
-}
-
-/* Button styling */
-.bio-button {
-  background-color: #33FF57; /* Fun green button */
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  transition: background-color 0.3s ease;
-}
-
+/* Button hover glow effect */
 .bio-button:hover {
-  background-color: #28a745; /* Darker green on hover */
-  cursor: pointer;
-}
-
-.bio-button:focus {
-  outline: none;
-}
-
-/* Fun animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.bio-character-card {
-  animation: bounceIn 1s ease-out;
-}
-
-.bio-title {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  color: #FF33A1; /* Fun pink title */
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 20px;
-  animation: fadeIn 2s ease-out;
-}
-
-/* Add some spacing to the card titles */
-.bio-character-card .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #FF5733; /* Fun border color */
-  animation: fadeIn 1.5s ease-out;
-}
-
-/* Add some fun background and color for text */
-.bio-description {
-  background-color: #f0ff33; /* Fun yellow */
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #333;
-}
-
-/* Add some fun background and color for text */
-.bio-button {
-  background-color: #FF5733; /* Fun border color */
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  transition: background-color 0.3s ease;
-  animation: fadeIn 1.5s ease-out;
-}
-
-/* bio.css */
-.centered-card {
-  transform: scale(1.1); /* Slightly scale up the selected card */
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* Ensure the selected card stays on top */
-}
-
-.bio-container {
-  position: relative;
+  background-color: #28a745;
+  box-shadow: 0 0 15px rgba(50, 205, 50, 0.7); /* Glow effect */
+  transform: scale(1.1);
   transition: all 0.3s ease;
 }
 
-/* Scroll smooth behavior */
-html {
-  scroll-behavior: smooth;
+/* Button click pulse effect */
+.bio-button:active {
+  transform: scale(0.95); /* Slight shrinking on click */
+  animation: pulse 0.4s infinite; /* Pulsing effect */
 }
 
+/* Fun bouncing animation on button hover */
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.bio-button:hover {
+  animation: bounce 0.5s ease-in-out;
+}
+
+/* Add a bouncing effect for the audio button */
+.bio-character-card .audio-button {
+  display: inline-block;
+  animation: bounce 1s ease-in-out infinite;
+}
