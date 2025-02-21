@@ -115,17 +115,19 @@ if (childlikeVoice) {
                 })
               ) : !messageReceived ? (
                 <h3 className="text-center prayer-message" style={{
-                  color: "lightblue", 
+                  color: "hotpink", 
                   fontWeight: "bold", 
-                  textShadow: "2px 2px 4px black", 
+                  textShadow: "2px 2px 6px goldenrod", 
                   fontSize: "1.5rem", // Adjust font size
                   padding: "20px", // Add padding for better spacing
                   borderRadius: "10px",
                   backgroundColor: "rgba(255, 255, 255, 0.6)" // Semi-transparent background
                 }}>
                   Share a prayer that’s close to your heart!
+                  <p style={{ fontSize: "1rem", marginTop: "10px", fontFamily: "quicksand", color: "black", textShadow: "none" }}>Talk to God and share your prayer request! Enter your name and prayer, then press 'Submit Prayer'. Your prayer will be spoken aloud, and you’ll see it appear on the screen. You can submit as many prayers as you’d like. God is always listening! <br/> <i>“Call to me and I will answer you.” – Jeremiah 33:3</i></p>
                 </h3>
               ) : null}
+              
             </div>
           </Col>
         </Row>
