@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { BsFillVolumeUpFill } from "react-icons/bs"; 
+
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import "../styles/bio.css"; // Ensure you have responsive styles
 
@@ -110,8 +112,9 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
             <div>
               <p>{character.description}</p>
               <Button variant="success" onClick={handlePlayAudio}>
-                Who Am I?
-              </Button>{" "}
+  <BsFillVolumeUpFill style={{fontSize: '25px', marginRight: "2px" }} /> Who Am I?
+</Button>
+{" "}
               <Button
                 variant="secondary"
                 onClick={(e) => {
