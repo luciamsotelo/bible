@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import "../styles/bio.css"; // Ensure you have responsive styles
 
@@ -61,50 +61,49 @@ const characters = [
   },
 ];
 
-const BioCard = ({ character, isSelected, onSelect, flipped, onFlip }) => {
+const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
   const [audio, setAudio] = useState(null);
-  const [audioPosition, setAudioPosition] = useState(0);
-  const [isPaused, setIsPaused] = useState(true);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handlePlayAudio = () => {
-    if (!audio) {
+    if (audio) {
+      audio.play();
+    } else {
       const newAudio = new Audio(character.audioFile);
-      newAudio.currentTime = audioPosition;
       newAudio.play();
       setAudio(newAudio);
-      setIsPaused(false);
-      newAudio.addEventListener("ended", () => {
-        setAudio(null);
-        setAudioPosition(0);
-        setIsPaused(true);
-      });
-    } else {
-      audio.currentTime = audioPosition;
-      audio.play();
-      setIsPaused(false);
+      newAudio.addEventListener("ended", () => setAudio(null));
     }
   };
 
-  const handlePauseAudio = () => {
+  const handleStopAudio = () => {
     if (audio) {
-      setAudioPosition(audio.currentTime);
       audio.pause();
-      setIsPaused(true);
+      audio.currentTime = 0; // Reset audio to the beginning
+      setAudio(null); // Clean up state
     }
   };
 
   return (
-    <Col xs={12} sm={6} md={4} className="bio-m1-">
+    <Col xs={12} sm={6} md={4} className="bio-card-col">
       <Card
-        className={`bio-character-card mt-1 ${flipped ? "bio-flipped" : ""} ${isSelected ? "centered-card" : ""}`}
-        onClick={() => onSelect(character.name)}
-        data-name={character.name} // Added for scroll targeting
+        className={`bio-character-card mt-1 ${isSelected ? "selected-card" : ""} ${isFlipped ? "flipped" : ""}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!isSelected) onSelect(character.name);
+        }}
       >
         <Card.Img variant="top" src={character.image} alt={character.name} />
         <Card.Body>
           <Card.Title>{character.name}</Card.Title>
-          {!flipped ? (
-            <Button variant="primary" onClick={() => onFlip(character.name)}>
+          {!isFlipped ? (
+            <Button
+              variant="primary"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFlipped(true);
+              }}
+            >
               Learn About Me
             </Button>
           ) : (
@@ -114,13 +113,14 @@ const BioCard = ({ character, isSelected, onSelect, flipped, onFlip }) => {
                 Who Am I?
               </Button>{" "}
               <Button
-                variant="info"
-                onClick={isPaused ? handlePlayAudio : handlePauseAudio}
-                className={audio && !isPaused ? "playing" : ""}
+                variant="secondary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleStopAudio(); // Stop audio before closing
+                  setIsFlipped(false);
+                  onDeselect();
+                }}
               >
-                {isPaused ? "Keep Listening!" : "Pause the Story"}
-              </Button>{" "}
-              <Button variant="secondary" onClick={() => onFlip(null)}>
                 Back
               </Button>
             </div>
@@ -133,46 +133,20 @@ const BioCard = ({ character, isSelected, onSelect, flipped, onFlip }) => {
 
 const Bio = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
-  const [flippedCard, setFlippedCard] = useState(null);
-  const containerRef = useRef(null);
-
-  const handleSelectCharacter = (name) => {
-    setSelectedCharacter(name);
-    const card = containerRef.current.querySelector(`.bio-character-card[data-name='${name}']`);
-    if (card) {
-      card.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
-
-  const handleFlipCard = (name) => {
-    setFlippedCard(name === flippedCard ? null : name);
-  };
 
   return (
-    <div className="bio-container-wrapper">
-      <Container className="bio-container" ref={containerRef}>
-        <h1
-          className="text-center animate__animated animate__bounceIn"
-          style={{
-            color: "#FF4500",
-            textShadow: "2px 2px 5px #FFD700",
-            fontFamily: "'Bubblegum Sans', cursive",
-            fontSize: "3rem",
-            marginBottom: "20px",
-          }}
-        >
-          Meet Your Bible Buddies!
-        </h1>
-        <p className="text-center" style={{ fontSize: "1rem", fontFamily: "quicksand" }}>Welcome to your Bible Buddy adventure! Click on any character card to learn more about their story and hear their message. Each card can be flipped to reveal fun facts and inspiring words. Tap the buttons to listen to their stories, and discover how they trusted God in amazing ways! <br/><i>"I am the way, the truth, and the life." – John 14:6</i></p>
+    <div className={`bio-container-wrapper ${selectedCharacter ? "overlay-active" : ""}`}>
+      <Container className="bio-container">
+        <h1 className="text-center">Meet Your Bible Buddies!</h1>
+        <p>Click on Learn About Me button to read or click on image to listen</p>
         <Row className="bio-justify-content-center">
           {characters.map((character, index) => (
             <BioCard
               key={index}
               character={character}
               isSelected={selectedCharacter === character.name}
-              onSelect={handleSelectCharacter}
-              flipped={flippedCard === character.name}
-              onFlip={handleFlipCard}
+              onSelect={setSelectedCharacter}
+              onDeselect={() => setSelectedCharacter(null)}
             />
           ))}
         </Row>
