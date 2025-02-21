@@ -26,7 +26,7 @@ const Header = () => {
                     }}
                     className="navbar-title"
                 >
-                    Biblical Adventure
+                    A Bible Adventure
                 </h1>
                 <Navbar.Toggle aria-controls="navbar-nav" style={{ color: 'white' }} />
                 <Navbar.Collapse id="navbar-nav">
