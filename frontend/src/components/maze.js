@@ -234,11 +234,10 @@ const Maze = () => {
         Maze
       </h1>
       <p
-        className="my-1"
-        style={{ fontSize: "1.2rem", color: "purple", fontFamily: "Quicksand" }}
+        className="my-1 mb-4 text-center"
+        style={{ fontSize: "1rem", color: "purple", fontFamily: "Quicksand" }}
       >
-        Guide the player through the maze! Use the arrow keys or on-screen
-        buttons to find the way to the goal.
+      Let your light shine and find the way!  Use the arrow keys or on-screen buttons to move forward, but be careful—don't let the moving boulders block your path! <br/> 'Your word is a lamp to my feet and a light to my path.' (Psalm 119:105)
       </p>
 
       {!gameStarted && (

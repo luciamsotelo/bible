@@ -48,14 +48,13 @@
   background-image: url("../images/goal-sprite.png");
   background-size: contain;
   background-position: center;
-  border: 2px solid #F30C32;
-  border-radius: 50%;
+  border-radius: 35%;
 }
 
 /* Obstacles - Fixed to grid positioning */
 .obstacle {
   position: absolute;
-  background-image: url("../images/obstacle-sprite.webp");
+  background-image: url("../images/obstacle-sprite.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
