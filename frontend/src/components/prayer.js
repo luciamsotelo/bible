@@ -70,9 +70,10 @@ if (childlikeVoice) {
         prayerRequest,
         color: getRandomColor(),
       };
+  
       const updatedPrayers = [...prayers, newPrayer].slice(-7);
       setPrayers(updatedPrayers);
-
+  
       const prayerText = `Dear Jesus, ${prayerRequest}. Love ${name}. Amen.`;
       handleSpeak(prayerText, () => {
         setTimeout(() => {
@@ -88,7 +89,16 @@ if (childlikeVoice) {
     }
   };
 
- 
+  useEffect(() => {
+    if (!messageReceived) {
+      setTimeout(() => {
+        setPrayers([]);
+      }, 5000);
+    }
+  }, [messageReceived]);
+  
+  
+  
   return (
     <div className="prayer-body">
       <Container className="py-4">
