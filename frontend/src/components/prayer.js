@@ -27,7 +27,7 @@ const Prayer = () => {
   const handleSpeak = (prayerText, callback) => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(prayerText);
-  
+ 
     // Create a soft and sweet childlike voice for speech synthesis
 utterance.pitch = 8.5; // Lower pitch slightly for a softer tone
 utterance.rate = 0.9;  // Slightly slower rate for clarity and gentleness
@@ -36,8 +36,8 @@ utterance.rate = 0.9;  // Slightly slower rate for clarity and gentleness
 const voices = window.speechSynthesis.getVoices();
 
 // Select a childlike, unisex voice with an English (US) accent
-const childlikeVoice = voices.find((voice) => 
-    voice.lang.includes("en-US") && 
+const childlikeVoice = voices.find((voice) =>
+    voice.lang.includes("en-US") &&
     voice.name.toLowerCase().includes("child")
 );
 
@@ -46,17 +46,17 @@ if (childlikeVoice) {
     utterance.voice = childlikeVoice;
 }
 
-  
+ 
     // Add event listeners for better control and callback execution
     utterance.onend = () => {
       if (callback) callback();
     };
-  
+ 
     utterance.onerror = (event) => {
       console.error('Speech synthesis error:', event.error);
       if (callback) callback(event.error);
     };
-  
+ 
     window.speechSynthesis.speak(utterance);
   }
 
@@ -88,7 +88,7 @@ if (childlikeVoice) {
     }
   };
 
-  
+ 
   return (
     <div className="prayer-body">
       <Container className="py-4">
@@ -126,8 +126,9 @@ if (childlikeVoice) {
                   Share a prayer that’s close to your heart!
                   <p style={{ fontSize: "1rem", marginTop: "10px", fontFamily: "quicksand", color: "black", textShadow: "none" }}>Talk to God and share your prayer request! Enter your name and prayer, then press 'Submit Prayer'. Your prayer will be spoken aloud, and you’ll see it appear on the screen. You can submit as many prayers as you’d like. God is always listening! <br/> <i>“Call to me and I will answer you.” – Jeremiah 33:3</i></p>
                 </h3>
+
+
               ) : null}
-              
             </div>
           </Col>
         </Row>
