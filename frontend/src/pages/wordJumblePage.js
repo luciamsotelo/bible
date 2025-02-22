@@ -25,11 +25,11 @@ const WordJumblePage = () => {
                     <Col>
                         <h1 className="text-center mb-2" style={{ color: "purple", fontFamily: "Allura", fontSize: "2.5rem" }}>Bible Word Shuffle</h1>
                         <p style={{ fontSize: "1rem", color: "black", fontFamily: "Quicksand" }}>
-                            Unshuffle the letters to discover the biblical word! Type your answer and click 'Check Answer' to see if you're correct.
+                        Unscramble the letters to find the Bible word! Choose your level: Easy, Medium, or Hard. Type your answer and click 'Check Answer' to see if you're right. <br/> <i>"I can do all things through Christ who strengthens me." – Philippians 4:13</i>
                         </p>
                     </Col>
                 </Row>
-                <Row className="category-buttons justify-content-center mb-3">
+                <Row className="category-buttons justify-content-center my-4">
                     <Col xs={4} sm={3} md={2}>
                         <Button variant="success" onClick={() => setSelectedCategory('easy')} className="w-100">
                             Easy
