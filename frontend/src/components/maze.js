@@ -214,7 +214,7 @@ const Maze = () => {
 
 
   return (
-    <Container className="text-center mt-3">
+    <Container className="text-center mt-2">
       {/* Back Button */}
       <Row className="justify-content-center">
         <Col xs="auto">
@@ -225,19 +225,19 @@ const Maze = () => {
       </Row>
   
       {/* Title */}
-      <h1 className="my-3 text-warning text-shadow display-4 font-allura">
+      <h1 className="my-1 text-warning text-shadow display-4 font-allura">
         Maze Adventure
       </h1>
   
       {/* Instructions */}
-      <p className="my-1 mb-4 text-center text-purple font-quicksand lead">
-        Let your light shine and find the way! Use the arrow keys or on-screen buttons to move forward, but be careful—don't let the moving boulders block your path! <br /> 
-        <strong>'Your word is a lamp to my feet and a light to my path.' (Psalm 119:105)</strong>
+      <p className="my-1">
+        Use the arrow keys to move forward, but be careful—don't let the moving boulders block your path! <br /> 
+        <i>'Your word is a lamp to my feet and a light to my path.' (Psalm 119:105)</i>
       </p>
   
       {/* Start Game Button */}
       {!gameStarted && (
-        <Button variant="success" className="mb-3" onClick={startGame}>
+        <Button variant="success" onClick={startGame}>
           Start Game
         </Button>
       )}
@@ -295,24 +295,24 @@ const Maze = () => {
       <div className="controls mt-4">
         <Row className="justify-content-center">
           <Col xs="auto">
-            <Button variant="secondary" onClick={() => movePlayer("UP")}>
+            <Button variant="info" onClick={() => movePlayer("UP")}>
               &uarr;
             </Button>
           </Col>
         </Row>
-        <Row className="justify-content-center mt-2">
+        <Row className="justify-content-center mt-1">
           <Col xs="auto">
-            <Button variant="secondary" onClick={() => movePlayer("LEFT")}>
+            <Button variant="info" onClick={() => movePlayer("LEFT")}>
               &larr;
             </Button>
           </Col>
           <Col xs="auto">
-            <Button variant="secondary" onClick={() => movePlayer("DOWN")}>
+            <Button variant="info" onClick={() => movePlayer("DOWN")}>
               &darr;
             </Button>
           </Col>
           <Col xs="auto">
-            <Button variant="secondary" onClick={() => movePlayer("RIGHT")}>
+            <Button variant="info" onClick={() => movePlayer("RIGHT")}>
               &rarr;
             </Button>
           </Col>
