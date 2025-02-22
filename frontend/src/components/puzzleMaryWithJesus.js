@@ -53,7 +53,7 @@ const MaryWithJesusPuzzle = () => {
       </h1>
 
       <p style={{ color: "black", fontFamily: "Quicksand" }}>  
-Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Mary and baby Jesus!  
+Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Mary and baby Jesus!  <br/>
 <em> "She gave birth to her firstborn, a son. She wrapped him in cloths and placed him in a manger." – Luke 2:7</em>  
 </p>
 

@@ -42,8 +42,8 @@ const Puzzle = () => {
     <Container className="text-center mt-5">
       <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>Garden Of Eden</h1>
 
-      <p style={{ color: "black",fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of the Garden of Eden!  
-      <em> "The Lord God planted a garden in Eden." – Genesis 2:8</em> </p>
+      <p style={{ color: "black",fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of the Garden of Eden! <br/> 
+      <i> "The Lord God planted a garden in Eden." – Genesis 2:8</i> </p>
 
       {completed && (
         <h2

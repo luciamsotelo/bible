@@ -104,6 +104,14 @@
   min-width: 300px;
 }
 
+.paragraph {
+  font-family: quicksand;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: black;
+  text-align: center;
+}
+
 .successMessage {
   font-family: quicksand;
   font-size: 1.5rem;
@@ -131,3 +139,145 @@
   }
 }
 
+@media only screen and (max-width: 500px) {
+  .wordSearchContainer {
+  display: flex;
+  font-family: Rye, Arial, Helvetica, sans-serif;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure full screen height */
+  overflow: hidden;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #c3cfe2);
+  position: relative; /* Ensure content in the container can overlap */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+
+}
+
+
+.cell {
+  width: 30px; 
+  height: 27px;
+  font-size: 12px; /* Make the letters larger */
+  line-height: 1; /* Tighter line height */
+  text-align: center; /* Center the letters */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, rgb(236, 231, 236), purple); /* Light gradient background */
+  border: 1px solid #f23eaa; /* Border color */
+  background-color: #2ac911; /* Keep the background color */
+  cursor: pointer; /* Keep the cursor */
+}
+
+.cell:hover {
+  transform: scale(1.1);
+  background: linear-gradient(145deg, #ff9a9e, #fad0c4); /* Hover effect gradient */
+}
+
+.cell.selected {
+  background: linear-gradient(145deg, #d1f8dc, #a5e4ba); /* Highlight effect */
+  color: #333;
+}
+
+.cell.highlighted {
+  background: linear-gradient(145deg, #ffe680, #ffc700); /* Highlighted word background */
+  color: #333;
+}
+
+.highlighted {
+  background-color: yellow; /* Highlighted word effect */
+  color: black;
+}
+
+p {
+  font-family: quicksand;
+  font-size: .9rem;
+  text-align: center;
+  margin: 1rem 0;
+  color: black;
+}
+
+.score{
+  font-family: quicksand;
+  font-size: 1.2rem;
+  margin: 0;
+  color: rgb(238, 234, 241);
+  text-align: center;
+  border: 4px double #2ac911;
+  background-color: #0b3504;
+  background: linear-gradient(145deg, #0a3804, #0bd491);
+}
+
+.foundWord {
+  text-decoration: line-through; /* Strikethrough effect */
+  color: gray; /* Optional: Make it look faded */
+  opacity: 0.5; /* Optional: Make it semi-transparent */
+}
+
+.hiddenWord {
+  display: none; /* Hides the word completely */
+}
+
+.gridContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(208, 14, 153, 0.9);
+  padding: 40px 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  animation: fadeIn 0.9s ease-in-out;
+  min-width: 300px;
+}
+
+.paragraph {
+  font-family: quicksand;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: black;
+  text-align: center;
+}
+
+.successMessage {
+  font-family: quicksand;
+  font-size: 1.5rem;
+  margin: 0;
+  color: rgb(142, 59, 201);
+  border: 1px solid #2ac911;
+  border-radius: 5px;
+  padding: 30px;
+  background: linear-gradient(145deg, #ff9a9e, #fad0c4);
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 6s ease-out;
+  cursor: pointer;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+}
