@@ -43,22 +43,25 @@
   font-size: 1rem;
   border: none;
   border-radius: 50%; /* Make the button circular */
-  background: #8b7e66; /* Rock-like color */
-  color: white;
-  box-shadow: inset -3px -3px 7px rgba(255,255,255,0.5), inset 3px 3px 5px rgba(0,0,0,0.5); /* Create a rocky texture */
+  background: #d30f81; /* Rock-like color */
+  color: rgb(255, 255, 255);
+  box-shadow: inset -3px -3px 7px rgba(213, 220, 13, 0.5), inset 3px 3px 5px rgba(244, 242, 242, 0.5); /* Create a rocky texture */
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
 }
 
 .letter-button:hover {
-  background-color: #7a6e57; /* Slightly darker shade on hover */
+  background-color: 
+  #12db12; /* Slightly darker shade on hover */
   transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 
 .letter-button:disabled {
-  background-color: #ccc;
+  background-color: black;
   cursor: not-allowed;
+  color: white;
+  opacity: 0.7; 
 }
 
 .hangman-status {
@@ -107,3 +110,16 @@
   font-size: 1rem; /* Ensure text is legible */
   border-radius: 5px; /* Match existing button styles */
 }
+
+button {
+  background-color: #af4caf; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+} 

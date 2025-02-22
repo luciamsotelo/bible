@@ -184,12 +184,13 @@ const Hangman = () => {
           Games Menu
         </Button>
 
-      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'250%'}}>Hangman: Biblical Edition</h1>
+      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'250%'}}>Biblical Challenge</h1>
+      <p className="instructions mb-4" >Your goal is to guess the letters of a biblical word or phrase. Choose your difficulty level, then start guessing letters. For each wrong guess, you’ll lose an attempt. Keep trying until you either guess the word or run out of attempts! <br/> <i>"Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance." – James 1:2-3</i></p>
 
       {/* Current Difficulty */}
-      <div className="difficulty-info">
-        <p>Current Difficulty: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</p>
-        <p>Total Words Available: {wordList.length}</p>
+      <div className="difficulty-info" >
+        <p> <strong>Current Difficulty: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</strong></p>
+        <p> <strong>Total Words Available: {wordList.length}</strong></p>
       </div>
 
       {/* Difficulty Selection */}
