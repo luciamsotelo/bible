@@ -18,31 +18,34 @@
 .bio-character-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  position: relative; /* Prevents movement issues */
+  position: relative;
 }
-
 
 /* Selected Card: Bring to Front */
 .selected-card {
-  position: absolute;
+  position: fixed; /* Ensures it stays centered */
   top: 50%;
   left: 50%;
-  width: 80%;
-  max-width: 600px;
+  width: 90%; /* Adjust width for better responsiveness */
+  max-width: 400px;
   height: auto;
   z-index: 20;
   background: white;
   transform: translate(-50%, -50%) scale(1.1);
   box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  padding: 15px;
   border-radius: 15px;
-  transition: all 0.5s ease-in-out; /* Smooth transition */
+  transition: all 0.5s ease-in-out;
+  overflow-y: auto; /* Prevents content from overflowing */
+  max-height: 80vh; /* Prevents excessive height issues */
 }
 
 /* Ensure the overlay effect applies */
 .selected-card img {
-  max-width: 80%;
+  max-width: 70%;
   border-radius: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
 .selected-card p {
@@ -58,5 +61,21 @@
   margin-top: 10px;
 }
 
-/* Card Flip Animation */
+/* Responsive Fix for Smaller Screens */
+@media (max-width: 575px) {
+  .selected-card {
+    width: 95%;
+    max-width: 320px; /* Adjusts for small screens */
+    max-height: 85vh;
+    overflow-y: auto; /* Allows scrolling if content is long */
+    padding: 10px;
+  }
 
+  .selected-card img {
+    max-width: 60%;
+  }
+
+  .selected-card p {
+    font-size: 0.9rem;
+  }
+}

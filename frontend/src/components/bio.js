@@ -97,7 +97,7 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
       >
         <Card.Img variant="top" src={character.image} alt={character.name} />
         <Card.Body>
-          <Card.Title>{character.name}</Card.Title>
+          <Card.Title className="bio-card-title text-center" >{character.name}</Card.Title>
           {!isFlipped ? (
             <Button
               variant="primary"
