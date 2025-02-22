@@ -7,7 +7,7 @@ const AdventureMap = () => {
 
   const points = [
     { id: 1, x: '60%', y: '95%', name: 'Bethlehem', description: 'Jesus was born in Bethlehem, fulfilling Old Testament prophecy. Angels announced His birth to shepherds nearby, marking the arrival of the promised Savior. His humble birth in a stable underscored His role as a servant King who came to save humanity.', image: "/images/bethlehem.jpg" },
-    { id: 2, x: '50%', y: '55%', name: 'Nazareth', description: 'Jesus grew up in Nazareth, where He learned carpentry under Josephs guidance. After His baptism, He returned and proclaimed Himself as the fulfillment of Isaiahs prophecy in the synagogue, marking the beginning of His ministry. However, His claim led to rejection by many in His hometown.', image: '/images/nazareth.jpg' },
+    { id: 2, x: '50%', y: '60%', name: 'Nazareth', description: 'Jesus grew up in Nazareth, where He learned carpentry under Josephs guidance. After His baptism, He returned and proclaimed Himself as the fulfillment of Isaiahs prophecy in the synagogue, marking the beginning of His ministry. However, His claim led to rejection by many in His hometown.', image: '/images/nazareth.jpg' },
     { id: 3, x: '90%', y: '60%', name: 'Capernaum', description: 'Jesus based much of His ministry in Capernaum, performing numerous miracles, like healing the sick and casting out demons. He taught in the synagogue, calling people to repentance and faith. His miracles drew large crowds, and Capernaum became known as a place of divine healing and teaching.', image: '/images/capernaum.jpg' },
     { id: 4, x: '40%', y: '50%', name: 'Sea of Galilee', description: 'Jesus called His first disciples on the shores of the Sea of Galilee, including Peter, Andrew, James, and John. He taught crowds from boats, calmed storms, and walked on water. The Sea of Galilee became a place of profound faith and miracles, witnessing His power over nature.', image: '/images/seaGalilee.jpg' },
     { id: 5, x: '90%', y: '90%', name: 'Jerusalem', description: 'Jesus traveled to Jerusalem for key Jewish festivals, taught in the temple, and cleansed it of merchants exploiting worshipers. His final days were spent here, where He was crucified and later rose from the dead, fulfilling His mission of redemption and offering salvation to all humanity.', image: '/images/jerusalem.jpg' },
@@ -18,7 +18,7 @@ const AdventureMap = () => {
     if (selectedPoint?.id === point.id) {
       setSelectedPoint(null);
     } else {
-      // Fix the card position at the top and center it horizontally
+      
       setSelectedPoint(point);
     }
   };

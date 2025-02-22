@@ -149,8 +149,13 @@
   }
 
   .map-point {
-    width: 12px;
-    height: 12px;
+    position: absolute;
+  width: 5px;
+  height: 0px;
+  background-color: yellow;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
   }
 
  .tooltip {
@@ -181,6 +186,7 @@
     transform: translateY(-50%);
     font-size: 9px;
     padding: 5px;
+    min-width: 75px;
   }
 }
 
@@ -192,8 +198,13 @@
   }
 
   .map-point {
-    width: 10px;
-    height: 10px;
+    position: absolute;
+  width: 10px;
+  height: 0px;
+  background-color: yellow;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
   }
 
   .tooltip {
