@@ -1,0 +1,34 @@
+.responsiveImage {
+  width: 25%;
+  height: auto;
+}
+
+@media (max-width: 1652px) { /* Large monitors */
+  .responsiveImage {
+    width: 28%;
+  }
+}
+
+@media (max-width: 1212px) { /* Large monitors */
+  .responsiveImage {
+    width: 40%;
+  }
+}
+
+@media (max-width: 992px) { /* Large monitors */
+  .responsiveImage {
+    width: 50%;
+  }
+}
+
+@media (max-width: 734px) { /* Mobile screens */
+  .responsiveImage {
+    width: 75%;
+  }
+}
+
+@media (max-width: 531px) { /* Mobile screens */
+  .responsiveImage {
+    width: 100%;
+  }
+}
