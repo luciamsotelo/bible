@@ -265,31 +265,33 @@ const Maze = () => {
         {/* Render obstacles with correct movement inside the grid */}
         {obstacles.map((obstacle, index) => (
           <div
-            key={index}
-            className={styles.obstacle}
-            style={{
-              width: `calc(100% / ${gridSize})`,
-              height: `calc(100% / ${gridSize})`,
-              position: "absolute",
-              left: `calc(${obstacle.x} * (100% / ${gridSize}))`,
-              top: `calc(${obstacle.y} * (100% / ${gridSize}))`,
-              transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
-            }}
-          ></div>
+          key={index}
+          className={styles.obstacle}
+          style={{
+            width: `calc(100% / ${gridSize})`,
+            height: `calc(100% / ${gridSize})`,
+            position: "absolute",
+            left: `calc(${obstacle.x} * (100% / ${gridSize}))`,
+            top: `calc(${obstacle.y} * (100% / ${gridSize}))`,
+            transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
+          }}
+        ></div>
         ))}
       </div>
   
       {/* Victory Message */}
       {isVictory && (
-        <Alert variant="success" className="my-3">
-          🎉 You reached the goal! 🎉
-          <div>
-            <Button onClick={resetGame} className="mt-2">
-              Play Again
-            </Button>
+          <div className={styles.victoryOverlay}>
+            <Alert variant="success" className="my-3">
+              🎉 You reached the goal! 🎉
+              <div>
+                <Button onClick={resetGame} className="mt-2">
+                  Play Again
+                </Button>
+              </div>
+            </Alert>
           </div>
-        </Alert>
-      )}
+        )}
   
       {/* Controls Section */}
       <div className="controls mt-4">
