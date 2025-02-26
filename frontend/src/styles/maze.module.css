@@ -108,9 +108,3 @@ p {
   color: black;
 }
 
-@media (max-width: 768px) {
-  .mazeGrid {
-    width: 90vw;
-    height: 90vw;
-  }
-}
