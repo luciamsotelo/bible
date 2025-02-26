@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/trivia.css';
 
 const Trivia = () => {
@@ -67,16 +67,23 @@ const Trivia = () => {
     ];
 
     // State management
-    const [questions, setQuestions] = useState(
-        originalQuestions.map((q) => ({
-            ...q,
-            options: shuffleArray(q.options),
-        }))
-    );
+    const [questions, setQuestions] = useState(originalQuestions.map((q) => ({ ...q, options: shuffleArray(q.options) })));
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [score, setScore] = useState(0);
     const [isGameOver, setIsGameOver] = useState(false);
+
+    useEffect(() => {
+        const buttons = document.querySelectorAll(".option-button");
+        const imageWidth = 0; // Replace with your image width
+        const imageHeight = 0 ; // Replace with your image height
+
+        buttons.forEach((button, index) => {
+            const xOffset = (index % 2) * (imageWidth / 2);
+            const yOffset = Math.floor(index / 2) * (imageHeight / 2);
+            button.style.backgroundPosition = `${xOffset}px ${yOffset}px`;
+        });
+    }, [questions, currentQuestionIndex, selectedAnswer]);
 
     const handleAnswerClick = (answer) => {
         setSelectedAnswer(answer);
@@ -95,12 +102,7 @@ const Trivia = () => {
     };
 
     const restartGame = () => {
-        setQuestions(
-            originalQuestions.map((q) => ({
-                ...q,
-                options: shuffleArray(q.options),
-            }))
-        );
+        setQuestions(originalQuestions.map((q) => ({ ...q, options: shuffleArray(q.options) })));
         setCurrentQuestionIndex(0);
         setScore(0);
         setIsGameOver(false);
@@ -128,15 +130,7 @@ const Trivia = () => {
                         <button
                             key={option}
                             onClick={() => handleAnswerClick(option)}
-                            className={`option-button ${
-                                selectedAnswer
-                                    ? option === questions[currentQuestionIndex].correctAnswer
-                                        ? "correct"
-                                        : option === selectedAnswer
-                                        ? "incorrect"
-                                        : ""
-                                    : ""
-                            }`}
+                            className={`option-button ${selectedAnswer ? (option === questions[currentQuestionIndex].correctAnswer ? "correct" : option === selectedAnswer ? "incorrect" : "") : ""}`}
                             disabled={!!selectedAnswer}
                         >
                             {option}
