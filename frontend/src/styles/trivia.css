@@ -4,7 +4,7 @@
     margin: 0; /* Remove margin to avoid unwanted spacing */
     padding: 20px;
     
-    height: 70vh; /* Makes the container take up the full viewport height */
+    height: 98vh; /* Makes the container take up the full viewport height */
     width: 100%; /* Ensures it spans the full width */
 
     background-image: url('../images/parchment.jpg');
