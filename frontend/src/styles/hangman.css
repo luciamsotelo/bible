@@ -1,125 +1,257 @@
-/* src/styles/hangman.css */
-
+/* Hangman Container */
 .hangman-container {
   text-align: center;
-  font-family: Arial, sans-serif;
-    /* margin: 20px;
-    background-image: url("/frontend/src/images/handmanGameTwo.webp"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #FDCB82, #D1C4E9);
+  position: relative;
+  height: 100vh;
+  animation: fadeIn 1s ease-in;
 }
 
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
+/* Header */
+h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.5rem;
+  color: #6a4f7d;
+  text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  animation: slideDown 1s ease-in-out;
+}
+
+/* Slide Down Animation */
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Instructions */
+.instructions {
+  font-size: 1.5rem;
+  color: #5d4d66;
+  margin-bottom: 1rem;
+}
+
+/* Difficulty Info */
+.difficulty-info p {
+  font-size: 1.2rem;
+}
+
+/* Difficulty Buttons */
+.difficulty-buttons .btn {
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  background-color: #ff6f61;
+  color: white;
+  border-radius: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.difficulty-buttons .btn:hover {
+  background-color: #ff3e36;
+  transform: scale(1.1);
+}
+
+/* Word Display */
 .hangman-word {
-  font-size: 2rem; /* Adjust font size as needed */
-  margin: 20px 15px; /* Add some space around the word */
-  display: flex; /* Use flex for alignment */
-  flex-wrap: wrap; /* Allow words to wrap to the next line */
-  justify-content: center; /* Center the words horizontally */
-  gap: 0.5rem; /* Space between words */
-  font-family: 'Courier New', monospace;
-  word-break: break-word; /* Handle very long unbroken words */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 1rem 0;
 }
 
 .hangman-word span {
-  display: inline-block; /* Treat each word separately */
-  letter-spacing: 0.2rem; /* Space between letters */
-  text-align: center; /* Ensure text stays centered */
-  white-space: pre-wrap; /* Preserve spacing and line breaks */
-  word-wrap: break-word; /* Wrap long words to the next line */   
-  font-weight: bold;  
-  font-size: 1.5rem;
-}
-
-
-.hangman-letters {
-  margin: 2px 0;
-}
-
-.letter-button {
-  padding: 15px;
-  margin: 5px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 50%; /* Make the button circular */
-  background: #d30f81; /* Rock-like color */
-  color: rgb(255, 255, 255);
-  box-shadow: inset -3px -3px 7px rgba(213, 220, 13, 0.5), inset 3px 3px 5px rgba(244, 242, 242, 0.5); /* Create a rocky texture */
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
-}
-
-.letter-button:hover {
-  background-color: 
-  #12db12; /* Slightly darker shade on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-
-.letter-button:disabled {
-  background-color: black;
-  cursor: not-allowed;
-  color: white;
-  opacity: 0.7; 
-}
-
-.hangman-status {
-  margin: 20px 0;
-  font-size: 1.2rem;
+  display: inline-block;
+  margin: 0 5px;
+  color: #ff8a5c;
   font-weight: bold;
 }
 
+/* Letter Buttons */
+.hangman-letters .letter-button {
+  font-size: 1rem;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  background-color: #ffdb58;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.hangman-letters .letter-button:hover {
+  background-color: #f5a623;
+  transform: scale(1.1);
+}
+
+/* Shake Effect for Wrong Guesses */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Game Status */
 .hangman-status p {
-  color: black;
-  font-family: 'quicksand', monospace;
-  font-size: 1.5rem;
-  
+  font-size: 1.2rem;
+}
+
+/* Game Over Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Game Message Container */
+.game-message-container {
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+  transform: scale(0.8);
+  animation: popUp 0.5s ease-in-out forwards;
+}
+
+/* Pop-Up Effect */
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .game-message {
-  font-size: 1.5rem;
-  color: green;
+  font-size: 2rem;
+  color: #ff6f61;
+  margin-bottom: 20px;
 }
 
+/* Reset Button */
 .reset-button {
-  padding: 10px 20px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  padding: 12px 24px;
+  background-color: #4db8ff;
+  color: black;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.3s;
+  animation: bounce 1s infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .reset-button:hover {
-  background-color: #0056b3;
+  background-color: #3399cc;
 }
 
-.difficulty-buttons {
-  display: flex; /* Arrange buttons in a row */
-  flex-wrap: wrap;
-  justify-content: center; /* Center the buttons horizontally */
-  gap: 1rem; /* Add space between buttons */
-  margin: 20px 0; /* Optional: Add some margin above and below the buttons */
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 { font-size: 1.8rem; }
+  .instructions { font-size: 1.2rem; }
+  .game-message { font-size: 1.5rem; }
+  .reset-button { font-size: 1.2rem; }
 }
 
-.difficulty-buttons button {
-  padding: 10px 20px; /* Adjust padding if needed for consistent button size */
-  font-size: 1rem; /* Ensure text is legible */
-  border-radius: 5px; /* Match existing button styles */
+@media (max-width: 600px) {
+  .hangman-container {
+    padding: 2% 5%;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .instructions {
+    font-size: 1.1rem;
+  }
+
+  .difficulty-info p {
+    font-size: 1rem;
+  }
+
+  .difficulty-buttons .btn {
+    padding: 8px 16px;
+    font-size: 0.7rem;
+  }
+
+  .hangman-word span {
+    font-size: 1.5rem;
+  }
+
+  .hangman-letters .letter-button {
+    font-size: 0.9rem;
+    padding: 8px;
+    margin: 4px;
+  }
+
+  .hangman-status p {
+    font-size: 1rem;
+  }
+
+  .game-message {
+    font-size: 1.3rem;
+  }
+
+  .reset-button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
 }
 
-button {
-  background-color: #af4caf; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-} 
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .hangman-word {
+    font-size: 1.2rem;
+  }
+
+  .difficulty-info p {
+    font-size: 0.9rem;
+  }
+
+  .difficulty-buttons .btn {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+
+  .hangman-letters .letter-button {
+    font-size: 0.8rem;
+    padding: 6px;
+    margin: 4px;
+  }
+
+  .game-message {
+    font-size: 1.2rem;
+  }
+
+  .reset-button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}

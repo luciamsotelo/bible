@@ -1,6 +1,6 @@
 // src/components/hangman.js
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom"; // Correct import
 import "../styles/hangman.css";
 
@@ -44,11 +44,7 @@ const Hangman = () => {
     "The Pharisee and the Tax Collector", "The Great Commission", 
     "The Valley of Dry Bones", "The Lamb of God", "The Book of Life",
     "The Stone the Builders Rejected", "Do Not Fear, for I Am with You", 
-    "The Bread of Life"
-  ];
-  
-
-  const challengingWords = [
+    "The Bread of Life",
     "For God So Loved the World That He Gave His Only Son",
     "Though I Walk Through the Valley of the Shadow of Death",
     "Blessed Are the Poor in Spirit, for Theirs is the Kingdom of Heaven",
@@ -65,11 +61,9 @@ const Hangman = () => {
     "Do Unto Others as You Would Have Them Do Unto You"
   ];
   
-
   const expertWords = [
     "The Lord Bless You and Keep You; The Lord Make His Face Shine Upon You",
     "The Earth is the Lord's, and Everything In It, the World, and All Who Live in It",
-    "Do Not Be Anxious About Anything, but in Everything, by Prayer and Petition, With Thanksgiving, Present Your Requests to God",
     "For Where Your Treasure Is, There Your Heart Will Be Also",
     "Even Though I Walk Through the Valley of the Shadow of Death, I Will Fear No Evil",
     "Let Us Run with Perseverance the Race Marked Out for Us",
@@ -97,7 +91,7 @@ const Hangman = () => {
   const [word, setWord] = useState(getRandomWord(wordList));
   const [guesses, setGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
-  const [maxGuesses] = useState(6);
+  const [maxGuesses] = useState(5);
 
  // Initialize navigate
  const navigate = useNavigate(); // Fix here
@@ -114,9 +108,6 @@ const Hangman = () => {
         break;
       case "hard":
         selectedWords = shuffleArray([...hardWords]);
-        break;
-      case "challenging":
-        selectedWords = shuffleArray([...challengingWords]);
         break;
       case "expert":
         selectedWords = shuffleArray([...expertWords]);
@@ -173,19 +164,29 @@ const Hangman = () => {
 
 
   return (
-    <div className="hangman-container mt-5">
+    <div className="hangman-container">
+    {/* Home Button */}
+    <Button 
+      variant="primary" 
+      className="mb-4 mr-2" 
+      style={{ fontFamily: "Quicksand" }} 
+      onClick={() => navigate('/')}
+    >
+      Home
+    </Button>
 
-<Button 
-          variant="primary" 
-          className="mb-4" 
-          style={{ fontFamily: "Quicksand" }} 
-          onClick={() => navigate('/games')}
-        >
-          Games Menu
-        </Button>
+    {/* Games Menu Button */}
+    <Button 
+      variant="primary" 
+      className="mb-4" 
+      style={{ fontFamily: "Quicksand" }} 
+      onClick={() => navigate('/games')}
+    >
+      Games Menu
+    </Button>
 
-      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'250%'}}>Biblical Challenge</h1>
-      <p className="instructions mb-4" >Your goal is to guess the letters of a biblical word or phrase. Choose your difficulty level, then start guessing letters. For each wrong guess, you’ll lose an attempt. Keep trying until you either guess the word or run out of attempts! <br/> <i>"Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance." – James 1:2-3</i></p>
+      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'200%'}}>Biblical Challenge</h1>
+      <p className="instructions mb-4" >Guess the word or phrase by choosing letters. Don't run out of guesses! <br/> <i>"Be happy even in hard times because it makes us strong – Romans 5:3-4."</i></p>
 
       {/* Current Difficulty */}
       <div className="difficulty-info" >
@@ -198,7 +199,6 @@ const Hangman = () => {
         <button onClick={() => selectDifficulty("easy")}>Easy</button>
         <button onClick={() => selectDifficulty("medium")}>Medium</button>
         <button onClick={() => selectDifficulty("hard")}>Hard</button>
-        <button onClick={() => selectDifficulty("challenging")}>Challenging</button>
         <button onClick={() => selectDifficulty("expert")}>Expert</button>
       </div>
 
@@ -223,18 +223,18 @@ const Hangman = () => {
 
       <div className="hangman-status">
         <p>Wrong Guesses: {wrongGuesses.join(", ")}</p>
-        <p>Remaining Attempts: {maxGuesses - wrongGuesses.length}</p>
+        <p>Remaining Guesses: {maxGuesses - wrongGuesses.length}</p>
       </div>
 
-      {isGameWon && <p className="game-message">You won! 🎉</p>}
-      {isGameLost && (
-        <p className="game-message">You lost! The word was "{word}".</p>
-      )}
-
+{/* Game Over Overlay */}
       {(isGameWon || isGameLost) && (
-        <button className="reset-button" onClick={resetGame}>
-          Play Again
-        </button>
+        <div className="overlay">
+          <Container className="game-message-container">
+            {isGameWon && <p className="game-message">You won! The answer was "{word}". 🎉</p>}
+            {isGameLost && <p className="game-message">So Close! The answer was "{word}".</p>}
+            <button className="reset-button btn mt-4" onClick={resetGame}>Play Again</button>
+          </Container>
+        </div>
       )}
     </div>
   );
