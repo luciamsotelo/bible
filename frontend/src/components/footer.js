@@ -28,9 +28,9 @@ const Footer = () => {
           </Col>
         </Row>
       </Container>
-      <div className="bg-dark text-light py-2 text-center">
-        <p className="paragraph mb-0">
-          © {new Date().getFullYear()} Biblical Characters Adventure. All rights reserved.
+      <div className="bg-light">
+        <p>
+          © {new Date().getFullYear()} A Bible Adventure. All rights reserved.
         </p>
       </div>
     </footer>

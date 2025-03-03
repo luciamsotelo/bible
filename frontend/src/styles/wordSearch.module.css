@@ -57,9 +57,11 @@
 .paragraph {
   font-family: quicksand;
   font-size: 1.2rem;
-  margin: 0;
-  color: rgb(142, 59, 201);
+  margin-bottom: 1rem;
+  color: black;
+  text-align: center;
 }
+
 
 .score{
   font-family: quicksand;
@@ -102,14 +104,6 @@
   z-index: 10;
   animation: fadeIn 0.9s ease-in-out;
   min-width: 300px;
-}
-
-.paragraph {
-  font-family: quicksand;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: black;
-  text-align: center;
 }
 
 .successMessage {
@@ -197,7 +191,7 @@
 
 p {
   font-family: quicksand;
-  font-size: .9rem;
+  font-size: 1rem;
   text-align: center;
   margin: 1rem 0;
   color: black;
