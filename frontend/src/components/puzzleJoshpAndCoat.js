@@ -45,7 +45,7 @@ const Puzzle = () => {
 
   return (
     <Container className="text-center mt-5">
-      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand", fontSize: "2rem"  }}>
+      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand", fontSize: "1.8rem"  }}>
         Joseph and His Coat Puzzle
       </h1>
       <p style={{ color: "black",fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Joseph and his coat of many colors!<br/>    
