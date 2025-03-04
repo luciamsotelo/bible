@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Assuming React Router is used
 import styles from '../styles/trivia.module.css'; // UPDATED import
 
 const Trivia = () => {
@@ -199,6 +200,7 @@ const Trivia = () => {
         }
     ];
     
+    const navigate = useNavigate();
 
     const [questions, setQuestions] = useState(originalQuestions.map(q => ({ ...q, options: shuffleArray(q.options) })));
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -248,6 +250,10 @@ const Trivia = () => {
 
     return (
         <div className={styles.triviaContainer}>
+            <nav className={styles.navbar}>
+                <button className={styles.navButton} onClick={() => navigate('/')}>Home</button>
+                <button className={styles.navButton} onClick={() => navigate('/games')}>Games Menu</button>
+            </nav>
             <h1>Bible Trivia</h1>
             <div className={styles.questionSection}>
                 <h2>{questions[currentQuestionIndex].question}</h2>
