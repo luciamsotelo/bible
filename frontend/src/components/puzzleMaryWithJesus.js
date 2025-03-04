@@ -48,7 +48,7 @@ const MaryWithJesusPuzzle = () => {
 
   return (
     <Container className="text-center mt-5">
-      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand" }}>
+      <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand", fontSize: "2rem"  }}>
         Mary and Baby Jesus
       </h1>
 

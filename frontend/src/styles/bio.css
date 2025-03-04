@@ -32,7 +32,7 @@
   max-width: 400px;
   height: auto;
   z-index: 20;
-  background: white;
+  background: radial-gradient(circle, rgb(225, 210, 210), rgb(255, 200, 150), rgb(180, 200, 255));
   transform: translate(-50%, -50%) scale(1.1);
   box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.8);
   padding: 15px;
