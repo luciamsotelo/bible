@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Sing from '../components/sing';
 import { Spinner, Container, Dropdown, ButtonGroup } from 'react-bootstrap';
-import Header from '../components/header';
 import Footer from '../components/footer';
+import { useNavigate } from 'react-router-dom'; // import useNavigate
 
 const songs = [
   { title: "Jesus Loves Me", file: '/lyrics/jesus-loves-me.json' },
@@ -15,6 +15,7 @@ const SingPage = () => {
   const [songData, setSongData] = useState(null);
   const [selectedSong, setSelectedSong] = useState(songs[0].file);
   const [selectedTitle, setSelectedTitle] = useState(songs[0].title);
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     // Fetch the song data
@@ -31,11 +32,17 @@ const SingPage = () => {
 
   return (
     <div>
-      <Header />
+      {/* Navigation Bar */}
+      <div className="triviaContainer">
+        <nav className="navbar">
+          <button className="navButton" onClick={() => navigate('/')}>Home</button>
+        </nav>
+      </div>
+
       <Container className="sing-page text-center">
-        <h1 className="sing-page-title my-4" style={{ color: "goldenrod", textShadow: "2px 2px 1px black", fontFamily: "Allura", fontSize: "2.8rem", fontWeight: "bold" }}>Sing and Praise</h1>
-        <p className="text-center my-4" style={{ color: "black", fontFamily: "quicksand", fontSize: "1rem" }}>
-        Choose a song and get ready to sing along! Press the 'Play' button to start the music and follow the lyrics as they appear on the screen. You can pause anytime by pressing the button again. Have fun singing and praising God! <br/> <i>“Sing and make music from your heart to the Lord.” – Ephesians 5:19</i>
+        <h1 className="sing-page-title my-1" style={{ color: "goldenrod", textShadow: "2px 2px 1px black", fontFamily: "Allura", fontSize: "2.5rem", fontWeight: "bold" }}>Sing and Praise</h1>
+        <p className="text-center my-1" style={{ color: "black", fontFamily: "quicksand", fontSize: "1rem" }}>
+          Select a song, press 'Play' to start, and follow the lyrics on the screen. Pause anytime. Enjoy singing and praising God! <br/> <i>“Sing and make music from your heart to the Lord.” – Ephesians 5:19</i>
         </p>
 
         {/* Dropdown Menu */}
@@ -48,7 +55,7 @@ const SingPage = () => {
               border: 'none',
               fontFamily: 'quicksand',
               textShadow: '1px 1px 1px goldenrod',
-              fontSize: '1.3rem',
+              fontSize: '1.5rem',
             }}
           >
             {selectedTitle}

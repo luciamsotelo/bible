@@ -57,6 +57,14 @@
   text-align: center;
   }
 
+.navButton {
+  color: rgb(0, 0, 0); /* Bright gold color for excitement */
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center; 
+  background-color: goldenrod;  
+}  
+
 /* Bouncing Animation */
 @keyframes bounce {
   0%, 100% {
@@ -86,9 +94,9 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 450px) {
   .karaoke-container {
-    height: 90vh; /* Better experience on mobile */
+    height: 45vh; /* Better experience on mobile */
     flex-direction: column;
   }
 
