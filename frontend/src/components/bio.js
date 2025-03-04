@@ -140,7 +140,7 @@ const Bio = () => {
   return (
     <div className={`bio-container-wrapper ${selectedCharacter ? "overlay-active" : ""}`}>
       <Container className="bio-container">
-        <h1 className="text-center">Meet Your Bible Buddies!</h1>
+        <h1 className="text-center bio-title mt-3">Meet Your Bible Buddies!</h1>
         <p>Click on Learn About Me button to read or click on image to listen</p>
         <Row className="bio-justify-content-center">
           {characters.map((character, index) => (

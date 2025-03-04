@@ -14,6 +14,8 @@
   z-index: 10;
 }
 
+
+
 /* Default Card Style */
 .bio-character-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -63,6 +65,12 @@
 
 /* Responsive Fix for Smaller Screens */
 @media (max-width: 575px) {
+
+  .bio-title {
+    font-size: 2rem;
+    
+  }
+
   .selected-card {
     width: 95%;
     max-width: 320px; /* Adjusts for small screens */
@@ -79,3 +87,5 @@
     font-size: 0.9rem;
   }
 }
+
+
