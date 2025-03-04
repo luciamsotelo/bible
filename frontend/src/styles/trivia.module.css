@@ -1,72 +1,73 @@
-.trivia-container {
+.triviaContainer {
     text-align: center;
-    font-family: 'Georgia', serif;
-    margin: 0; /* Remove margin to avoid unwanted spacing */
+    font-family: 'georgia', serif;
     padding: 20px;
-    
-    height: 98vh; /* Makes the container take up the full viewport height */
+    height: 100vh; /* Makes the container take up the full viewport height */
     width: 100%; /* Ensures it spans the full width */
-
     background-image: url('../images/parchment.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Centers content vertically */
+    justify-content: flex-start; /* Aligns the content at the top */
     align-items: center; /* Centers content horizontally */
-
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #333;
+    padding-top: 50px; /* Adds some space between the top and the content */
 }
-
 
 h1 {
     font-size: 4rem;
     font-family: 'Allura', cursive;
     color: #8B4513;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-top: 0; /* Ensures no extra margin on top */
 }
 
-.question-section {
+
+h2 {
+    font-size: 1.2rem;
+    font-family: 'georgia', cursive;
+    color: black;
+}
+
+.questionSection {
     margin-bottom: 2rem;
-    padding: 1rem;
+    padding: .8rem;
     border-bottom: 1px solid #ccc;
 }
 
-.option-button {
+.optionButton {
     display: block;
     width: 60%;
     margin: 0.5rem auto;
     padding: 0.75rem 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
     border: none;
     border-radius: 5px;
     font-family: 'Georgia', serif;
     color: #f5e9e9;
     text-shadow: 1px 1px 2px rgba(16, 26, 8, 0.5);
-    
     background-image: url('../images/wood-texture.jpg');
     background-size: 100% 100%; /* Ensures image is not stretched */
     background-repeat: no-repeat; /* Prevents repeating */
     background-position: center center; /* Centers image properly */
     background-blend-mode: multiply;
-
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.option-button:hover,
-.option-button:focus {
+.optionButton:hover,
+.optionButton:focus {
     transform: scale(1.03);
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
     outline: none;
 }
 
-.option-button.correct {
+.optionButtonCorrect {
     background: linear-gradient(to bottom, #A5D6A7, #66BB6A);
     background-image: url('../images/wood-texture.jpg');
     background-size: cover;
@@ -74,7 +75,7 @@ h1 {
     background-blend-mode: multiply;
 }
 
-.option-button.incorrect {
+.optionButtonIncorrect {
     background: linear-gradient(to bottom, #E57373, #D32F2F);
     background-image: url('../images/wood-texture.jpg');
     background-size: cover;
@@ -82,20 +83,19 @@ h1 {
     background-blend-mode: multiply;
 }
 
-.next-button {
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
+.nextButton {
+    padding: 0.5rem 1rem;
     font-size: 1rem;
     background-color: #6495ED;
-    color: white;
+    color: black;
     cursor: pointer;
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-.next-button:hover,
-.next-button:focus {
+.nextButton:hover,
+.nextButton:focus {
     background-color: #4682B4;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
