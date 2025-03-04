@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BsFillVolumeUpFill } from "react-icons/bs"; 
-
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import "../styles/bio.css"; // Ensure you have responsive styles
 
@@ -63,18 +62,27 @@ const characters = [
   },
 ];
 
+
+
 const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
   const [audio, setAudio] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handlePlayAudio = () => {
+  const handlePlayPauseAudio = () => {
     if (audio) {
-      audio.play();
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      setIsPlaying(!isPlaying);
     } else {
       const newAudio = new Audio(character.audioFile);
       newAudio.play();
       setAudio(newAudio);
-      newAudio.addEventListener("ended", () => setAudio(null));
+      setIsPlaying(true);
+      newAudio.addEventListener("ended", () => setIsPlaying(false));
     }
   };
 
@@ -82,7 +90,8 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
     if (audio) {
       audio.pause();
       audio.currentTime = 0; // Reset audio to the beginning
-      setAudio(null); // Clean up state
+      setAudio(null);
+      setIsPlaying(false);
     }
   };
 
@@ -92,34 +101,34 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
         className={`bio-character-card mt-1 ${isSelected ? "selected-card" : ""} ${isFlipped ? "flipped" : ""}`}
         onClick={(e) => {
           e.stopPropagation();
-          if (!isSelected) onSelect(character.name);
+          if (!isSelected) {
+            onSelect(character.name);
+          }
+          setIsFlipped(true);
         }}
       >
         <Card.Img variant="top" src={character.image} alt={character.name} />
         <Card.Body>
-          <Card.Title className="bio-card-title text-center" >{character.name}</Card.Title>
-          {!isFlipped ? (
-            <Button
-              variant="primary"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsFlipped(true);
-              }}
-            >
-              Learn About Me
-            </Button>
-          ) : (
+          <Card.Title className="bio-card-title text-center">{character.name}</Card.Title>
+
+          {isFlipped ? (
             <div>
               <p>{character.description}</p>
-              <Button variant="success" onClick={handlePlayAudio}>
-  <BsFillVolumeUpFill style={{fontSize: '25px', marginRight: "2px" }} /> Who Am I?
-</Button>
-{" "}
+              <Button
+                variant={isPlaying ? "danger" : "success"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePlayPauseAudio();
+                }}
+              >
+                <BsFillVolumeUpFill style={{ fontSize: "25px", marginRight: "5px" }} />
+                {isPlaying ? "Pause Audio" : "Who Am I?"}
+              </Button>{" "}
               <Button
                 variant="secondary"
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleStopAudio(); // Stop audio before closing
+                  handleStopAudio();
                   setIsFlipped(false);
                   onDeselect();
                 }}
@@ -127,6 +136,8 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
                 Back
               </Button>
             </div>
+          ) : (
+            <p className="text-muted">Tap to learn more!</p>
           )}
         </Card.Body>
       </Card>
@@ -139,9 +150,9 @@ const Bio = () => {
 
   return (
     <div className={`bio-container-wrapper ${selectedCharacter ? "overlay-active" : ""}`}>
-      <Container className="bio-container">
+      <Container className="bio-container text-center">
         <h1 className="text-center bio-title mt-3">Meet Your Bible Buddies!</h1>
-        <p>Click on Learn About Me button to read or click on image to listen</p>
+        <p>Tap a card to learn more! <br /> <i>"Let the wise listen and add to their learning." — Proverbs 1:5</i></p>
         <Row className="bio-justify-content-center">
           {characters.map((character, index) => (
             <BioCard
