@@ -1,0 +1,73 @@
+/* Footer Container */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(233, 19, 19, 0.925), rgba(15, 0, 0, 0.959));
+  z-index: 1000;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Footer Content */
+.exploreText {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+/* Contact Button */
+.contactButton {
+  margin: 5px;
+  padding: 8px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: linear-gradient(100deg, rgb(191, 44, 11), rgba(200, 200, 13, 0.9));
+  color: white;
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.contactButton:hover {
+  transform: scale(1.05);
+  background: linear-gradient(100deg, rgb(220, 60, 30), rgba(255, 220, 20, 0.9));
+}
+
+/* Footer Bottom Section */
+.footerBottom {
+  color: white ;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 0;
+  font-size: 0.85rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .exploreText {
+    font-size: 0.9rem;
+  }
+
+  .contactButton {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .exploreText {
+    font-size: 0.8rem;
+  }
+
+  .contactButton {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  .footerBottom {
+    font-size: 0.75rem;
+  }
+}
