@@ -1,0 +1,154 @@
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(135deg, black, #FF5733);
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  /* Home Button */
+  .homeButton {
+    background-color: #ffc107;
+    border: none;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  }
+  
+  .homeButton:hover {
+    transform: scale(1.05);
+    background-color: #e0a800;
+  }
+  
+  /* Navbar Title */
+  .navbarTitle {
+    color: #ffd700;
+    font-size: 2.1rem;
+    font-family: "Bubblegum Sans", sans-serif;
+    border: 1px inset yellow;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(250, 250, 25, 0.9);
+    padding: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+  /* Navbar Toggler */
+  .navbarToggler {
+    border-color: white !important;
+  }
+  
+  /* Navbar Navigation Links */
+  .navLinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Navigation Buttons */
+  .navButton {
+    margin: 5px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffd700;
+    background-color: transparent;
+    border: 2px solid #ffd700;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  }
+  
+  .navButton:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 215, 0, 0.2);
+  }
+  
+  /* Custom Navbar Toggler Icon */
+  .navbar-toggler-icon {
+    background-image: none;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+  }
+  
+  /* Toggler Lines */
+  .navbar-toggler-icon::before,
+  .navbar-toggler-icon::after,
+  .navbar-toggler-icon span {
+    content: "";
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    left: 0;
+    border-radius: 2px;
+    transition: none;
+  }
+  
+  .navbar-toggler-icon::before {
+    top: 0;
+  }
+  
+  .navbar-toggler-icon::after {
+    bottom: 0;
+  }
+  
+  .navbar-toggler-icon span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Ensure navbar-toggler lines stay white */
+  .navbar-toggler:focus,
+  .navbar-toggler:active,
+  .navbar-toggler:hover {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .navbar-toggler-icon::before,
+  .navbar-toggler-icon::after,
+  .navbar-toggler-icon span {
+    background-color: white !important;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    /* Smaller font size for title */
+    .navbarTitle {
+      font-size: 1.8rem;
+    }
+  
+    /* Adjust button margins */
+    .navLinks {
+      flex-direction: column !important;
+      align-items: center;
+      gap: 5px;
+    }
+  
+    .navButton {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  
+    /* Reduce navbar padding */
+    .navbar {
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Even smaller font size for title */
+    .navbarTitle {
+      font-size: 1.6rem;
+    }
+  
+    .navButton {
+      font-size: 0.85rem;
+      padding: 5px 10px;
+    }
+  }
+  
