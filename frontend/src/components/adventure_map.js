@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import '../styles/Adventure_map.css';
+import styles from '../styles/Adventure_map.module.css';
 
 const AdventureMap = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
@@ -18,37 +18,34 @@ const AdventureMap = () => {
     if (selectedPoint?.id === point.id) {
       setSelectedPoint(null);
     } else {
-      
       setSelectedPoint(point);
     }
   };
-  
 
   return (
     <div>
-      <h1 className="map-title" style={{ color: "green", textShadow: "2px 2px 10px white", fontFamily: "Allura", fontSize: "3rem", textAlign: "center", marginTop: "1rem", fontWeight: "bold" }}>
+      <h1 className={styles.mapTitle}>
         The Adventure Map
       </h1>
-      <p className="map-description" style={{ color: "black", fontFamily: "Quicksand", fontSize: ".9rem", textAlign: "center", margin: ".5rem", fontWeight: "bold" }}>
-      Welcome to the Adventure Map! Explore the places where Jesus lived, taught, and performed miracles. Click on the locations to learn about key events in His life, from His birth in Bethlehem to His resurrection in Jerusalem. Let’s begin the journey!<br/><i>“For we walk by faith, not by sight.” – 2 Corinthians 5:7</i>
+      <p className={styles.mapDescription}>
+        Welcome to the Adventure Map! Explore the places where Jesus lived, taught, and performed miracles. Click on the locations to learn about key events in His life, from His birth in Bethlehem to His resurrection in Jerusalem. Let’s begin the journey!<br/><i>“For we walk by faith, not by sight.” – 2 Corinthians 5:7</i>
       </p>
-      <div className="map-container" style={{ marginTop: ".5rem", marginBottom: "20rem" }}>
-        <img src="/images/israel.png" alt="Adventure Map" className="map-image" />
+      <div className={styles.mapContainer}>
+        <img src="/images/israel.png" alt="Adventure Map" className={styles.mapImage} />
 
         {points.map((point) => (
-          <div key={point.id} className="map-point" style={{ top: point.y, left: point.x }}>
-            <span className="tooltip">{point.name}</span>
-            <button className="map-button" onClick={() => handleClick(point)}>{point.name}</button>
+          <div key={point.id} className={styles.mapPoint} style={{ top: point.y, left: point.x }}>
+            <span className={styles.tooltip}>{point.name}</span>
+            <button className={styles.mapButton} onClick={() => handleClick(point)}>{point.name}</button>
           </div>
         ))}
 
-        {/* Card for the selected point, positioned randomly */}
         {selectedPoint && (
-          <Card className="info-card">
+          <Card className={styles.infoCard}>
             <Card.Img variant="top" src={selectedPoint.image} />
             <Card.Body>
-              <Card.Title className="cardTitle">{selectedPoint.name}</Card.Title>
-              <Card.Text className="text-start">{selectedPoint.description}</Card.Text>
+              <Card.Title className={styles.cardTitle}>{selectedPoint.name}</Card.Title>
+              <Card.Text className={styles.textStart}>{selectedPoint.description}</Card.Text>
               <Button variant="secondary" onClick={() => setSelectedPoint(null)}>Close</Button>
             </Card.Body>
           </Card>
