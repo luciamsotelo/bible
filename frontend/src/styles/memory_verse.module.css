@@ -1,32 +1,39 @@
-.memory-verse-container {
+/* Container for Memory Verse */
+.memoryVerseContainer {
   background-color: transparent;
   text-align: center;
   margin: 1px;
   transition: background-color 0.5s ease, border-color 0.5s ease;
+  padding: 10px;
 }
 
-/* Heading - Keeps it bold and engaging */
-.memory-verse-container h2 {
+/* Heading */
+.memoryVerseTitle {
   font-size: 3rem;
   color: #333;
   text-align: center;
   padding: 1rem;
+  font-family: "Allura";
+  text-shadow: 2px 2px 8px goldenrod;
 }
 
-/* Fun animated paragraph for the memory verse */
-.memory-verse-container p {
+/* Verse Text */
+.memoryVerseText {
   font-size: 2rem;
   text-align: center;
-  transition: color 0.5s ease, text-shadow 0.5s ease;  
+  transition: color 0.5s ease, text-shadow 0.5s ease;
   animation: bounce-in 1s ease-out, glow-text 3s ease-in-out;
+  font-family: "Quicksand";
+  color: black;
+  margin: 8px 20px;
 }
 
-/* Adds an extra glowing effect */
-.memory-verse-container p.flash {
+/* Glowing effect */
+.memoryVerseText.flash {
   animation: glow-text 1s ease-in-out 2;
 }
 
-/* Bouncing fade-in animation for a fun entrance */
+/* Bouncing fade-in animation */
 @keyframes bounce-in {
   0% {
     opacity: 0;
@@ -42,7 +49,7 @@
   }
 }
 
-/* Glowing text effect to make the verse stand out */
+/* Glowing text effect */
 @keyframes glow-text {
   0%, 100% {
     color: #555;
@@ -50,32 +57,27 @@
   }
   50% {
     color: rgb(179, 22, 196);
-    text-shadow: 
-      2px 2px 4px #333, 
-      3px 3px 6px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px #333, 3px 3px 6px rgba(0, 0, 0, 0.5);
   }
 }
 
-/* Responsive design for tablets */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .memory-verse-container h2 {
+  .memoryVerseTitle {
     font-size: 2.5rem;
   }
-  
-  .memory-verse-container p {
+
+  .memoryVerseText {
     font-size: 1.5rem;
-    line-height: 1.4;
   }
 }
 
-/* Responsive design for smaller mobile screens */
 @media (max-width: 415px) {
-  .memory-verse-container h2 {
+  .memoryVerseTitle {
     font-size: 2.2rem;
   }
-  
-  .memory-verse-container p {
+
+  .memoryVerseText {
     font-size: 1.2rem;
-    line-height: 1.4;
   }
 }

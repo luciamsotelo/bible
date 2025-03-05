@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import '../styles/memory_verse.css';
-
+import React, { useEffect, useRef } from "react";
+import styles from "../styles/memory_verse.module.css"; // Updated to CSS Module
 
 // Define an array of memory verses
 const memoryVerses = [
@@ -37,30 +36,28 @@ const memoryVerses = [
   "John 16:33 - I have told you these things, so that in Me you may have peace. In this world, you will have trouble. But take heart! I have overcome the world."
 ];
 
-
 // Get the current day of the year
 const getDayOfYear = () => {
   const now = new Date();
   const start = new Date(now.getFullYear(), 0, 0);
   const diff = now - start;
   const oneDay = 1000 * 60 * 60 * 24;
-  const day = Math.floor(diff / oneDay);
-  return day;
+  return Math.floor(diff / oneDay);
 };
 
 const MemoryVerse = () => {
-  const verseRef = useRef(null); // Initialize verseRef using useRef
+  const verseRef = useRef(null);
 
   useEffect(() => {
     const element = verseRef.current;
     if (element) {
       const startAnimation = setTimeout(() => {
-        element.classList.add('flash');
+        element.classList.add(styles.flash);
         const stopAnimation = setTimeout(() => {
-          element.classList.remove('flash');
-        }, 3000); // Duration of the flash animation
+          element.classList.remove(styles.flash);
+        }, 3000);
         return () => clearTimeout(stopAnimation);
-      }, 1000); // Delay before animation starts
+      }, 1000);
       return () => clearTimeout(startAnimation);
     }
   }, []);
@@ -68,9 +65,11 @@ const MemoryVerse = () => {
   const verseIndex = getDayOfYear() % memoryVerses.length;
 
   return (
-    <div className="memory-verse-container">
-      <h2 className="" style= {{fontFamily: "allura", color: "black", textShadow: "2px 2px 8px goldenrod"}}>Today's Memory Verse</h2>
-      <p className="memory-verse-container" style={{ fontFamily: "quicksand", color: "black", margin: "8px 20px"}} ref={verseRef}>{memoryVerses[verseIndex]}</p>
+    <div className={styles.memoryVerseContainer}>
+      <h2 className={styles.memoryVerseTitle}>Today's Memory Verse</h2>
+      <p className={styles.memoryVerseText} ref={verseRef}>
+        {memoryVerses[verseIndex]}
+      </p>
     </div>
   );
 };
