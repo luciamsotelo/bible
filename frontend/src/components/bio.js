@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { BsFillVolumeUpFill } from "react-icons/bs"; 
+import { BsFillVolumeUpFill } from "react-icons/bs";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
-import "../styles/bio.css"; // Ensure you have responsive styles
+import styles from "../styles/Bio.module.css"; // Ensure correct case
 
 const characters = [
   {
@@ -62,8 +62,6 @@ const characters = [
   },
 ];
 
-
-
 const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
   const [audio, setAudio] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -86,19 +84,10 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
     }
   };
 
-  const handleStopAudio = () => {
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0; // Reset audio to the beginning
-      setAudio(null);
-      setIsPlaying(false);
-    }
-  };
-
   return (
-    <Col xs={12} sm={6} md={4} className="bio-card-col">
+    <Col xs={12} sm={6} md={4} className={styles.bioCardCol}>
       <Card
-        className={`bio-character-card mt-1 ${isSelected ? "selected-card" : ""} ${isFlipped ? "flipped" : ""}`}
+        className={`${styles.bioCharacterCard} mt-1 ${isSelected ? styles.selectedCard : ""} ${isFlipped ? styles.flipped : ""}`}
         onClick={(e) => {
           e.stopPropagation();
           if (!isSelected) {
@@ -109,7 +98,7 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
       >
         <Card.Img variant="top" src={character.image} alt={character.name} />
         <Card.Body>
-          <Card.Title className="bio-card-title text-center">{character.name}</Card.Title>
+          <Card.Title className={`${styles.bioCardTitle} text-center`}>{character.name}</Card.Title>
 
           {isFlipped ? (
             <div>
@@ -125,16 +114,22 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
                 {isPlaying ? "Pause Audio" : "Who Am I?"}
               </Button>{" "}
               <Button
-                variant="secondary"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleStopAudio();
-                  setIsFlipped(false);
-                  onDeselect();
-                }}
-              >
-                Back
-              </Button>
+  variant="secondary"
+  onClick={(e) => {
+    e.stopPropagation();
+    if (audio) {
+      audio.pause(); // Stop audio
+      audio.currentTime = 0; // Reset audio to the beginning
+      setAudio(null); // Remove reference
+      setIsPlaying(false); // Update state
+    }
+    setIsFlipped(false);
+    onDeselect();
+  }}
+>
+  Back
+</Button>
+
             </div>
           ) : (
             <p className="text-muted">Tap to learn more!</p>
@@ -149,11 +144,11 @@ const Bio = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   return (
-    <div className={`bio-container-wrapper ${selectedCharacter ? "overlay-active" : ""}`}>
-      <Container className="bio-container text-center">
-        <h1 className="text-center bio-title mt-3">Meet Your Bible Buddies!</h1>
+    <div className={`${styles.bioContainerWrapper} ${selectedCharacter ? styles.overlayActive : ""}`}>
+      <Container className={styles.bioContainer}>
+        <h1 className={`text-center ${styles.bioTitle} mt-3`}>Meet Your Bible Buddies!</h1>
         <p>Tap a card to learn more! <br /> <i>"Let the wise listen and add to their learning." — Proverbs 1:5</i></p>
-        <Row className="bio-justify-content-center">
+        <Row className={styles.bioJustifyContentCenter}>
           {characters.map((character, index) => (
             <BioCard
               key={index}
