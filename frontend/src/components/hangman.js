@@ -164,29 +164,32 @@ const Hangman = () => {
 
 
   return (
-    <div className="hangman-container">
+    
+    <div className="hangman-container ">
     {/* Home Button */}
+    <nav className="custom-nav my-4">
+  <div className="container d-flex justify-content-between">
     <Button 
-      variant="primary" 
-      className="mb-4 mr-2" 
-      style={{ fontFamily: "Quicksand" }} 
+      variant="warning" 
+      className="custom-nav-button"
       onClick={() => navigate('/')}
     >
-      Home
+      🏠 Home
     </Button>
 
-    {/* Games Menu Button */}
     <Button 
-      variant="primary" 
-      className="mb-4" 
-      style={{ fontFamily: "Quicksand" }} 
+      variant="info" 
+      className="custom-nav-button"
       onClick={() => navigate('/games')}
     >
-      Games Menu
+      🎮 Games Menu
     </Button>
+  </div>
+</nav>
 
-      <h1 style={{fontFamily:'Cinzel Decorative', fontSize:'200%'}}>Biblical Challenge</h1>
-      <p className="instructions mb-4" >Guess the word or phrase by choosing letters. Don't run out of guesses! <br/> <i>"Be happy even in hard times because it makes us strong – Romans 5:3-4."</i></p>
+
+      <h1 className="game-title mt-4 mb-2" style={{fontFamily:'Cinzel Decorative', fontSize:'2rem'}}>Biblical Challenge</h1>
+      <p className="instructions mb-4" >Pick a letter, guess the word. <br/>Don’t run out of guesses! <br/> <i>"Be happy even in hard times because it makes us strong – Romans 5:3-4."</i></p>
 
       {/* Current Difficulty */}
       <div className="difficulty-info" >
@@ -195,12 +198,13 @@ const Hangman = () => {
       </div>
 
       {/* Difficulty Selection */}
-      <div className="difficulty-buttons">
-        <button onClick={() => selectDifficulty("easy")}>Easy</button>
-        <button onClick={() => selectDifficulty("medium")}>Medium</button>
-        <button onClick={() => selectDifficulty("hard")}>Hard</button>
-        <button onClick={() => selectDifficulty("expert")}>Expert</button>
-      </div>
+     {/* Fun, centered difficulty buttons with icons */}
+<div className="d-flex flex-wrap justify-content-center gap-3 mt-3">
+  <Button variant="success" className="btn-lg px-4" onClick={() => selectDifficulty("easy")}> 🟢 Easy </Button>
+  <Button variant="primary" className="btn-lg px-4" onClick={() => selectDifficulty("medium")}> 🔵 Medium </Button>
+  <Button variant="warning" className="btn-lg px-4" onClick={() => selectDifficulty("hard")}> 🟠 Hard </Button>
+  <Button variant="danger" className="btn-lg px-4" onClick={() => selectDifficulty("expert")}> 🔴 Expert </Button>
+</div>
 
       <div className="hangman-word">
         {displayWord.split(" ").map((word, index) => (

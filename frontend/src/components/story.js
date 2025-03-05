@@ -1,6 +1,6 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap';
-import '../styles/story.css'; // Optional: CSS for additional styling
+import styles from '../styles/story.module.css'; // Updated import for CSS module
 import AdamEve from '../images/adamandeve.jpg';
 import Garden from '../images/gardenofeden.jpg';
 import Ark from '../images/ark.jpg';
@@ -77,14 +77,10 @@ const BibleStories = () => {
       stopAudio();
     } else {
       setExpandedStory(index);
-      stopAudio(); // Stop current audio before expanding a new story
-
+      stopAudio();
       setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      }, 100); // Delay to ensure state updates first
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   };
 
@@ -114,26 +110,22 @@ const BibleStories = () => {
 
   return (
     <div className="container">
-    <div className="bible-story-paragraph">
-  <h1>The Bible Stories</h1>
-  <p className="bible-story-paragraph">Discover faith, hope, and God’s love through stories. Choose a story, then scroll to read or press play to listen! Journey through timeless Bible stories and learn the lessons that guide our hearts. <br/><i>“All Scripture is God’s Word and is good for teaching.”</i> – 2 Timothy 3:16 </p>
-</div>
+      <div className={styles.bibleStoryParagraph}>
+        <h1>The Bible Stories</h1>
+        <p>
+          Discover faith, hope, and God’s love through stories. Choose a story, then scroll to read or press play to listen! Journey through timeless Bible stories and learn the lessons that guide our hearts.
+          <br/><i>“All Scripture is God’s Word and is good for teaching.”</i> – 2 Timothy 3:16
+        </p>
+      </div>
 
       {expandedStory === null ? (
-        <Row className='story-row justify-content-center' style={{ marginBottom: '150px' }}>
+        <Row className="justify-content-center" style={{ marginBottom: '150px' }}>
           {stories.map((story, index) => (
             <Col key={index} md={4}>
-              <Card className="story-card mb-4">
-                <Card.Img
-                  variant="top"
-                  className="img-fluid rounded-pill"
-                  src={story.frontImage}
-                  alt={story.title}
-                />
-                <Card.Body style={{ textAlign: 'center'}}>
-                  <Card.Title style={{ fontFamily: 'quicksand' }}>
-                    {story.title}
-                  </Card.Title>
+              <Card className={styles.storyCard}>
+                <Card.Img variant="top" className={styles.cardImage} src={story.frontImage} alt={story.title} />
+                <Card.Body className="text-center">
+                  <Card.Title className={styles.cardTitle}>{story.title}</Card.Title>
                   <Button onClick={() => toggleStory(index)}>Learn More</Button>
                 </Card.Body>
               </Card>
@@ -141,45 +133,19 @@ const BibleStories = () => {
           ))}
         </Row>
       ) : (
-        <div className="expanded-story text-center">
-          <h2
-            style={{
-              fontFamily: 'sacramento',
-              fontSize: '3rem',
-              color: 'blue',
-            }}
-          >
-            {stories[expandedStory].title}
-          </h2>
-          <div
-            className="audio-controls"
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <Button variant="secondary" onClick={() => toggleStory(null)}>
-              Back to Stories
-            </Button>
-            <Button
-              onClick={() =>
-                playAudio(stories[expandedStory].audioFile)
-              }
-              className="me-2"
-            >
+        <div className={styles.expandedStory}>
+          <h2 className={styles.storyTitle}>{stories[expandedStory].title}</h2>
+          <div className={styles.audioControls}>
+            <Button variant="secondary" onClick={() => toggleStory(null)}>Back to Stories</Button>
+            <Button onClick={() => playAudio(stories[expandedStory].audioFile)}>
               {paused ? 'Play Audio' : 'Pause Audio'}
             </Button>
           </div>
-          <div className="image-container">
-            <img
-              src={stories[expandedStory].expandedImage}
-              alt={stories[expandedStory].title}
-              className="img-fluid rounded border border-success shadow-lg my-3"
-            />
-            <div className="overlay" style={{marginBottom: '20rem' }}>
-              <p className="story-box p-2 rounded" style={{ fontFamily: 'quicksand', fontSize: '1rem', textAlign: 'justify', color: 'white', fontWeight: 'bold', backgroundColor: 'rgba(10, 84, 144, 0.8)'}}>
-                {stories[expandedStory].story}
-              </p>
-              <p className="bg-info rounded-pill p-4 text-dark">
-                <strong>Lesson:</strong> {stories[expandedStory].lesson}
-              </p>
+          <div className={styles.imageContainer}>
+            <img src={stories[expandedStory].expandedImage} alt={stories[expandedStory].title} className={styles.expandedImage} />
+            <div className={styles.overlay}>
+              <p className={styles.storyBox}>{stories[expandedStory].story}</p>
+              <p className={styles.lesson}><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
             </div>
           </div>
         </div>

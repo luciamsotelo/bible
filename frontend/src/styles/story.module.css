@@ -1,0 +1,87 @@
+.bibleStoryParagraph {
+  font-family: 'allura', sans-serif;
+  line-height: 1.6;
+  text-align: center;
+  color: #333;
+  margin: 2px 0;
+  padding: 1px;
+  border-radius: 5px;
+}
+
+.bibleStoryParagraph h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: purple 1px 0 10px;
+}
+
+.bibleStoryParagraph p {
+  font-size: 1rem;
+  margin: 1px;
+  color: black;
+  font-family: 'quicksand', sans-serif;
+}
+
+.storyCard {
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+}
+
+.cardTitle {
+  font-family: 'quicksand', sans-serif;
+}
+
+.expandedStory {
+  text-align: center;
+}
+
+.storyTitle {
+  font-family: 'sacramento', cursive;
+  font-size: 3rem;
+  color: blue;
+}
+
+.audioControls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.expandedImage {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.overlay {
+  background-color: rgba(10, 84, 144, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.storyBox {
+  font-family: 'quicksand', sans-serif;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+.lesson {
+  background-color: #17a2b8;
+  padding: 10px;
+  border-radius: 50px;
+  color: black;
+}

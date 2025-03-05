@@ -4,9 +4,15 @@
   font-family: 'Quicksand', sans-serif;
   background: linear-gradient(135deg, #FDCB82, #D1C4E9);
   position: relative;
-  height: 100vh;
+  min-height: 100vh; /* Allow content to expand beyond 100vh */
+  width: 100%;
   animation: fadeIn 1s ease-in;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px; /* Adds space at the bottom */
 }
+
+
 
 /* Fade-In Animation */
 @keyframes fadeIn {
@@ -15,12 +21,13 @@
 }
 
 /* Header */
+/* Playful theme for kids */
 h1 {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 2.5rem;
-  color: #6a4f7d;
-  text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
-  animation: slideDown 1s ease-in-out;
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  font-size: 3rem;
+  color: #ff6600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Slide Down Animation */
@@ -31,9 +38,17 @@ h1 {
 
 /* Instructions */
 .instructions {
-  font-size: 1.5rem;
-  color: #5d4d66;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: 'Comic Neue', sans-serif;
+  background-color: #ffeb99;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+button:hover {
+  transform: scale(1.3);
+  transition: 0.5s;
 }
 
 /* Difficulty Info */
@@ -43,16 +58,19 @@ h1 {
 
 /* Difficulty Buttons */
 .difficulty-buttons .btn {
+  margin-top: 30px;
   padding: 10px 20px;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
   background-color: #ff6f61;
-  color: white;
+  color: black;
   border-radius: 10px;
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .difficulty-buttons .btn:hover {
-  background-color: #ff3e36;
+  background-color: rgb(0, 87, 128);
+  color: white;
   transform: scale(1.1);
 }
 
@@ -74,7 +92,7 @@ h1 {
 
 /* Letter Buttons */
 .hangman-letters .letter-button {
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 10px;
   margin: 5px;
   border: none;
@@ -167,6 +185,8 @@ h1 {
 .reset-button:hover {
   background-color: #3399cc;
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
