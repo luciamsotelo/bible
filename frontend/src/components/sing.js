@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Container, Button, Row, Col } from 'react-bootstrap';
-import '../styles/sing.css';
+import React, { useState, useEffect, useRef } from "react";
+import { Container, Button, Row, Col } from "react-bootstrap";
+import styles from "../styles/Sing.module.css"; // Updated for CSS Modules
 
 const Sing = ({ songData }) => {
   const [currentLine, setCurrentLine] = useState(0);
@@ -19,6 +19,8 @@ const Sing = ({ songData }) => {
 
   useEffect(() => {
     const audio = audioRef.current;
+    if (!audio) return;
+
     const handleTimeUpdate = () => {
       const currentTime = audio.currentTime;
       const currentLyricsIndex = songData.lyrics.findIndex(
@@ -28,53 +30,47 @@ const Sing = ({ songData }) => {
         setCurrentLine(currentLyricsIndex);
       }
     };
-    audio.addEventListener('timeupdate', handleTimeUpdate);
+
+    audio.addEventListener("timeupdate", handleTimeUpdate);
     return () => {
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
-  }, [songData]);
+  }, [songData.lyrics]); // Depend on `songData.lyrics` only
 
   // Get the background image URL for the current line
   const backgroundImage = songData.lyrics[currentLine]?.image;
 
   return (
-    <div className="sing-container">
+    <div className={styles.singContainer}>
+      {/* Play Button */}
       <Button
-        className="w-25 mx-auto d-block play-button-container position-relative"
+        className={`w-25 mx-auto d-block ${styles.playButton}`}
         variant="success"
         onClick={handlePlayPause}
         size="lg"
-        style={{
-          zIndex: 1,
-          position: 'relative',
-          bottom: '20px',
-        }}
       >
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? "Pause" : "Play"}
       </Button>
 
       {/* Karaoke Container with Background */}
       <Container
         fluid
-        className="karaoke-container d-flex flex-column align-items-center justify-content-start"
+        className={`${styles.karaokeContainer} d-flex flex-column align-items-center justify-content-start`}
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
         }}
       >
-        {/* Lyrics Container at the Top */}
+        {/* Lyrics Container */}
         <Row className="w-100">
           <Col xs={12} className="text-center">
-            <div className="lyrics-container">
-              <p className="highlighted">
-                {songData.lyrics[currentLine]?.text || 'Get ready to sing!'}
+            <div className={styles.lyricsContainer}>
+              <p className={styles.highlighted}>
+                {songData.lyrics[currentLine]?.text || "Get ready to sing!"}
               </p>
             </div>
           </Col>
         </Row>
 
-        {/* Background Image Filler to Keep Proper Spacing */}
         <audio ref={audioRef} src={songData.audio} />
       </Container>
     </div>

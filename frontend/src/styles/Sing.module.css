@@ -1,0 +1,95 @@
+/* Main Karaoke Container */
+.karaokeContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  transition: background 0.5s ease-in-out;
+}
+
+/* Lyrics Display */
+.lyricsContainer {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 5px black;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  border-radius: 15px;
+  max-width: 90%;
+}
+
+/* Highlighted Lyrics with Animation */
+.highlighted {
+  color: #ffd700; /* Gold */
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 4px #ff1493; /* Pink glow */
+  display: inline-block;
+  position: relative;
+}
+
+/* Microphone emoji before highlighted text */
+.highlighted::before {
+  content: "🎤";
+  display: inline-block;
+  margin-right: 10px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+/* Play Button */
+.playButton {
+  margin-top: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .lyricsContainer {
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .highlighted {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .karaokeContainer {
+    height: 50vh;
+    flex-direction: column;
+  }
+
+  .lyricsContainer {
+    font-size: 1.3rem;
+    padding: 0.8rem;
+  }
+
+  .highlighted {
+    font-size: 1rem;
+  }
+}
