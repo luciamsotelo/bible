@@ -1,0 +1,150 @@
+/* Container for Contact Section */
+.contactContainer {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Title Styling */
+.contactTitle {
+  color: blue;
+  font-family: "Allura";
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px green;
+}
+
+/* Contact Card Styling */
+.contactCard {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.contactCard:hover {
+  transform: scale(1.03);
+}
+
+/* Image & Video Container */
+.contactImg {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  aspect-ratio: 4 / 5; /* Keeps the entire image visible */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.contactImg img,
+.contactImg video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the full image is shown */
+}
+
+/* Video Styling */
+.contactVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures video is fully visible */
+}
+
+/* Card Body Styling */
+.cardBody {
+  background: linear-gradient(to right, rgb(175, 92, 203), rgb(218, 14, 119), rgb(30, 153, 210));
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Name Styling */
+.contactName {
+  color: goldenrod;
+  font-family: "Allura";
+  font-size: 2.5rem;
+}
+
+/* Card Text */
+.cardText {
+  font-size: 1rem;
+  font-family: "Bubblegum Sans";
+  color: white;
+  line-height: 1.5;
+}
+
+/* Email Styling */
+.email {
+  font-size: 0.9rem;
+  font-family: "Quicksand";
+  color: white;
+}
+
+/* Bible Verse Section */
+.bibleVerseContainer {
+  margin-top: 20px;
+}
+
+.bibleVerse {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 1px purple;
+  font-family: "Quicksand";
+  color: goldenrod;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contactTitle {
+    font-size: 2.3rem;
+  }
+
+  .contactName {
+    font-size: 2rem;
+  }
+
+  .contactImg {
+    max-height: 350px;
+  }
+
+  .cardText {
+    font-size: 0.95rem;
+  }
+
+  .email {
+    font-size: 0.85rem;
+  }
+
+  .bibleVerse {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .contactTitle {
+    font-size: 2rem;
+  }
+
+  .contactImg {
+    max-height: 300px;
+  }
+
+  .contactName {
+    font-size: 1.8rem;
+  }
+
+  .cardText {
+    font-size: 0.9rem;
+  }
+
+  .email {
+    font-size: 0.8rem;
+  }
+
+  .bibleVerse {
+    font-size: 1.3rem;
+  }
+}
