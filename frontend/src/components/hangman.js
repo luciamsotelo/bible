@@ -145,6 +145,8 @@ const Hangman = () => {
     }
   };
 
+
+  
   // Reset the game
   const resetGame = () => {
     setGuesses([]);

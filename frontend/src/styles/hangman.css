@@ -92,18 +92,19 @@ button:hover {
 
 /* Letter Buttons */
 .hangman-letters .letter-button {
-  font-size: 2rem;
-  padding: 10px;
+  font-size: 1.8rem;
+  padding: 15px 20px;
   margin: 5px;
   border: none;
-  background-color: #ffdb58;
+  background-color: lightseagreen;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
 }
 
 .hangman-letters .letter-button:hover {
-  background-color: #f5a623;
+  background-color: goldenrod;
   transform: scale(1.1);
 }
 
