@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/header';
 import Prayer from '../components/prayer';
 import Footer from '../components/footer';
-import "../styles/prayer.css";
+import "../styles/prayer.module.css";
 
 const prayer_page = () => {
   return (
