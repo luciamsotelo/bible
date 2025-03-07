@@ -219,20 +219,20 @@ const Maze = () => {
       <Row className="justify-content-center">
         <Col xs="auto">
           <Button variant="primary" onClick={() => navigate("/games")}>
-            Back to Main Game Page
+            Game Menu
           </Button>
         </Col>
       </Row>
   
       {/* Title */}
-      <h1 className="my-1 text-warning text-shadow display-4 font-allura">
+      <h1 className=" text-warning text-shadow display-4 font-allura">
         Maze Adventure
       </h1>
   
       {/* Instructions */}
       <p className="my-1">
-        Use the arrow keys to move forward, but be careful—don't let the moving boulders block your path! <br /> 
-        <i>'Your word is a lamp to my feet and a light to my path.' (Psalm 119:105)</i>
+      Use the ⬅️⬆️⬇️➡️ arrows on your keyboard or screen to move the little boy! Don’t let the boulders 🪨 stop you—reach the candle 🕯️ to win!<br /><br/>
+        <i>"Your word is a lamp to my feet and a light to my path." (Psalm 119:105)</i>
       </p>
   
       {/* Start Game Button */}

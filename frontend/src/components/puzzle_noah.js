@@ -46,7 +46,7 @@ const Puzzle = () => {
     <Container className="text-center mt-5">
       <h1 style={{ color: "black", textShadow: "2px 2px 2px purple", fontFamily: "Quicksand", fontSize: "2rem" }}>Noah and the Great Flood</h1>
 
-      <p style={{ color: "black",  fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Noah and the great flood! <br/><i>"The rain fell for forty days and forty nights." – Genesis 7:12</i></p>
+      <p style={{ color: "black",  fontFamily: "Quicksand" }}>Click and drag the pieces to place them where they belong. Solve the puzzle and reveal the story of Noah and the great flood! <br/><br/><i>"The rain fell for forty days and forty nights." – Genesis 7:12</i></p>
 
       {completed && (
         <h2 className={`${styles.congratulationsMessage} mt-3`} style={{
@@ -97,7 +97,7 @@ const Puzzle = () => {
       </Row>
       <Row className="justify-content-center mt-4">
         <Col xs={12} md={6} className="d-flex justify-content-center">
-          <Button onClick={resetPuzzle} variant="warning">
+          <Button onClick={resetPuzzle} variant="warning me-5">
             Reset
           </Button>
           <Button onClick={goToMainPuzzlePage} variant="success">

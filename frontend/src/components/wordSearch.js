@@ -248,14 +248,14 @@ const WordSearch = () => {
 <p className={`${styles.paragraph} d-none d-md-block`}>
   Welcome to Bible Word Search! Find all the hidden words before time runs out. 
   Each level gets harder, so keep searching! Click letters to highlight words, 
-  level up, and score points. Can you complete them all? Have fun! <br/><i>"Call to me and I will answer you and tell you great and unsearchable things you do not know." – Jeremiah 33:3</i>
+  level up, and score points. Can you complete them all? Have fun! <br/><br/><i>"Call to me and I will answer you and tell you great and unsearchable things you do not know." – Jeremiah 33:3</i>
 
   
 </p>
 <p className={`${styles.paragraphSmall} d-md-none`}>
   Find the hidden words before time runs out! Tap letters to highlight words.  
 
-<br/><i>"Call to me and I will answer you and tell you great and unsearchable things you do not know." – Jeremiah 33:3</i></p>
+<br/><br/><i>"Call to me and I will answer you and tell you great and unsearchable things you do not know." – Jeremiah 33:3</i></p><br/>
       <Card
         className={styles.score}>
         Level: {level} | Score: {score} | Time Left: {timeLeft}s

@@ -100,7 +100,7 @@ Click and drag the pieces to place them where they belong. Solve the puzzle and 
       </Row>
       <Row className="justify-content-center mt-4">
         <Col xs={12} md={6} className="d-flex justify-content-center">
-          <Button onClick={resetPuzzle} variant="warning">
+          <Button onClick={resetPuzzle} variant="warning me-5">
                       Reset
                     </Button>
                     <Button onClick={goToMainPuzzlePage} variant="success">
