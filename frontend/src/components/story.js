@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Col, Row, Button } from 'react-bootstrap';
-import styles from '../styles/story.module.css'; // Updated import for CSS module
+import { Card, Col, Row, Button, Container } from 'react-bootstrap';
+import styles from '../styles/story.module.css';
 import AdamEve from '../images/adamandeve.jpg';
 import Garden from '../images/gardenofeden.jpg';
 import Ark from '../images/ark.jpg';
@@ -13,6 +13,7 @@ import Jonah from '../images/jonah.jpg';
 import BigFish from '../images/jonah-fish.jpg';
 import Moses from '../images/moses.jpg';
 import RedSea from '../images/redsea.jpg';
+
 
 // Story data for the cards
 const stories = [
@@ -109,19 +110,19 @@ const BibleStories = () => {
   };
 
   return (
-    <div className="container">
+    <Container className="mt-4 mb-5">
       <div className={styles.bibleStoryParagraph}>
         <h1>The Bible Stories</h1>
         <p>
-          Discover faith, hope, and God’s love through stories. Choose a story, then scroll to read or press play to listen! Journey through timeless Bible stories and learn the lessons that guide our hearts.
-          <br/><i>“All Scripture is God’s Word and is good for teaching.”</i> – 2 Timothy 3:16
+        Experience faith, hope, and God’s love through timeless Bible stories. Choose a story to read or listen to and discover lessons that guide our hearts.
+          <br/><br/><i>“All Scripture is God’s Word and is good for teaching.”</i> – 2 Timothy 3:16
         </p>
       </div>
 
       {expandedStory === null ? (
-        <Row className="justify-content-center" style={{ marginBottom: '150px' }}>
+        <Row className="justify-content-center" style={{ marginBottom: '100px' }}>
           {stories.map((story, index) => (
-            <Col key={index} md={4}>
+            <Col key={index} md={4} className="mb-4">
               <Card className={styles.storyCard}>
                 <Card.Img variant="top" className={styles.cardImage} src={story.frontImage} alt={story.title} />
                 <Card.Body className="text-center">
@@ -145,12 +146,12 @@ const BibleStories = () => {
             <img src={stories[expandedStory].expandedImage} alt={stories[expandedStory].title} className={styles.expandedImage} />
             <div className={styles.overlay}>
               <p className={styles.storyBox}>{stories[expandedStory].story}</p>
-              <p className={styles.lesson}><strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
+              <p className={`${styles.lesson} mt-4 p-4`}> <strong>Lesson:</strong> {stories[expandedStory].lesson}</p>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
