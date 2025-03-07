@@ -251,8 +251,8 @@ const Trivia = () => {
     return (
         <div className={styles.triviaContainer}>
             <nav className={styles.navbar}>
-                <button className={styles.navButton} onClick={() => navigate('/')}>Home</button>
-                <button className={styles.navButton} onClick={() => navigate('/games')}>Games Menu</button>
+                <button className={styles.navButton} onClick={() => navigate('/')}> 🏠 Home</button>
+                <button className={styles.navButton} onClick={() => navigate('/games')}>🎮  Games Menu</button>
             </nav>
             <h1>Bible Trivia</h1>
             <div className={styles.questionSection}>

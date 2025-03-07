@@ -42,20 +42,20 @@ const Sing = ({ songData }) => {
 
   return (
     <div className={styles.singContainer}>
-      {/* Play Button */}
-      <Button
-        className={`w-25 mx-auto d-block ${styles.playButton}`}
-        variant="success"
-        onClick={handlePlayPause}
-        size="lg"
-      >
-        {isPlaying ? "Pause" : "Play"}
-      </Button>
-
+    {/* Play Button */}
+    <Button
+      className={`w-25 mx-auto d-block ${styles.playButton}`}
+      variant="warning mb-3"
+      onClick={handlePlayPause}
+      size="lg"
+    >
+      {isPlaying ? "Pause" : "Play"}
+    </Button>
+  
       {/* Karaoke Container with Background */}
       <Container
         fluid
-        className={`${styles.karaokeContainer} d-flex flex-column align-items-center justify-content-start`}
+        className={`${styles.karaokeContainer} d-flex flex-column align-items-center justify-content-start mb-5`}
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}

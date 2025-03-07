@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sing from "../components/sing";
 import { Spinner, Container, Dropdown, ButtonGroup } from "react-bootstrap";
-import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Sing.module.css"; // CSS Module
 
@@ -35,17 +34,22 @@ const SingPage = () => {
       {/* Navigation Bar */}
       <div className={styles.triviaContainer}>
         <nav className={styles.navbar}>
-          <button className={styles.navButton} onClick={() => navigate("/")}>
-            Home
-          </button>
+        <button 
+                    variant="warning" 
+                    className="my-4 px-4 ml-5"
+                    onClick={() => navigate('/')}
+                    >
+                    🏠 Home
+                    </button>
+                    
         </nav>
       </div>
 
       <Container className="text-center">
-        <h1 className={styles.singTitle}>Sing and Praise</h1>
+        <h1 className={styles.singTitle}>🎶  Let's Sing and Praise 🎤</h1>
         <p className={styles.singDescription}>
-          Select a song, press 'Play' to start, and follow the lyrics on the
-          screen. Pause anytime. Enjoy singing and praising God!
+      
+        Pick a song, press 'Play,' and follow the lyrics on the screen. Sing loud! Pause anytime to catch your breath or dance. Let’s praise God together! <br/> <br/><p><i>"Sing to the Lord, for he has done glorious things; let this be known to all the world." – Isaiah 12:5</i></p>
         </p>
 
         {/* Dropdown Menu */}
@@ -66,7 +70,6 @@ const SingPage = () => {
         {/* Song Display */}
         {songData ? <Sing songData={songData} /> : <Spinner animation="border" />}
       </Container>
-      <Footer />
     </div>
   );
 };

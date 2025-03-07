@@ -3,7 +3,6 @@ import { Button, Container, Row, Col } from 'react-bootstrap'; // Importing nece
 import { useNavigate } from 'react-router-dom';
 import WordJumbleComp from '../components/wordJumbleComp';
 import '../styles/wordJumble.css';
-import Footer from '../components/footer';
 
 const WordJumblePage = () => {
     const [selectedCategory, setSelectedCategory] = useState('easy');
@@ -52,7 +51,6 @@ const WordJumblePage = () => {
 
                 <WordJumbleComp category={selectedCategory} />
             </Container>
-            <Footer />
         </div>
     );
 };
