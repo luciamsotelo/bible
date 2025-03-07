@@ -35,14 +35,26 @@ const BiblePuzzleCards = () => {
         >
           Puzzles
         </h1>
-        <Button 
-          variant="primary" 
-          className="mb-1" 
-          style={{ fontFamily: "Quicksand" }} 
-          onClick={() => navigate('/games')}
-        >
-          Games Menu
-        </Button>
+         {/* Home Button */}
+    <nav className="container d-flex justify-content-between ">
+  <div className="container d-flex justify-content-between ">
+    <Button 
+      variant="warning" 
+      className="custom-nav-button"
+      onClick={() => navigate('/')}
+    >
+      🏠 Home
+    </Button>
+
+    <Button 
+      variant="info" 
+      className="custom-nav-button"
+      onClick={() => navigate('/games')}
+    >
+      🎮 Games Menu
+    </Button>
+  </div>
+</nav>
       </div>
   
       <p 

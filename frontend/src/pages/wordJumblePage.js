@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap'; // Importing necessary components
 import { useNavigate } from 'react-router-dom';
 import WordJumbleComp from '../components/wordJumbleComp';
-import Header from '../components/header';
 import '../styles/wordJumble.css';
 import Footer from '../components/footer';
 
@@ -12,40 +11,45 @@ const WordJumblePage = () => {
 
     return (
         <div className="word-jumble-page">
-            <Header />
             <Container className="py-4">
-                <Row className="justify-content-center mb-4">
-                    <Col xs={12} md={8} lg={6}>
-                        <Button variant="primary" onClick={() => navigate('/games')} className="w-100">
-                            Back to Main Game Page
-                        </Button>
-                    </Col>
-                </Row>
+                 {/* Home Button */}
+                    <nav className="custom-nav my-4">
+                <div className="container d-flex justify-content-between">
+                    <Button 
+                    variant="warning" 
+                    className="custom-nav-button"
+                    onClick={() => navigate('/')}
+                    >
+                    🏠 Home
+                    </Button>
+                
+                    <Button 
+                    variant="info" 
+                    className="custom-nav-button"
+                    onClick={() => navigate('/games')}
+                    >
+                    🎮 Games Menu
+                    </Button>
+                </div>
+                </nav>
                 <Row className="text-center">
                     <Col>
                         <h1 className="text-center mb-2" style={{ color: "purple", fontFamily: "Allura", fontSize: "2.5rem" }}>Bible Word Shuffle</h1>
                         <p style={{ fontSize: "1rem", color: "black", fontFamily: "Quicksand" }}>
-                        Unscramble the letters to find the Bible word! Choose your level: Easy, Medium, or Hard. Type your answer and click 'Check Answer' to see if you're right. <br/> <i>"I can do all things through Christ who strengthens me." – Philippians 4:13</i>
+                        Unscramble the letters to find the Bible word! Choose your level: Easy, Medium, or Hard. Type your answer and click 'Check Answer' to see if you're right. <br/><br/> <i>"I can do all things through Christ who strengthens me." – Philippians 4:13</i>
                         </p>
                     </Col>
                 </Row>
                 <Row className="category-buttons justify-content-center my-4">
-                    <Col xs={4} sm={3} md={2}>
-                        <Button variant="success" onClick={() => setSelectedCategory('easy')} className="w-100">
-                            Easy
-                        </Button>
-                    </Col>
-                    <Col xs={4} sm={3} md={2}>
-                        <Button variant="warning" onClick={() => setSelectedCategory('medium')} className="w-100">
-                            Medium
-                        </Button>
-                    </Col>
-                    <Col xs={4} sm={3} md={2}>
-                        <Button variant="danger" onClick={() => setSelectedCategory('hard')} className="w-100">
-                            Hard
-                        </Button>
-                    </Col>
+                    {/* Difficulty Selection */}
+                    {/* Fun, centered difficulty buttons with icons */}
+                    <div className="d-flex flex-wrap justify-content-center gap-3 mt-3">
+                        <Button variant="success" className="btn-lg px-4" onClick={() => setSelectedCategory("easy")}> 🟢 Easy </Button>
+                        <Button variant="warning" className="btn-lg px-4" onClick={() => setSelectedCategory("medium")}> 🟠 Medium </Button>
+                        <Button variant="danger" className="btn-lg px-4" onClick={() => setSelectedCategory("hard")}> 🔴 Hard </Button>
+                    </div>
                 </Row>
+
                 <WordJumbleComp category={selectedCategory} />
             </Container>
             <Footer />

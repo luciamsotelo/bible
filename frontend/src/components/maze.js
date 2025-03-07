@@ -214,13 +214,25 @@ const Maze = () => {
 
 
   return (
-    <Container className="text-center mt-2">
+    <Container className="text-center mt-5">
       {/* Back Button */}
       <Row className="justify-content-center">
-        <Col xs="auto">
-          <Button variant="primary" onClick={() => navigate("/games")}>
-            Game Menu
-          </Button>
+        <Col className="container d-flex justify-content-between">
+          <Button 
+                              variant="warning" 
+                              className="custom-nav-button"
+                              onClick={() => navigate('/')}
+                              >
+                              🏠 Home
+                              </Button>
+                          
+                              <Button 
+                              variant="info" 
+                              className="custom-nav-button"
+                              onClick={() => navigate('/games')}
+                              >
+                              🎮 Games Menu
+                              </Button>
         </Col>
       </Row>
   
