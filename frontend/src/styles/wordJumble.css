@@ -1,9 +1,9 @@
 .word-jumble-page {
-    background: linear-gradient(135deg, #fbeee6, #ffdde1);
+    background: linear-gradient(90deg,#ff9a9e, #ffcc70, #ff9a9e, #ffcc70, #ff9a9e); /* Warm sunshine-like colors */
     min-height: 100vh;
     padding-top: 20px;
     text-align: center;
-    font-family: Comic Sans Ms, fantasy; /* Fun font */
+    font-family: "Comic Sans MS", fantasy;
 }
 
 .jumbled-word {
