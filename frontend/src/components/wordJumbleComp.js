@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Form, Alert, Container, Row, Col } from 'react-bootstrap';
 import '../styles/wordJumble.css';
+import confetti from 'canvas-confetti';
 
 const wordSets = {
     easy: [
@@ -86,6 +87,14 @@ const WordJumbleComp = ({ category }) => {
         if (input.toLowerCase() === currentWord.word.toLowerCase()) {
             setCorrect(true);
             setScore(score + 10);
+
+             // 🎉 Trigger confetti when the answer is correct
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+
         } else {
             setCorrect(false);
             if (attempts === 2) {
@@ -150,7 +159,7 @@ const WordJumbleComp = ({ category }) => {
                                 value={input}
                                 onChange={handleInputChange}
                                 onKeyDown={handleKeyPress}
-                                placeholder="Unscramble the word"
+                                placeholder="type the unscrambled word here!"
                                 className="mb-3"
                                 disabled={correct || attempts === 3}
                             />

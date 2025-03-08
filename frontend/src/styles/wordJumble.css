@@ -1,14 +1,25 @@
 .word-jumble-page {
-    background-color: #f0f8ff;
-    height: 100vh;
+    background: linear-gradient(135deg, #fbeee6, #ffdde1);
+    min-height: 100vh;
+    padding-top: 20px;
+    text-align: center;
+    font-family: Comic Sans Ms, fantasy; /* Fun font */
 }
 
 .jumbled-word {
     font-size: 2rem;
     font-weight: bold;
-    margin: 20px 0;
-    letter-spacing: 10px;
-    color: #4caf50;
+    font-family: quicksand, sans-serif;
+    letter-spacing: 12px;
+    color: #ff6347;
+    background: #fffcf2;
+    padding: 20px 60px;
+    border: 2px solid #ff6347;
+    margin: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    animation: bounce 1s infinite alternate;
 }
 
 input {
@@ -17,12 +28,13 @@ input {
     border: 2px solid #4caf50;
     border-radius: 8px;
     background-color: white;
+    text-align: center;
 }
 
 input:focus {
     outline: none;
-    border-color: #3e8e41; /* Slightly darker green */
-    box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+    border-color: #ff4500;
+    box-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
 }
 
 
@@ -37,25 +49,54 @@ button {
 }
 
 button:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.category-buttons .btn-lg {
+    font-size: 20px;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.category-buttons .btn-lg:hover {
+    transform: scale(1.1);
+}
+
+.correct-answer {
+    color: green;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.incorrect-answer {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+button:hover {
     background-color: #4caf50;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .jumbled-word {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        letter-spacing: 8px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
     .category-buttons button {
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     .jumbled-word {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     input {
-        font-size: 14px;
+        font-size: 16px;
     }
 }

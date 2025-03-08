@@ -42,7 +42,7 @@ const WordJumblePage = () => {
                 <Row className="category-buttons justify-content-center my-4">
                     {/* Difficulty Selection */}
                     {/* Fun, centered difficulty buttons with icons */}
-                    <div className="d-flex flex-wrap justify-content-center gap-3 mt-3">
+                    <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
                         <Button variant="success" className="btn-lg px-4" onClick={() => setSelectedCategory("easy")}> 🟢 Easy </Button>
                         <Button variant="warning" className="btn-lg px-4" onClick={() => setSelectedCategory("medium")}> 🟠 Medium </Button>
                         <Button variant="danger" className="btn-lg px-4" onClick={() => setSelectedCategory("hard")}> 🔴 Hard </Button>
