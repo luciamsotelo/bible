@@ -66,11 +66,13 @@
 
 .overlay {
   background-color: rgba(10, 84, 144, 0.8);
+  border-top-width: 5px; /* Makes the top border thicker */
   padding: 20px;
   border-radius: 10px;
   color: white;
   font-weight: bold;
-  position: absolute;
+  position: relative;
+
 }
 
 .storyBox {

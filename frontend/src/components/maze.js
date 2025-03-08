@@ -306,9 +306,9 @@ const Maze = () => {
         )}
   
       {/* Controls Section */}
-      <div className="controls mt-4">
+      <div className="controls mt-4 mb-5">
         <Row className="justify-content-center">
-          <Col xs="auto">
+          <Col xs="auto mb-3">
             <Button variant="info" onClick={() => movePlayer("UP")}>
               &uarr;
             </Button>

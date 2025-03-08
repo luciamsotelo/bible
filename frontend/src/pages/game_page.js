@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
 import GameCards from '../components/games';
-import Footer from '../components/footer';
 
 const game_page = () => {
   return (
@@ -10,7 +9,6 @@ const game_page = () => {
       <div className="content">
         <GameCards />
       </div>
-      <Footer />
     </div>
   );
 };

@@ -127,7 +127,7 @@ const BibleStories = () => {
                 <Card.Img variant="top" className={styles.cardImage} src={story.frontImage} alt={story.title} />
                 <Card.Body className="text-center">
                   <Card.Title className={styles.cardTitle}>{story.title}</Card.Title>
-                  <Button onClick={() => toggleStory(index)}>Learn More</Button>
+                  <Button onClick={() => toggleStory(index)}>Click and Learn</Button>
                 </Card.Body>
               </Card>
             </Col>
