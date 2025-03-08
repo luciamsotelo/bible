@@ -1,19 +1,31 @@
+/* 🌍 Map Container */
 .mapContainer {
   position: relative;
   width: 90%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 5vh auto 0;
   overflow: hidden;
-  margin-top: 5vh;
   border-radius: 10px;
   border: 10px solid rgb(92, 26, 26);
 }
 
+/* 📌 Map Title */
+.mapTitle {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 4rem;
+  font-family: quicksand, sans-serif;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(100, 175, 65, 0.9);
+}
+
+/* 🗺️ Map Image */
 .mapImage {
   width: 100%;
   height: auto;
 }
 
+/* 📍 Map Point */
 .mapPoint {
   position: absolute;
   width: 15px;
@@ -24,6 +36,7 @@
   transform: translate(-50%, -50%);
 }
 
+/* 💬 Tooltip */
 .tooltip {
   display: none;
   position: absolute;
@@ -43,6 +56,7 @@
   display: block;
 }
 
+/* ℹ️ Info Card */
 .infoCard {
   position: absolute;
   top: 10%;
@@ -55,6 +69,7 @@
   z-index: 1;
 }
 
+/* 🎛️ Button Container */
 .buttonContainer {
   position: absolute;
   right: 10px;
@@ -64,6 +79,7 @@
   gap: 10px;
 }
 
+/* 🎯 Map Button */
 .mapButton {
   position: absolute;
   top: 0;
@@ -73,12 +89,30 @@
   padding: 5px;
 }
 
-/* Responsive Design */
+/* 📝 Map Description */
+.mapDescription {
+  font-size: 1.2rem;
+  font-family: quicksand, sans-serif;
+  text-align: center;
+  padding: 25px;
+  color: black;
+  background-color: rgba(22, 178, 43, 0.5);
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* 📱 Responsive Design */
+
+/* Tablet */
 @media (max-width: 768px) {
   .mapContainer {
     margin-top: 3vh;
     border-radius: 100px;
     border-width: 8px;
+  }
+
+  .mapTitle {
+    font-size: 2rem;
   }
 
   .mapPoint {
@@ -103,18 +137,18 @@
     text-align: left;
   }
 
-  .cardTitle {
-    font-size: 1.3rem;
-  }
-
   .mapButton {
     left: -750%;
     font-size: 9px;
-    padding: 5px;
     min-width: 75px;
+  }
+
+  .mapDescription {
+    font-size: 0.9rem;
   }
 }
 
+/* Mobile */
 @media (max-width: 574px) {
   .mapContainer {
     margin-top: 2vh;
@@ -141,17 +175,12 @@
     transform-origin: top left;
   }
 
-  .cardTitle {
-    font-size: 1rem;
-  }
-
-  .textStart {
-    font-size: 0.8rem;
-  }
-
   .mapButton {
     left: -575%;
     font-size: 8px;
-    padding: 5px;
+  }
+
+  .mapDescription {
+    font-size: 0.9rem;
   }
 }
