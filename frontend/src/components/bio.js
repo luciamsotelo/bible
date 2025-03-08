@@ -87,7 +87,7 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
   return (
     <Col xs={12} sm={6} md={4} className={styles.bioCardCol}>
       <Card
-        className={`${styles.bioCharacterCard} mt-1 ${isSelected ? styles.selectedCard : ""} ${isFlipped ? styles.flipped : ""}`}
+        className={`${styles.bioCharacterCard} mt-1 mb-4 ${isSelected ? styles.selectedCard : ""} ${isFlipped ? styles.flipped : ""}`}
         onClick={(e) => {
           e.stopPropagation();
           if (!isSelected) {
@@ -132,7 +132,7 @@ const BioCard = ({ character, isSelected, onSelect, onDeselect }) => {
 
             </div>
           ) : (
-            <p className="text-muted">Tap to learn more!</p>
+            <p className="text-muted"></p>
           )}
         </Card.Body>
       </Card>
@@ -147,7 +147,7 @@ const Bio = () => {
     <div className={`${styles.bioContainerWrapper} ${selectedCharacter ? styles.overlayActive : ""}`}>
       <Container className={styles.bioContainer}>
         <h1 className={`text-center ${styles.bioTitle} mt-3`}>Meet Your Bible Buddies!</h1>
-        <p>Tap a card to learn more! <br /> <i>"Let the wise listen and add to their learning." — Proverbs 1:5</i></p>
+        <p className="text-center">Tap a card to discover amazing Bible heroes and their stories. Each friend has something special to share! <br/> <br/><i>"Let the wise listen and add to their learning." — Proverbs 1:5</i></p>
         <Row className={styles.bioJustifyContentCenter}>
           {characters.map((character, index) => (
             <BioCard

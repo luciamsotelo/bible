@@ -56,11 +56,21 @@
   margin-top: 10px;
 }
 
+.bioTitle {
+  font-size: 3rem;
+  text-align: center;
+  color: #ff6f00; /* Bright Yellow - Great contrast! */
+  text-shadow: 2px 2px 4px black; /* Stronger shadow for readability */
+  margin-bottom: 20px;
+}
+
+
 /* Responsive Fix for Smaller Screens */
 @media (max-width: 575px) {
   .bioTitle {
     font-size: 2rem;
   }
+
 
   .selectedCard {
     width: 95%;
