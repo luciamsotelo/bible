@@ -103,6 +103,15 @@ button:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
 }
 
+.hangman-letters .letter-button.used {
+  background-color: #ccc; /* Light gray to indicate it's used */
+  color: #666; /* Darker gray for contrast */
+  pointer-events: none; /* Prevents further clicks */
+  opacity: 0.6; /* Makes it visually faded */
+  transform: none; /* Prevent hover effects */
+}
+
+
 .hangman-letters .letter-button:hover {
   background-color: goldenrod;
   transform: scale(1.1);

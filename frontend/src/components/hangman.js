@@ -215,17 +215,18 @@ const Hangman = () => {
       </div>
 
       <div className="hangman-letters">
-        {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
-          <button
-            key={letter}
-            className="letter-button"
-            onClick={() => handleGuess(letter)}
-            disabled={guesses.includes(letter) || wrongGuesses.includes(letter)}
-          >
-            {letter}
-          </button>
-        ))}
-      </div>
+  {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
+    <button
+      key={letter}
+      className={`letter-button ${guesses.includes(letter) || wrongGuesses.includes(letter) ? 'used' : ''}`}
+      onClick={() => handleGuess(letter)}
+      disabled={guesses.includes(letter) || wrongGuesses.includes(letter)}
+    >
+      {letter}
+    </button>
+  ))}
+</div>
+
 
       <div className="hangman-status">
         <p>Wrong Guesses: {wrongGuesses.join(", ")}</p>
