@@ -1,18 +1,19 @@
+/* 🌍 Global Styles */
 html, body {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
 }
 
-/* Ensures page fills the screen */
+/* 🖥️ Fullscreen Layout */
 .fullScreen {
-  min-height: 100vh; /* Full viewport height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Allows scrolling if needed */
 }
 
-/* Centers content while ensuring proper spacing */
+/* 📌 Page Container */
 .pageContainer {
   flex: 1; /* Makes content fill available space */
   display: flex;
@@ -24,123 +25,84 @@ html, body {
   padding-bottom: 80px; /* Prevents buttons from being covered */
 }
 
-/* Story styles */
+/* 📖 Story Container */
 .storyContainer {
   max-width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 80px; /* Space to prevent buttons from hiding */
+  padding-bottom: 80px;
 }
 
-/* Footer stays at the bottom */
-.footer {
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-  position: relative;
-  bottom: 0;
-}
-
-/* Responsive Typography */
+/* ✏️ Typography */
 .storyTitle {
   font-family: "Quicksand", sans-serif;
-  color: black;
-  text-shadow: 2px 2px 8px goldenrod;
-  font-size: 2rem;
+  color: greenyellow;
+  text-shadow: 2px 2px 1px black;
   text-align: center;
 }
 
 .storyDescription {
-  font-size: 1.2rem;
   font-family: "Quicksand", sans-serif;
   color: black;
   text-align: center;
+  font-size: 1rem;
 }
 
-/* Responsive Image */
+/* 🖼️ Story Image */
 .storyImage {
-  width: 60%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 500px;
   height: auto;
   border-radius: 20px;
-  object-fit: contain;
+  object-fit: cover; /* Ensures image fills container without distortion */
+  display: block;
+  margin: 0 auto; /* Centers the image */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .storyTitle {
-    font-size: 1.2rem;
-  }
-
-  .storyDescription {
-    font-size: .8rem;
-  }
-
-  .storyImage {
-    width: 80%;
-    max-width: 300px;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1200px) {
-  .storyTitle {
-    font-size: 2.5rem;
-  }
-
-  .storyDescription {
-    font-size: 1.5rem;
-  }
-
-  .storyImage {
-    width: 50%;
-    max-width: 500px;
-  }
-}
-
-/* Blinking effect remains active */
-@keyframes blinkBorder {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
-    border-color: yellow;
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255, 165, 0, 1);
-    border-color: orange;
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
-    border-color: yellow;
-  }
-}
-
-/* Apply blinking effect to Play Story button */
-.blinkingButton {
-  animation: blinkBorder 1s infinite alternate;
-  border: 3px solid yellow;
-  transition: border-color 0.3s ease-in-out;
-}
-
-/* Default button styles */
+/* 🎨 Button Styles */
 .btn {
   font-size: 1rem;
   padding: 10px 20px;
   transition: all 0.3s ease-in-out;
 }
 
-/* Adjust button size at 419px width */
-@media (max-width: 437px) {
-  .storyTitle {
-    font-size: 1.3rem;
-  }
-
-  .storyDescription {
-    font-size: .7rem;
-  }
+/* ✨ Blinking Effect for Play Story Button */
+@keyframes blinkBorder {
+  0% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.8); border-color: yellow; }
+  50% { box-shadow: 0 0 20px rgba(255, 165, 0, 1); border-color: orange; }
+  100% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.8); border-color: yellow; }
 }
 
+.blinkingButton {
+  animation: blinkBorder 1s infinite alternate;
+  border: 3px solid yellow;
+  transition: border-color 0.3s ease-in-out;
+}
 
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .storyTitle { font-size: 1.5rem; }
+  .storyDescription { font-size: 0.9rem; }
+  .storyImage { width: 90%; border-radius: 15px; }
+}
 
+@media (max-width: 480px) {
+  .storyTitle { font-size: 1.2rem; }
+  .storyDescription { font-size: 0.8rem; }
+  .storyImage { width: 100%; border-radius: 15px; }
+}
+
+@media (max-width: 437px) {
+  .storyTitle { font-size: 1.3rem; }
+  .storyDescription { font-size: 0.7rem; }
+}
+
+/* 🖥️ Large Screens */
+@media (min-width: 1200px) {
+  .storyTitle { font-size: 2.5rem; }
+  .storyDescription { font-size: 1.5rem; }
+  .storyImage { width: 50%; max-width: 500px; }
+}

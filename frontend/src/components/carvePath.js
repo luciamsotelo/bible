@@ -95,35 +95,37 @@ const StoryComponent = () => {
 
   return (
     <div className={`container text-center ${styles.storyContainer}`}>
-      <h2 className={styles.storyTitle}>{currentStep.title}</h2>
+      <h1 className={styles.storyTitle}>{currentStep.title}</h1>
       <p className={styles.storyDescription}>{currentStep.description}</p>
       <div className="">
-        {currentStep.images.length > 0 && (
-          <img
-            src={currentStep.images[imageIndex]?.src}
-            alt="Story Scene"
-            className={`img-fluid border border-light border-5 ${styles.storyImage}`}
-          />
-        )}
-      </div>
+
       {currentStep.audio && (
-        <div className="mb-">
+        <div className="">
           <button
-            className={`btn btn-primary ${blink ? styles.blinkingButton : ""}`}
+            className={`btn btn-primary m-2  ${blink ? styles.blinkingButton : ""}`}
             onClick={playAudio}
           >
             {isPaused ? "Resume Story" : "Play Story"}
           </button>
-          <button className="btn btn-secondary" onClick={pauseAudio}>
+          <button className="btn btn-secondary m-2" onClick={pauseAudio}>
             Pause
           </button>
         </div>
       )}
+
+        {currentStep.images.length > 0 && (
+          <img
+            src={currentStep.images[imageIndex]?.src}
+            alt="Story Scene"
+            className={`img-fluid border border-light border-5 mb-3 ${styles.storyImage}`}
+          />
+        )}
+      </div>
       <div>
         {currentStep.choices.map((choice, index) => (
           <button
             key={index}
-            className="btn btn-outline-light bg-success text-white m-"
+            className="btn btn-outline-light bg-success text-white m-2"
             onClick={() => handleChoice(choice.nextStep)}
           >
             {choice.text}
