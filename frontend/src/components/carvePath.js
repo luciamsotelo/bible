@@ -1,84 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "../styles/carvePath.module.css"; // Import the CSS Module
+import styles from "../styles/carvePath.module.css";
 
 const StoryComponent = () => {
   const [story, setStory] = useState(null);
   const [currentStep, setCurrentStep] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
-  const audioRef = React.useRef(null);
   const [isPaused, setIsPaused] = useState(false);
-  const [blink, setBlink] = useState(true); // State for blinking effect
+  const [blink, setBlink] = useState(true);
+  const audioRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     fetch("/storyData.json")
-      .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch story data");
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         setStory(data);
         setCurrentStep(data.steps[data.start]);
       })
       .catch((error) => console.error("Error loading story data:", error));
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+      clearTimeout(timeoutRef.current);
+    };
   }, []);
 
-  // Function to start and stop blinking effect
   const triggerBlinkEffect = () => {
     setBlink(true);
-    setTimeout(() => {
-      setBlink(false);
-    }, 5000); // Stops blinking after 5 seconds
+    setTimeout(() => setBlink(false), 5000);
   };
 
   useEffect(() => {
-    triggerBlinkEffect(); // Start blinking on initial load
-  }, []);
+    triggerBlinkEffect();
+  }, [currentStep]);
 
   const handleChoice = (nextStep) => {
     setCurrentStep(story.steps[nextStep]);
-    setImageIndex(0);
-    setIsPlaying(false);
     setIsPaused(false);
-    triggerBlinkEffect(); // Restart blinking when a new step is chosen
+    triggerBlinkEffect();
 
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
+    clearTimeout(timeoutRef.current);
+    setImageIndex(0);
   };
 
   useEffect(() => {
-    let timeout;
-    if (isPlaying && currentStep?.images?.length > 0) {
-      const currentImage = currentStep.images[imageIndex];
-      timeout = setTimeout(() => {
-        setImageIndex((prevIndex) =>
-          prevIndex < currentStep.images.length - 1 ? prevIndex + 1 : 0
-        );
-      }, currentImage.duration);
+    if (currentStep?.images?.length > 1) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        setImageIndex((prev) => (prev + 1) % currentStep.images.length);
+      }, currentStep.images[imageIndex].duration);
     }
-    return () => clearTimeout(timeout);
-  }, [isPlaying, currentStep, imageIndex]);
+
+    return () => clearTimeout(timeoutRef.current);
+  }, [currentStep, imageIndex]);
 
   const playAudio = () => {
-    if (!audioRef.current) {
+    if (!audioRef.current || audioRef.current.src !== currentStep.audio) {
       audioRef.current = new Audio(currentStep.audio);
-      audioRef.current.currentTime = 0;
     }
-    if (isPaused) {
-      audioRef.current.play();
-      setIsPaused(false);
-    } else {
-      audioRef.current.pause();
-      audioRef.current = new Audio(currentStep.audio);
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-      setImageIndex(0);
-    }
-    setIsPlaying(true);
-    audioRef.current.onended = () => setIsPlaying(false);
+    audioRef.current.play();
+    setIsPaused(false);
   };
 
   const pauseAudio = () => {
@@ -86,23 +75,30 @@ const StoryComponent = () => {
       audioRef.current.pause();
       setIsPaused(true);
     }
-    setIsPlaying(false);
   };
 
-  if (!currentStep) {
-    return <div className="text-center mt-4">Loading story...</div>;
-  }
+  const restartStory = () => {
+    setCurrentStep(story.steps[story.start]);
+    setImageIndex(0);
+    setIsPaused(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    clearTimeout(timeoutRef.current);
+  };
+
+  if (!currentStep) return <div className="text-center mt-4">Loading story...</div>;
 
   return (
     <div className={`container text-center ${styles.storyContainer}`}>
       <h1 className={styles.storyTitle}>{currentStep.title}</h1>
       <p className={styles.storyDescription}>{currentStep.description}</p>
-      <div className="">
 
       {currentStep.audio && (
-        <div className="">
+        <div>
           <button
-            className={`btn btn-primary m-2  ${blink ? styles.blinkingButton : ""}`}
+            className={`btn btn-primary m-2 ${blink ? styles.blinkingButton : ""}`}
             onClick={playAudio}
           >
             {isPaused ? "Resume Story" : "Play Story"}
@@ -113,24 +109,37 @@ const StoryComponent = () => {
         </div>
       )}
 
-        {currentStep.images.length > 0 && (
-          <img
-            src={currentStep.images[imageIndex]?.src}
-            alt="Story Scene"
-            className={`img-fluid border border-light border-5 mb-3 ${styles.storyImage}`}
-          />
-        )}
-      </div>
+      {currentStep.images?.length > 0 && (
+        <img
+          src={currentStep.images[imageIndex]?.src}
+          alt="Story Scene"
+          className={`img-fluid border border-light border-5 mb-3 ${styles.storyImage}`}
+        />
+      )}
+
       <div>
-        {currentStep.choices.map((choice, index) => (
-          <button
-            key={index}
-            className="btn btn-outline-light bg-success text-white m-2"
-            onClick={() => handleChoice(choice.nextStep)}
-          >
-            {choice.text}
-          </button>
-        ))}
+        {currentStep.choices.length > 0 ? (
+          currentStep.choices.map((choice, index) => (
+            <button
+              key={index}
+              className="btn btn-outline-light bg-success text-white m-2"
+              onClick={() => handleChoice(choice.nextStep)}
+            >
+              {choice.text}
+            </button>
+          ))
+        ) : (
+          <div className="mt-4">
+            <h3 className={styles.storyTitle}>🙏 A Moment of Reflection 🙏</h3>
+            <p className={styles.storyDescription}>
+              Thank you for joining Eli on his journey. Reflect on your choices and remember
+              that God is always guiding you.
+            </p>
+            <button className="btn btn-success" onClick={restartStory}>
+              Restart Story
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
