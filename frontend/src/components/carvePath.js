@@ -7,6 +7,7 @@ const StoryComponent = () => {
   const [currentStep, setCurrentStep] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [blink, setBlink] = useState(true);
   const audioRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -41,6 +42,7 @@ const StoryComponent = () => {
   const handleChoice = (nextStep) => {
     setCurrentStep(story.steps[nextStep]);
     setIsPaused(false);
+    setIsPlaying(false);
     triggerBlinkEffect();
 
     if (audioRef.current) {
@@ -52,7 +54,7 @@ const StoryComponent = () => {
   };
 
   useEffect(() => {
-    if (currentStep?.images?.length > 1) {
+    if (isPlaying && currentStep?.images?.length > 1) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         setImageIndex((prev) => (prev + 1) % currentStep.images.length);
@@ -60,7 +62,7 @@ const StoryComponent = () => {
     }
 
     return () => clearTimeout(timeoutRef.current);
-  }, [currentStep, imageIndex]);
+  }, [currentStep, imageIndex, isPlaying]);
 
   const playAudio = () => {
     if (!audioRef.current || audioRef.current.src !== currentStep.audio) {
@@ -68,19 +70,28 @@ const StoryComponent = () => {
     }
     audioRef.current.play();
     setIsPaused(false);
+    setIsPlaying(true);
+
+    audioRef.current.onended = () => {
+      setIsPlaying(false);
+      clearTimeout(timeoutRef.current);
+    };
   };
 
   const pauseAudio = () => {
     if (audioRef.current) {
       audioRef.current.pause();
       setIsPaused(true);
+      setIsPlaying(false);
     }
+    clearTimeout(timeoutRef.current);
   };
 
   const restartStory = () => {
     setCurrentStep(story.steps[story.start]);
     setImageIndex(0);
     setIsPaused(false);
+    setIsPlaying(false);
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
