@@ -26,6 +26,7 @@ import BackgroundVideo from './components/BackgroundVideo';
 import CarvePath from './pages/carvePathPage'
 import ContactUs from './pages/contactUs_page'
 import ComingSoon from './pages/comingSoon_page'
+import RandomPragerPage from './pages/randomPrayerPage'
 
 
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
             <Route path="/puzzles/garden-eden" element={<GardenOfEden />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/comingSoon" element={<ComingSoon />} />
+            <Route path='/prayer' element={ <RandomPragerPage />} />
           </Routes>
         </div>
       </BrowserRouter>
