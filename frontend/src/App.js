@@ -27,6 +27,7 @@ import CarvePath from './pages/carvePathPage'
 import ContactUs from './pages/contactUs_page'
 import ComingSoon from './pages/comingSoon_page'
 import RandomPragerPage from './pages/randomPrayerPage'
+import AnnaPath from './pages/AnnaPage'
 
 
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/comingSoon" element={<ComingSoon />} />
             <Route path='/prayer' element={ <RandomPragerPage />} />
+            <Route path='/anna' element={ <AnnaPath /> } />
           </Routes>
         </div>
       </BrowserRouter>

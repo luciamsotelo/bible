@@ -1,0 +1,117 @@
+{
+    "start": "step1",
+    "steps": {
+      "step1": {
+        "title": "Anna's Special Quest",
+        "description": "Anna stood at the entrance of a beautiful forest filled with colorful flowers and towering trees. A soft voice whispered, 'Trust Me, Anna. Follow the path I've laid for you.' She saw two paths ahead, one bright and open, the other shaded and mysterious.",
+        "images": [
+          { "src": "/images/annastep1.jpg", "duration": 9000 }
+        ],
+        "audio": "/audio/step1.mp3",
+        "choices": [
+          { "text": "Bright Path", "nextStep": "step2" },
+          { "text": "Mysterious Path", "nextStep": "step3" }
+        ]
+      },
+      "step2": {
+        "title": "Sunlit Lessons",
+        "description": "Anna chose the bright path and soon met friendly faces. They invited her to join their game but teased someone who lost. Anna heard the whisper again, reminding her to be kind.",
+        "images": [
+          { "src": "/images/annastep2.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step2.mp3",
+        "choices": [
+          { "text": "Join and tease", "nextStep": "step4" },
+          { "text": "Be kind instead", "nextStep": "step5" }
+        ]
+      },
+      "step3": {
+        "title": "Shadows of Trust",
+        "description": "Anna bravely entered the shaded path. The darkness was scary, but she trusted God's voice. Soon, she found a small glowing lantern on the ground.",
+        "images": [
+          { "src": "/images/annastep3.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step3.mp3",
+        "choices": [
+          { "text": "Pick up the lantern", "nextStep": "step6" },
+          { "text": "Ignore the lantern", "nextStep": "step7" }
+        ]
+      },
+      "step4": {
+        "title": "A Lesson Learned",
+        "description": "Joining in teasing left Anna feeling bad inside. Realizing her mistake, she prayed, and God gently taught her the importance of kindness.",
+        "images": [
+          { "src": "/images/annastep4.jpg", "duration": 9000 }
+        ],
+        "audio": "/audio/step4.mp3",
+        "choices": [
+          { "text": "Continue forward", "nextStep": "step8" }
+        ]
+      },
+      "step5": {
+        "title": "Kindness Rewarded",
+        "description": "Anna chose kindness and comforted the teased child. The other children saw her example and felt inspired to be kind too.",
+        "images": [
+          { "src": "/images/annastep5.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step5.mp3",
+        "choices": [
+          { "text": "Continue forward", "nextStep": "step8" }
+        ]
+      },
+      "step6": {
+        "title": "Light in Darkness",
+        "description": "With the lantern, Anna could see clearly and safely navigated the dark path. She realized trusting God brought clarity and safety.",
+        "images": [
+          { "src": "/images/annastep6.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step6.mp3",
+        "choices": [
+          { "text": "Continue forward", "nextStep": "step9" }
+        ]
+      },
+      "step7": {
+        "title": "Lost but Found",
+        "description": "Without the lantern, Anna felt scared and lost. But she remembered God's promise, prayed for help, and soon found her way again.",
+        "images": [
+          { "src": "/images/annastep7.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step7.mp3",
+        "choices": [
+          { "text": "Continue forward", "nextStep": "step9" }
+        ]
+      },
+      "step8": {
+        "title": "Gift of Friendship",
+        "description": "Anna discovered that kindness and friendship opened many doors. She felt God's love through the smiles of her new friends.",
+        "images": [
+          { "src": "/images/annastep8.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step8.mp3",
+        "choices": [
+          { "text": "Finish your journey", "nextStep": "step10" }
+        ]
+      },
+      "step9": {
+        "title": "Trust and Safety",
+        "description": "Anna reached a clearing and saw a beautiful waterfall. She understood God's trustworthiness had kept her safe through her fears.",
+        "images": [
+          { "src": "/images/annastep9.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step9.mp3",
+        "choices": [
+          { "text": "Finish your journey", "nextStep": "step10" }
+        ]
+      },
+      "step10": {
+        "title": "Home with Wisdom",
+        "description": "Anna returned home, heart full of wisdom and love. She knew her adventures taught her valuable lessons of kindness, honesty, and trusting God.",
+        "images": [
+          { "src": "/images/annastep10.jpg", "duration": 8000 }
+        ],
+        "audio": "/audio/step10.mp3",
+        "choices": []
+      }
+    }
+  }
+  
