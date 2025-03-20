@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RandomPrayer = () => {
@@ -32,9 +33,9 @@ const RandomPrayer = () => {
         </h3>
         <div className="mt-4" style={{ minHeight: '50px' }}>
           {showButton && (
-            <a href="/" className="btn btn-outline-light">
+            <Link to="/" className="btn btn-outline-light">
               Home
-            </a>
+            </Link>
           )}
         </div>
       </div>
