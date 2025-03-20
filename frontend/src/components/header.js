@@ -49,6 +49,9 @@ const Header = () => {
             <Link to="/prayer">
               <Button className={styles.navButton}>Daily Pray</Button>
             </Link>
+            <Link to="/lessons">
+              <Button className={styles.navButton}>Lessons</Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
