@@ -21,8 +21,8 @@ const RandomPrayer = () => {
   }, []);
 
   return (
-    <div className="container-fluid vh-100 d-flex align-items-center justify-content-center bg-black text-white">
-      <div className="col-lg-8 col-md-10 col-sm-12 text-center px-4">
+    <div className="d-flex flex-column flex-grow-1 align-items-center justify-content-center">
+      <div className="col-lg-8 col-md-10 col-sm-12 text-center px-4 ">
         <h3>
           {prayer.split('\n').map((line, index) => (
             <React.Fragment key={index}>

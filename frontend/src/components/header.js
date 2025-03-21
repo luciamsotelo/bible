@@ -44,7 +44,7 @@ const Header = () => {
               <Button className={styles.navButton}>Adventure Map</Button>
             </Link>
             <Link to="/prayer">
-              <Button className={styles.navButton}>Daily Pray</Button>
+              <Button className={styles.navButton}>Daily Prayer</Button>
             </Link>
             <Link to="/lessons">
               <Button className={styles.navButton}>Lessons</Button>
