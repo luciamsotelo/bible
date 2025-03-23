@@ -21,23 +21,21 @@ const RandomPrayer = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-column flex-grow-1 align-items-center justify-content-center">
-      <div className="col-lg-8 col-md-10 col-sm-12 text-center px-4 ">
-        <h3>
-          {prayer.split('\n').map((line, index) => (
-            <React.Fragment key={index}>
-              {line}
-              {index !== prayer.split('\n').length - 1 && <br />}
-            </React.Fragment>
-          ))}
-        </h3>
-        <div className="mt-4" style={{ minHeight: '50px' }}>
-          {showButton && (
-            <Link to="/" className="btn btn-outline-light">
-              Home
-            </Link>
-          )}
-        </div>
+    <div className="text-center px-4" style={{ maxWidth: '800px' }}>
+      <h3>
+        {prayer.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            {index !== prayer.split('\n').length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </h3>
+      <div className="mt-4" style={{ minHeight: '50px' }}>
+        {showButton && (
+          <Link to="/" className="btn btn-outline-light">
+            Home
+          </Link>
+        )}
       </div>
     </div>
   );
