@@ -7,7 +7,7 @@
         "images": [
           { "src": "/images/annastep1.jpg", "duration": 9000 }
         ],
-        "audio": "/audio/step1.mp3",
+        "audio": "/audio/annaStep1.mp3",
         "choices": [
           { "text": "Bright Path", "nextStep": "step2" },
           { "text": "Mysterious Path", "nextStep": "step3" }
@@ -19,7 +19,7 @@
         "images": [
           { "src": "/images/annastep2.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step2.mp3",
+        "audio": "/audio/annaStep2.mp3",
         "choices": [
           { "text": "Join and tease", "nextStep": "step4" },
           { "text": "Be kind instead", "nextStep": "step5" }
@@ -31,7 +31,7 @@
         "images": [
           { "src": "/images/annastep3.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step3.mp3",
+        "audio": "/audio/annaStep3.mp3",
         "choices": [
           { "text": "Pick up the lantern", "nextStep": "step6" },
           { "text": "Ignore the lantern", "nextStep": "step7" }
@@ -43,7 +43,7 @@
         "images": [
           { "src": "/images/annastep4.jpg", "duration": 9000 }
         ],
-        "audio": "/audio/step4.mp3",
+        "audio": "/audio/annaStep4.mp3",
         "choices": [
           { "text": "Continue forward", "nextStep": "step8" }
         ]
@@ -54,7 +54,7 @@
         "images": [
           { "src": "/images/annastep5.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step5.mp3",
+        "audio": "/audio/annaStep5.mp3",
         "choices": [
           { "text": "Continue forward", "nextStep": "step8" }
         ]
@@ -65,7 +65,7 @@
         "images": [
           { "src": "/images/annastep6.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step6.mp3",
+        "audio": "/audio/annaStep6.mp3",
         "choices": [
           { "text": "Continue forward", "nextStep": "step9" }
         ]
@@ -76,7 +76,7 @@
         "images": [
           { "src": "/images/annastep7.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step7.mp3",
+        "audio": "/audio/annaStep7.mp3",
         "choices": [
           { "text": "Continue forward", "nextStep": "step9" }
         ]
@@ -87,7 +87,7 @@
         "images": [
           { "src": "/images/annastep8.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step8.mp3",
+        "audio": "/audio/annaStep8.mp3",
         "choices": [
           { "text": "Finish your journey", "nextStep": "step10" }
         ]
@@ -98,7 +98,7 @@
         "images": [
           { "src": "/images/annastep9.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step9.mp3",
+        "audio": "/audio/annaStep9.mp3",
         "choices": [
           { "text": "Finish your journey", "nextStep": "step10" }
         ]
@@ -109,7 +109,7 @@
         "images": [
           { "src": "/images/annastep10.jpg", "duration": 8000 }
         ],
-        "audio": "/audio/step10.mp3",
+        "audio": "/audio/annaStep10.mp3",
         "choices": []
       }
     }
