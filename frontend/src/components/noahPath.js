@@ -12,7 +12,7 @@ const StoryComponent = () => {
   const timeoutRef = useRef(null);
 
   useEffect(() => {
-    fetch("/AnnaStory.json")
+    fetch("/NoahStory.json")
       .then((response) => response.json())
       .then((data) => {
         setStory(data);
@@ -122,7 +122,7 @@ const StoryComponent = () => {
       {currentStep.images?.length > 0 && (
         <img
           src={currentStep.images[imageIndex]?.src}
-          alt="Anna's Adventure"
+          alt="Noah's Adventure"
           className={`img-fluid border border-light border-5 mb-3 ${styles.storyImage}`}
         />
       )}
@@ -140,9 +140,9 @@ const StoryComponent = () => {
           ))
         ) : (
           <div className="mt-4">
-            <h3 className={styles.storyTitle}>🌸 Anna's Reflection 🌸</h3>
+            <h3 className={styles.storyTitle}>🤔 Noah's Big Decision 🤔</h3>
             <p className={styles.storyDescription}>
-              Thank you for joining Anna on her special quest! Remember, God is always with you, guiding your heart and your steps.
+            Thank you for joining Noah on his journey! Remember, God is always with you, guiding your heart and your steps, just as He guided Noah through every challenge.
             </p>
             <button className="btn btn-success" onClick={restartStory}>
               Restart Story

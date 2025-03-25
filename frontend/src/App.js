@@ -28,7 +28,10 @@ import ContactUs from './pages/contactUs_page'
 import ComingSoon from './pages/comingSoon_page'
 import RandomPragerPage from './pages/randomPrayerPage'
 import AnnaPath from './pages/AnnaPage'
+import NoahPath from './pages/NoahPage'
+import ElizabethPath from './pages/ElizabethPage'
 import LessonsPage from './pages/LessonsPage'
+
 
 
 const App = () => {
@@ -67,6 +70,8 @@ const App = () => {
             <Route path="/comingSoon" element={<ComingSoon />} />
             <Route path='/prayer' element={ <RandomPragerPage />} />
             <Route path='/anna' element={ <AnnaPath /> } />
+            <Route path='/noahStory' element={ <NoahPath /> } />
+            <Route path='/elizabeth' element={ <ElizabethPath /> } />
             <Route path='lessons' element={ <LessonsPage /> } />
           </Routes>
         </div>

@@ -149,6 +149,9 @@ const StoryComponent = () => {
             <button className="btn btn-success" onClick={restartStory}>
               Restart Story
             </button>
+            <button className="btn btn-success  m-2" onClick={() => window.location.href = '/lessons'}>
+  Lessons Page
+</button>
           </div>
         )}
       </div>

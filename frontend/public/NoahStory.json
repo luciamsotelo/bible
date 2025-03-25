@@ -1,0 +1,115 @@
+{
+  "start": "step1",
+  "steps": {
+    "step1": {
+      "title": "Noah's Big Decision",
+      "description": "Noah was walking home from the market when he spotted something shiny on the ground. It was a small pouch filled with coins! He looked around and saw no one nearby. What should he do?",
+      "images": [
+        { "src": "/images/noah_step1.jpg", "duration": 9000 }
+      ],
+      "audio": "/audio/step1.mp3",
+      "choices": [
+        { "text": "Keep the coins", "nextStep": "step2" },
+        { "text": "Find the owner", "nextStep": "step3" }
+      ]
+    },
+    "step2": {
+      "title": "A Guilty Heart",
+      "description": "Noah decided to keep the coins, thinking no one would know. But as he walked home, his heart felt heavy. That night, he couldn't sleep, remembering Proverbs 10:2: 'Ill-gotten treasures have no lasting value, but righteousness delivers from death.'",
+      "images": [
+        { "src": "/images/noah_step2.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step2.mp3",
+      "choices": [
+        { "text": "Return the coins", "nextStep": "step3" },
+        { "text": "Ignore the guilt", "nextStep": "step4" }
+      ]
+    },
+    "step3": {
+      "title": "Honesty Rewarded",
+      "description": "Noah searched the marketplace and found a woman looking distressed. When he returned the coins, she was overjoyed! She had lost her family’s savings. Noah felt peace, remembering Luke 6:31: 'Do to others as you would have them do to you.'",
+      "images": [
+        { "src": "/images/noah_step3.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step3.mp3",
+      "choices": [
+        { "text": "Walk home", "nextStep": "step5" }
+      ]
+    },
+    "step4": {
+      "title": "Lost Trust",
+      "description": "Noah ignored the guilt and spent the coins. But later, his friend saw him with something expensive and asked where he got it. Noah stammered, realizing he had to lie. Proverbs 12:22 says, 'The Lord detests lying lips, but he delights in people who are trustworthy.'",
+      "images": [
+        { "src": "/images/noah_step4.jpg", "duration": 9000 }
+      ],
+      "audio": "/audio/step4.mp3",
+      "choices": [
+        { "text": "Admit the truth", "nextStep": "step3" },
+        { "text": "Continue lying", "nextStep": "step6" }
+      ]
+    },
+    "step5": {
+      "title": "A Friend in Need",
+      "description": "As Noah walked home, he saw his friend being teased by older boys. His friend looked sad. Noah remembered Proverbs 17:17: 'A friend loves at all times.' Should he step in?",
+      "images": [
+        { "src": "/images/noah_step5.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step5.mp3",
+      "choices": [
+        { "text": "Help his friend", "nextStep": "step7" },
+        { "text": "Ignore and walk away", "nextStep": "step8" }
+      ]
+    },
+    "step6": {
+      "title": "A Heavy Burden",
+      "description": "Noah's lies piled up. He lost his friend’s trust and felt distant from God. Psalm 34:14 reminded him: 'Turn from evil and do good; seek peace and pursue it.' Should he make things right?",
+      "images": [
+        { "src": "/images/noah_step6.jpg", "duration": 9000 }
+      ],
+      "audio": "/audio/step6.mp3",
+      "choices": [
+        { "text": "Confess and return the coins", "nextStep": "step3" }]
+    },
+    "step7": {
+      "title": "Standing for Others",
+      "description": "Noah stood up for his friend, saying, 'We should treat others kindly.' The bullies hesitated, then walked away. His friend smiled, and Noah felt proud, remembering Joshua 1:9: 'Be strong and courageous.'",
+      "images": [
+        { "src": "/images/noah_step7.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step7.mp3",
+      "choices": [
+        { "text": "Walk home together", "nextStep": "step9" }
+      ]
+    },
+    "step8": {
+      "title": "Regret and Reflection",
+      "description": "Noah walked away but felt guilty. Later, he saw his friend alone and sad. He remembered James 4:17: 'If anyone knows the good they ought to do and doesn’t do it, it is sin.' Should he go back and apologize?",
+      "images": [
+        { "src": "/images/noah_step8.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step8.mp3",
+      "choices": [
+        { "text": "Apologize and support his friend", "nextStep": "step7" }]
+    },
+    "step9": {
+      "title": "A Heart Full of Joy",
+      "description": "Noah and his friend talked on the way home, and he felt thankful for choosing kindness. He realized doing the right thing brings joy. 'Let us not grow weary of doing good, for in due season we will reap a harvest' (Galatians 6:9).",
+      "images": [
+        { "src": "/images/noah_step9.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step9.mp3",
+      "choices": [
+        { "text": "Reflect on the journey", "nextStep": "step10" }]
+    },
+    "step10": {
+      "title": "Lessons of the Journey",
+      "description": "Noah lay in bed that night, reflecting on his choices. He thanked God for helping him choose honesty and kindness. He learned that small choices shape who we become, and God is always guiding us.",
+      "images": [
+        { "src": "/images/noah_step10.jpg", "duration": 8000 }
+      ],
+      "audio": "/audio/step10.mp3",
+      "choices": []
+    }
+  }
+}
+
