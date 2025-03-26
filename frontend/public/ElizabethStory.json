@@ -59,7 +59,8 @@
       "title": "A Hard Goodbye",
       "description": "Elizabeth told the girl to go home and ask for help. The girl nodded sadly and walked away. Elizabeth hoped she had done the right thing but still felt unsure.",
       "images": [
-        { "src": "/images/elizabeth_step5.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep5.jpg", "duration": 7700 },
+        { "src": "/images/elizaStep5-1.jpg", "duration": 8000 }
       ],
       "audio": "/audio/elizaStep5.mp3",
       "choices": [
@@ -82,7 +83,8 @@
       "title": "Friendship and Faith",
       "description": "Elizabeth walked the girl home, and the girl’s mother thanked her with a big smile. Elizabeth realized that small acts of kindness could show God’s love in big ways.",
       "images": [
-        { "src": "/images/elizabeth_step7.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep7.jpg", "duration": 3000 },
+        { "src": "/images/elizaStep7-1.jpg", "duration": 15000 }
       ],
       "audio": "/audio/elizaStep7.mp3",
       "choices": [
