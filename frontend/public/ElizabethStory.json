@@ -5,9 +5,11 @@
       "title": "Elizabeth's Important Choice",
       "description": "Elizabeth was walking home when she heard someone crying behind a nearby tree. She peeked around and saw a younger girl sitting on the ground, looking upset. Elizabeth felt a tug in her heart. Should she stop to help or continue home?",
       "images": [
-        { "src": "/images/elizabeth_step1.jpg", "duration": 9000 }
+        { "src": "/images/ElizaStep1.jpg", "duration": 6150 },
+        { "src": "/images/elizaStep1-2.jpg", "duration": 2300 },
+        { "src": "/images/elizaStep1-3.jpeg", "duration": 12000 }
       ],
-      "audio": "/audio/step1.mp3",
+      "audio": "/audio/elizaStep1.mp3",
       "choices": [
         { "text": "Stop to help", "nextStep": "step2" },
         { "text": "Keep walking", "nextStep": "step3" }
@@ -17,9 +19,10 @@
       "title": "A Kind Heart",
       "description": "Elizabeth knelt beside the girl and asked what was wrong. The girl had lost her bracelet, a gift from her grandmother. Elizabeth could either help her search or encourage her to go home and ask for help there.",
       "images": [
-        { "src": "/images/elizabeth_step2.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep2.jpg", "duration": 4000 },
+        { "src": "/images/elizaStep2-1.jpeg", "duration": 13000 }
       ],
-      "audio": "/audio/step2.mp3",
+      "audio": "/audio/elizaStep2.mp3",
       "choices": [
         { "text": "Help find the bracelet", "nextStep": "step4" },
         { "text": "Encourage her to go home", "nextStep": "step5" }
@@ -29,9 +32,9 @@
       "title": "Missed Opportunity",
       "description": "Elizabeth kept walking, but her heart felt heavy. She thought about the girl’s tears and wondered if she should go back to check on her.",
       "images": [
-        { "src": "/images/elizabeth_step3.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep3.jpg", "duration": 8000 }
       ],
-      "audio": "/audio/step3.mp3",
+      "audio": "/audio/elizaStep3.mp3",
       "choices": [
         { "text": "Turn back to help", "nextStep": "step2" },
         { "text": "Keep going home", "nextStep": "step6" }
@@ -41,9 +44,13 @@
       "title": "The Lost Bracelet",
       "description": "Elizabeth and the girl searched together. After a while, Elizabeth spotted the bracelet near a bush! The girl was overjoyed, and Elizabeth felt warmth in her heart for helping someone in need.",
       "images": [
-        { "src": "/images/elizabeth_step4.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep4.jpg", "duration": 3700 },
+        { "src": "/images/elizaStep4-1.jpeg", "duration": 2500 },
+        { "src": "/images/elizaStep4-2.jpg", "duration": 2900 },
+        { "src": "/images/elizaStep4-3.jpg", "duration": 3000 },
+        { "src": "/images/elizaStep4-4.jpg", "duration": 8000 }
       ],
-      "audio": "/audio/step4.mp3",
+      "audio": "/audio/elizaStep4.mp3",
       "choices": [
         { "text": "Walk the girl home", "nextStep": "step7" }
       ]
@@ -54,7 +61,7 @@
       "images": [
         { "src": "/images/elizabeth_step5.jpg", "duration": 8000 }
       ],
-      "audio": "/audio/step5.mp3",
+      "audio": "/audio/elizaStep5.mp3",
       "choices": [
         { "text": "Continue home", "nextStep": "step6" }
       ]
@@ -63,9 +70,10 @@
       "title": "A Heavy Heart",
       "description": "Elizabeth arrived home but felt like she had missed a chance to do something kind. She prayed and asked God to help her listen to His voice next time.",
       "images": [
-        { "src": "/images/elizabeth_step6.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep6.jpg", "duration": 6000 },
+        { "src": "/images/elizaStep6-1.jpg", "duration": 8000 }
       ],
-      "audio": "/audio/step6.mp3",
+      "audio": "/audio/elizaStep6.mp3",
       "choices": [
         { "text": "Reflect on her choice", "nextStep": "step8" }
       ]
@@ -76,7 +84,7 @@
       "images": [
         { "src": "/images/elizabeth_step7.jpg", "duration": 8000 }
       ],
-      "audio": "/audio/step7.mp3",
+      "audio": "/audio/elizaStep7.mp3",
       "choices": [
         { "text": "Reflect on the journey", "nextStep": "step8" }
       ]
@@ -85,9 +93,10 @@
       "title": "Lessons of the Heart",
       "description": "That night, Elizabeth lay in bed thinking about the day. She knew God had given her a chance to show kindness. Next time, she promised she would always listen to that tug in her heart.",
       "images": [
-        { "src": "/images/elizabeth_step8.jpg", "duration": 8000 }
+        { "src": "/images/elizaStep8.jpg", "duration": 5000 },
+        { "src": "/images/elizaStep8-1.jpg", "duration": 15000 }
       ],
-      "audio": "/audio/step8.mp3",
+      "audio": "/audio/elizaStep8.mp3",
       "choices": []
     }
   }
