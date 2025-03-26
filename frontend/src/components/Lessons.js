@@ -21,7 +21,7 @@ const Lessons = () => {
     {
       title: "Noah's Big Decision",
       description: "Follow Noah on a heartfelt journey as he learns valuable lessons about honesty and kindness. Through challenges and choices, he discovers the importance of doing what is right, trusting God, and showing love to others.",
-      image: "/images/noahImage.jpg",
+      image: "/images/noahMain.jpg",
       link: "/noahStory"
     },
     {
