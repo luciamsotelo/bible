@@ -27,7 +27,7 @@ const Lessons = () => {
     {
       title: "Elizabeth's Important Choice",
       description: "Follow Elizabeth on a heartfelt journey as she learns valuable lessons about kindness and compassion. Through challenges and choices, she discovers the importance of helping others, trusting God, and listening to the gentle tug in her heart.",
-      image: "/images/elizabethImage.jpg",
+      image: "/images/elizaMain1.jpg",
       link: "/elizabeth"
     }
   ];
