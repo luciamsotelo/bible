@@ -109,7 +109,7 @@ const StoryComponent = () => {
           className="btn btn-warning m-5"
           onClick={() => navigate("/lessons")}
         >
-          ⬅ Back to Lessons Page
+          ⬅ Back to Story Page
         </button>
       </div>
 
