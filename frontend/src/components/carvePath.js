@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/carvePath.module.css";
+import { useNavigate } from "react-router-dom";
 
 const StoryComponent = () => {
   const [story, setStory] = useState(null);
@@ -11,6 +12,7 @@ const StoryComponent = () => {
   const [blink, setBlink] = useState(true);
   const audioRef = useRef(null);
   const timeoutRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/storyData.json")
@@ -103,6 +105,15 @@ const StoryComponent = () => {
 
   return (
     <div className={`container text-center ${styles.storyContainer}`}>
+      <div className="d-flex justify-content-start">
+        <button
+          className="btn btn-warning m-5"
+          onClick={() => navigate("/lessons")}
+        >
+          ⬅ Back to Lessons Page
+        </button>
+      </div>
+
       <h1 className={styles.storyTitle}>{currentStep.title}</h1>
       <p className={styles.storyDescription}>{currentStep.description}</p>
 
@@ -149,9 +160,9 @@ const StoryComponent = () => {
             <button className="btn btn-success" onClick={restartStory}>
               Restart Story
             </button>
-            <button className="btn btn-success  m-2" onClick={() => window.location.href = '/lessons'}>
-  Lessons Page
-</button>
+            <button className="btn btn-success m-2" onClick={() => navigate("/lessons")}>
+              Lessons Page
+            </button>
           </div>
         )}
       </div>
