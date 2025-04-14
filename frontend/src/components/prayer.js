@@ -71,8 +71,8 @@ const Prayer = () => {
 
   return (
     <div className={styles.prayerBody}>
-      <Container className="py-4">
-        <Row className="justify-content-center mb-4">
+      <Container className="">
+        <Row className="">
           <Col xs={12}>
             <div className={styles.prayerFloatContainer}>
               {prayers.length > 0 ? (
@@ -97,46 +97,52 @@ const Prayer = () => {
           </Col>
         </Row>
         {messageReceived && (
-          <Row className="justify-content-center">
-            <Col xs={10} md={8} className="text-center">
-              <div className={styles.prayerMessageBox}>
-                <h4>Your special prayer has been sent, and it was beautiful!</h4>
-              </div>
-            </Col>
-          </Row>
-        )}
-        <Row>
-          <Col xs={12} md={8} lg={6} className="mx-auto">
-            <Form onSubmit={handleSubmit} className={styles.prayerForm}>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
-                  required
-                  disabled={isSubmitting}
-                  className={styles.prayerInput}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  value={prayerRequest}
-                  onChange={(e) => setPrayerRequest(e.target.value)}
-                  placeholder="Enter your prayer request"
-                  required
-                  disabled={isSubmitting}
-                  className={styles.prayerTextarea}
-                />
-              </Form.Group>
-              <Button type="submit" className={styles.prayerSubmitBtn} disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Submit Prayer"}
-              </Button>
-            </Form>
+          <Row className="special-prayer-message justify-content-center">
+          <Col xs={10} md={8} className="text-center">
+            <div className={styles.prayerMessageBox}>
+              <p>Your special prayer has been sent, and it was beautiful!</p>
+            </div>
           </Col>
         </Row>
+        
+        )}
+        <Row className="justify-content-center">
+  <Col xs={12} md={8} lg={6} className="mb-5">
+    <Form onSubmit={handleSubmit} className={`${styles.prayerForm} text-center`}>
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+          required
+          disabled={isSubmitting}
+          className={styles.prayerInput}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Control
+          as="textarea"
+          rows={3}
+          value={prayerRequest}
+          onChange={(e) => setPrayerRequest(e.target.value)}
+          placeholder="Enter your prayer request"
+          required
+          disabled={isSubmitting}
+          className={styles.prayerTextarea}
+        />
+      </Form.Group>
+      <Button
+        type="submit"
+        className={styles.prayerSubmitBtn}
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Submit Prayer"}
+      </Button>
+    </Form>
+  </Col>
+</Row>
+
       </Container>
     </div>
   );

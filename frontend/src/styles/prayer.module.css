@@ -13,7 +13,7 @@
 /* Floating Prayers Container */
 .prayerFloatContainer {
   height: 400px;
-  width: 90%;
+  width: 100%;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -65,6 +65,15 @@
   border-radius: 8px;
   padding: 0.75rem;
   width: 100%;
+}
+
+.special-prayer-message {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem;
+  width: 100%;
+  height: 100px;
 }
 
 /* Submit Button */
@@ -119,7 +128,7 @@
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .prayerBody {
-    padding-bottom: 5rem;
+    background-attachment: scroll; /* Avoid fixed background on small screens */
   }
 
   .prayerFloatContainer {
@@ -128,16 +137,35 @@
 
   .floatingPrayer {
     font-size: 0.9rem;
-    max-width: 90%;
+    max-width: 100%;
+    left: 5%; /* Move prayers slightly to the left for better centering */
   }
+
 
   .prayerForm {
     padding: 1rem;
-    max-width: 90%;
+    max-width: 100%; /* Increase the form width to 90% */
+  }
+
+  .prayerSubmitBtn {
+    width: 100%; /* Ensure button is full-width on mobile */
   }
 
   .prayerMessage {
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Slightly smaller for readability */
+  }
+
+  .prayerMessageBox h4 {
+    font-size: 1.4rem; /* Adjust heading size */
+  }
+
+  .special-prayer-message {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 0.75rem;
+    width: 100%;
+    height: 100px;
   }
 }
 
@@ -145,14 +173,36 @@
   .floatingPrayer {
     font-size: 0.85rem;
     padding: 8px;
+    left: 0; /* Center on smaller screens */
+    right: 0;
+    margin: 0 auto; /* Centering the floating prayer cards */
   }
 
+
   .prayerMessage {
-    font-size: 1.1rem;
-    padding: 15px;
+    font-size: 1.1rem; /* Further reduce size for small screens */
+  }
+
+  .prayerSubText {
+    font-size: 0.9rem; /* Adjust subtext for readability on small screens */
   }
 
   .prayerForm {
-    max-width: 95%;
+    padding: 0.75rem;
+    max-width: 100%; /* Adjust to take more space on small screens */
+  }
+
+  .prayerSubmitBtn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .special-prayer-message {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 0.75rem;
+    width: 100%;
+    height: 100px;
   }
 }
