@@ -109,11 +109,11 @@ const Prayer = () => {
 
         {messageReceived && (
         <Row 
-          className={`special-prayer-message justify-content-center align-items-center ${styles.fadeIn}`} 
-         style={{ minHeight: '85vh', padding: '2rem 0' }} // Slightly taller and padded
-        >
+        className={`special-prayer-message justify-content-center align-items-start ${styles.fadeIn}`} 
+        style={{ minHeight: '85vh', padding: '2rem 0' }}
+      >
           <Col xs={11} md={8} lg={6} className="text-center">
-            <div className={styles.prayerMessageBox} style={{ padding: '2rem', fontSize: '1.3rem' }}>
+            <div className={styles.prayerMessageBox} style={{ padding: '2rem', fontSize: '1.3rem'}}>
               <p>🕊️ “Heaven heard you <br></br> your prayer is in God’s hands.”</p>
             </div>
           </Col>
