@@ -1,9 +1,9 @@
 {
     "title": "Jesus Loves Me",
     "lyrics": [
-      { "text": "Jesus loves me, this I know", "startTime": 0, "endTime": 4, "image": "/images/jesusLovesMeThisIKnow.webp" },
+      { "text": "Jesus loves me, this I know", "startTime": 0, "endTime": 4, "image": "/images/JesusLovesMeThisIKnow.webp" },
       { "text": "For the Bible tells me so", "startTime": 4, "endTime": 9, "image": "/images/forTheBibleTellsMeSo.webp" },
-      { "text": "Little ones to Him belong", "startTime": 10, "endTime": 14, "image": "/images/littleONesToHimBelong.webp" },
+      { "text": "Little ones to Him belong", "startTime": 10, "endTime": 14, "image": "/images/littleOnesToHimBelong.webp" },
       { "text": "They are weak, but He is strong", "startTime": 15, "endTime": 19, "image": "/images/theyAreWeekButHeIsStrong.webp" },
       { "text": "Yes, Jesus loves me!", "startTime": 20, "endTime": 24, "image": "/images/yesJesusLovesMe2.jpg" },
       { "text": "Yes, Jesus loves me!", "startTime": 25, "endTime": 28, "image": "/images/yesJesusLovesMe2.jpg" },
