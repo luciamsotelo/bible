@@ -23,7 +23,7 @@ const stories = [
     expandedImage: Garden,
     story: "In the beginning, God created the first man, Adam, from the dust of the ground and breathed life into him. Adam lived in a beautiful garden called Eden, where he named all the animals and took care of the plants. But Adam was lonely, so God decided to create a companion for him. God put Adam into a deep sleep, took one of his ribs, and made the first woman, Eve. Adam and Eve lived happily in the Garden of Eden, where they had everything they needed. God told them they could eat from any tree in the garden except one—the Tree of Knowledge of Good and Evil. God warned them that if they ate from this tree, they would die. One day, a sneaky serpent, who was actually the Devil in disguise, tricked Eve into eating the fruit from the forbidden tree. The serpent told her that eating the fruit would make her as wise as God. Eve took a bite and gave some to Adam, who also ate it. Immediately, they realized they had disobeyed God and felt ashamed. Because they disobeyed, God had to punish them. He told them they had to leave the beautiful garden and live in the world outside, where life would be harder. Adam and Eve had to work hard to grow their food, and they experienced pain and suffering for the first time. But even though they made a big mistake, God still loved them and promised to send a Savior to help their descendants.",
     lesson: "The lesson of the story is Obedience to God: God gave Adam and Eve a rule to follow, but they disobeyed. This teaches us the importance of listening to and obeying God’s instructions.",
-    audioFile: '/songs/AdamAndEve.mp3',
+    audioFile: '/songs/adamAndEve.mp3',
   },
   {
     title: "Noah's Ark",
