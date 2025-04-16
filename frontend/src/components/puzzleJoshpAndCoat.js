@@ -75,7 +75,7 @@ const Puzzle = () => {
                 key={index}
                 className={styles.josephPuzzlePiece}
                 style={{
-                  backgroundImage: "url('/images/josephCoatColors.png')",
+                  backgroundImage: "url('/images/joshpAndCoat.png')",
                   backgroundPosition: `${(piece % GRID_SIZE) * (100 / (GRID_SIZE - 1))}% ${
                     Math.floor(piece / GRID_SIZE) * (100 / (GRID_SIZE - 1))
                   }%`,
