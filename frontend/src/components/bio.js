@@ -9,7 +9,7 @@ const characters = [
     image: "/images/jesus.jpg",
     description:
       "I am Jesus, the Son of God, and I came to show everyone how much God loves them. I teach people about kindness, love, and helping others. I performed miracles, like healing the sick and feeding the hungry, to help those in need. My greatest gift is sharing the good news of God’s love with everyone!",
-    audioFile: "/songs/jesusBio.mp3",
+    audioFile: "/songs/JesusBio.mp3",
   },
   {
     name: "Noah",
