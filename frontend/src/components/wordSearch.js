@@ -32,7 +32,7 @@ const WordSearch = () => {
       ["PETER", "ELIJAH", "JUDAS"],
       ["BETHLEHEM", "CAPERNAUM", "JERUSALEM", "GALILEE"],
       ["JACOB", "ISAAC", "ABRAHAM", "DANIEL", "JOHN"],
-      ["MATHEW", "MARK", "LUKE", "JOHN", "ACTS", "ROMANS"],
+      ["MATTHEW", "MARK", "LUKE", "JOHN", "ACTS", "ROMANS"],
       ["GENESIS", "EXODUS", "LEVITICUS", "NUMBERS"],
       ["FAITH", "LOVE", "HOPE", "JOY", "PEACE", "GRACE"],
       [
