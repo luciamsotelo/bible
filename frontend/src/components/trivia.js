@@ -14,6 +14,11 @@ const Trivia = () => {
 
     const originalQuestions = [
         {
+            question: "Who built the ark?",
+            options: ["Adam", "Moses", "Noah", "David"],
+            correctAnswer: "Noah",
+        },
+        {
             question: "What did Jesus feed to 5,000 people?",
             options: ["Apples and grapes", "Fish and bread", "Honey and milk", "Corn and wheat"],
             correctAnswer: "Fish and bread",
@@ -27,16 +32,6 @@ const Trivia = () => {
             question: "Who was Jesus' earthly father?",
             options: ["Joseph", "Abraham", "Moses", "David"],
             correctAnswer: "Joseph",
-        },
-        {
-            question: "What was the name of Jesus’ closest twelve followers?",
-            options: ["The Kings", "The Prophets", "The Disciples", "The Angels"],
-            correctAnswer: "The Disciples",
-        },
-        {
-            question: "What was Jesus' first miracle?",
-            options: ["Walking on water", "Healing the blind", "Turning water into wine", "Feeding 5,000"],
-            correctAnswer: "Turning water into wine",
         },
         {
             question: "What was the name of the sea that Jesus calmed?",
@@ -94,11 +89,6 @@ const Trivia = () => {
             correctAnswer: "A donkey",
         },
         {
-            question: "Who built the ark?",
-            options: ["Noah", "Moses", "Abraham", "David"],
-            correctAnswer: "Noah",
-        },
-        {
             question: "Who walked on water with Jesus?",
             options: ["James", "Peter", "John", "Luke"],
             correctAnswer: "Peter",
@@ -137,11 +127,6 @@ const Trivia = () => {
             question: "Who found baby Moses in the river?",
             options: ["An angel", "Pharaoh's daughter", "His mother", "A fisherman"],
             correctAnswer: "Pharaoh's daughter",
-        },
-        {
-            question: "Who was the tax collector that Jesus befriended?",
-            options: ["Peter", "John", "Matthew", "Paul"],
-            correctAnswer: "Matthew",
         },
         {
             question: "What is the shortest verse in the Bible?",
@@ -197,7 +182,183 @@ const Trivia = () => {
             question: "What is the greatest commandment Jesus taught?",
             options: ["Do not steal", "Love the Lord and your neighbor", "Pray every day", "Obey your parents"],
             correctAnswer: "Love the Lord and your neighbor",
+        },
+        {
+            question: "Who betrayed Jesus for 30 pieces of silver?",
+            options: ["Peter", "Judas", "Thomas", "John"],
+            correctAnswer: "Judas",
+        },
+        {
+            question: "What river was Jesus baptized in?",
+            options: ["Nile", "Jordan", "Euphrates", "Tigris"],
+            correctAnswer: "Jordan",
+        },
+        {
+            question: "What did Jesus turn water into?",
+            options: ["Milk", "Juice", "Wine", "Honey"],
+            correctAnswer: "Wine",
+        },
+        {
+            question: "What is the name of the garden where Adam and Eve lived?",
+            options: ["Gethsemane", "Eden", "Galilee", "Bethlehem"],
+            correctAnswer: "Eden",
+        },
+        {
+            question: "Which apostle doubted Jesus' resurrection until he saw Him?",
+            options: ["Peter", "Judas", "Thomas", "Andrew"],
+            correctAnswer: "Thomas",
+        },
+        {
+            question: "How many plagues did God send on Egypt?",
+            options: ["3", "7", "10", "12"],
+            correctAnswer: "10",
+        },
+        {
+            question: "What did God tell Noah to build?",
+            options: ["A temple", "An altar", "An ark", "A tower"],
+            correctAnswer: "An ark",
+        },
+        {
+            question: "Which book comes after the Gospels in the New Testament?",
+            options: ["Romans", "Acts", "Revelation", "Hebrews"],
+            correctAnswer: "Acts",
+        },
+        {
+            question: "Who led the Israelites into the Promised Land?",
+            options: ["Moses", "Aaron", "Joshua", "Caleb"],
+            correctAnswer: "Joshua",
+        },
+        {
+            question: "What happened to the Tower of Babel?",
+            options: ["It burned", "It was finished", "God confused their language", "It turned to gold"],
+            correctAnswer: "God confused their language",
+        },
+        {
+            question: "Who was the strong man known for his long hair?",
+            options: ["Saul", "Samson", "Solomon", "Seth"],
+            correctAnswer: "Samson",
+        },
+        {
+            question: "What kind of insect did John the Baptist eat?",
+            options: ["Bees", "Locusts", "Ants", "Crickets"],
+            correctAnswer: "Locusts",
+        },
+        {
+            question: "How many days and nights did it rain during the flood?",
+            options: ["20", "30", "40", "50"],
+            correctAnswer: "40",
+        },
+        {
+            question: "Who interpreted Pharaoh’s dream in Egypt?",
+            options: ["Moses", "Joseph", "Daniel", "Jacob"],
+            correctAnswer: "Joseph",
+        },
+        {
+            question: "What is the golden rule Jesus taught?",
+            options: ["Love your enemies", "Pray always", "Do to others as you would have them do to you", "Be still"],
+            correctAnswer: "Do to others as you would have them do to you",
+        },
+        {
+            question: "Who was the oldest man in the Bible?",
+            options: ["Abraham", "Methuselah", "Noah", "Adam"],
+            correctAnswer: "Methuselah",
+        },
+        {
+            question: "Which disciple was a fisherman?",
+            options: ["Matthew", "Judas", "Peter", "Thomas"],
+            correctAnswer: "Peter",
+        },
+        {
+            question: "Who received the Ten Commandments?",
+            options: ["David", "Abraham", "Moses", "Isaiah"],
+            correctAnswer: "Moses",
+        },
+        {
+            question: "What book is known as the book of wisdom?",
+            options: ["Psalms", "Proverbs", "Job", "Ecclesiastes"],
+            correctAnswer: "Proverbs",
+        },
+        {
+            question: "Where did Jesus pray before His arrest?",
+            options: ["The garden of Eden", "Gethsemane", "Nazareth", "Mount Sinai"],
+            correctAnswer: "Gethsemane",
+        },
+        {
+            question: "What animal spoke to Balaam?",
+            options: ["A lion", "A sheep", "A donkey", "A bird"],
+            correctAnswer: "A donkey",
+        },
+        {
+            question: "What is the longest book in the Bible?",
+            options: ["Genesis", "Isaiah", "Psalms", "Matthew"],
+            correctAnswer: "Psalms",
+        },
+        {
+            question: "Who anointed David as king?",
+            options: ["Nathan", "Eli", "Samuel", "Saul"],
+            correctAnswer: "Samuel",
+        },
+        {
+            question: "How many times did Peter deny Jesus?",
+            options: ["One", "Two", "Three", "Four"],
+            correctAnswer: "Three",
+        },
+        {
+            question: "Who climbed a sycamore tree to see Jesus?",
+            options: ["Matthew", "Zacchaeus", "Paul", "Simon"],
+            correctAnswer: "Zacchaeus",
+        },
+        {
+            question: "Which prophet was taken up to heaven in a whirlwind?",
+            options: ["Elisha", "Ezekiel", "Isaiah", "Elijah"],
+            correctAnswer: "Elijah",
+        },
+        {
+            question: "Which disciple was a tax collector?",
+            options: ["Luke", "Matthew", "John", "James"],
+            correctAnswer: "Matthew",
+        },
+        {
+            question: "What does 'Emmanuel' mean?",
+            options: ["God with us", "Peace be with you", "Healer", "Messiah"],
+            correctAnswer: "God with us",
+        },
+        {
+            question: "Who was Abraham’s wife?",
+            options: ["Rebekah", "Rachel", "Leah", "Sarah"],
+            correctAnswer: "Sarah",
+        },
+        {
+            question: "Who was the first martyr in the New Testament?",
+            options: ["Paul", "Stephen", "Peter", "James"],
+            correctAnswer: "Stephen",
+        },
+        {
+            question: "How many days was Jesus in the tomb?",
+            options: ["One", "Two", "Three", "Four"],
+            correctAnswer: "Three",
+        },
+        {
+            question: "Who was the Roman governor who sentenced Jesus to death?",
+            options: ["Caesar", "Herod", "Pilate", "Nero"],
+            correctAnswer: "Pilate",
+        },
+        {
+            question: "How many wise men visited Jesus?",
+            options: ["Three", "Five", "We don't know", "Two"],
+            correctAnswer: "We don't know",
+        },
+        {
+            question: "What was the name of the mountain where Moses died?",
+            options: ["Sinai", "Nebo", "Carmel", "Zion"],
+            correctAnswer: "Nebo",
+        },
+        {
+            question: "Which book describes the fruit of the Spirit?",
+            options: ["Philippians", "Galatians", "Romans", "Ephesians"],
+            correctAnswer: "Galatians",
         }
+        
     ];
     
     const navigate = useNavigate();

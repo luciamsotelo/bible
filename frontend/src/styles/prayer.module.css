@@ -12,8 +12,8 @@
 
 /* Floating Prayers Container */
 .prayerFloatContainer {
-  height: 400px;
-  width: 90%;
+  width: 100%;
+  min-height: 300px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -23,78 +23,67 @@
 
 /* Floating Prayer Cards */
 .floatingPrayer {
-  max-width: 85%;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
   color: #333;
   text-align: center;
-  position: absolute;
-  left: 10%;
-  animation: floatUp 15s ease-in-out forwards, fadeOut 15s ease-in-out forwards;
-  animation-delay: 2s;
+  opacity: 0;
+  animation: floatUpFadeOut 10s ease-in-out forwards, glowing 1.5s infinite alternate;
+  animation-delay: 3s; /* Appears after message and form */
 }
 
-/* Floating Animation */
-@keyframes floatUp {
-  0% { transform: translateY(50%); opacity: 1; }
-  100% { transform: translateY(-150px); opacity: 0; }
+/* Animation: Float Up and Fade */
+@keyframes floatUpFadeOut {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-300px);
+    opacity: 0;
+  }
 }
 
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+/* Glowing Animation */
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 255, 255, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.7);
+  }
 }
 
-/* Prayer Form */
-.prayerForm {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1.5rem;
-  border-radius: 15px;
-  border: 2px solid rgb(124, 23, 158);
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
+/* Fade In and Slide Animation */
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Input Fields */
-.prayerInput, .prayerTextarea {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  padding: 0.75rem;
-  width: 100%;
+/* Fade In Animation */
+@keyframes fadeInSmooth {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Submit Button */
-.prayerSubmitBtn {
-  background: rgb(124, 23, 158);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
-}
-
-.prayerSubmitBtn:hover {
-  background: #e0a800;
-  transform: scale(1.05);
-}
-
-/* Prayer Message Box */
-.prayerMessageBox {
-  background: rgba(255, 255, 255, 0.85);
-  border: 2px solid #ffc107;
-  border-radius: 15px;
-  padding: 1rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Prayer Instruction Text */
+/* Instruction Message */
 .prayerMessage {
   color: hotpink;
   font-weight: bold;
@@ -104,28 +93,80 @@
   padding: 20px;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
+  opacity: 0;
+  animation: fadeInSlide 1s ease forwards, glowing 1.5s infinite alternate;
+  animation-delay: 0.5s; /* Appears first, slight delay */
+  z-index: 1;
 }
 
-/* Smaller text for instructions */
+/* Form Container */
+.prayerForm {
+  background: rgba(220, 157, 219, 0.9);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 2px solid rgb(124, 23, 158);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+  opacity: 0;
+  animation: fadeInSlide 1s ease forwards, glowing 1.5s infinite alternate;
+  animation-delay: 4s; /* Appears after the message */
+}
+
+
+/* Input Fields */
+.prayerInput,
+.prayerTextarea {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  animation: glowing 1.5s infinite alternate;
+}
+
+/* Submit Button */
+.prayerSubmitBtn {
+  background: rgb(124, 23, 158);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: glowing 1.5s infinite alternate;
+}
+
+.prayerSubmitBtn:hover {
+  background: #e0a800;
+  transform: scale(1.05);
+}
+
+/* Subtext */
 .prayerSubText {
   font-size: 1rem;
   color: black;
-  text-shadow: none;
   font-family: "Quicksand", sans-serif;
   text-align: center;
-  padding-top: 5px;
+  margin-top: 10px;
+  animation: glowing 1.5s infinite alternate;
 }
 
-/* Mobile Responsiveness */
+/* Confirmation Box */
+.prayerMessageBox {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeInSlide 1.5s ease forwards, glowing 1.5s infinite alternate;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .prayerBody {
-    padding-bottom: 5rem;
-  }
-
-  .prayerFloatContainer {
-    height: 350px;
-  }
-
   .floatingPrayer {
     font-size: 0.9rem;
     max-width: 90%;
@@ -133,7 +174,6 @@
 
   .prayerForm {
     padding: 1rem;
-    max-width: 90%;
   }
 
   .prayerMessage {
@@ -149,10 +189,17 @@
 
   .prayerMessage {
     font-size: 1.1rem;
-    padding: 15px;
+  }
+
+  .prayerSubText {
+    font-size: 0.9rem;
   }
 
   .prayerForm {
-    max-width: 95%;
+    padding: 0.75rem;
+  }
+
+  .prayerSubmitBtn {
+    width: 100%;
   }
 }

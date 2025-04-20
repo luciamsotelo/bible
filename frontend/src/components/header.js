@@ -13,14 +13,16 @@ const Header = () => {
           </Link>
         </Navbar.Brand>
 
-        <h1 className={styles.navbarTitle}>A Bible Adventure</h1>
+        <Link to="/" style={{ textDecoration: "none" }}>
+  <h1 className={styles.navbarTitle}>A Bible Adventure</h1>
+</Link>
 
         <Navbar.Toggle aria-controls="navbar-nav" className={styles.navbarToggler} />
 
         <Navbar.Collapse id="navbar-nav">
           <Nav className={`ml-auto d-flex justify-content-center flex-wrap ${styles.navLinks}`}>
             <Link to="/stories">
-              <Button className={styles.navButton}>Short Stories</Button>
+              <Button className={styles.navButton}>Bible Stories</Button>
             </Link>
             <Link to="/games">
               <Button className={styles.navButton}>Games</Button>
@@ -32,7 +34,7 @@ const Header = () => {
               <Button className={styles.navButton}>Printable Crafts</Button>
             </Link>
             <Link to="/prayer-board">
-              <Button className={styles.navButton}>Prayer Board</Button>
+              <Button className={styles.navButton}>Send up a Prayer</Button>
             </Link>
             <Link to="/bio">
               <Button className={styles.navButton}>Character Bios</Button>
@@ -47,7 +49,7 @@ const Header = () => {
               <Button className={styles.navButton}>Daily Prayer</Button>
             </Link>
             <Link to="/lessons">
-              <Button className={styles.navButton}>Lessons</Button>
+              <Button className={styles.navButton}>Storytime</Button>
             </Link>
           </Nav>
         </Navbar.Collapse>
