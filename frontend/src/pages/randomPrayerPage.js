@@ -4,7 +4,7 @@ import Header from '../components/header';
 
 const RandomPrayerPage = () => {
   const backgroundStyle = {
-    backgroundImage: `url('/images/randomPrayerBgnd.jpg')`,
+    backgroundImage: `url('/images/randomPrayerBgnd2.png')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -19,7 +19,7 @@ const RandomPrayerPage = () => {
     width: '100%',
     height: '30%',
     backgroundColor: 'rgba(0, 0, 0, 1)',
-    zIndex: 1,
+    zIndex: -1,
   };
 
   return (

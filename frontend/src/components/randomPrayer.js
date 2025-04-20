@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const RandomPrayer = () => {
   const [prayer, setPrayer] = useState('');
   const [showButton, setShowButton] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
     fetch('/prayer.json')
@@ -12,6 +13,7 @@ const RandomPrayer = () => {
       .then(data => {
         const randomIndex = Math.floor(Math.random() * data.length);
         setPrayer(data[randomIndex].prayer);
+        setIsPageLoaded(true);
       })
       .catch(err => console.error('Error loading prayers:', err));
 
@@ -19,6 +21,16 @@ const RandomPrayer = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  if (!isPageLoaded) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border text-light" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="text-center px-4" style={{ maxWidth: '800px' }}>
@@ -30,15 +42,18 @@ const RandomPrayer = () => {
           </React.Fragment>
         ))}
       </h3>
-      <div className="mt-4" style={{ minHeight: '50px' }}>
-        {showButton && (
-          <Link to="/" className="btn btn-outline-light">
-            Home
-          </Link>
-        )}
-      </div>
+      <div className="mt-4" style={{ minHeight: '60px' }}>
+  <Link
+    to="/"
+    className="btn btn-light mt-3"
+    style={{ visibility: showButton ? 'visible' : 'hidden' }}
+  >
+    Home
+  </Link>
+</div>
     </div>
   );
 };
 
 export default RandomPrayer;
+
