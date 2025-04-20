@@ -66,9 +66,12 @@ const StoryComponent = () => {
   }, [currentStep, imageIndex, isPlaying]);
 
   const playAudio = () => {
+    if (isPlaying) return;
+
     if (!audioRef.current || audioRef.current.src !== currentStep.audio) {
       audioRef.current = new Audio(currentStep.audio);
     }
+
     audioRef.current.play();
     setIsPaused(false);
     setIsPlaying(true);
@@ -100,7 +103,8 @@ const StoryComponent = () => {
     clearTimeout(timeoutRef.current);
   };
 
-  if (!currentStep) return <div className="text-center mt-4">Loading story...</div>;
+  if (!currentStep)
+    return <div className="text-center mt-4">Loading story...</div>;
 
   return (
     <div className={`container text-center ${styles.storyContainer}`}>
@@ -115,26 +119,29 @@ const StoryComponent = () => {
       <h1 className={styles.storyTitle}>{currentStep.title}</h1>
       <p className={styles.storyDescription}>{currentStep.description}</p>
 
-      {currentStep.audio && (
-        <div>
-          <button
-            className={`btn btn-primary m-2 ${blink ? styles.blinkingButton : ""}`}
-            onClick={playAudio}
-          >
-            {isPaused ? "Resume Story" : "Play Story"}
-          </button>
-          <button className="btn btn-secondary m-2" onClick={pauseAudio}>
-            Pause
-          </button>
-        </div>
-      )}
-
       {currentStep.images?.length > 0 && (
-        <img
-          src={currentStep.images[imageIndex]?.src}
-          alt="Anna's Adventure"
-          className={`img-fluid border border-light border-5 mb-3 ${styles.storyImage}`}
-        />
+        <>
+          <img
+            src={currentStep.images[imageIndex]?.src}
+            alt="Anna's Adventure"
+            className={`img-fluid border border-light border-5 mb-3 ${styles.storyImage}`}
+          />
+          {currentStep.audio && (
+            <div className="mb-4">
+              <button
+                className={`btn btn-primary m-2 ${
+                  blink ? styles.blinkingButton : ""
+                }`}
+                onClick={playAudio}
+              >
+                {isPaused ? "Resume Story" : "Play Story"}
+              </button>
+              <button className="btn btn-secondary m-2" onClick={pauseAudio}>
+                Pause
+              </button>
+            </div>
+          )}
+        </>
       )}
 
       <div>
@@ -152,12 +159,18 @@ const StoryComponent = () => {
           <div className="mt-4">
             <h3 className={styles.storyTitle}>🌸 Anna's Reflection 🌸</h3>
             <p className={styles.storyDescription}>
-              Thank you for joining Anna on her special quest! Remember, God is always with you, guiding your heart and your steps.
+              Thank you for joining Anna on her special quest! Remember, God is
+              always with you, guiding your heart and your steps.
             </p>
             <button className="btn btn-success" onClick={restartStory}>
               Restart Story
             </button>
-            <button className="btn btn-success m-2" onClick={() => navigate("/lessons")}>Lessons Page</button>
+            <button
+              className="btn btn-success m-2"
+              onClick={() => navigate("/lessons")}
+            >
+              Lessons Page
+            </button>
           </div>
         )}
       </div>
