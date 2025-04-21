@@ -73,17 +73,19 @@ const BibleStories = () => {
   const [paused, setPaused] = useState(true);
 
   const toggleStory = (index) => {
+    stopAudio(); // Always stop current audio first
+    setPaused(true); // Reset play/pause button to "Play"
+    
     if (expandedStory === index) {
       setExpandedStory(null);
-      stopAudio();
     } else {
       setExpandedStory(index);
-      stopAudio();
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     }
   };
+  
 
   const playAudio = (audioFile) => {
     if (audio) {
@@ -105,9 +107,11 @@ const BibleStories = () => {
   const stopAudio = () => {
     if (audio) {
       audio.pause();
+      audio.currentTime = 0; // ⬅️ Add this line to reset audio to the start
       setAudio(null);
     }
   };
+  
 
   return (
     <Container className="mt-4 mb-5">
