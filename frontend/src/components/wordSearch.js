@@ -35,17 +35,7 @@ const WordSearch = () => {
       ["MATTHEW", "MARK", "LUKE", "JOHN", "ACTS", "ROMANS"],
       ["GENESIS", "EXODUS", "LEVITICUS", "NUMBERS"],
       ["FAITH", "LOVE", "HOPE", "JOY", "PEACE", "GRACE"],
-      [
-        "RUTH",
-        "SARAH",
-        "ESTHER",
-        "MARY",
-        "EVE",
-        "REBEKAH",
-        "LEAH",
-        "HANNAH",
-        "JUDITH",
-      ],
+      ["RUTH", "SARAH", "ESTHER", "MARY", "EVE", "REBEKAH", "LEAH", "HANNAH","JUDITH"],
     ];
     return levelWords[level - 1] || [];
   }, [level]);
