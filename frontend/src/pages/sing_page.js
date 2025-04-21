@@ -68,7 +68,12 @@ const SingPage = () => {
         </Dropdown>
 
         {/* Song Display */}
-        {songData ? <Sing songData={songData} /> : <Spinner animation="border" />}
+        {songData ? (
+  <Sing key={selectedSong} songData={songData} />
+) : (
+  <Spinner animation="border" />
+)}
+
       </Container>
     </div>
   );
