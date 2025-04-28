@@ -20,7 +20,13 @@ const Sing = ({ songData }) => {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-
+  
+    // Reset audio state
+    audio.pause();
+    audio.currentTime = 0;
+    setIsPlaying(false);
+    setCurrentLine(0);
+  
     const handleTimeUpdate = () => {
       const currentTime = audio.currentTime;
       const currentLyricsIndex = songData.lyrics.findIndex(
@@ -30,12 +36,13 @@ const Sing = ({ songData }) => {
         setCurrentLine(currentLyricsIndex);
       }
     };
-
+  
     audio.addEventListener("timeupdate", handleTimeUpdate);
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
-  }, [songData.lyrics]); // Depend on `songData.lyrics` only
+  }, [songData.audio, songData.lyrics]); // 🔁 Trigger reset on new audio
+  
 
   // Get the background image URL for the current line
   const backgroundImage = songData.lyrics[currentLine]?.image;
@@ -49,7 +56,7 @@ const Sing = ({ songData }) => {
       onClick={handlePlayPause}
       size="lg"
     >
-      {isPlaying ? "Pause" : "Play"}
+      {isPlaying ? "Pause Song" : "Play Song"}
     </Button>
   
       {/* Karaoke Container with Background */}
