@@ -34,11 +34,13 @@ const AdventureMap = () => {
         <img src="/images/israel.png" alt="Adventure Map" className={styles.mapImage} />
 
         {points.map((point) => (
-          <div key={point.id} className={styles.mapPoint} style={{ top: point.y, left: point.x }}>
-            <span className={styles.tooltip}>{point.name}</span>
-            <button className={styles.mapButton} onClick={() => handleClick(point)}>{point.name}</button>
-          </div>
-        ))}
+  <div key={point.id} className={styles.mapPoint} style={{ top: point.y, left: point.x }}>
+    <button className={styles.mapButton} onClick={() => handleClick(point)}>
+      {point.name}
+    </button>
+  </div>
+))}
+
 
         {selectedPoint && (
           <Card className={styles.infoCard}>
