@@ -11,6 +11,30 @@ const Maze = () => {
   const [gridSize] = useState(20);
   const navigate = useNavigate();
   const [gameStarted, setGameStarted] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
+
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      const isMobile = window.innerWidth <= 1024; // screen width <= 1024px is considered mobile/tablet
+      if (isMobile && window.innerWidth > window.innerHeight) {
+        setIsLandscape(true);
+      } else {
+        setIsLandscape(false);
+      }
+    };
+  
+    checkOrientation(); // Check on load
+  
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("orientationchange", checkOrientation);
+  
+    return () => {
+      window.removeEventListener("resize", checkOrientation);
+      window.removeEventListener("orientationchange", checkOrientation);
+    };
+  }, []);
+  
 
   /** Generate a random position - MEMOIZED with useCallback */
   const generateRandomPosition = useCallback(() => ({ // ADDED useCallback
@@ -215,6 +239,11 @@ const Maze = () => {
 
   return (
     <Container className="text-center mt-5">
+      {isLandscape && (
+        <div className={styles.landscapeWarning}>
+          📱 Please rotate your device back to portrait mode!
+        </div>
+      )}
       {/* Back Button */}
       <Row className="justify-content-center">
         <Col className="container d-flex justify-content-between">
