@@ -32,29 +32,32 @@ const AdventureMap = () => {
       </p>
       <div className={styles.mapContainer}>
         <img src="/images/israel.png" alt="Adventure Map" className={styles.mapImage} />
-
+  
         {points.map((point) => (
-  <div key={point.id} className={styles.mapPoint} style={{ top: point.y, left: point.x }}>
-    <button className={styles.mapButton} onClick={() => handleClick(point)}>
-      {point.name}
-    </button>
-  </div>
-))}
-
-
+          <div key={point.id} className={styles.mapPoint} style={{ top: point.y, left: point.x }}>
+            <button className={styles.mapButton} onClick={() => handleClick(point)}>
+              {point.name}
+            </button>
+          </div>
+        ))}
+  
         {selectedPoint && (
-          <Card className={styles.infoCard}>
-            <Card.Img variant="top" src={selectedPoint.image} />
-            <Card.Body>
-              <Card.Title className={styles.cardTitle}>{selectedPoint.name}</Card.Title>
-              <Card.Text className={styles.textStart}>{selectedPoint.description}</Card.Text>
-              <Button variant="secondary" onClick={() => setSelectedPoint(null)}>Close</Button>
-            </Card.Body>
-          </Card>
+          <>
+            <div className={styles.overlay} onClick={() => setSelectedPoint(null)}></div>
+            <Card className={styles.infoCardCentered}>
+              <Card.Img variant="top" src={selectedPoint.image} />
+              <Card.Body>
+                <Card.Title className={styles.cardTitle}>{selectedPoint.name}</Card.Title>
+                <Card.Text className={styles.textStart}>{selectedPoint.description}</Card.Text>
+                <Button variant="secondary" onClick={() => setSelectedPoint(null)}>Close</Button>
+              </Card.Body>
+            </Card>
+          </>
         )}
       </div>
     </div>
   );
+  
 };
 
 export default AdventureMap;
