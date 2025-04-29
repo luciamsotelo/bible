@@ -19,8 +19,8 @@
       "description": "Noah decided to keep the coins, thinking no one would know. But as he walked home, his heart felt heavy. That night, he couldn't sleep, remembering Proverbs 10:2: 'Ill-gotten treasures have no lasting value, but righteousness delivers from death.'",
       "images": [
         { "src": "/images/noahstep2.jpg", "duration": 4600 },
-        { "src": "/images/noahstep2-2.jpg", "duration": 4000 },
-        { "src": "/images/noahstep2-3.jpg", "duration": 10000 }
+        { "src": "/images/noahStep2-2.jpg", "duration": 4000 },
+        { "src": "/images/noahStep2-3.jpg", "duration": 10000 }
       ],
       "audio": "/audio/noahStep2.mp3",
       "choices": [
